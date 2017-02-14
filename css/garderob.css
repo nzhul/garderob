@@ -1,0 +1,93 @@
+﻿html, body {
+	font-family: Roboto, sans-serif;
+}
+
+.service-item i.fa {
+	font-size: 50px;
+	margin-bottom: 15px;
+	color: #237dc8;
+}
+
+.service-item:hover i.fa {
+	color: #404040;
+}
+
+.copyright {
+	font-size: 13px;
+}
+
+.main-nav .inner-nav.desktop-nav li {
+	font-size: 14px;
+	margin: 0 0px 0 20px;
+}
+
+.inner-nav.desktop-nav.switch-menu {
+	width: 70%;
+}
+
+.main-nav .nav-logo-wrap.local-scroll {
+	position: relative;
+	top: 10px;
+}
+
+.splash-image-wrapper {
+	width: 100%;
+	height: 100%;
+	margin-bottom: -140px;
+}
+
+	.splash-image-wrapper img#main-image {
+		border-top: 1px solid #237dc8;
+		border-bottom: 1px solid #237dc8;
+	}
+
+	.splash-image-wrapper img#main-image-hand {
+		position: absolute;
+		top: 630px;
+		left: -50px;
+		width: 25%;
+	}
+
+	.splash-image-wrapper .promotion-wrapper {
+		border: 10px solid #237dc8;
+		height: 50%;
+		width: 50%;
+		margin: 20px auto;
+		padding: 10px;
+		position: relative;
+		top: -100px;
+		font-weight: 100;
+		font-size: 18px;
+		line-height: 25px;
+	}
+
+		.splash-image-wrapper .promotion-wrapper .promotion-container {
+			background-color: #237dc8;
+			color: white;
+			padding: 10px;
+			background: #237dc8 url("../../img/index-main-blue-background.jpg") center center no-repeat;
+		}
+
+			.splash-image-wrapper .promotion-wrapper .promotion-container .lightbulb {
+				border-right: 1px dashed white;
+				text-align: center;
+				vertical-align: middle;
+			}
+
+				.splash-image-wrapper .promotion-wrapper .promotion-container .lightbulb i {
+					font-size: 100px;
+				}
+
+			.splash-image-wrapper .promotion-wrapper .promotion-container .promotion-text {
+				padding: 15px 0 0 0px;
+			}
+
+			.splash-image-wrapper .promotion-wrapper .promotion-container a {
+				padding: 20px 0 20px 0px;
+				font-size: 1vw;
+				display: block;
+				min-width: unset;
+				width: 70%;
+				margin: 20px auto;
+				height: 10%;
+			}
