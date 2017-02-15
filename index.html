@@ -13,7 +13,8 @@
 	<link rel="stylesheet" href="fonts/fi/flaticon.css">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/indent.css">
-	<link rel="stylesheet" href="css//garderob.css" />
+	<link rel="stylesheet" href="css/garderob.css" />
+	<link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
 	<header>
@@ -44,7 +45,7 @@
 		</div>
 		<nav class="main-nav js-stick">
 			<div class="full-wrapper relative clearfix container">
-				<div class="nav-logo-wrap local-scroll"><a href="index.html" class="logo"><img src="img/logo-garderob.png" data-at2x="img/logo-garderob@2x.png" alt><img src="img/logo-garderob.png" alt class="sticky-logo"></a></div>
+				<div class="nav-logo-wrap local-scroll"><a href="index.html" class="logo"><img src="img/logo-garderob.png" alt><img src="img/logo-garderob.png" alt class="sticky-logo"></a></div>
 				<div class="inner-nav desktop-nav switch-menu items-visible">
 					<ul class="clearlist">
 						<li><a href="#">Начало</a></li>
@@ -76,7 +77,7 @@
 	<div class="content-body">
 		<div class="splash-image-wrapper">
 			<img id="main-image" src="img/index-main-image.jpg" alt="От скица към готов продукт - колаж" />
-			<img id="main-image-hand" src="img/index-hand.png" alt="Ръка рисуваща скица" />
+			<img id="main-image-hand" src="img/index-hand-shadow.png" alt="Ръка рисуваща скица" />
 			<div class="promotion-wrapper">
 				<div class="promotion-container">
 					<div class="row">
@@ -133,29 +134,75 @@
 		<section class="page-section pb-0 bg-gray-2">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
+					<div class="col-md-12">
 						<h2 class="title-section text-center mt-0 mb-0">Ние ви предлагаме</h2>
 						<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
 						<p class="text-center mb-30">Тук ще сложим някакъв общ описателен текст за видовете услуги които предлагаме. <br />Трябва да е поне две изречения за да изглежда добре.</p>
-						<div class="row">
+						<div class="row row">
 							<div class="col-md-6">
-								column 1
+								<div class="we-offer-container big">
+									<img src="img/index/we-offer-1.png" alt="Alternate Text" />
+									<div>
+										<h5>Проектиране по ваш дизайн</h5>
+										<p>
+											Нарисувайте Вашият гардероб така, както искате той да бъде, и ние ще го направим за Вас. Сами изберете размера, цвета, колко рафтове, чекмеджета и деления да има, както и какви врати и закачалки.
+										</p>
+										<a href="#" class="cws-button alt">Научи повече</a>
+									</div>
+								</div>
 							</div>
 							<div class="col-md-6">
-								column 2
+								<div class="we-offer-container big">
+									<img src="img/index/we-offer-2.png" alt="Alternate Text" />
+									<div>
+										<h5>Богата палитра от материали</h5>
+										<p>
+											Разгледайте нашата богата гама на декоративни плоскости и вижте коя ще е най-подходяща за Вас. Ние ползваме само качествени материали от доказали се на пазара фирми.
+										</p>
+										<a href="#" class="cws-button alt">Научи повече</a>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-4">
-								column 1
+								<div class="we-offer-container small">
+									<img src="img/index/we-offer-3.png" alt="Alternate Text" />
+									<div>
+										<h5>Услуга Експерт</h5>
+										<p>
+											Нашия експертен персонал е винаги готов да Ви помогне със проектирането и реализацията на Вашите проекти.
+										</p>
+										<a href="#" class="cws-button alt">Научи повече</a>
+									</div>
+								</div>
 							</div>
 							<div class="col-md-4">
-								column 2
+								<div class="we-offer-container small">
+									<img src="img/index/we-offer-4.png" alt="Alternate Text"/>
+									<div>
+										<h5>Калкулатор за цена</h5>
+										<p>
+											С нашия калкулатор може да видите колко ще струва вашия проект и така по-лесно да се съобразите с бюджета Ви.
+										</p>
+										<a href="#" class="cws-button alt">Научи повече</a>
+									</div>
+								</div>
 							</div>
 							<div class="col-md-4">
-								column 3
+								<div class="we-offer-container small">
+									<img src="img/index/we-offer-5.png" alt="Alternate Text" />
+									<div>
+										<h5>"Жива" визуализация</h5>
+										<p>
+											Изберете подходяща комбинация от цветове със нашата система за визуализация
+										</p>
+										<a href="#" class="cws-button alt">Научи повече</a>
+									</div>
+								</div>
 							</div>
 						</div>
+						<div style="margin-bottom:60px;">&nbsp;</div>
 					</div>
 				</div>
 			</div>
@@ -176,7 +223,7 @@
 								<div class="testimonial">
 									<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
 									<div class="author">
-										<img src="img/testimonials/users/anton-radev.jpg" data-at2x="img/testimonials/users/anton-radev-x2.jpg" alt="Снимка на доволен клиент">
+										<img src="img/testimonials/users/anton-radev.jpg" alt="Снимка на доволен клиент">
 										<figure>
 											<figcaption>
 												Антон Радев<span>[ Софтуерен Архитект ]</span>
@@ -190,7 +237,7 @@
 								<div class="testimonial">
 									<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
 									<div class="author">
-										<img src="img/testimonials/users/natalia-nikolova.jpg" data-at2x="img/testimonials/users/anton-radev-x2.jpg" alt="Снимка на доволен клиент">
+										<img src="img/testimonials/users/natalia-nikolova.jpg" alt="Снимка на доволен клиент">
 										<figure>
 											<figcaption>
 												Наталия Николова<span>[ Бизнес Мениджър ]</span>
@@ -204,7 +251,7 @@
 								<div class="testimonial">
 									<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
 									<div class="author">
-										<img src="img/testimonials/users/anton-radev.jpg" data-at2x="img/testimonials/users/anton-radev-x2.jpg" alt="Снимка на доволен клиент">
+										<img src="img/testimonials/users/anton-radev.jpg" alt="Снимка на доволен клиент">
 										<figure>
 											<figcaption>
 												Антон Радев<span>[ Софтуерен Архитект ]</span>
@@ -218,7 +265,7 @@
 								<div class="testimonial">
 									<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
 									<div class="author">
-										<img src="img/testimonials/users/natalia-nikolova.jpg" data-at2x="img/testimonials/users/anton-radev-x2.jpg" alt="Снимка на доволен клиент">
+										<img src="img/testimonials/users/natalia-nikolova.jpg" alt="Снимка на доволен клиент">
 										<figure>
 											<figcaption>
 												Наталия Николова<span>[ Бизнес Мениджър ]</span>
@@ -376,6 +423,5 @@
 	<script type="text/javascript" src="js/bg-video/jquery.vimeo.api.min.js"></script>
 	<script type="text/javascript" src="js/bg-video/cws_YT_bg.js"></script>
 	<script type="text/javascript" src="js/jquery.tweet.js"></script>
-	<script type="text/javascript" src="js/retina.min.js"></script>
 </body>
 </html>

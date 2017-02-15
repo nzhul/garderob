@@ -2,6 +2,8 @@
 	font-family: Roboto, sans-serif;
 }
 
+/*INDEX START*/
+
 .service-item i.fa {
 	font-size: 50px;
 	margin-bottom: 15px;
@@ -43,15 +45,15 @@
 
 	.splash-image-wrapper img#main-image-hand {
 		position: absolute;
-		top: 630px;
-		left: -50px;
-		width: 25%;
+		margin-top: -8%;
+		margin-left: -3%;
+		z-index: 20;
 	}
 
 	.splash-image-wrapper .promotion-wrapper {
 		border: 10px solid #237dc8;
 		height: 50%;
-		width: 50%;
+		width: 900px;
 		margin: 20px auto;
 		padding: 10px;
 		position: relative;
@@ -65,7 +67,7 @@
 			background-color: #237dc8;
 			color: white;
 			padding: 10px;
-			background: #237dc8 url("../../img/index-main-blue-background.jpg") center center no-repeat;
+			background: #237dc8 url("../img/index-main-blue-background.jpg") center center no-repeat;
 		}
 
 			.splash-image-wrapper .promotion-wrapper .promotion-container .lightbulb {
@@ -84,10 +86,67 @@
 
 			.splash-image-wrapper .promotion-wrapper .promotion-container a {
 				padding: 20px 0 20px 0px;
-				font-size: 1vw;
+				font-size: 20px;
 				display: block;
 				min-width: unset;
 				width: 70%;
 				margin: 20px auto;
 				height: 10%;
 			}
+
+.we-offer-container {
+	background: white;
+	padding: 20px;
+	display: flex;
+	vertical-align: middle;
+	border: 1px solid #e6e6e6;
+	margin-bottom: 20px;
+	height:212px;
+}
+
+	.we-offer-container:hover {
+		border-color: #237dc8;
+	}
+
+	.we-offer-container.big div {
+		width: 65%;
+		float: right;
+		text-align: right;
+	}
+
+	.we-offer-container img {
+		display: block;
+		vertical-align: middle;
+		float: left;
+		margin: auto;
+	}
+
+	.we-offer-container.small {
+		display: block;
+		height: 255px;
+	}
+
+		.we-offer-container.small img {
+			display: block;
+			margin: 20px 43%;
+		}
+
+		.we-offer-container.small div {
+			width: 100%;
+			text-align: center;
+		}
+
+	.we-offer-container a {
+		transform: scale(.85);
+		position: absolute;
+		right: 30px;
+		bottom:3px;
+	}
+
+		.we-offer-container a:hover {
+			background-color: white !important;
+		}
+
+
+
+/*Index End*/
