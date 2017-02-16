@@ -4,6 +4,15 @@
 
 /*INDEX START*/
 
+.main-nav {
+	border-bottom: 1px solid #237dc8;
+}
+
+	.main-nav.small-height {
+		border-bottom: 1px solid #237dc8;
+
+	}
+
 .service-item i.fa {
 	font-size: 50px;
 	margin-bottom: 15px;
@@ -39,27 +48,21 @@
 }
 
 	.splash-image-wrapper img#main-image {
-		border-top: 1px solid #237dc8;
-		border-bottom: 1px solid #237dc8;
-	}
-
-	.splash-image-wrapper img#main-image-hand {
-		position: absolute;
-		margin-top: -8%;
-		margin-left: -3%;
-		z-index: 20;
+		/*border-top: 1px solid #237dc8;
+		border-bottom: 1px solid #237dc8;*/
+		margin-bottom: -26%;
 	}
 
 	.splash-image-wrapper .promotion-wrapper {
 		border: 10px solid #237dc8;
 		height: 50%;
-		width: 900px;
+		width: 750px;
 		margin: 20px auto;
 		padding: 10px;
 		position: relative;
 		top: -100px;
 		font-weight: 100;
-		font-size: 18px;
+		font-size: 16px;
 		line-height: 25px;
 	}
 
@@ -85,13 +88,12 @@
 			}
 
 			.splash-image-wrapper .promotion-wrapper .promotion-container a {
-				padding: 20px 0 20px 0px;
+				padding: 15px 0 15px 0px;
 				font-size: 20px;
 				display: block;
 				min-width: unset;
-				width: 70%;
+				width: 85%;
 				margin: 20px auto;
-				height: 10%;
 			}
 
 .we-offer-container {
@@ -101,7 +103,7 @@
 	vertical-align: middle;
 	border: 1px solid #e6e6e6;
 	margin-bottom: 20px;
-	height:212px;
+	height: 212px;
 }
 
 	.we-offer-container:hover {
@@ -140,7 +142,7 @@
 		transform: scale(.85);
 		position: absolute;
 		right: 30px;
-		bottom:3px;
+		bottom: 3px;
 	}
 
 		.we-offer-container a:hover {
