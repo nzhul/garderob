@@ -82,9 +82,9 @@ img, embed, object, video {
     height: auto;
 }
 
-.row + .row {
+/*.row + .row {
     margin-top: 20px;
-}
+}*/
 
 hr {
     border-style: dotted;
@@ -307,10 +307,10 @@ li > ul {
 ul li:before {
     position: absolute;
     left: 0px;
-    top: 11px;
+    top: 5px;
     content: "";
-    width: 6px;
-    height: 6px;
+    width: 14px;
+    height: 14px;
     border: 1px solid #237dc8;
     line-height: 35px;
     -webkit-border-radius: 50%;
@@ -393,8 +393,8 @@ address {
 }
 
 .page {
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 40px;
+    padding-bottom: 60px;
 }
 
 h2 span,

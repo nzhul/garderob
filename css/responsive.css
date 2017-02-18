@@ -30,6 +30,13 @@
 		z-index: 20;
 		width: 300px;
 	}
+
+	ul.leaders li:after {
+		float: left;
+		width: 0;
+		white-space: nowrap;
+		content: ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . ";
+	}
 }
 
 @media (max-width: 992px) {
@@ -77,6 +84,35 @@
 		right: 30px;
 		bottom: -15px;
 	}
+
+	/* Napravi */
+
+	.make-item {
+		margin-bottom:20px;
+	}
+
+	.make-item-content {
+		padding: 5px 0 0 20px;
+	}
+
+		.make-item-content h3 {
+			text-transform: uppercase;
+			color: white;
+			font-size: 1.0em;
+		}
+
+		.make-item-content p {
+			width: 80%;
+		}
+
+		.make-item-content a {
+			position: absolute;
+			bottom: 20px;
+			left:10px;
+			transform: scale(.85);
+		}
+
+	/* Napravi end */
 }
 
 @media (max-width: 576px) {
@@ -92,5 +128,20 @@
 		position: relative;
 		top: 0px;
 		margin: 30px auto 50px auto;
+	}
+
+	ul.leaders li:after {
+		float: left;
+		width: 0;
+		white-space: nowrap;
+		content: "";
+	}
+
+	ul.leaders span + span {
+		top: 10px;
+	}
+
+	ul.leaders li {
+		margin-top:70px;
 	}
 }
