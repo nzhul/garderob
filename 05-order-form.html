@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>03 - Направи</title>
+	<title>05 - Направи заявка</title>
 	<meta name="description" content="Ние ще направим гардероб по ваш дизайн." />
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -77,69 +77,137 @@
 		<section style="background-image:url('img/contact/bg-1.jpg');" class="breadcrumbs">
 			<div class="container">
 				<div class="text-center breadcrumbs-item">
-					<h1>Направи</h1><a href="#">Начало</a><i class="fa fa-angle-right"></i><a href="#">Направи</a>
+					<h1>Заявка</h1><a href="#">Начало</a><i class="fa fa-angle-right"></i><a href="#">Направи</a><i class="fa fa-angle-right"></i><a href="#">Заявка</a>
 				</div>
 			</div>
 		</section>
 		<!-- ! breadcrumbs end-->
 	</header>
-	<div class="content-body page">
-		<!-- content-->
+	<div class="content-body pt-40 pb-60">
 		<div class="container">
 			<div class="row" style="margin-bottom:30px;">
 				<div class="col-md-8 col-md-offset-2">
-					<h2 class="title-section mb-0 mt-0 text-center">Нарисувай твоя гардероб и той <br /> ще стане реалност</h2>
+					<h2 class="title-section mb-0 mt-0 text-center">Изпратете вашите скици</h2>
 					<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
-					<p class="text-center mb-0">Когато стане въпрос за мебели, всяко семейство има своето индивидуално виждане и нужди. До сега трябваше да се съборазявате само с това което предлага пазара, а то не винаги е било това което Вие търсите. Ние Ви предлагаме решение на този проблем.</p>
-					<p class="text-center mt-20">Вече не е нужно да правите компромиси, тъй като тук, може да направите своя гардероб строго според Вашите нужди, критерии, мерки и то само с един лист хартия и молив. Просто го нарисувайте, и ние ще го направим за вас. Вие знаете най-добре кое е подходящо за нуждите Ви.</p>
+					<p class="text-center mb-0">Преди да качите вашия проект, вие може да видите как ще изглеждат избраните от вас декоративни плоскости <a href="#">ТУК</a>, както и да сметнете с нашия калкулатор колко приблизително ще Ви излезе проекта <a href="#">ТУК</a>. Не е нужно да имате регистрация за да обработим вашият проект, но за да пристъпим към неговата реализация, трябва да се регистрирате <a href="#">ТУК</a>.</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<div class="make-item">
-						<img src="img/napravi/image-1.jpg" alt="Вертикално отварящи се врати" />
-						<div class="make-item-content">
-							<h3>Вертикално отварящи се врати</h3>
-							<p>Как да направим скица на гардероб с вертикално отварящи се врати.</p>
-							<a href="#" class="cws-button white">направи</a>
+					<form action="php/contacts-process.php" novalidate="novalidate" class="form contact-form font-s-0 mb-lg-30">
+						<input type="text" name="name" value="" placeholder="Име на проекта" aria-invalid="false" aria-required="true">
+						<input type="text" name="phone" value="" placeholder="Телефон за връзка" aria-invalid="false" aria-required="true">
+						<input type="text" name="email" value="" placeholder="Email" aria-invalid="false" aria-required="true">
+						<textarea name="message" cols="40" rows="4" placeholder="Допълнителна информация" aria-invalid="false" aria-required="true"></textarea>
+						<div class="dropzone-container">
+								<img src="img/order/drop-sketches-icon.png" alt="Пусни скиците тук - иконка" />
+								<a href="#" class="cws-button white">Пуснете скиците тук</a>
 						</div>
-					</div>
+					</form>
 				</div>
 				<div class="col-md-6">
-					<div class="make-item">
-						<img src="img/napravi/image-2.jpg" alt="Плъзгащи се врати" />
-						<div class="make-item-content">
-							<h3>Плъзгащи се врати</h3>
-							<p>Как да направим скица на гардероб с плъзгащи се врати.</p>
-							<a href="#" class="cws-button white">направи</a>
-						</div>
+					<div class="order-category">
+						Плоча за основа:<br />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+					</div>
+					<div class="order-category">
+						Плоча за врати:<br />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+					</div>
+					<div class="order-category">
+						Фазер:<br />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+						<img src="img/order/materials/01-material.jpg" alt="Материал" />
+						<img src="img/order/materials/02-material.jpg" alt="Материал" />
+						<img src="img/order/materials/03-material.jpg" alt="Материал" />
+						<img src="img/order/materials/04-material.jpg" alt="Материал" />
+						<img src="img/order/materials/05-material.jpg" alt="Материал" />
+						<img src="img/order/materials/06-material.jpg" alt="Материал" />
+					</div>
+					<div class="order-category">
+						Дръжки:<br />
+						<img src="img/order/materials/handle01.jpg" alt="Дръжка" />
+						<img src="img/order/materials/handle02.jpg" alt="Дръжка" />
+						<img src="img/order/materials/handle03.jpg" alt="Дръжка" />
+						<img src="img/order/materials/handle04.jpg" alt="Дръжка" />
+						<img src="img/order/materials/handle05.jpg" alt="Дръжка" />
+						<img src="img/order/materials/handle06.jpg" alt="Дръжка" />
+						<img src="img/order/materials/handle07.jpg" alt="Дръжка" />
+						<img src="img/order/materials/handle08.jpg" alt="Дръжка" />
+						<img src="img/order/materials/handle09.jpg" alt="Дръжка" />
 					</div>
 				</div>
 			</div>
+			<hr class="mt-60 mb-60" />
 			<div class="row">
-				<div class="col-md-6">
-					<div class="make-item">
-						<img src="img/napravi/image-3.jpg" alt="По ваша скица" />
-						<div class="make-item-content">
-							<h3>По ваша скица</h3>
-							<p>Изпратете ни ваша скица и ние ще направим гардероб базиран на нея.</p>
-							<a href="#" class="cws-button white">направи</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="make-item">
-						<img src="img/napravi/image-4.jpg" alt="Alternate Text" />
-						<div class="make-item-content">
-							<h3>Готови продукти</h3>
-							<p>Разгледайте нашия каталог с готови продукти и изберете модел.</p>
-							<a href="#" class="cws-button white">направи</a>
-						</div>
-					</div>
+				<div class="col-md-12">
+					<a style="width:50%;margin:0 auto;display:block;" href="#" class="cws-button alt">Изпрати</a>
 				</div>
 			</div>
 		</div>
-		<!-- ! content-->
 	</div>
 
 	<footer style="background-image: url('pic/footer/footer-bg.jpg')" class="footer footer-fixed">
