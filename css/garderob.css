@@ -294,3 +294,23 @@ ul.leaders {
 		}
 
 /*Contact End*/
+
+/*Price page */
+
+.price-page table.table tbody tr td:first-child, .price-page table.table thead tr th:first-child {
+	text-align: left;
+}
+
+.price-page table.table tbody tr td:last-child, .price-page table.table thead tr th:last-child {
+	text-align: right;
+}
+
+.price-page table.table tbody tr td a {
+	color: #237dc8;
+}
+
+	.price-page table.table tbody tr td a:hover {
+		text-decoration:underline;
+	}
+
+/*Price page end*/
