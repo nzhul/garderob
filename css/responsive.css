@@ -19,7 +19,7 @@
 		left: -5%;
 		bottom: 20%;
 		z-index: 20;
-		width:350px;
+		width: 350px;
 	}
 }
 
@@ -60,9 +60,9 @@
 			}
 
 	.we-offer-container.big {
-		height:auto;
+		height: auto;
 	}
-	
+
 	.we-offer-container.small {
 		display: block;
 		height: auto;
@@ -88,7 +88,7 @@
 	/* Napravi */
 
 	.make-item {
-		margin-bottom:20px;
+		margin-bottom: 20px;
 	}
 
 	.make-item-content {
@@ -108,11 +108,29 @@
 		.make-item-content a {
 			position: absolute;
 			bottom: 20px;
-			left:10px;
+			left: 10px;
 			transform: scale(.85);
 		}
 
 	/* Napravi end */
+
+	/*Services*/
+	.service-wrapper {
+		height:210px;
+		margin-bottom:20px;
+		overflow-y:scroll;
+	}
+
+		.service-wrapper img {
+			float: left;
+			margin-right: 10px;
+		}
+
+		.service-wrapper .service-wrapper-text {
+			float:left;
+			width:45%;
+		}
+	/*Services end*/
 }
 
 @media (max-width: 576px) {
@@ -142,6 +160,28 @@
 	}
 
 	ul.leaders li {
-		margin-top:70px;
+		margin-top: 70px;
 	}
+
+	/*Services*/
+	.service-wrapper {
+		height: 100%;
+		margin-bottom: 20px;
+		overflow: hidden;
+	}
+
+		.service-wrapper img {
+			width:100%;
+		}
+
+		.service-wrapper .service-wrapper-text {
+			float: left;
+			width: 100%;
+		}
+
+	.services-page .billboard-image-container .billboard-label {
+		position: static;
+		width:100%;
+	}
+	/*Services end*/
 }
