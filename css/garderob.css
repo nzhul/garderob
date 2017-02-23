@@ -427,12 +427,12 @@ ul.leaders {
 
 /*FAQ*/
 
-.faq-row h3 {
-	margin-top:50px;
-	margin-bottom:30px;
+.faq-row h3, .registration-row h3 {
+	margin-top: 50px;
+	margin-bottom: 30px;
 }
 
-.faq-row .terms-container p {
+.faq-row .terms-container p, .registration-row .terms-container p {
 	margin-top: 10px;
 	margin-bottom: 40px;
 	font-size: 12px;
@@ -441,3 +441,22 @@ ul.leaders {
 }
 
 /*FAQ end*/
+
+
+/*Registration*/
+
+.contact-form .checkbox {
+	margin: -10px auto 30px auto;
+	display: block;
+	width: 350px;
+}
+
+	.contact-form .checkbox input {
+		padding: 0 2px 0 0px;
+		width: 22px;
+		height: 22px;
+		margin: 2px 0 0 0px;
+
+	}
+
+/*Registration end*/
