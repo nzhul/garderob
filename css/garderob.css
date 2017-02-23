@@ -405,8 +405,8 @@ ul.leaders {
 	line-height: 50px;
 	background-color: #237dc8;
 	text-align: center;
-	color:white;
-	font-size:26px;
+	color: white;
+	font-size: 26px;
 }
 
 
@@ -424,3 +424,20 @@ ul.leaders {
 }
 
 /*Gallery page end*/
+
+/*FAQ*/
+
+.faq-row h3 {
+	margin-top:50px;
+	margin-bottom:30px;
+}
+
+.faq-row .terms-container p {
+	margin-top: 10px;
+	margin-bottom: 40px;
+	font-size: 12px;
+	line-height: 16px;
+	text-align: justify;
+}
+
+/*FAQ end*/
