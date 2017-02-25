@@ -1,0 +1,133 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sliders</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			var allSliderContainers = $('.calculator-slider');
+
+			for (var i = 0; i < allSliderContainers.length; i++) {
+				var container = $(allSliderContainers[i]);
+				var slider = container.children('.slider-range-min');
+				var amountInput = container.find('input.amount');
+
+				var min = slider.data('min');
+				var max = slider.data('max');
+				var defaultValue = slider.data('default');
+
+				amountInput.val(defaultValue + "cm");
+
+				$(slider[0]).slider({
+					range: "min",
+					value: defaultValue,
+					animate: true,
+					min: min,
+					max: max,
+					slide: function (event, ui) {
+						$(event.target).parent('.calculator-slider').children('input.amount').val(ui.value + "cm");
+					}
+				});
+			}
+		});
+	</script>
+</head>
+<body>
+
+	<div class="calculator-slider">
+		<label for="amount">Maximum price:</label>
+		<input type="text" class="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+	</div>
+	<div class="calculator-slider">
+		<label for="amount">Maximum price:</label>
+		<input type="text" class="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+	</div>
+	<div class="calculator-slider">
+		<label for="amount">Maximum price:</label>
+		<input type="text" class="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		<div class="slider-range-min" data-min="50" data-max="100" data-default="90"></div>
+	</div>
+	<div class="calculator-slider">
+		<label for="amount">Maximum price:</label>
+		<input type="text" class="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		<div class="slider-range-min" data-min="70" data-max="100" data-default="71"></div>
+	</div>
+
+
+
+	<style>
+		/*Bigger*/
+
+		.slider-range-min {
+			margin-top: 10px;
+		}
+
+			.slider-range-min.ui-widget.ui-widget-content {
+				background-color: #cdcdcd;
+				height: 4px;
+				border-radius: 0;
+				border: 0px;
+				position:relative;
+				text-align:left;
+			}
+
+			.slider-range-min .ui-slider-range {
+				position:absolute;
+				z-index:1;
+				display:block;
+				font-size: .7em;
+				top:0;
+				left:0;
+				height:100%;
+				background-position: 0 0;
+			}
+
+			.slider-range-min .ui-slider-handle {
+				position: absolute;
+				z-index: 2;
+				border-radius: 0;
+				width: 14px;
+				height: 14px;
+				border: 0px;
+				background-color: #237dc8;
+				margin-top: 0px;
+				margin-left: 0px;
+				top: -.3em;
+			}
+
+			.slider-range-min .ui-slider-range {
+				background-color: #237dc8;
+				border: 0px;
+			}
+
+
+		/*Small*/
+		/*.slider-range-min.ui-widget.ui-widget-content {
+			background-color: #cdcdcd;
+			height: 2px;
+			border-radius: 0;
+			border: 0px;
+		}
+
+		.slider-range-min .ui-slider-handle {
+			border-radius: 0;
+			width: 8px;
+			height: 8px;
+			border: 0px;
+			background-color: #237dc8;
+			margin-top: 2px;
+			margin-left: 0px;
+		}
+
+		.slider-range-min .ui-slider-range {
+			background-color: #237dc8;
+			border: 0px;
+		}*/
+	</style>
+</body>
+</html>
