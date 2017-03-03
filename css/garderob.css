@@ -463,27 +463,27 @@ ul.leaders {
 
 /*Calculator*/
 
-.calculator-container {
+.calculator-container, .warehouse-container {
 	margin-top: 50px;
 	background-color: #f6f6f6;
 	border: 1px solid #237dc8;
 }
 
-	.calculator-container a {
+	.calculator-container a, .warehouse-container a {
 		transition: none;
 	}
 
-	.calculator-container .calculator-head-button {
+	.calculator-container .calculator-head-button, .warehouse-container .calculator-head-button {
 		display: block;
 		width: 20%;
 		margin: -22px auto 0 auto;
 	}
 
-	.calculator-container .cws-button.with-icon.alt:hover {
+	.calculator-container .cws-button.with-icon.alt:hover, .warehouse-container .cws-button.with-icon.alt:hover {
 		background-color: white;
 	}
 
-	.calculator-container .calculator-icon {
+	.calculator-container .calculator-icon, .warehouse-container .calculator-icon {
 		font-size: 23px;
 		padding-left: 3px;
 	}
@@ -544,3 +544,62 @@ ul.leaders {
 }
 
 /*Calculator end*/
+
+
+/*Order now*/
+.warehouse-container {
+	min-height: 600px;
+	padding-left: 40px;
+	padding-bottom: 40px;
+}
+
+	.warehouse-container .count-label {
+		position: absolute;
+		left: -40px;
+		bottom: 45px;
+	}
+
+	.warehouse-container .order-container {
+		background-color: #237dc8;
+		color: white;
+		padding: 10px 20px 10px 20px;
+		position: absolute;
+		left: -50px;
+		width: 100%;
+	}
+
+		.warehouse-container .order-container table {
+			width: 100%;
+		}
+
+
+			.warehouse-container .order-container table tr td:last-child {
+				text-align: right;
+			}
+
+		.warehouse-container .order-container h3 {
+			color: white;
+			margin: 20px auto;
+			width: 100%;
+			text-align: center;
+		}
+
+		.warehouse-container .order-container table thead {
+			border-bottom: 1px dashed white;
+		}
+
+		.warehouse-container .order-container table td {
+			padding: 5px;
+		}
+
+		.warehouse-container .order-container table .total-price-row {
+			font-weight: bold;
+			font-size: 20px;
+			text-transform: uppercase;
+		}
+
+		.warehouse-container .order-container table .cws-button.white {
+			margin-bottom: 10px;
+			margin-top: 20px;
+		}
+/*Order now end*/

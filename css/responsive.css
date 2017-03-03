@@ -142,9 +142,9 @@
 	/*Gallery */
 
 	.gallery-row .testimonial {
-		margin-top:40px;
+		margin-top: 40px;
 	}
-	
+
 	.gallery-row .gallery-row-image-wrapper img {
 		margin-bottom: -20px;
 		width: 100%;
@@ -165,6 +165,35 @@
 		bottom: unset;
 	}
 	/*Gallery end*/
+
+	/*Order now*/
+	.warehouse-container {
+		min-height: 600px;
+		padding-left: 10px;
+		padding-bottom: 15px;
+	}
+
+		.warehouse-container a.order-now-add-button {
+			position: relative;
+			left: -30px;
+			min-width: 90px;
+		}
+
+		.warehouse-container .order-container {
+			background-color: #237dc8;
+			color: white;
+			padding: 10px 20px 10px 20px;
+			position: relative;
+			left: 0px;
+			width: 100%;
+		}
+
+		.warehouse-container .count-label {
+			position: static;
+			left: 0px;
+			bottom: 0px;
+		}
+	/*Order now end*/
 }
 
 @media (max-width: 576px) {
@@ -218,4 +247,10 @@
 		width: 100%;
 	}
 	/*Services end*/
+
+	.warehouse-container a.order-now-add-button {
+		position: static;
+		float: right;
+		min-width: 20px;
+	}
 }
