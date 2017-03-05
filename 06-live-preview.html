@@ -83,7 +83,7 @@
 		</section>
 		<!-- ! breadcrumbs end-->
 	</header>
-	<div class="content-body page">
+	<div class="content-body mt-30">
 		<!-- content-->
 		<div class="container">
 			<div class="row">
@@ -93,67 +93,75 @@
 					<p class="text-center mb-0">Разгледайте как изглеждат различните ни материали в различни комбинации.<br />Така по-лесно може да изберете подходящите за вас.</p>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row live-preview-container">
 				<div class="col-md-9">
-					<img src="img/live-preview/materials/base-image.jpg" />
+					<img class="preview-image" id="base-material-image" src="img/live-preview/materials/base-image.jpg" />
+					<img class="preview-image" id="back-material-image"/>
+					<img class="preview-image" id="front-material-image"/>
 				</div>
 				<div class="col-md-3">
-					<div class="col-md-6">
-						<div class="order-category">
-							Плоча за врати:<br />
-							<img src="img/order/materials/01-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/02-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/03-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/04-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/05-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/06-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/01-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/02-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/03-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/04-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/05-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/06-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/01-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/02-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/03-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/04-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/05-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/06-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/01-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/02-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/03-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/04-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/05-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/06-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
+					<div class="col-xs-6">
+						<div id="back-material-buttons-container" class="order-category">
+							Плоча за основа:<br />
+							<img src="img/live-preview/materials/small/1-white.jpg" alt="Материал" data-toggle="tooltip" data-material-id="1" title="Име на материала" />
+							<img src="img/live-preview/materials/small/2-cream.jpg" alt="Материал" data-toggle="tooltip" data-material-id="2" title="Име на материала" />
+							<img src="img/live-preview/materials/small/3-white-satin.jpg" alt="Материал" data-toggle="tooltip" data-material-id="3" title="Име на материала" />
+							<img src="img/live-preview/materials/small/4-loire-ash.jpg" alt="Материал" data-toggle="tooltip" data-material-id="4" title="Име на материала" />
+							<img src="img/live-preview/materials/small/5-beech.jpg" alt="Материал" data-toggle="tooltip" data-material-id="5" title="Име на материала" />
+							<img src="img/live-preview/materials/small/6-beech-tuscany.jpg" alt="Материал" data-toggle="tooltip" data-material-id="6" title="Име на материала" />
+							<img src="img/live-preview/materials/small/7-plating-gray.jpg" alt="Материал" data-toggle="tooltip" data-material-id="7" title="Име на материала" />
+							<img src="img/live-preview/materials/small/8-maple.jpg" alt="Материал" data-toggle="tooltip" data-material-id="8" title="Име на материала" />
+							<img src="img/live-preview/materials/small/9-oak.jpg" alt="Материал" data-toggle="tooltip" data-material-id="9" title="Име на материала" />
+							<img src="img/live-preview/materials/small/10-oak-country.jpg" alt="Материал" data-toggle="tooltip" data-material-id="10" title="Име на материала" />
+							<img src="img/live-preview/materials/small/11-branch.jpg" alt="Материал" data-toggle="tooltip" data-material-id="11" title="Име на материала" />
+							<img src="img/live-preview/materials/small/12-caribbean-walnut.jpg" alt="Материал" data-toggle="tooltip" data-material-id="12" title="Име на материала" />
+							<img src="img/live-preview/materials/small/13-cherry-tree.jpg" alt="Материал" data-toggle="tooltip" data-material-id="13" title="Име на материала" />
+							<img src="img/live-preview/materials/small/14-steingrau.jpg" alt="Материал" data-toggle="tooltip" data-material-id="14" title="Име на материала" />
+							<img src="img/live-preview/materials/small/15-fango.jpg" alt="Материал" data-toggle="tooltip" data-material-id="15" title="Име на материала" />
+							<img src="img/live-preview/materials/small/16-zebrano.jpg" alt="Материал" data-toggle="tooltip" data-material-id="16" title="Име на материала" />
+							<img src="img/live-preview/materials/small/17-slate-gray.jpg" alt="Материал" data-toggle="tooltip" data-material-id="17" title="Име на материала" />
+							<img src="img/live-preview/materials/small/18-rosewood.jpg" alt="Материал" data-toggle="tooltip" data-material-id="18" title="Име на материала" />
+							<img src="img/live-preview/materials/small/19-merano-brown.jpg" alt="Материал" data-toggle="tooltip" data-material-id="19" title="Име на материала" />
+							<img src="img/live-preview/materials/small/20-walnut.jpg" alt="Материал" data-toggle="tooltip" data-material-id="20" title="Име на материала" />
+							<img src="img/live-preview/materials/small/21-aubergine.jpg" alt="Материал" data-toggle="tooltip" data-material-id="21" title="Име на материала" />
+							<img src="img/live-preview/materials/small/22-beech-chocolate.jpg" alt="Материал" data-toggle="tooltip" data-material-id="22" title="Име на материала" />
+							<img src="img/live-preview/materials/small/23-black.jpg" alt="Материал" data-toggle="tooltip" data-material-id="23" title="Име на материала" />
+							<img src="img/live-preview/materials/small/24-black-satin.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+							<img src="img/live-preview/materials/small/25-white-high-gloss.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+							<img src="img/live-preview/materials/small/26-cream-high-gloss.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+							<img src="img/live-preview/materials/small/27-pinie-limed.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="order-category">
+					<div class="col-xs-6">
+						<div id="front-material-buttons-container" class="order-category">
 							Плоча за врати:<br />
-							<img src="img/order/materials/01-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/02-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/03-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/04-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/05-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/06-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/01-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/02-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/03-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/04-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/05-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/06-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/01-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/02-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/03-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/04-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/05-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/06-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/01-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/02-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/03-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/04-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/05-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
-							<img src="img/order/materials/06-material.jpg" alt="Материал" data-toggle="tooltip" title="Име на материала" />
+							<img src="img/live-preview/materials/small/1-white.jpg" alt="Материал" data-toggle="tooltip" data-material-id="1" title="Име на материала" />
+							<img src="img/live-preview/materials/small/2-cream.jpg" alt="Материал" data-toggle="tooltip" data-material-id="2" title="Име на материала" />
+							<img src="img/live-preview/materials/small/3-white-satin.jpg" alt="Материал" data-toggle="tooltip" data-material-id="3" title="Име на материала" />
+							<img src="img/live-preview/materials/small/4-loire-ash.jpg" alt="Материал" data-toggle="tooltip" data-material-id="4" title="Име на материала" />
+							<img src="img/live-preview/materials/small/5-beech.jpg" alt="Материал" data-toggle="tooltip" data-material-id="5" title="Име на материала" />
+							<img src="img/live-preview/materials/small/6-beech-tuscany.jpg" alt="Материал" data-toggle="tooltip" data-material-id="6" title="Име на материала" />
+							<img src="img/live-preview/materials/small/7-plating-gray.jpg" alt="Материал" data-toggle="tooltip" data-material-id="7" title="Име на материала" />
+							<img src="img/live-preview/materials/small/8-maple.jpg" alt="Материал" data-toggle="tooltip" data-material-id="8" title="Име на материала" />
+							<img src="img/live-preview/materials/small/9-oak.jpg" alt="Материал" data-toggle="tooltip" data-material-id="9" title="Име на материала" />
+							<img src="img/live-preview/materials/small/10-oak-country.jpg" alt="Материал" data-toggle="tooltip" data-material-id="10" title="Име на материала" />
+							<img src="img/live-preview/materials/small/11-branch.jpg" alt="Материал" data-toggle="tooltip" data-material-id="11" title="Име на материала" />
+							<img src="img/live-preview/materials/small/12-caribbean-walnut.jpg" alt="Материал" data-toggle="tooltip" data-material-id="12" title="Име на материала" />
+							<img src="img/live-preview/materials/small/13-cherry-tree.jpg" alt="Материал" data-toggle="tooltip" data-material-id="13" title="Име на материала" />
+							<img src="img/live-preview/materials/small/14-steingrau.jpg" alt="Материал" data-toggle="tooltip" data-material-id="14" title="Име на материала" />
+							<img src="img/live-preview/materials/small/15-fango.jpg" alt="Материал" data-toggle="tooltip" data-material-id="15" title="Име на материала" />
+							<img src="img/live-preview/materials/small/16-zebrano.jpg" alt="Материал" data-toggle="tooltip" data-material-id="16" title="Име на материала" />
+							<img src="img/live-preview/materials/small/17-slate-gray.jpg" alt="Материал" data-toggle="tooltip" data-material-id="17" title="Име на материала" />
+							<img src="img/live-preview/materials/small/18-rosewood.jpg" alt="Материал" data-toggle="tooltip" data-material-id="18" title="Име на материала" />
+							<img src="img/live-preview/materials/small/19-merano-brown.jpg" alt="Материал" data-toggle="tooltip" data-material-id="19" title="Име на материала" />
+							<img src="img/live-preview/materials/small/20-walnut.jpg" alt="Материал" data-toggle="tooltip" data-material-id="20" title="Име на материала" />
+							<img src="img/live-preview/materials/small/21-aubergine.jpg" alt="Материал" data-toggle="tooltip" data-material-id="21" title="Име на материала" />
+							<img src="img/live-preview/materials/small/22-beech-chocolate.jpg" alt="Материал" data-toggle="tooltip" data-material-id="22" title="Име на материала" />
+							<img src="img/live-preview/materials/small/23-black.jpg" alt="Материал" data-toggle="tooltip" data-material-id="23" title="Име на материала" />
+							<img src="img/live-preview/materials/small/24-black-satin.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+							<img src="img/live-preview/materials/small/25-white-high-gloss.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+							<img src="img/live-preview/materials/small/26-cream-high-gloss.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+							<img src="img/live-preview/materials/small/27-pinie-limed.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
 						</div>
 					</div>
 				</div>
@@ -162,7 +170,7 @@
 		<!-- ! content-->
 		<div class="cws_divider with-plus long color-line-1 mt-40"></div>
 		<section class="page-section mb-0 pb-60 pt-40 bg-gray-2">
-			<div class="container">
+			<div class="container materials-container">
 				<div class="row">
 					<div class="col-md-12">
 						<h2 class="title-section text-center mt-0 mb-0">Материали</h2>
@@ -177,7 +185,7 @@
 							<div class="service-wrapper-text">
 								<h3>Плоскости</h3>
 								<p>Whether small or large, simple or striking, round or angular, glossy or matt. On request, we can supply you with almost every handle to your wardrobe. </p>
-								<a class="cws-button gray">Свали PDF</a>
+								<a class="cws-button gray download-pdf-button">Свали PDF</a>
 							</div>
 						</div>
 					</div>
@@ -185,8 +193,9 @@
 						<div class="service-wrapper">
 							<img src="img/live-preview/material-type-2.jpg" alt="Услуга - Безплатна консултация" />
 							<div class="service-wrapper-text">
-								<h3>Безплатна консултация</h3>
+								<h3>Дръжки</h3>
 								<p>Whether small or large, simple or striking, round or angular, glossy or matt. On request, we can supply you with almost every handle to your wardrobe. </p>
+								<a class="cws-button gray download-pdf-button">Свали PDF</a>
 							</div>
 						</div>
 					</div>
@@ -194,8 +203,9 @@
 						<div class="service-wrapper">
 							<img src="img/live-preview/material-type-3.jpg" alt="Услуга - Монтаж" />
 							<div class="service-wrapper-text">
-								<h3>Монтаж</h3>
+								<h3>Подсилване на рафта</h3>
 								<p>Whether small or large, simple or striking, round or angular, glossy or matt. On request, we can supply you with almost every handle to your wardrobe. </p>
+								<a class="cws-button gray download-pdf-button">Свали PDF</a>
 							</div>
 						</div>
 					</div>
@@ -203,8 +213,9 @@
 						<div class="service-wrapper">
 							<img src="img/live-preview/material-type-4.jpg" alt="Услуга - Услуга “Експерт”" />
 							<div class="service-wrapper-text">
-								<h3>Услуга “Експерт”</h3>
+								<h3>Тройни панти</h3>
 								<p>Whether small or large, simple or striking, round or angular, glossy or matt. On request, we can supply you with almost every handle to your wardrobe. </p>
+								<a class="cws-button gray download-pdf-button">Свали PDF</a>
 							</div>
 						</div>
 					</div>
@@ -214,9 +225,9 @@
 						<div class="service-wrapper">
 							<img src="img/live-preview/material-type-1.jpg" alt="Плоскости" />
 							<div class="service-wrapper-text">
-								<h3>Плоскости</h3>
+								<h3>Отваряне с натискане</h3>
 								<p>Whether small or large, simple or striking, round or angular, glossy or matt. On request, we can supply you with almost every handle to your wardrobe. </p>
-								<a class="cws-button gray">Свали PDF</a>
+								<a class="cws-button gray download-pdf-button">Свали PDF</a>
 							</div>
 						</div>
 					</div>
@@ -224,8 +235,9 @@
 						<div class="service-wrapper">
 							<img src="img/live-preview/material-type-2.jpg" alt="Услуга - Безплатна консултация" />
 							<div class="service-wrapper-text">
-								<h3>Безплатна консултация</h3>
+								<h3>регулиране на височината</h3>
 								<p>Whether small or large, simple or striking, round or angular, glossy or matt. On request, we can supply you with almost every handle to your wardrobe. </p>
+								<a class="cws-button gray download-pdf-button">Свали PDF</a>
 							</div>
 						</div>
 					</div>
@@ -235,6 +247,7 @@
 							<div class="service-wrapper-text">
 								<h3>Монтаж</h3>
 								<p>Whether small or large, simple or striking, round or angular, glossy or matt. On request, we can supply you with almost every handle to your wardrobe. </p>
+								<a class="cws-button gray download-pdf-button">Свали PDF</a>
 							</div>
 						</div>
 					</div>
@@ -244,6 +257,7 @@
 							<div class="service-wrapper-text">
 								<h3>Услуга “Експерт”</h3>
 								<p>Whether small or large, simple or striking, round or angular, glossy or matt. On request, we can supply you with almost every handle to your wardrobe. </p>
+								<a class="cws-button gray download-pdf-button">Свали PDF</a>
 							</div>
 						</div>
 					</div>
@@ -354,10 +368,6 @@
 	<script type="text/javascript" src="js/bg-video/jquery.vimeo.api.min.js"></script>
 	<script type="text/javascript" src="js/bg-video/cws_YT_bg.js"></script>
 	<script type="text/javascript" src="js/jquery.tweet.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('[data-toggle="tooltip"]').tooltip();
-		});
-	</script>
+	<script type="text/javascript" src="js/live-preview.js"></script>
 </body>
 </html>

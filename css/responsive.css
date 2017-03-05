@@ -194,6 +194,42 @@
 			bottom: 0px;
 		}
 	/*Order now end*/
+
+	/*Live preview*/
+	.live-preview-container {
+		min-height: 700px;
+	}
+
+		.live-preview-container .preview-image {
+			position: absolute;
+			width: 95%;
+		}
+
+		.live-preview-container #back-material-image, .live-preview-container #front-material-image {
+			display: none;
+		}
+
+		.live-preview-container .preview-image {
+			border: 4px solid #237dc8;
+		}
+
+		.live-preview-container .order-category {
+			text-align: center;
+			position:absolute;
+			top:530px;
+		}
+
+		.live-preview-container .order-category {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+	/*Live preview end*/
+}
+
+@media (max-width: 750px){
+	.live-preview-container .order-category {
+		top: 70vw;
+	}
 }
 
 @media (max-width: 576px) {
