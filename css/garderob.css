@@ -634,10 +634,10 @@ ul.leaders {
 
 .materials-container .download-pdf-button {
 	display: block;
-	margin-top:30px;
-	margin-bottom:20px;
-	width:100%;
-	position:static;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	width: 100%;
+	position: static;
 }
 
 .materials-container .service-wrapper:hover .download-pdf-button {
@@ -652,3 +652,14 @@ ul.leaders {
 	background-color: transparent;
 }
 /*Live preview end*/
+
+
+/*Products*/
+.products-container .reorder-link {
+	font-size: 18px;
+	color: white;
+	border: 1px solid white;
+	padding:10px;
+	margin-left:5px;
+}
+/*Products end*/
