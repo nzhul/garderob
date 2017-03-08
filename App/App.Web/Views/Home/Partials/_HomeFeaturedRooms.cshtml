@@ -1,0 +1,52 @@
+﻿@model IEnumerable<App.Models.ViewModels.ItemViewModel>
+
+@foreach (var Item in Model)
+{
+    string imageSrc = Item.PrimaryImage.ImagePath + "_indexThumb.jpg";
+    <div class="col-lg-4 col-sm-6 dab-item-box">
+        <div class="home-item-box">
+            <div class="item-image">
+                <a href="@Url.Action("Details", "Items", new { id = @Item.Id })"><img alt="Item Images" class="img-responsive" src="/@imageSrc"></a>
+                <div class="home-item-details">
+                    <h5><a href="@Url.Action("Details", "Items", new { id = @Item.Id })">@Item.Name</a></h5>
+                    <div class="pull-left">
+                        <ul>
+                            @foreach (var Feature in @Item.ItemFeature)
+                            {
+                                <li><i class="@Feature.IconName" data-toggle="tooltip" title="@Feature.Name"></i></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="pull-right item-rating">
+                        <ul>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            @if (Item.Id % 2 == 0)
+                            {
+                                <li><i class="fa fa-star inactive"></i></li>
+                            }
+                            else
+                            {
+                                <li><i class="fa fa-star"></i></li>
+                            }
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item-details">
+                <p>@Item.Summary <a href="@Url.Action("Details", "Items", new { id = @Item.Id })">[...]</a></p>
+            </div>
+            <div class="item-bottom">
+                <div class="pull-left"><h4>@Item.Price лв<span class="item-bottom-time">/ Ден</span></h4></div>
+                <div class="pull-right">
+                    <div class="button-style-1">
+                        <a href="@Url.Action("Details", "Items", new { id = @Item.Id })">РЕЗЕРВИРАЙ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
