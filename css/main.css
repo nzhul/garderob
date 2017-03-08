@@ -1020,10 +1020,14 @@ a.logo:before {
 	height: 70px !important;
 }
 
-	.small-height .inner-nav.desktop-nav ul li a {
-		height: 70px !important;
-		line-height: 70px !important;
-	}
+.normal-height {
+	height: 89px !important;
+}
+
+.small-height .inner-nav.desktop-nav ul li a {
+	height: 70px !important;
+	line-height: 70px !important;
+}
 
 .inner-nav {
 	display: inline-block;
