@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace App.Web.Areas.Administration.Controllers
 {
-	public class HomeController : Controller
+	public class OrdersController : Controller
 	{
 		public ActionResult Index()
 		{

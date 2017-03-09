@@ -13,6 +13,8 @@ namespace App.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+			routes.LowercaseUrls = true;
+
             routes.MapRoute(
                 name: "Categories",
                 url: "Items/Category/{categoryId}",

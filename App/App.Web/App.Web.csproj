@@ -170,7 +170,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\BaseController.cs" />
     <Compile Include="Areas\Administration\Controllers\GalleryController.cs" />
-    <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
     <Compile Include="Areas\Administration\Models\ViewModels\HomeViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -192,18 +192,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Administration\admin\dist\favicon.ico" />
-    <Content Include="Areas\Administration\admin\dist\index.html" />
-    <Content Include="Areas\Administration\admin\dist\inline.bundle.js" />
-    <Content Include="Areas\Administration\admin\dist\main.bundle.js" />
-    <Content Include="Areas\Administration\admin\dist\polyfills.bundle.js" />
-    <Content Include="Areas\Administration\admin\dist\styles.bundle.js" />
-    <Content Include="Areas\Administration\admin\dist\vendor.bundle.js" />
-    <Content Include="Areas\Administration\admin\src\app\home.component.css" />
-    <Content Include="Areas\Administration\admin\src\app\home.component.html" />
-    <Content Include="Areas\Administration\admin\src\favicon.ico" />
-    <Content Include="Areas\Administration\admin\src\index.html" />
-    <Content Include="Areas\Administration\admin\src\styles.css" />
     <Content Include="Areas\Administration\Content\datetimepicker\i18n\jquery-ui-timepicker-addon-i18n.js" />
     <Content Include="Areas\Administration\Content\datetimepicker\i18n\jquery-ui-timepicker-addon-i18n.min.js" />
     <Content Include="Areas\Administration\Content\datetimepicker\i18n\jquery-ui-timepicker-af.js" />
@@ -430,15 +418,7 @@
     <Content Include="Areas\Administration\Views\Reservations\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Gallery\Index.cshtml" />
     <Content Include="Config\Connections.config" />
-    <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Administration\admin\dist\inline.bundle.js.map" />
-    <Content Include="Areas\Administration\admin\dist\main.bundle.js.map" />
-    <Content Include="Areas\Administration\admin\dist\polyfills.bundle.js.map" />
-    <Content Include="Areas\Administration\admin\dist\styles.bundle.js.map" />
-    <Content Include="Areas\Administration\admin\dist\vendor.bundle.js.map" />
-    <Content Include="Areas\Administration\admin\src\assets\.gitkeep" />
-    <Content Include="Areas\Administration\admin\src\tsconfig.app.json" />
-    <Content Include="Areas\Administration\admin\src\tsconfig.spec.json" />
+    <Content Include="Areas\Administration\Views\Orders\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -691,17 +671,6 @@
       <Project>{58e3f0b6-dc58-4f0b-b8a6-4e4df18d0ec8}</Project>
       <Name>App.Utilities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Areas\Administration\admin\src\app\home.component.spec.ts" />
-    <TypeScriptCompile Include="Areas\Administration\admin\src\app\home.component.ts" />
-    <TypeScriptCompile Include="Areas\Administration\admin\src\app\app.module.ts" />
-    <TypeScriptCompile Include="Areas\Administration\admin\src\environments\environment.prod.ts" />
-    <TypeScriptCompile Include="Areas\Administration\admin\src\environments\environment.ts" />
-    <TypeScriptCompile Include="Areas\Administration\admin\src\main.ts" />
-    <TypeScriptCompile Include="Areas\Administration\admin\src\polyfills.ts" />
-    <TypeScriptCompile Include="Areas\Administration\admin\src\test.ts" />
-    <TypeScriptCompile Include="Areas\Administration\admin\src\typings.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

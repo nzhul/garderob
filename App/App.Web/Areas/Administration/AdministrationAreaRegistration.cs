@@ -17,7 +17,7 @@ namespace App.Web.Areas.Administration
             context.MapRoute(
                 "Administration_default",
                 "Administration/{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Orders", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

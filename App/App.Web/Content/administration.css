@@ -3,7 +3,7 @@
 
 table
 {
-	width: 480px;
+	width: 100%;
 	text-align: left;
 	border-collapse: collapse;
 	border: 1px solid gray;
@@ -30,7 +30,7 @@ table tbody tr:hover td
 	background: #e5e5e5;
 }
 
-table th, table td {text-align:center;}
+table th, table td {text-align:left;vertical-align:middle;}
 
 /*Table CSS END*/
 
