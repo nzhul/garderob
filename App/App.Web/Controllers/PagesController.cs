@@ -15,9 +15,9 @@ namespace App.Web.Controllers
 			this.pagesService = new PagesService(this.data);
 		}
 
-		public ActionResult Index(int id)
+		public ActionResult Index(string urlName)
 		{
-			PageViewModel model = this.pagesService.GetPageById(id);
+			PageViewModel model = this.pagesService.GetPageByUrlName(urlName);
 			return View(model);
 		}
 	}

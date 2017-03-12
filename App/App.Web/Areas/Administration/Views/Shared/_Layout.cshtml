@@ -36,10 +36,11 @@
 			<div class="col-md-12">
 				<div class="d-navigation">
 					<a href="@Url.Action("Index", "Orders")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Orders" ? "active" : "")">Поръчки</a>
-					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Clients" ? "active" : "")">Клиенти</a>
-					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Clients" ? "active" : "")">Материали</a>
-					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Clients" ? "active" : "")">Атестати</a>
-					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Clients" ? "active" : "")">Продукти</a>
+					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Клиенти</a>
+					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Материали</a>
+					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Атестати</a>
+					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Продукти</a>
+					<a href="@Url.Action("Index", "Pages")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "pages" ? "active" : "")">Страници</a>
 				</div>
 				<hr />
 				<div class="container">
@@ -66,6 +67,17 @@
 	<script src="~/Areas/Administration/Content/datetimepicker/jquery-ui-sliderAccess.js"></script>
 
 	@RenderSection("scripts", false)
+
+	<script>
+		$(document).ready(function () {
+			var code = $('.codemirror-textarea')[0];
+			var editor = CodeMirror.fromTextArea(code, {
+				lineNumbers: true,
+				mode: "xml",
+				htmlMode: true
+			});
+		});
+	</script>
 
 	<script>
 		$(function () {

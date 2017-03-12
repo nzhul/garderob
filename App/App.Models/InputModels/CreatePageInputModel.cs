@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace App.Models.InputModels
 {
-    public class CreatePageInputModel
+	public class CreatePageInputModel
     {
         public int Id { get; set; }
 
@@ -25,11 +20,15 @@ namespace App.Models.InputModels
         [Required(ErrorMessage = "Съдържанието е задължително!")]
         [AllowHtml]
         [Display(Name = "Съдържание:")]
-        [DataType("tinymce_full")]
-        [UIHint("tinymce_full")]
-        public string Content { get; set; }
+		[DataType("codemirror")]
+		[UIHint("codemirror")]
+		//[DataType(DataType.MultilineText)]
+		public string Content { get; set; }
 
         [Display(Name = "Позиция:")]
         public int DisplayOrder { get; set; }
-    }
+
+		[Display(Name = "Адрес на страницата (UrlName):")]
+		public string UrlName { get; set; }
+	}
 }

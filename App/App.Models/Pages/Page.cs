@@ -14,6 +14,6 @@ namespace App.Models.Pages
 
         public DateTime DateCreated { get; set; }
 
-        public int DisplayOrder { get; set; }
-    }
+		public string UrlName { get; set; }
+	}
 }

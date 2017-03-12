@@ -32,6 +32,7 @@ namespace App.Data.Service
             model.Title = page.Title;
             model.Summary = page.Summary;
             model.Content = page.Content;
+			model.UrlName = page.UrlName;
 
             return model;
         }
@@ -44,7 +45,7 @@ namespace App.Data.Service
             newPage.Summary = inputModel.Summary;
             newPage.Content = inputModel.Content;
             newPage.DateCreated = DateTime.Now;
-            newPage.DisplayOrder = inputModel.DisplayOrder;
+			newPage.UrlName = inputModel.UrlName;
 
             this.Data.Pages.Add(newPage);
             this.Data.SaveChanges();
@@ -80,7 +81,7 @@ namespace App.Data.Service
             model.Title = dbPage.Title;
             model.Summary = dbPage.Summary;
             model.Content = dbPage.Content;
-            model.DisplayOrder = dbPage.DisplayOrder;
+			model.UrlName = dbPage.UrlName;
 
             return model;
         }
@@ -94,7 +95,7 @@ namespace App.Data.Service
                 dbPage.Title = inputModel.Title;
                 dbPage.Summary = inputModel.Summary;
                 dbPage.Content = inputModel.Content;
-                dbPage.DisplayOrder = inputModel.DisplayOrder;
+				dbPage.UrlName = inputModel.UrlName;
 
                 this.Data.SaveChanges();
 
@@ -157,13 +158,44 @@ namespace App.Data.Service
             }
             else
             {
-                model.Id = 1;
-                model.Title = "НЕСЪЩЕСТВУВАЩА СТРАНИЦА!";
-                model.Content = "НЕСЪЩЕСТВУВАЩА СТРАНИЦА!";
-                model.Summary = "НЕСЪЩЕСТВУВАЩА СТРАНИЦА!";
+				model = this.GetNonExistingPage();
             }
 
             return model;
         }
-    }
+
+		public PageViewModel GetPageByUrlName(string urlName)
+		{
+			Page dbPage = this.Data.Pages.All().Where(p => p.UrlName == urlName).Single();
+
+			PageViewModel model = new PageViewModel();
+
+			if (dbPage != null)
+			{
+				model.Id = dbPage.Id;
+				model.Title = dbPage.Title;
+				model.Summary = dbPage.Summary;
+				model.Content = dbPage.Content;
+				model.UrlName = dbPage.UrlName;
+			}
+			else
+			{
+				model = this.GetNonExistingPage();
+			}
+
+			return model;
+		}
+
+		private PageViewModel GetNonExistingPage()
+		{
+			PageViewModel model = new PageViewModel()
+			{
+				Id = 1,
+				Title = "НЕСЪЩЕСТВУВАЩА СТРАНИЦА!",
+				Content = "НЕСЪЩЕСТВУВАЩА СТРАНИЦА!",
+				Summary = "НЕСЪЩЕСТВУВАЩА СТРАНИЦА!"
+			};
+			return model;
+		}
+	}
 }
