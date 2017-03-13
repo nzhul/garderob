@@ -194,6 +194,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\StaticPages\faq.html" />
+    <Content Include="App_Data\StaticPages\price.html" />
     <Content Include="Areas\Administration\Content\datetimepicker\i18n\jquery-ui-timepicker-addon-i18n.js" />
     <Content Include="Areas\Administration\Content\datetimepicker\i18n\jquery-ui-timepicker-addon-i18n.min.js" />
     <Content Include="Areas\Administration\Content\datetimepicker\i18n\jquery-ui-timepicker-af.js" />
@@ -752,9 +754,7 @@
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\codemirror.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
