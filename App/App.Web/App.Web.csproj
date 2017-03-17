@@ -246,6 +246,13 @@
     <Content Include="Areas\Administration\Content\datetimepicker\jquery-ui-timepicker-addon.js" />
     <Content Include="Areas\Administration\Content\datetimepicker\jquery-ui-timepicker-addon.min.css" />
     <Content Include="Areas\Administration\Content\datetimepicker\jquery-ui-timepicker-addon.min.js" />
+    <Content Include="Config\Credentials.Example.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Config\Connections.Example.config" />
+    <None Include="Config\Credentials.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Content\codeflask\codeflask.css" />
     <Content Include="Content\codeflask\codeflask.js" />
     <Content Include="Content\codeflask\prism.min.css" />

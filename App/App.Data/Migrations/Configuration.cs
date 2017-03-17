@@ -2,6 +2,8 @@ namespace App.Data.Migrations
 {
 	using App.Models;
 	using App.Models.Pages;
+	using Microsoft.AspNet.Identity;
+	using Microsoft.AspNet.Identity.EntityFramework;
 	using System;
 	using System.Collections.Generic;
 	using System.Data.Entity;
@@ -24,6 +26,13 @@ namespace App.Data.Migrations
 			//this.AddInitialItemCategories(context);
 			//this.AddInitialItems(context);
 			this.AddInitialStaticPages(context);
+			this.InitializeRoles(context);
+		}
+
+		private void InitializeRoles(ApplicationDbContext context)
+		{
+			var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
 		}
 
 		private void AddInitialStaticPages(ApplicationDbContext context)

@@ -18,6 +18,8 @@ namespace App.Web.Controllers
 		public ActionResult Index(string urlName)
 		{
 			PageViewModel model = this.pagesService.GetPageByUrlName(urlName);
+			ViewBag.Title = model.Title;
+			ViewBag.MetaDescription = model.Summary;
 			return View(model);
 		}
 	}
