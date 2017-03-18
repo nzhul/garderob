@@ -28,12 +28,7 @@
 					<div class="col-sm-4" style="text-align:center;">
 						<h4><a href="">www.tvoiatgarderob.bg</a></h4>
 					</div>
-					<div class="col-sm-4 text-right">
-						<div class="top-right-wrap">
-							<div class="top-login"><i class="fa fa-user"></i>Вход</div><span>|</span>
-							<div class="top-login"><i class="fa fa-home"></i>Склад</div>
-						</div>
-					</div>
+					@Html.Partial("_ProfileLinks")
 					<div class="search_menu_cont">
 						<form role="search" method="get" class="form">
 							<div class="search-wrap">
@@ -47,7 +42,7 @@
 		</div>
 		<nav class="main-nav js-stick">
 			<div class="full-wrapper relative clearfix container">
-				<div class="nav-logo-wrap local-scroll"><a href="@Url.Action("Index", "Home")" class="logo"><img src="content/img/logo-garderob-v2.png" alt><img src="content/img/logo-garderob-v2.png" alt class="sticky-logo"></a></div>
+				<div class="nav-logo-wrap local-scroll"><a href="@Url.Action("Index", "Home")" class="logo"><img src="~/Content/img/logo-garderob-v2.png" alt><img src="~/Content/img/logo-garderob-v2.png" alt class="sticky-logo"></a></div>
 				<div class="inner-nav desktop-nav switch-menu items-visible">
 					<ul class="clearlist">
 						<li><a href="@Url.Action("Index", "Home")">Начало</a></li>
@@ -85,7 +80,7 @@
 		@RenderBody()
 	</div>
 
-	<footer style="background-image: url('Content/img/footer/footer-bg.jpg')" class="footer footer-fixed">
+	<footer class="footer footer-fixed">
 		<div class="container">
 			<div class="row cws-multi-col">
 				<div class="col-md-3 col-sm-6 mb-md-50">
@@ -152,18 +147,20 @@
 			</div>
 			<div class="login-content">
 				<form class="form">
+					@Html.AntiForgeryToken()
 					<input type="text" name="email" value="" size="40" placeholder="Въведи Email ..." aria-required="true" class="form-row form-row-first">
-					<input type="text" name="password" value="" size="40" placeholder="Въведи Парола ..." aria-required="true" class="form-row form-row-last">
+					<input type="password" name="password" value="" size="40" placeholder="Въведи Парола ..." aria-required="true" class="form-row form-row-last">
 				</form>
 				<div class="remember">
 					<div class="checkbox">
 						<input id="checkbox3" type="checkbox" value="None" name="check">
 						<label for="checkbox3">Запомни ме</label>
 					</div><a href="#">Забравена парола ?</a>
-				</div><a href="#" class="cws-button gray alt full-width mt-20">Влез</a>
+				</div><a id="login-button" href="#" class="cws-button gray alt full-width mt-20">Влез</a>
+				<span id="login-status" class="label label-info">Влизане в системата ...</span>
 			</div>
 			<div class="login-bot">
-				<p>Все още нямаш акаунт ? <a href="#">Регистрирай се</a></p>
+				<p>Все още нямаш акаунт ? <a href="/account/register">Регистрирай се</a></p>
 			</div>
 		</div>
 	</div>

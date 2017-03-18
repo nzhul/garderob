@@ -731,7 +731,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
@@ -760,6 +760,7 @@
     <Content Include="Views\Shared\_QuickReservationScripts.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\codemirror.cshtml" />
+    <Content Include="Views\Shared\_ProfileLinks.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

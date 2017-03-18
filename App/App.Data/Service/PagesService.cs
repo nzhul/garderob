@@ -158,7 +158,7 @@ namespace App.Data.Service
             }
             else
             {
-				model = this.GetNonExistingPage();
+				model = null;
             }
 
             return model;
@@ -166,7 +166,7 @@ namespace App.Data.Service
 
 		public PageViewModel GetPageByUrlName(string urlName)
 		{
-			Page dbPage = this.Data.Pages.All().Where(p => p.UrlName == urlName).Single();
+			Page dbPage = this.Data.Pages.All().Where(p => p.UrlName == urlName).FirstOrDefault();
 
 			PageViewModel model = new PageViewModel();
 
@@ -180,21 +180,9 @@ namespace App.Data.Service
 			}
 			else
 			{
-				model = this.GetNonExistingPage();
+				model = null;
 			}
 
-			return model;
-		}
-
-		private PageViewModel GetNonExistingPage()
-		{
-			PageViewModel model = new PageViewModel()
-			{
-				Id = 1,
-				Title = "НЕСЪЩЕСТВУВАЩА СТРАНИЦА!",
-				Content = "НЕСЪЩЕСТВУВАЩА СТРАНИЦА!",
-				Summary = "НЕСЪЩЕСТВУВАЩА СТРАНИЦА!"
-			};
 			return model;
 		}
 	}

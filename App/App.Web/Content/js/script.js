@@ -41,6 +41,7 @@ $(document).ready(function () {
 	popup_news_init();
 	close_shop_item();
 	footer_height();
+	Authenticate();
 
 	// load functions
 
@@ -1056,95 +1057,95 @@ if ($(".woocommerce-checkout").length) {
 
 }
 
-if ($(".contact-form").length) {
-	/**/
-	/* contact form */
-	/**/
+//if ($(".contact-form").length) {
+//	/**/
+//	/* contact form */
+//	/**/
 
-	/* validate the contact form fields */
-	$(".contact-form").each(function () {
+//	/* validate the contact form fields */
+//	$(".contact-form").each(function () {
 
-		$(this).validate(  /*feedback-form*/{
-			onkeyup: false,
-			onfocusout: false,
-			errorElement: 'p',
-			errorLabelContainer: $(this).parent().children(".alert.alert-danger").children(".message"),
-			rules:
-			{
-				name:
-				{
-					required: true
-				},
-				email:
-				{
-					required: true,
-					email: true
-				},
-				message:
-				{
-					required: true
-				}
-			},
-			messages:
-			{
-				name:
-				{
-					required: 'Please enter your name',
-				},
-				email:
-				{
-					required: 'Please enter your email address',
-					email: 'Please enter a VALID email address'
-				},
-				message:
-				{
-					required: 'Please enter your message'
-				}
-			},
-			invalidHandler: function () {
-				$(this).parent().children(".alert.alert-danger").slideDown('fast');
-				$("#feedback-form-success").slideUp('fast');
+//		$(this).validate(  /*feedback-form*/{
+//			onkeyup: false,
+//			onfocusout: false,
+//			errorElement: 'p',
+//			errorLabelContainer: $(this).parent().children(".alert.alert-danger").children(".message"),
+//			rules:
+//			{
+//				name:
+//				{
+//					required: true
+//				},
+//				email:
+//				{
+//					required: true,
+//					email: true
+//				},
+//				message:
+//				{
+//					required: true
+//				}
+//			},
+//			messages:
+//			{
+//				name:
+//				{
+//					required: 'Please enter your name',
+//				},
+//				email:
+//				{
+//					required: 'Please enter your email address',
+//					email: 'Please enter a VALID email address'
+//				},
+//				message:
+//				{
+//					required: 'Please enter your message'
+//				}
+//			},
+//			invalidHandler: function () {
+//				$(this).parent().children(".alert.alert-danger").slideDown('fast');
+//				$("#feedback-form-success").slideUp('fast');
 
-			},
-			submitHandler: function (form) {
-				$(form).parent().children(".alert.alert-danger").slideUp('fast');
-				var $form = $(form).ajaxSubmit();
-				submit_handler($form, $(form).parent().children(".email_server_responce"));
-			}
-		});
-	})
+//			},
+//			submitHandler: function (form) {
+//				$(form).parent().children(".alert.alert-danger").slideUp('fast');
+//				var $form = $(form).ajaxSubmit();
+//				submit_handler($form, $(form).parent().children(".email_server_responce"));
+//			}
+//		});
+//	})
 
-	/* Ajax, Server response */
-	var submit_handler = function (form, wrapper) {
+//	/* Ajax, Server response */
+//	var submit_handler = function (form, wrapper) {
 
-		var $wrapper = $(wrapper); //this class should be set in HTML code
+//		var $wrapper = $(wrapper); //this class should be set in HTML code
 
-		$wrapper.css("display", "block");
-		var data = {
-			action: "email_server_responce",
-			values: $(form).serialize()
-		};
-		//send data to server
-		$.post("php/contacts-process.php", data, function (s_response) {
-			s_response = $.parseJSON(s_response);
-			if (s_response.info == 'success') {
-				$wrapper.addClass("message message-success").append('<div role="alert" class="alert alert-success alt alert-dismissible fade in"><button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button><i class="alert-icon border flaticon-mark"></i><strong>Success!</strong><br>Your message was successfully delivered.</div>');
-				$wrapper.delay(5000).hide(500, function () {
-					$(this).removeClass("message message-success").text("").fadeIn(500);
-					$wrapper.css("display", "none");
-				});
-				$(form)[0].reset();
-			} else {
-				$wrapper.addClass("message message-error").append('<div role="alert" class="alert alert-danger alt alert-dismissible fade in"><button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button><i class="alert-icon border fa fa-exclamation-triangle"></i><strong>Error!</strong><br>Server fail! Please try again later!</div>');
-				$wrapper.delay(5000).hide(500, function () {
-					$(this).removeClass("message message-success").text("").fadeIn(500);
-					$wrapper.css("display", "none");
-				});
-			}
-		});
-		return false;
-	}
-}
+//		$wrapper.css("display", "block");
+//		var data = {
+//			action: "email_server_responce",
+//			values: $(form).serialize()
+//		};
+//		//send data to server
+//		$.post("php/contacts-process.php", data, function (s_response) {
+//			s_response = $.parseJSON(s_response);
+//			if (s_response.info == 'success') {
+//				$wrapper.addClass("message message-success").append('<div role="alert" class="alert alert-success alt alert-dismissible fade in"><button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button><i class="alert-icon border flaticon-mark"></i><strong>Success!</strong><br>Your message was successfully delivered.</div>');
+//				$wrapper.delay(5000).hide(500, function () {
+//					$(this).removeClass("message message-success").text("").fadeIn(500);
+//					$wrapper.css("display", "none");
+//				});
+//				$(form)[0].reset();
+//			} else {
+//				$wrapper.addClass("message message-error").append('<div role="alert" class="alert alert-danger alt alert-dismissible fade in"><button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button><i class="alert-icon border fa fa-exclamation-triangle"></i><strong>Error!</strong><br>Server fail! Please try again later!</div>');
+//				$wrapper.delay(5000).hide(500, function () {
+//					$(this).removeClass("message message-success").text("").fadeIn(500);
+//					$wrapper.css("display", "none");
+//				});
+//			}
+//		});
+//		return false;
+//	}
+//}
 
 
 /**/
@@ -1523,3 +1524,75 @@ function footer_height() {
 	}
 }
 
+function Authenticate() {
+	var loginButton = $('.login-content a#login-button');
+	loginButton.on('click', function () {
+
+		var token = $('.login-content input[name=__RequestVerificationToken]').val();
+		var email = $('.login-content input[name=email]').val();
+		var password = $('.login-content input[name=password]').val();
+		var statusLabel = $('.login-content span#login-status');
+
+		if (email && password) {
+			var data = {};
+			data.Email = email;
+			data.password = password;
+			data.__RequestVerificationToken = token;
+
+			var request = $.ajax({
+				url: "/account/login",
+				type: 'POST',
+				data: data,
+				beforeSend: function () {
+					statusLabel.css('display', 'block');
+				}
+			});
+
+			request.done(function (response) {
+				if (response.Status === 'Failure') {
+					console.log('Login failed for some reason. Invalid email or non existing user');
+
+					// Display error message
+					statusLabel.removeClass();
+					statusLabel.addClass('label label-danger');
+					statusLabel.text('Неуспешно влизане!');
+
+				}
+
+				if (response.Status === 'Success') {
+
+					console.log('Successful login.');
+					// Display success message and after 1-2 seconds delay -> close the login dialog
+
+					statusLabel.removeClass();
+					statusLabel.addClass('label label-success');
+					statusLabel.text('Успешно влизане!');
+
+					setTimeout(function () {
+						$(".login-popup").removeClass("open");
+						location.reload();
+					}, 1000);
+				}
+
+				if (response.Status === 'Locked') {
+					console.log('Account is locked');
+
+					// Display message for locked account: "Your account is temporary locked. Please contact the website administrator"
+					statusLabel.removeClass();
+					statusLabel.addClass('label label-danger');
+					statusLabel.text('Заключен акаунт!');
+				}
+
+				if (response.Status === 'RequiresVerification') {
+					console.log('The account requires email verification');
+					// Display send activation email again button
+				}
+			});
+
+			request.fail(function (jqXHR, textStatus) {
+				console.log(jqXHR);
+				console.log(textStatus);
+			})
+		}
+	});
+}

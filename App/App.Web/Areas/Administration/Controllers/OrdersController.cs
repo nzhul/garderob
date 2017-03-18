@@ -11,8 +11,8 @@ namespace App.Web.Areas.Administration.Controllers
 	{
 		public ActionResult Index()
 		{
-			string sender = ConfigurationManager.AppSettings["emailSender"];
-			string receiver = ConfigurationManager.AppSettings["emailReceiver"];
+			//string sender = ConfigurationManager.AppSettings["emailSender"];
+			//string receiver = ConfigurationManager.AppSettings["emailReceiver"];
 			return View();
 		}
 	}

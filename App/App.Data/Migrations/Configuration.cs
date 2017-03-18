@@ -6,7 +6,7 @@ namespace App.Data.Migrations
 	using Microsoft.AspNet.Identity.EntityFramework;
 	using System;
 	using System.Collections.Generic;
-	using System.Data.Entity;
+	using System.Configuration;
 	using System.Data.Entity.Migrations;
 	using System.IO;
 	using System.Linq;
@@ -14,6 +14,11 @@ namespace App.Data.Migrations
 
 	public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
 	{
+		private const string adminUsernameConfigKey = "adminUsername";
+		private const string adminEmailConfigKey = "adminEmail";
+		private const string adminPasswordConfigKey = "adminPassword";
+		private const string adminPhoneConfigKey = "adminPhone";
+
 		static Random rand = new Random();
 		public Configuration()
 		{
@@ -23,16 +28,45 @@ namespace App.Data.Migrations
 
 		protected override void Seed(ApplicationDbContext context)
 		{
-			//this.AddInitialItemCategories(context);
-			//this.AddInitialItems(context);
 			this.AddInitialStaticPages(context);
-			this.InitializeRoles(context);
+			this.InitializeAdministrator(context);
 		}
 
-		private void InitializeRoles(ApplicationDbContext context)
+		private void InitializeAdministrator(ApplicationDbContext context)
 		{
-			var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+			if (!context.Users.Any())
+			{
+				IdentityRole adminRole = new IdentityRole { Name = "Admin", Id = Guid.NewGuid().ToString() };
+				IdentityRole userRole = new IdentityRole { Name = "User", Id = Guid.NewGuid().ToString() };
+				context.Roles.Add(adminRole);
+				context.Roles.Add(userRole);
 
+				// Initialize default user
+				var userStore = new UserStore<ApplicationUser>(context);
+				var userManager = new UserManager<ApplicationUser>(userStore);
+				AdminConfiguration config = this.GetAdminConfiguration();
+
+				ApplicationUser admin = new ApplicationUser();
+				admin.UserName = config.UserName;
+				admin.Email = config.Email;
+				admin.PhoneNumber = config.Phone;
+
+				userManager.Create(admin, config.Password);
+				admin.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = admin.Id });
+				admin.Roles.Add(new IdentityUserRole { RoleId = userRole.Id, UserId = admin.Id });
+				context.SaveChanges();
+			}
+		}
+
+		private AdminConfiguration GetAdminConfiguration()
+		{
+			AdminConfiguration config = new AdminConfiguration();
+			config.UserName = ConfigurationManager.AppSettings[Configuration.adminUsernameConfigKey];
+			config.Email = ConfigurationManager.AppSettings[Configuration.adminEmailConfigKey];
+			config.Password = ConfigurationManager.AppSettings[Configuration.adminPasswordConfigKey];
+			config.Phone = ConfigurationManager.AppSettings[Configuration.adminPhoneConfigKey];
+
+			return config;
 		}
 
 		private void AddInitialStaticPages(ApplicationDbContext context)
@@ -62,42 +96,15 @@ namespace App.Data.Migrations
 			}
 		}
 
-		private void AddInitialItemCategories(ApplicationDbContext context)
+		private class AdminConfiguration
 		{
-			if (!context.ItemCategories.Any())
-			{
-				for (int i = 0; i < 4; i++)
-				{
-					var newItemCategory = new ItemCategory
-					{
-						Name = "Item category " + i,
-						DateAdded = DateTime.Now
-					};
-					context.ItemCategories.Add(newItemCategory);
-				}
-				context.SaveChanges();
-			}
-		}
+			public string Password { get; set; }
 
-		private void AddInitialItems(ApplicationDbContext context)
-		{
-			if (!context.Items.Any())
-			{
-				for (int i = 0; i < 10; i++)
-				{
-					var newItem = new Item
-					{
-						Name = "Item " + i,
-						Price = rand.Next(30, 80),
-						Summary = "Short Description of the item " + i,
-						Description = "Long Description of the item " + i,
-						DateAdded = DateTime.Now,
-						ItemCategoryId = rand.Next(1, 5)
-					};
-					context.Items.Add(newItem);
-				}
-				context.SaveChanges();
-			}
+			public string UserName { get; set; }
+
+			public string Email { get; set; }
+
+			public string Phone { get; set; }
 		}
 	}
 }

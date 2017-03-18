@@ -27,7 +27,27 @@ h3 {
 .inner-nav.desktop-nav ul li .mn-sub li > a {
 	font-size: 13px;
 }
+
+.login-content span#login-status {
+	margin: 0 auto;
+	display: none;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	font-weight: normal;
+	border-radius: 0;
+	margin-top: 20px;
+	margin-bottom: -20px;
+}
 /*Navigation end*/
+footer.footer.fixed {
+	background-image: url('../img/footer/footer-bg.jpg');
+}
+
+.breadcrumbs {
+	background-image: url('../img/contact/bg-1.jpg');
+}
+
 
 /*INDEX START*/
 .main-nav {
