@@ -1,151 +1,96 @@
 ﻿@model App.Web.Models.ContactFormInputModel
 
 @{
-    ViewBag.Title = "Контакти";
+	ViewBag.Title = "Контакти";
 }
+<section class="breadcrumbs">
+	<div class="container">
+		<div class="text-center breadcrumbs-item">
+			<h1>Контакти</h1><a href="#">начало</a><i class="fa fa-angle-right"></i><a href="#">Контакти</a>
+		</div>
+	</div>
+</section>
+<div class="container mt-40 pb-60">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="title-section mb-0 mt-0 text-center">Свържете се с нас</h2>
+			<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
+			<p class="text-center mb-0">Нашите служители са готови да отговорят веднага на въпросите Ви.<br /> Свържете се с нас по телефон, email или ни изпратете съобщение през формата.</p>
+		</div>
+	</div>
+	<div class="row mb-30 mt-30">
+		<div class="col-md-4 col-sm-6 mb-md-30">
+			<div class="service-item icon-right border color-icon">
+				<img src="~/content/img/index//we-offer-3.png" alt="Alternate Text" style="float:left;width:35px;margin: 5px 20px 0 0px;" />
+				<p class="mb-0">Телефон експерт:</p>
+				<p class="mb-0">(359) 877-833-8847</p>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6 mb-md-30">
+			<div class="service-item icon-right border color-icon">
+				<i class="flaticon-note cws-icon"></i>
+				<p class="mb-0">sales@tvoiatgarderob.com</p>
+				<p class="mb-0">expert@tvoiatgarderob.com</p>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<div class="service-item icon-right border color-icon">
+				<i class="flaticon-technology-2 cws-icon"></i>
+				<p class="mb-0">Телефон: (359) 877-833-8847</p>
+				<p class="mb-0">Факс: (359) 877-833-8847</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 mb-md-30">
+			<div class="widget-contact-form pb-0">
+				<!-- contact-form-->
+				@using (Ajax.BeginForm("Contact", "Home", null, new AjaxOptions { UpdateTargetId = "result" },
+									new { @class = "form contact-form alt clearfix", @id = "result" }))
+				{
+					@Html.AntiForgeryToken()
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-<div class="breadcrumb breadcrumb-1 pos-center">
-    <h1>КОНТАКТИ</h1>
-</div>
-<div class="content">
-    <!-- Content Section -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-sm-4 margint60">
-                <!-- Sidebar -->
-                <div class="luxen-widget news-widget">
-                    <div class="title">
-                        <h5>ИНФОРМАЦИЯ ЗА КЪЩАТА</h5>
-                    </div>
-                    <p>Информация за това къде се намира къщата за гости. Информация за това къде се намира къщата за гости. Информация за това къде се намира къщата за гости. </p>
-                </div>
-                <div class="luxen-widget news-widget">
-                    <div class="title">
-                        <h5>CONTACT</h5>
-                    </div>
-                    <ul class="footer-links">
-                        <li><p><i class="fa fa-map-marker"></i> Lorem ipsum dolor sit amet lorem Victoria 8011 Australia </p></li>
-                        <li><p><i class="fa fa-phone"></i> +61 3 8376 6284 </p></li>
-                        <li><p><i class="fa fa-envelope"></i> manager@dabravata.com</p></li>
-                    </ul>
-                </div>
-                <div class="luxen-widget news-widget">
-                    <div class="title">
-                        <h5>SOCIAL MEDIA</h5>
-                    </div>
-                    <ul class="social-links">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-vine"></i></a></li>
-                        <li><a href="#"><i class="fa fa-foursquare"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-9 col-sm-8">
-                <!-- Contact -->
-                <!-- Google Map Starts -->
-                <div id="map-wrapper" style="height:350px; margin: 70px 0 20px 0px; border: 1px solid gray;box-shadow: rgba(0,0,0,0.4) 5px 5px">
-                    <div id="map-block">@*<img src="~/Content/images/map-sample.jpg" alt="Alternate Text" />*@</div>
-                </div>
-                    <!-- Contact Form -->
-                    <h3>СВЪРЖЕТЕ СЕ С НАС:</h3>
-                    <div class="contact-form-box">
-                        @using (Ajax.BeginForm("Contact", "Home", null, new AjaxOptions { UpdateTargetId = "result" },
-                            new { @class = "form-horizontal", @id = "result" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Име" } })
-                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
-                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Телефон" } })
-                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Относно" } })
-                                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @placeholder = "Съдържание" } })
-                                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-warning text-uppercase" style="border-radius: 0;">
-                                        Изпрати
-                                    </button>
-                                </div>
-                            </div>
-                        }
-                    </div>
-            </div>
-        </div>
-    </div>
+					@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @placeholder = "Име" } })
+					<br/>
+
+					@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email" } })
+					<br />
+
+					@Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @placeholder = "Относно" } })
+					<br />
+
+					@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @placeholder = "Телефон" } })
+					<br />
+
+					@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @placeholder = "Съобщение" } })
+					<br />
+					<input type="submit" value="Изпрати" class="cws-button alt full-width">
+				}
+				//TODO: Dont ask for name and email when the user is logged!
+				<!-- ! contact-form-->
+				<div id="feedback-form-errors" role="alert" class="alert alert-danger alt alert-dismissible fade in">
+					<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button><i class="alert-icon border fa fa-exclamation-triangle"></i><strong>Грешни данни!</strong><br>
+					<div class="message"></div>
+				</div>
+				<div class="email_server_responce"></div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<img src="~/Content/img/contact/team-image.jpg" alt="Alternate Text" />
+		</div>
+	</div>
 </div>
 
-@section scripts {
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>
-    <script>
-        $(function () {
 
-            // GOOGLE MAP
-            $("#map-block").height($("#map-wrapper").height());	// Set Map Height
-            function initialize($) {
-                var mapOptions = {
-                    zoom: 8,
-                    center: new google.maps.LatLng(43.093049, 24.034446),
-                    disableDefaultUI: true,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                var map = new google.maps.Map(document.getElementById('map-block'), mapOptions);
-
-
-
-                var contentString = '<div id="content">' +
-      '<div id="siteNotice">' +
-      '</div>' +
-      '<h1 id="firstHeading" class="firstHeading">Дъбравата - къща за гости</h1>' +
-      '<div id="bodyContent">' +
-      '<p><b>Дъбравата</b>, тук ще сложим информация за това как да се стигне по лесно до къщата!</p>' + '</div>' + '</div>';
-
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentString
-                });
-
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(43.093049, 24.034446),
-                    map: map,
-                    title: 'Къща за гости - Дъбравата!'
-                });
-
-                marker.addListener('click', function () {
-                    infowindow.open(map, marker);
-                });
-            }
-
-            google.maps.event.addDomListener(window, 'load', initialize);
-
-        });
-    </script>
-
+@section Scripts {
+	@*@Scripts.Render("~/bundles/jqueryval")*@
+	<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 }

@@ -19,7 +19,7 @@
 			<h3>Регистрация на нов потребител:</h3>
 			<div class="widget-contact-form pb-0">
 				<!-- contact-form-->
-				@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form contact-form alt clearfix" }))
+				@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id = "registration-form", @class = "form contact-form alt clearfix" }))
 				{
 					@*@using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { UpdateTargetId = "result" },
 						new { @class = "form contact-form alt clearfix", @id = "result" }))

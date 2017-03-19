@@ -761,6 +761,7 @@
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\codemirror.cshtml" />
     <Content Include="Views\Shared\_ProfileLinks.cshtml" />
+    <Content Include="Views\Home\Contact - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

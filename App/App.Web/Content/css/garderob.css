@@ -52,9 +52,9 @@ label {
 	background-color: transparent;
 	color: #237dc8;
 	border: none;
-	text-align:right;
-	margin-right:0px;
-	padding-right:0px;
+	text-align: right;
+	margin-right: 0px;
+	padding-right: 0px;
 }
 
 	#profile-links-dropdown button.btn.btn-primary.dropdown-toggle:hover {
@@ -72,17 +72,17 @@ label {
 	padding: 0 0 0 0px;
 }
 
-#profile-links-dropdown ul.dropdown-menu li:before {
-	display:none;
-}
+	#profile-links-dropdown ul.dropdown-menu li:before {
+		display: none;
+	}
 
 	#profile-links-dropdown ul.dropdown-menu li {
 		padding-left: 0px;
 	}
-	/*Navigation end*/
-	footer.footer.fixed {
-		background-image: url('../img/footer/footer-bg.jpg');
-	}
+/*Navigation end*/
+footer.footer.fixed {
+	background-image: url('../img/footer/footer-bg.jpg');
+}
 
 .breadcrumbs {
 	background-image: url('../img/contact/bg-1.jpg');
@@ -523,6 +523,10 @@ ul.leaders {
 		margin: 20px 0 0 -10px;
 	}
 
+#registration-form.contact-form input:not(.cws-button),
+#registration-form.contact-form textarea {
+	margin-bottom: 0px;
+}
 
 .checkbox .text-danger.field-validation-error {
 	margin-left: 20px;
