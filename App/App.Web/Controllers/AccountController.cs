@@ -160,7 +160,20 @@ namespace App.Web.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+				var user = new ApplicationUser
+				{
+					UserName = model.Email,
+					Email = model.Email,
+					FirstName = model.FirstName,
+					LastName = model.LastName,
+					Company = model.Company,
+					City = model.City,
+					Address = model.Address,
+					DeliveryAddress = model.DeliveryAddress,
+					Phone = model.Phone,
+					InvoiceData = model.InvoiceData
+				};
+
 				var result = await UserManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
@@ -448,7 +461,17 @@ namespace App.Web.Controllers
 		{
 			foreach (var error in result.Errors)
 			{
-				ModelState.AddModelError("", error);
+				if (error.EndsWith("is already taken."))
+				{
+					if (!ModelState.Keys.Contains(""))
+					{
+						ModelState.AddModelError("", "Потребител с такъв Email вече съществува!");
+					}
+				}
+				else
+				{
+					ModelState.AddModelError("", error);
+				}
 			}
 		}
 

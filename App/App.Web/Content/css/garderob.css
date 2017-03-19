@@ -7,6 +7,10 @@ h3 {
 	color: #237dc8;
 }
 
+label {
+	font-weight: normal;
+}
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 	color: #a9a9a9;
 }
@@ -39,10 +43,46 @@ h3 {
 	margin-top: 20px;
 	margin-bottom: -20px;
 }
-/*Navigation end*/
-footer.footer.fixed {
-	background-image: url('../img/footer/footer-bg.jpg');
+
+.login-content a#login-button {
+	cursor: pointer;
 }
+
+#profile-links-dropdown button.btn.btn-primary.dropdown-toggle {
+	background-color: transparent;
+	color: #237dc8;
+	border: none;
+	text-align:right;
+	margin-right:0px;
+	padding-right:0px;
+}
+
+	#profile-links-dropdown button.btn.btn-primary.dropdown-toggle:hover {
+		color: #4b9fe5;
+	}
+
+	#profile-links-dropdown button.btn.btn-primary.dropdown-toggle:active {
+		outline: none;
+		box-shadow: none;
+	}
+
+#profile-links-dropdown ul.dropdown-menu {
+	/*width: 100%;*/
+	border-radius: 0px;
+	padding: 0 0 0 0px;
+}
+
+#profile-links-dropdown ul.dropdown-menu li:before {
+	display:none;
+}
+
+	#profile-links-dropdown ul.dropdown-menu li {
+		padding-left: 0px;
+	}
+	/*Navigation end*/
+	footer.footer.fixed {
+		background-image: url('../img/footer/footer-bg.jpg');
+	}
 
 .breadcrumbs {
 	background-image: url('../img/contact/bg-1.jpg');
@@ -480,14 +520,20 @@ ul.leaders {
 		padding: 0 2px 0 0px;
 		width: 22px;
 		height: 22px;
-		margin: 2px 0 0 0px;
+		margin: 20px 0 0 -10px;
 	}
 
+
+.checkbox .text-danger.field-validation-error {
+	margin-left: 20px;
+}
+
+.validation-summary-errors.text-danger ul li:before {
+	display: none;
+}
+
 /*Registration end*/
-
-
 /*Calculator*/
-
 .calculator-container, .warehouse-container {
 	margin-top: 50px;
 	background-color: #f6f6f6;

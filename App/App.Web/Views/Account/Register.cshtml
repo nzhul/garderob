@@ -21,52 +21,75 @@
 				<!-- contact-form-->
 				@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form contact-form alt clearfix" }))
 				{
-				@*@using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { UpdateTargetId = "result" },
-			new { @class = "form contact-form alt clearfix", @id = "result" }))
-				{*@
+					@*@using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { UpdateTargetId = "result" },
+						new { @class = "form contact-form alt clearfix", @id = "result" }))
+							{*@
 					@Html.AntiForgeryToken()
 					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-					@Html.LabelFor(model => model.Email)
-					@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-row", @placeholder = "Име" } })
+
+					@Html.LabelFor(model => model.Email) 
 					@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Email)
+					<br />
 
-					@Html.LabelFor(model => model.Password)
-					@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-row", @placeholder = "Парола" } })
+					@Html.LabelFor(model => model.Password) 
 					@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Password)
+					<br />
 
-					@Html.LabelFor(model => model.ConfirmPassword)
-					@Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-row", @placeholder = "Повтори паролата:" } })
-					@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-					<div>
-						<div class="checkbox">
-							<input id="checkbox1" type="checkbox" value="None" name="check">
-							<label for="checkbox1">Запозрах се и съм съгласен с общите условия</label>
-						</div>
+					@Html.LabelFor(model => model.ConfirmPassword) 
+					@Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.ConfirmPassword)
+					<br />
+
+					@Html.LabelFor(model => model.FirstName)
+					@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.FirstName)
+					<br />
+
+					@Html.LabelFor(model => model.LastName)
+					@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.LastName)
+					<br />
+
+					@Html.LabelFor(model => model.Company)
+					@Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Company)
+					<br />
+
+					@Html.LabelFor(model => model.City)
+					@Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.City)
+					<br />
+
+					@Html.LabelFor(model => model.Address)
+					@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Address)
+					<br />
+
+					@Html.LabelFor(model => model.DeliveryAddress)
+					@Html.ValidationMessageFor(model => model.DeliveryAddress, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.DeliveryAddress)
+					<br />
+
+					@Html.LabelFor(model => model.Phone)
+					@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Phone)
+					<br />
+
+					@Html.LabelFor(model => model.InvoiceData)
+					@Html.ValidationMessageFor(model => model.InvoiceData, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.InvoiceData)
+					<br />
+					<div class="checkbox">
+						@Html.EditorFor(model => model.TermsAccepted)
+						@Html.LabelFor(model => model.TermsAccepted)
+						@Html.ValidationMessageFor(model => model.TermsAccepted, "", new { @class = "text-danger" })
 					</div>
-					<button type="submit" class="cws-button alt full-width">
-						Изпрати
-					</button>
+						<button type="submit" class="cws-button alt full-width">
+							Регистрирай
+						</button>
 				}
-				@*<form action="php/contacts-process.php" method="post" class="form contact-form alt clearfix">
-						<input type="text" name="name" value="" size="40" placeholder="Име" aria-invalid="false" aria-required="true" class="form-row form-row-first">
-						<input type="text" name="family" value="" size="40" placeholder="Фамилия" aria-invalid="false" aria-required="true" class="form-row">
-						<input type="text" name="company" value="" size="40" placeholder="Фирма" aria-invalid="false" aria-required="true" class="form-row">
-						<input type="text" name="username" value="" size="40" placeholder="Потребителско име" aria-invalid="false" aria-required="true" class="form-row">
-						<input type="password" name="password" value="" size="40" placeholder="Парола" aria-invalid="false" aria-required="true" class="form-row">
-						<input type="text" name="city" value="" size="40" placeholder="Град" aria-invalid="false" aria-required="true" class="form-row">
-						<input type="text" name="address" value="" size="40" placeholder="Адрес" aria-invalid="false" aria-required="true" class="form-row">
-						<input type="text" name="delivery-address" value="" size="40" placeholder="Адрес за доставка" aria-invalid="false" aria-required="true" class="form-row">
-						<input type="text" name="phone" value="" size="40" placeholder="Телефон за връзка" aria-invalid="false" aria-required="true" class="form-row">
-						<input type="email" name="email" value="" size="40" placeholder="Email" aria-required="true" class="form-row">
-						<textarea name="invoice-data" cols="40" rows="4" placeholder="Данни за фактура" aria-invalid="false" aria-required="true"></textarea>
-						<div>
-							<div class="checkbox">
-								<input id="checkbox1" type="checkbox" value="None" name="check">
-								<label for="checkbox1">Запозрах се и съм съгласен с общите условия</label>
-							</div>
-						</div>
-						<input type="submit" value="Изпрати" class="cws-button alt full-width">
-					</form>*@
 				<!-- ! contact-form-->
 				<div id="feedback-form-errors" role="alert" class="alert alert-danger alt alert-dismissible fade in">
 					<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button><i class="alert-icon border fa fa-exclamation-triangle"></i><strong>Грешни данни!</strong><br>
