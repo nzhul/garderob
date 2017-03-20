@@ -822,15 +822,6 @@
     <Content Include="Content\fonts\fi\Flaticon.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\images\attractions\lake-thumbnail.jpg" />
-    <Content Include="Content\images\big-loader.gif" />
-    <Content Include="Content\images\delete.png" />
-    <Content Include="Content\images\loading.gif" />
-    <Content Include="Content\images\logo.png" />
-    <Content Include="Content\images\noimage\no-image_detailsBigThumb.jpg" />
-    <Content Include="Content\images\noimage\no-image_detailsSmallThumb.jpg" />
-    <Content Include="Content\images\noimage\no-image_indexThumb.jpg" />
-    <Content Include="Content\images\noimage\no-image_large.jpg" />
     <Content Include="Content\img\bg-1.jpg" />
     <Content Include="Content\img\contact\bg-1.jpg" />
     <Content Include="Content\img\contact\team-image.jpg" />
