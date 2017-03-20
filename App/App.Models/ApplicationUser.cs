@@ -19,8 +19,6 @@ namespace App.Models
 
 		public string DeliveryAddress { get; set; }
 
-		public string Phone { get; set; }
-
 		public string InvoiceData { get; set; }
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

@@ -170,7 +170,7 @@ namespace App.Web.Controllers
 					City = model.City,
 					Address = model.Address,
 					DeliveryAddress = model.DeliveryAddress,
-					Phone = model.Phone,
+					PhoneNumber = model.Phone,
 					InvoiceData = model.InvoiceData
 				};
 

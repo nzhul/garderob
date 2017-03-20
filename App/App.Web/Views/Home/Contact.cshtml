@@ -44,9 +44,26 @@
 	<div class="row">
 		<div class="col-md-6 mb-md-30">
 			<div class="widget-contact-form pb-0">
+				<div class="alert alert-dismissible alert-danger">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Сървърна грешка!</strong> <br/> Свържете се с администратор на адрес: <a href="mailto:manager@garderob.com" class="alert-link">manager@garderob.com</a>.
+				</div>
+				<div class="alert alert-dismissible alert-warning">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Невалидни данни!</strong> <br /> Моля обновете данните си и опитайне отново.
+				</div>
+				<div class='alert alert-dismissable alert-success'>
+					<button type='button' class='close' data-dismiss='alert'>×</button>
+					<strong>Съобщението беше изпратено успешно!</strong>
+				</div>
 				<!-- contact-form-->
-				@using (Ajax.BeginForm("Contact", "Home", null, new AjaxOptions { UpdateTargetId = "result" },
-									new { @class = "form contact-form alt clearfix", @id = "result" }))
+				@using (Ajax.BeginForm("Contact", "Home", null, new AjaxOptions
+				{
+					OnFailure = "ContactFormServerFail",
+					OnSuccess = "ContactFormServerSuccess",
+					OnBegin = "ContactFormBegin"
+				},
+					new { @class = "form contact-form alt clearfix", @id = "result" }))
 				{
 					@Html.AntiForgeryToken()
 					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -73,15 +90,19 @@
 					@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
 					@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @placeholder = "Съобщение" } })
 					<br />
+					<div class="cs-loader">
+						<div class="cs-loader-inner">
+							<label>	●</label>
+							<label>	●</label>
+							<label>	●</label>
+							<label>	●</label>
+							<label>	●</label>
+							<label>	●</label>
+						</div>
+					</div>
 					<input type="submit" value="Изпрати" class="cws-button alt full-width">
 				}
-				//TODO: Dont ask for name and email when the user is logged!
 				<!-- ! contact-form-->
-				<div id="feedback-form-errors" role="alert" class="alert alert-danger alt alert-dismissible fade in">
-					<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button><i class="alert-icon border fa fa-exclamation-triangle"></i><strong>Грешни данни!</strong><br>
-					<div class="message"></div>
-				</div>
-				<div class="email_server_responce"></div>
 			</div>
 		</div>
 		<div class="col-md-6">
@@ -96,4 +117,34 @@
 	<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 	<script src="~/Scripts/jquery.validate.min.js"></script>
 	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+	<script>
+		function ContactFormServerFail(data) {
+			var alertBox = $('.widget-contact-form .alert.alert-danger');
+			alertBox.show();
+			$('.cs-loader').hide();
+		}
+
+		function ContactFormServerSuccess(data) {
+			$('.cs-loader').hide();
+			if (data.Status === "InvalidModel") {
+				console.log('Please update your data and try again');
+				var warningBox = $('.widget-contact-form .alert.alert-warning');
+				warningBox.show();
+			}
+
+			if (data.Status === 'Success') {
+				console.log('Show succeess message');
+				var result = $('#result');
+				result.hide();
+
+				var successBox = $('.widget-contact-form .alert.alert-success');
+				successBox.show();
+			}
+		}
+
+		function ContactFormBegin() {
+			$('.cs-loader').show();
+		}
+	</script>
 }

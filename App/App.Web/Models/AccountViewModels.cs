@@ -102,6 +102,7 @@ namespace App.Web.Models
 		[Display(Name = "Адрес за доставка:")]
 		public string DeliveryAddress { get; set; }
 
+		[Required(ErrorMessage = " * Телефона е задължителен!")]
 		[Display(Name = "Телефон за връзка:")]
 		[DataType(DataType.PhoneNumber)]
 		public string Phone { get; set; }

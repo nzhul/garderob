@@ -14,7 +14,8 @@ namespace App.Data.Migrations
 
 	public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
 	{
-		private const string adminUsernameConfigKey = "adminUsername";
+		private const string adminFirstNameConfigKey = "adminFirstname";
+		private const string adminLastNameConfigKey = "adminLastname";
 		private const string adminEmailConfigKey = "adminEmail";
 		private const string adminPasswordConfigKey = "adminPassword";
 		private const string adminPhoneConfigKey = "adminPhone";
@@ -47,7 +48,9 @@ namespace App.Data.Migrations
 				AdminConfiguration config = this.GetAdminConfiguration();
 
 				ApplicationUser admin = new ApplicationUser();
-				admin.UserName = config.UserName;
+				admin.UserName = config.Email;
+				admin.FirstName = config.Firstname;
+				admin.LastName = config.Lastname;
 				admin.Email = config.Email;
 				admin.PhoneNumber = config.Phone;
 
@@ -61,7 +64,8 @@ namespace App.Data.Migrations
 		private AdminConfiguration GetAdminConfiguration()
 		{
 			AdminConfiguration config = new AdminConfiguration();
-			config.UserName = ConfigurationManager.AppSettings[Configuration.adminUsernameConfigKey];
+			config.Firstname = ConfigurationManager.AppSettings[Configuration.adminFirstNameConfigKey];
+			config.Lastname = ConfigurationManager.AppSettings[Configuration.adminLastNameConfigKey];
 			config.Email = ConfigurationManager.AppSettings[Configuration.adminEmailConfigKey];
 			config.Password = ConfigurationManager.AppSettings[Configuration.adminPasswordConfigKey];
 			config.Phone = ConfigurationManager.AppSettings[Configuration.adminPhoneConfigKey];
@@ -71,14 +75,15 @@ namespace App.Data.Migrations
 
 		private void AddInitialStaticPages(ApplicationDbContext context)
 		{
-			if (!context.Pages.Any())
-			{
-				string folderPath = HttpContext.Current.Server.MapPath("~/App_Data/StaticPages");
-				IEnumerable<string> pages = Directory.EnumerateFiles(folderPath);
+			string folderPath = HttpContext.Current.Server.MapPath("~/App_Data/StaticPages");
+			IEnumerable<string> pages = Directory.EnumerateFiles(folderPath);
 
-				foreach (var pagePath in pages)
+			foreach (var pagePath in pages)
+			{
+				string fileName = Path.GetFileNameWithoutExtension(pagePath);
+
+				if (!this.PageExistsInDatabase(context, fileName))
 				{
-					string fileName = Path.GetFileNameWithoutExtension(pagePath);
 					string fileContents = File.ReadAllText(pagePath);
 
 					Page newPage = new Page
@@ -91,8 +96,20 @@ namespace App.Data.Migrations
 
 					context.Pages.Add(newPage);
 				}
+			}
 
-				context.SaveChanges();
+			context.SaveChanges();
+		}
+
+		private bool PageExistsInDatabase(ApplicationDbContext context, string fileName)
+		{
+			if (context.Pages.Any(p => p.UrlName == fileName))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 
@@ -100,7 +117,9 @@ namespace App.Data.Migrations
 		{
 			public string Password { get; set; }
 
-			public string UserName { get; set; }
+			public string Firstname { get; set; }
+
+			public string Lastname { get; set; }
 
 			public string Email { get; set; }
 

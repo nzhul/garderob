@@ -54,6 +54,7 @@
 								<li><a href="/make-your-sketch">По твоя скица</a></li>
 							</ul>
 						</li>
+						<li><a href="@Url.Action("Index", "Products")">Продукти</a></li>
 						<li>
 							<a href="#" class="mn-has-sub">Материали <i class="fa fa-angle-down button_open"></i></a>
 							<ul class="mn-sub">
@@ -62,11 +63,13 @@
 								<li><a href="#">Материал - Вид 3</a></li>
 							</ul>
 						</li>
-						<li><a href="/price">Цени и Плащания</a></li>
 						<li>
-							<a href="#" class="mn-has-sub">Услуги <i class="fa fa-angle-down button_open"></i></a>
+							<a href="/services" class="mn-has-sub">Услуги <i class="fa fa-angle-down button_open"></i></a>
 							<ul class="mn-sub">
+								<li><a class="small-nav-text" href="/services">Услуги</a></li>
 								<li><a class="small-nav-text" href="/faq">Често задавани въпроси</a></li>
+								<li><a class="small-nav-text" href="/price">Цени и плащания</a></li>
+								<li><a class="small-nav-text" href="/calculator">Калкулатор</a></li>
 							</ul>
 						</li>
 						<li><a href="#">Галерия</a></li>
@@ -97,8 +100,8 @@
 						<div class="cws_divider with-plus short-2 mb-5 mt-10"></div>
 						<ul>
 							<li><a href="#">За нас</a> <a href="#">Помощ и Условия</a></li>
-							<li><a href="#">Контакти</a> <a href="#">Направи гардероб</a></li>
-							<li><a href="#">Услуги</a> <a href="#">Качи проект</a></li>
+							<li><a href="#">Контакти</a> <a href="/make">Направи гардероб</a></li>
+							<li><a href="/services">Услуги</a> <a href="#">Качи проект</a></li>
 							<li><a href="#">Галерия</a> <a href="#">Калкулатор</a></li>
 							<li><a href="#">Материали</a> <a href="#"></a></li>
 						</ul>
@@ -128,12 +131,12 @@
 					</div>
 					<div class="col-sm-7 text-right">
 						<a href="@Url.Action("Index", "Home")" class="footer-nav">Начало</a>
-						<a href="#" class="footer-nav">Направи Гардероб</a>
+						<a href="/make" class="footer-nav">Направи Гардероб</a>
 						<a href="#" class="footer-nav">Материали</a>
-						<a href="#" class="footer-nav">Цени и плащания</a>
-						<a href="#" class="footer-nav">Услуги</a>
+						<a href="/price" class="footer-nav">Цени и плащания</a>
+						<a href="/services" class="footer-nav">Услуги</a>
 						<a href="#" class="footer-nav">Галерия</a>
-						<a href="#" class="footer-nav">Контакти</a>
+						<a href="@Url.Action("Contact", "Home")" class="footer-nav">Контакти</a>
 					</div>
 				</div>
 			</div>

@@ -28,6 +28,7 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult Contact(ContactFormInputModel contactData)
 		{
+			System.Threading.Thread.Sleep(3000);
 			if (Request.IsAuthenticated)
 			{
 				// Get the userData from the database and use it to populate the email
@@ -36,22 +37,20 @@ namespace App.Web.Controllers
 				if (currentUser != null)
 				{
 					contactData.Email = currentUser.Email;
-					contactData.Phone = currentUser.Phone;
-					contactData.Name = currentUser.FirstName + currentUser.LastName;
+					contactData.Phone = currentUser.PhoneNumber;
+					contactData.Name = currentUser.FirstName + " " + currentUser.LastName;
 
 					ModelState.SetModelValue("Name", new ValueProviderResult(currentUser.FirstName + " " + currentUser.LastName, "", CultureInfo.InvariantCulture));
-					ModelState.SetModelValue("Phone", new ValueProviderResult(currentUser.Phone, "", CultureInfo.InvariantCulture));
+					ModelState.SetModelValue("Phone", new ValueProviderResult(currentUser.PhoneNumber, "", CultureInfo.InvariantCulture));
 					ModelState.SetModelValue("Email", new ValueProviderResult(currentUser.Email, "", CultureInfo.InvariantCulture));
 
 					ModelState["Email"].Errors.Clear();
 					ModelState["Name"].Errors.Clear();
 					ModelState["Phone"].Errors.Clear();
-
-					UpdateModel(contactData);
 				}
 			}
 
-			if (ModelState.IsValid)
+			if (TryValidateModel(contactData)) // try validate is failing for some reason. Find out why
 			{
 				string sender = ConfigurationManager.AppSettings["emailSender"];
 				string receiver = ConfigurationManager.AppSettings["emailReceiver"];
@@ -69,14 +68,11 @@ namespace App.Web.Controllers
 				// The settings are in web.config file
 				smtpClient.Send(mailMessage);
 
-				return Content(@"<div class='alert alert-dismissable alert-success'>
-                            <button type='button' class='close' data-dismiss='alert'>×</button>
-                            <strong>Съобщението беше изпратено успешно!</strong>
-                        </div>");
+				return Json(new { Status = "Success" });
 			}
 			else
 			{
-				return View("Contact", contactData);
+				return Json(new { Status = "InvalidModel" });
 			}
 		}
 	}
