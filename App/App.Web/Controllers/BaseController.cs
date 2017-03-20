@@ -11,8 +11,8 @@ namespace App.Web.Controllers
 {
 	public class BaseController : Controller
 	{
-		private readonly IUoWData data;
-		private readonly IPagesService pagesService;
+		protected readonly IUoWData data;
+		protected readonly IPagesService pagesService;
 
 		public BaseController()
 		{

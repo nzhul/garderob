@@ -1,7 +1,10 @@
-﻿using App.Web.Models;
+﻿using App.Models;
+using App.Web.Models;
 using System.Configuration;
 using System.Net.Mail;
 using System.Web.Mvc;
+using System.Linq;
+using System.Globalization;
 
 namespace App.Web.Controllers
 {
@@ -25,6 +28,29 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult Contact(ContactFormInputModel contactData)
 		{
+			if (Request.IsAuthenticated)
+			{
+				// Get the userData from the database and use it to populate the email
+				string currentUserEmail = this.User.Identity.Name;
+				ApplicationUser currentUser = this.data.Users.All().Where(u => u.Email == currentUserEmail).FirstOrDefault();
+				if (currentUser != null)
+				{
+					contactData.Email = currentUser.Email;
+					contactData.Phone = currentUser.Phone;
+					contactData.Name = currentUser.FirstName + currentUser.LastName;
+
+					ModelState.SetModelValue("Name", new ValueProviderResult(currentUser.FirstName + " " + currentUser.LastName, "", CultureInfo.InvariantCulture));
+					ModelState.SetModelValue("Phone", new ValueProviderResult(currentUser.Phone, "", CultureInfo.InvariantCulture));
+					ModelState.SetModelValue("Email", new ValueProviderResult(currentUser.Email, "", CultureInfo.InvariantCulture));
+
+					ModelState["Email"].Errors.Clear();
+					ModelState["Name"].Errors.Clear();
+					ModelState["Phone"].Errors.Clear();
+
+					UpdateModel(contactData);
+				}
+			}
+
 			if (ModelState.IsValid)
 			{
 				string sender = ConfigurationManager.AppSettings["emailSender"];

@@ -51,20 +51,23 @@
 					@Html.AntiForgeryToken()
 					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-					@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-					@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @placeholder = "Име" } })
-					<br/>
+					if (!Request.IsAuthenticated)
+					{
+						@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+						@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @placeholder = "Име" } })
+						<br />
 
-					@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-					@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email" } })
-					<br />
+						@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+						@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email" } })
+						<br />
+
+						@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+						@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @placeholder = "Телефон" } })
+						<br />
+					}
 
 					@Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
 					@Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @placeholder = "Относно" } })
-					<br />
-
-					@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-					@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @placeholder = "Телефон" } })
 					<br />
 
 					@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
