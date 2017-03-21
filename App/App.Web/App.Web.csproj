@@ -179,6 +179,7 @@
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,6 +197,8 @@
   <ItemGroup>
     <Content Include="App_Data\StaticPages\calculator.html" />
     <Content Include="App_Data\StaticPages\faq.html" />
+    <Content Include="App_Data\StaticPages\make-sliding-doors.html" />
+    <Content Include="App_Data\StaticPages\make-standard.html" />
     <Content Include="App_Data\StaticPages\make.html" />
     <Content Include="App_Data\StaticPages\price.html" />
     <Content Include="App_Data\StaticPages\services.html" />
@@ -1261,6 +1264,7 @@
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\codemirror.cshtml" />
     <Content Include="Views\Shared\_ProfileLinks.cshtml" />
+    <Content Include="Views\Orders\Make.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
