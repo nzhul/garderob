@@ -75,30 +75,33 @@ namespace App.Data.Migrations
 
 		private void AddInitialStaticPages(ApplicationDbContext context)
 		{
-			string folderPath = HttpContext.Current.Server.MapPath("~/App_Data/StaticPages");
-			IEnumerable<string> pages = Directory.EnumerateFiles(folderPath);
-
-			foreach (var pagePath in pages)
+			if (HttpContext.Current != null)
 			{
-				string fileName = Path.GetFileNameWithoutExtension(pagePath);
+				string folderPath = HttpContext.Current.Server.MapPath("~/App_Data/StaticPages");
+				IEnumerable<string> pages = Directory.EnumerateFiles(folderPath);
 
-				if (!this.PageExistsInDatabase(context, fileName))
+				foreach (var pagePath in pages)
 				{
-					string fileContents = File.ReadAllText(pagePath);
+					string fileName = Path.GetFileNameWithoutExtension(pagePath);
 
-					Page newPage = new Page
+					if (!this.PageExistsInDatabase(context, fileName))
 					{
-						Content = fileContents,
-						Title = fileName,
-						UrlName = fileName,
-						DateCreated = DateTime.UtcNow
-					};
+						string fileContents = File.ReadAllText(pagePath);
 
-					context.Pages.Add(newPage);
+						Page newPage = new Page
+						{
+							Content = fileContents,
+							Title = fileName,
+							UrlName = fileName,
+							DateCreated = DateTime.UtcNow
+						};
+
+						context.Pages.Add(newPage);
+					}
 				}
-			}
 
-			context.SaveChanges();
+				context.SaveChanges();
+			}
 		}
 
 		private bool PageExistsInDatabase(ApplicationDbContext context, string fileName)

@@ -11,13 +11,15 @@ namespace App.Web.Controllers
 {
 	public class BaseController : Controller
 	{
-		protected readonly IUoWData data;
-		protected readonly IPagesService pagesService;
+		protected IUoWData data;
+		protected IPagesService pagesService;
+		protected IClientsServices clientsService;
 
 		public BaseController()
 		{
 			this.data = new UoWData();
 			this.pagesService = new PagesService(this.data);
+			this.clientsService = new ClientsService(this.data);
 
 			LayoutModel model = new LayoutModel();
 			model.Pages = this.pagesService.GetPages();

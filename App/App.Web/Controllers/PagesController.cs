@@ -7,14 +7,6 @@ namespace App.Web.Controllers
 {
 	public class PagesController : BaseController
 	{
-		private readonly IUoWData data;
-		private readonly IPagesService pagesService;
-		public PagesController()
-		{
-			this.data = new UoWData();
-			this.pagesService = new PagesService(this.data);
-		}
-
 		public ActionResult Index(string urlName)
 		{
 			PageViewModel model = this.pagesService.GetPageByUrlName(urlName);

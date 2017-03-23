@@ -5,8 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@ViewBag.Title - My ASP.NET Application</title>
 	@Styles.Render("~/bundles/administration")
-	<link rel="stylesheet" media="all" type="text/css" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" />
-	@*<link rel="stylesheet" media="all" type="text/css" href="jquery-ui-timepicker-addon.css" />*@
+	<script src="~/Content/js/jquery.min.js"></script>
+	<script src="~/Content/js/jquery-ui.min.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+	<script src="~/Scripts/bootstrap.min.js"></script>
+
+	<script src="~/Areas/Administration/Content/datetimepicker/jquery-ui-timepicker-addon.js"></script>
+	<script src="~/Areas/Administration/Content/datetimepicker/i18n/jquery-ui-timepicker-addon-i18n.js"></script>
+	<script src="~/Areas/Administration/Content/datetimepicker/jquery-ui-sliderAccess.js"></script>
 	<link href="~/Areas/Administration/Content/datetimepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" />
 
 	@RenderSection("styles", false)
@@ -37,9 +44,9 @@
 				<div class="d-navigation">
 					<a href="@Url.Action("Index", "Orders")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Orders" ? "active" : "")">Поръчки</a>
 					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Клиенти</a>
-					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Материали</a>
-					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Атестати</a>
-					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Продукти</a>
+					<a href="@Url.Action("Index", "Materials")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "materials" ? "active" : "")">Материали</a>
+					<a href="@Url.Action("Index", "Testimonials")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "testimonials" ? "active" : "")">Атестати</a>
+					<a href="@Url.Action("Index", "Products")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "products" ? "active" : "")">Продукти</a>
 					<a href="@Url.Action("Index", "Pages")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "pages" ? "active" : "")">Страници</a>
 				</div>
 				<hr />
@@ -56,28 +63,7 @@
 		</footer>
 	</div>
 
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
-	<script src="~/Scripts/jquery.validate.min.js"></script>
-	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-	<script src="~/Scripts/bootstrap.min.js"></script>
-
-	<script src="~/Areas/Administration/Content/datetimepicker/jquery-ui-timepicker-addon.js"></script>
-	<script src="~/Areas/Administration/Content/datetimepicker/i18n/jquery-ui-timepicker-addon-i18n.js"></script>
-	<script src="~/Areas/Administration/Content/datetimepicker/jquery-ui-sliderAccess.js"></script>
-
 	@RenderSection("scripts", false)
-
-	<script>
-		$(document).ready(function () {
-			var code = $('.codemirror-textarea')[0];
-			var editor = CodeMirror.fromTextArea(code, {
-				lineNumbers: true,
-				mode: "xml",
-				htmlMode: true
-			});
-		});
-	</script>
 
 	<script>
 		$(function () {

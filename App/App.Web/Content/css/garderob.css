@@ -359,7 +359,6 @@ ul.leaders {
 
 i.submit-loading {
 	/*display:none;*/
-
 }
 /*Contact End*/
 /*Price page */
@@ -745,7 +744,7 @@ i.submit-loading {
 /*Loaders*/
 
 .cs-loader {
-	display:none;
+	display: none;
 	position: relative;
 	top: 0;
 	left: 100px;
@@ -844,3 +843,27 @@ i.submit-loading {
 	animation: lol 3s 500ms infinite ease-in-out;
 }
 /*Loaders END*/
+
+/*Profile*/
+.profile-container input {
+	width: 100%;
+}
+
+.profile-container .profile-picture {
+	width: 150px;
+	height: 150px;
+	border: 1px solid #237dc8;
+}
+
+.profile-container .change-password-link {
+	font-size: 14px;
+	color: #666666;
+	float: right;
+}
+
+	.profile-container .change-password-link:hover {
+		color: #237dc8;
+		text-decoration: underline;
+	}
+
+/*Profile end*/

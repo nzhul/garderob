@@ -1,0 +1,94 @@
+﻿@model App.Web.Models.UpdateProfileViewModel
+@{
+	ViewBag.Title = "Manage";
+}
+
+<div class="container mt-40 pb-60 profile-container">
+@Html.Partial("_MessagePartial")
+@using (Html.BeginForm("Profile", "Manage", FormMethod.Post, new { @id = "registration-form", @class = "form contact-form alt clearfix" }))
+{
+	<div class="row">
+		<div class="col-md-12">
+			<p class="text-success">@ViewBag.StatusMessage</p>
+			<h3>Профил на @Model.FullName : @Html.ActionLink("[ Смени паролата ]", "ChangePassword", null, new { @class = "change-password-link" })</h3>
+			<hr />
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 user-fields-col">
+			<div class="row">
+				<div class="col-md-6">
+					@Html.LabelFor(m => m.FirstName)<br />
+					@Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+					@Html.EditorFor(m => m.FirstName)
+					<br />
+				</div>
+				<div class="col-md-6">
+					@Html.LabelFor(m => m.LastName)<br />
+					@Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+					@Html.EditorFor(m => m.LastName)
+					<br />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					@Html.LabelFor(m => m.Company)<br />
+					@Html.ValidationMessageFor(m => m.Company, "", new { @class = "text-danger" })
+					@Html.EditorFor(m => m.Company)
+					<br />
+				</div>
+				<div class="col-md-6">
+					@Html.LabelFor(m => m.City)<br />
+					@Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+					@Html.EditorFor(m => m.City)
+					<br />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					@Html.LabelFor(m => m.Address)<br />
+					@Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+					@Html.EditorFor(m => m.Address)
+					<br />
+				</div>
+				<div class="col-md-6">
+					@Html.LabelFor(m => m.DeliveryAddress)<br />
+					@Html.ValidationMessageFor(m => m.DeliveryAddress, "", new { @class = "text-danger" })
+					@Html.EditorFor(m => m.DeliveryAddress)
+					<br />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					@Html.LabelFor(m => m.Phone)<br />
+					@Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+					@Html.EditorFor(m => m.Phone)
+					<br />
+				</div>
+				<div class="col-md-6">
+					@Html.LabelFor(m => m.InvoiceData)<br />
+					@Html.ValidationMessageFor(m => m.InvoiceData, "", new { @class = "text-danger" })
+					@Html.EditorFor(m => m.InvoiceData)
+					<br />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button type="submit" class="cws-button alt full-width">
+						Запази 
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4" style="text-align:right;">
+			<img class="profile-picture" src="~/Content/img/profile-default-image.jpg" alt="Снимка" /><br />
+			<a class="cws-button alt" style="width:150px;min-width:150px;" href="#">Качи снимка</a>
+			<input type="file" name="profile-image-input" id="profile-image-input" multiple="multiple" />
+
+		</div>
+	</div>
+}
+</div>
+
