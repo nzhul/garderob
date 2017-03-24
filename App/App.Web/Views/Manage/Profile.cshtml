@@ -4,91 +4,161 @@
 }
 
 <div class="container mt-40 pb-60 profile-container">
-@Html.Partial("_MessagePartial")
-@using (Html.BeginForm("Profile", "Manage", FormMethod.Post, new { @id = "registration-form", @class = "form contact-form alt clearfix" }))
-{
-	<div class="row">
-		<div class="col-md-12">
-			<p class="text-success">@ViewBag.StatusMessage</p>
-			<h3>Профил на @Model.FullName : @Html.ActionLink("[ Смени паролата ]", "ChangePassword", null, new { @class = "change-password-link" })</h3>
-			<hr />
-			@Html.AntiForgeryToken()
-			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-8 user-fields-col">
-			<div class="row">
-				<div class="col-md-6">
-					@Html.LabelFor(m => m.FirstName)<br />
-					@Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-					@Html.EditorFor(m => m.FirstName)
-					<br />
-				</div>
-				<div class="col-md-6">
-					@Html.LabelFor(m => m.LastName)<br />
-					@Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-					@Html.EditorFor(m => m.LastName)
-					<br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					@Html.LabelFor(m => m.Company)<br />
-					@Html.ValidationMessageFor(m => m.Company, "", new { @class = "text-danger" })
-					@Html.EditorFor(m => m.Company)
-					<br />
-				</div>
-				<div class="col-md-6">
-					@Html.LabelFor(m => m.City)<br />
-					@Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
-					@Html.EditorFor(m => m.City)
-					<br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					@Html.LabelFor(m => m.Address)<br />
-					@Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
-					@Html.EditorFor(m => m.Address)
-					<br />
-				</div>
-				<div class="col-md-6">
-					@Html.LabelFor(m => m.DeliveryAddress)<br />
-					@Html.ValidationMessageFor(m => m.DeliveryAddress, "", new { @class = "text-danger" })
-					@Html.EditorFor(m => m.DeliveryAddress)
-					<br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					@Html.LabelFor(m => m.Phone)<br />
-					@Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
-					@Html.EditorFor(m => m.Phone)
-					<br />
-				</div>
-				<div class="col-md-6">
-					@Html.LabelFor(m => m.InvoiceData)<br />
-					@Html.ValidationMessageFor(m => m.InvoiceData, "", new { @class = "text-danger" })
-					@Html.EditorFor(m => m.InvoiceData)
-					<br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<button type="submit" class="cws-button alt full-width">
-						Запази 
-					</button>
-				</div>
+	@Html.Partial("_MessagePartial")
+	@using (Html.BeginForm("Profile", "Manage", FormMethod.Post, new { @id = "registration-form", @class = "form contact-form alt clearfix" }))
+	{
+		<div class="row">
+			<div class="col-md-12">
+				<p class="text-success">@ViewBag.StatusMessage</p>
+				<h3>Профил на @Model.FullName : @Html.ActionLink("[ Смени паролата ]", "ChangePassword", null, new { @class = "change-password-link" })</h3>
+				<hr />
+				@Html.AntiForgeryToken()
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 			</div>
 		</div>
-		<div class="col-md-4" style="text-align:right;">
-			<img class="profile-picture" src="~/Content/img/profile-default-image.jpg" alt="Снимка" /><br />
-			<a class="cws-button alt" style="width:150px;min-width:150px;" href="#">Качи снимка</a>
-			<input type="file" name="profile-image-input" id="profile-image-input" multiple="multiple" />
+		<div class="row">
+			<div class="col-md-8 user-fields-col">
+				<div class="row">
+					<div class="col-md-6">
+						@Html.LabelFor(m => m.FirstName)<br />
+						@Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+						@Html.EditorFor(m => m.FirstName)
+						<br />
+					</div>
+					<div class="col-md-6">
+						@Html.LabelFor(m => m.LastName)<br />
+						@Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+						@Html.EditorFor(m => m.LastName)
+						<br />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						@Html.LabelFor(m => m.Company)<br />
+						@Html.ValidationMessageFor(m => m.Company, "", new { @class = "text-danger" })
+						@Html.EditorFor(m => m.Company)
+						<br />
+					</div>
+					<div class="col-md-6">
+						@Html.LabelFor(m => m.City)<br />
+						@Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+						@Html.EditorFor(m => m.City)
+						<br />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						@Html.LabelFor(m => m.Address)<br />
+						@Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+						@Html.EditorFor(m => m.Address)
+						<br />
+					</div>
+					<div class="col-md-6">
+						@Html.LabelFor(m => m.DeliveryAddress)<br />
+						@Html.ValidationMessageFor(m => m.DeliveryAddress, "", new { @class = "text-danger" })
+						@Html.EditorFor(m => m.DeliveryAddress)
+						<br />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						@Html.LabelFor(m => m.Phone)<br />
+						@Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+						@Html.EditorFor(m => m.Phone)
+						<br />
+					</div>
+					<div class="col-md-6">
+						@Html.LabelFor(m => m.InvoiceData)<br />
+						@Html.ValidationMessageFor(m => m.InvoiceData, "", new { @class = "text-danger" })
+						@Html.EditorFor(m => m.InvoiceData)
+						<br />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<button type="submit" class="cws-button alt full-width">
+							Запази
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4" style="text-align:right;">
+				@if (Model.ProfileImage != null && Model.ProfileImage.Length > 0)
+				{
+					var base64 = Convert.ToBase64String(Model.ProfileImage);
+					var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+					<img class="profile-picture" src="@imgSrc" alt="Снимка" /><br />
+				}
+				else
+				{
+					<img class="profile-picture" src="~/Content/img/profile-default-image.jpg" alt="Снимка" /><br />
+				}
 
+				<div class="profile-image-loading">
+					<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+				</div>
+				<div class="profile-image-success">
+					<i class="fa fa-check-circle fa-3x"></i>
+				</div>
+				<div class="profile-image-fail">
+					<i class="fa fa-remove fa-3x"></i>
+				</div>
+				<label id="profile-image-input-label" for="profile-image-input">Качи Снимка</label>
+				<input type="file" name="profile-image-input" id="profile-image-input" multiple="multiple" />
+			</div>
 		</div>
-	</div>
-}
+	}
 </div>
+
+<!-- ! content-->
+@section Scripts {
+	@*@Scripts.Render("~/bundles/jqueryval")*@
+	<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			var imageInput = $('#profile-image-input');
+			imageInput.on('change', function () {
+				debugger;
+				var data = new FormData();
+				var files = imageInput.get(0).files;
+				if (files.length > 0) {
+					data.append("ProfileImage", files[0]);
+				}
+
+				$.ajax({
+					url: '/manage/upload',
+					processData: false,
+					contentType: false,
+					method: 'POST',
+					data: data,
+					beforeSend: function () {
+						$('.profile-image-loading').show();
+					},
+					success: function (imageData) {
+						debugger;
+						if (imageData.length > 1) {
+							$('.profile-image-loading').hide();
+							$('.profile-image-success').show();
+							$('.profile-image-success').delay(1500).fadeOut(1000);
+							$('.profile-picture').attr('src', imageData);
+						} else {
+							$('.profile-image-fail').show();
+						}
+					},
+					error: function () {
+						$('.profile-image-fail').show();
+					}
+				});
+
+				//console.log('Making ajax call:');
+				//for (var pair of data.entries()) {
+				//	console.log(pair[0] + ', ' + pair[1]);
+				//}
+			});
+		});
+	</script>
+}
 

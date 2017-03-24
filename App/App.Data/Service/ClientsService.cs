@@ -38,6 +38,11 @@ namespace App.Data.Service
 			dbUser.PhoneNumber = user.PhoneNumber;
 			dbUser.InvoiceData = user.InvoiceData;
 
+			if (user.ProfileImage != null && user.ProfileImage.Length > 0)
+			{
+				dbUser.ProfileImage = user.ProfileImage;
+			}
+
 			this.Data.SaveChanges();
 		}
 	}

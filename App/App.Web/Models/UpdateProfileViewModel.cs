@@ -39,5 +39,7 @@ namespace App.Web.Models
 				return string.Format("{0} {1}", this.FirstName, this.LastName);
 			}
 		}
+
+		public byte[] ProfileImage { get; set; }
 	}
 }

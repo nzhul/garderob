@@ -866,4 +866,63 @@ i.submit-loading {
 		text-decoration: underline;
 	}
 
+
+.profile-container input#profile-image-input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.profile-container label#profile-image-input-label {
+	font-size: 14px;
+	color: white;
+	background-color: #237dc8;
+	display: inline-block;
+	text-transform: uppercase;
+	cursor: pointer;
+	padding: 5px;
+	width: 150px;
+	border: 1px solid #237dc8;
+	text-align: center;
+	line-height: 25px;
+	margin-top: 0px;
+	border-top: 0px;
+}
+
+	.profile-container label#profile-image-input-label:hover, .profile-container label#profile-image-input-label:focus {
+		background-color: white;
+		color: #237dc8;
+	}
+
+.profile-container .profile-image-loading, 
+.profile-container .profile-image-success, 
+.profile-container .profile-image-fail {
+	display: none;
+	position: absolute;
+	top: 1px;
+	right: 16px;
+	width: 148px;
+	height: 148px;
+	line-height: 180px;
+	text-align: center;
+	background-color: white;
+}
+
+.profile-container .profile-image-loading {
+	color: #237dc8;
+}
+
+.profile-container .profile-image-success {
+	color: #3c763d;
+	background-color: #dff0d8;
+}
+
+.profile-container .profile-image-fail {
+	color: red;
+	background-color: #ffa9a9;
+}
+
 /*Profile end*/
