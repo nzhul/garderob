@@ -128,23 +128,10 @@ namespace App.Web.Controllers
 			{
 				HttpPostedFile uploadedImage = System.Web.HttpContext.Current.Request.Files["ProfileImage"];
 
-
-
-				// RESIZE
-
-				MemoryStream stream = new MemoryStream();
-
-				ImageResizer.ImageJob i = new ImageResizer.ImageJob(uploadedImage, stream, new ImageResizer.Instructions("width=150&height=150&crop=auto&format=jpg"));
-				i.Build();
-
 				string userId = this.User.Identity.GetUserId(); // TODO: get this from POST data.
-				ApplicationUser user = this.clientsService.GetUserById(userId);
+				byte[] resizedImage = this.clientsService.UploadProfileImage(uploadedImage, userId);
 
-				user.ProfileImage = stream.ToArray();
-
-				this.clientsService.UpdateClient(user);
-
-				return this.Content(string.Format("data:image/jpg;base64,{0}", System.Convert.ToBase64String(user.ProfileImage)));
+				return this.Content(string.Format("data:image/jpg;base64,{0}", System.Convert.ToBase64String(resizedImage)));
 			}
 
 			return Content("");

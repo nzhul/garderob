@@ -1,9 +1,9 @@
-﻿using System;
+﻿using App.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using App.Models;
+using System.Web;
 
 namespace App.Data.Service
 {
@@ -44,6 +44,21 @@ namespace App.Data.Service
 			}
 
 			this.Data.SaveChanges();
+		}
+
+		public byte[] UploadProfileImage(HttpPostedFile uploadedImage, string userId)
+		{
+			MemoryStream stream = new MemoryStream();
+
+			ImageResizer.ImageJob i = new ImageResizer.ImageJob(uploadedImage, stream, new ImageResizer.Instructions("width=150&height=150&crop=auto&format=jpg"));
+			i.Build();
+
+			ApplicationUser user = this.GetUserById(userId);
+			user.ProfileImage = stream.ToArray();
+
+			this.UpdateClient(user);
+
+			return user.ProfileImage;
 		}
 	}
 }
