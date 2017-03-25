@@ -19,12 +19,6 @@ namespace App.Data
             return new ApplicationDbContext();
         }
 
-        public IDbSet<Item> Items { get; set; }
-        public IDbSet<ItemCategory> ItemCategories { get; set; }
-        public IDbSet<ItemFeature> ItemFeatures { get; set; }
-        public IDbSet<Image> Images { get; set; }
-        public IDbSet<Article> Articles { get; set; }
-        public IDbSet<Reservation> Reservations { get; set; }
         public IDbSet<Page> Pages { get; set; }
     }
 }

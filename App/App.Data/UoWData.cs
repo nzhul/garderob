@@ -31,36 +31,6 @@ namespace App.Data
             get { return this.GetRepository<ApplicationUser>(); }
         }
 
-        public IRepository<Item> Items
-        {
-            get { return this.GetRepository<Item>(); }
-        }
-
-        public IRepository<ItemCategory> ItemCategories
-        {
-            get { return this.GetRepository<ItemCategory>(); }
-        }
-
-        public IRepository<ItemFeature> ItemFeatures
-        {
-            get { return this.GetRepository<ItemFeature>(); }
-        }
-
-        public IRepository<Image> Images
-        {
-            get { return this.GetRepository<Image>(); }
-        }
-
-        public IRepository<Article> Articles
-        {
-            get { return this.GetRepository<Article>(); }
-        }
-
-        public IRepository<Reservation> Reservations
-        {
-            get { return this.GetRepository<Reservation>(); }
-        }
-
         public IRepository<Page> Pages
         {
             get { return this.GetRepository<Page>(); }

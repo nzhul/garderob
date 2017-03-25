@@ -9,160 +9,160 @@ using System.Threading.Tasks;
 
 namespace App.Data.Service
 {
-    public class PagesService : IPagesService
-    {
-        private readonly IUoWData Data;
+	public class PagesService : IPagesService
+	{
+		private readonly IUoWData Data;
 
-        public PagesService(IUoWData data)
-        {
-            this.Data = data;
-        }
+		public PagesService(IUoWData data)
+		{
+			this.Data = data;
+		}
 
-        public IEnumerable<PageViewModel> GetPages()
-        {
-            IEnumerable<PageViewModel> model = this.Data.Pages.All().Select(MapPageViewModel);
+		public IEnumerable<PageViewModel> GetPages()
+		{
+			IEnumerable<PageViewModel> model = this.Data.Pages.All().Select(MapPageViewModel);
 
-            return model;
-        }
+			return model;
+		}
 
-        private PageViewModel MapPageViewModel (Page page)
-        {
-            PageViewModel model = new PageViewModel();
-            model.Id = page.Id;
-            model.Title = page.Title;
-            model.Summary = page.Summary;
-            model.Content = page.Content;
+		private PageViewModel MapPageViewModel(Page page)
+		{
+			PageViewModel model = new PageViewModel();
+			model.Id = page.Id;
+			model.Title = page.Title;
+			model.Summary = page.Summary;
+			model.Content = page.Content;
 			model.UrlName = page.UrlName;
 
-            return model;
-        }
+			return model;
+		}
 
 
-        public int CreatePage(CreatePageInputModel inputModel)
-        {
-            Page newPage = new Page();
-            newPage.Title = inputModel.Title;
-            newPage.Summary = inputModel.Summary;
-            newPage.Content = inputModel.Content;
-            newPage.DateCreated = DateTime.Now;
+		public int CreatePage(CreatePageInputModel inputModel)
+		{
+			Page newPage = new Page();
+			newPage.Title = inputModel.Title;
+			newPage.Summary = inputModel.Summary;
+			newPage.Content = inputModel.Content;
+			newPage.DateCreated = DateTime.Now;
 			newPage.UrlName = inputModel.UrlName;
 
-            this.Data.Pages.Add(newPage);
-            this.Data.SaveChanges();
+			this.Data.Pages.Add(newPage);
+			this.Data.SaveChanges();
 
-            return newPage.Id;
-        }
-
-
-        public bool PageExists(int id)
-        {
-            if (id <= 0)
-            {
-                return false;
-            }
-            else
-            {
-                bool result = this.Data.Pages.All().Any(r => r.Id == id);
-                return result;
-            }
-        }
+			return newPage.Id;
+		}
 
 
-        public CreatePageInputModel GetPageInputModelById(int id)
-        {
-            Page dbPage = this.Data.Pages.Find(id);
-            return MapPageInputModel(dbPage);
-        }
+		public bool PageExists(int id)
+		{
+			if (id <= 0)
+			{
+				return false;
+			}
+			else
+			{
+				bool result = this.Data.Pages.All().Any(r => r.Id == id);
+				return result;
+			}
+		}
 
-        private CreatePageInputModel MapPageInputModel(Page dbPage)
-        {
-            CreatePageInputModel model = new CreatePageInputModel();
-            model.Id = dbPage.Id;
-            model.Title = dbPage.Title;
-            model.Summary = dbPage.Summary;
-            model.Content = dbPage.Content;
+
+		public CreatePageInputModel GetPageInputModelById(int id)
+		{
+			Page dbPage = this.Data.Pages.Find(id);
+			return MapPageInputModel(dbPage);
+		}
+
+		private CreatePageInputModel MapPageInputModel(Page dbPage)
+		{
+			CreatePageInputModel model = new CreatePageInputModel();
+			model.Id = dbPage.Id;
+			model.Title = dbPage.Title;
+			model.Summary = dbPage.Summary;
+			model.Content = dbPage.Content;
 			model.UrlName = dbPage.UrlName;
 
-            return model;
-        }
+			return model;
+		}
 
 
-        public bool UpdatePage(int id, CreatePageInputModel inputModel)
-        {
-            Page dbPage = this.Data.Pages.Find(id);
-            if (dbPage != null)
-            {
-                dbPage.Title = inputModel.Title;
-                dbPage.Summary = inputModel.Summary;
-                dbPage.Content = inputModel.Content;
+		public bool UpdatePage(int id, CreatePageInputModel inputModel)
+		{
+			Page dbPage = this.Data.Pages.Find(id);
+			if (dbPage != null)
+			{
+				dbPage.Title = inputModel.Title;
+				dbPage.Summary = inputModel.Summary;
+				dbPage.Content = inputModel.Content;
 				dbPage.UrlName = inputModel.UrlName;
 
-                this.Data.SaveChanges();
+				this.Data.SaveChanges();
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
-        public bool DeletePage(int id)
-        {
-            var thePage = this.Data.Pages.Find(id);
-            if (thePage == null)
-            {
-                return false;
-            }
-
-            this.Data.Pages.Delete(id);
-            this.Data.SaveChanges();
-
-            return true;
-        }
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 
 
+		public bool DeletePage(int id)
+		{
+			var thePage = this.Data.Pages.Find(id);
+			if (thePage == null)
+			{
+				return false;
+			}
 
-        public PageViewModel GetFeaturedCustomPage(int pageId)
-        {
-            PageViewModel model = new PageViewModel();
-            if (this.PageExists(pageId))
-            {
-                Page dbPage = this.Data.Pages.Find(pageId);
-                model.Id = dbPage.Id;
-                model.Title = dbPage.Title;
-                model.Summary = dbPage.Summary;
-            }
-            else
-            {
-                model.Id = 99999;
-                model.Title = "Page Do Not Exists";
-                model.Summary = "There are no pages, please contact the system administrator";
-            }
+			this.Data.Pages.Delete(id);
+			this.Data.SaveChanges();
 
-            return model;
-        }
+			return true;
+		}
 
 
-        public PageViewModel GetPageById(int id)
-        {
-            PageViewModel model = new PageViewModel();
-            if (this.PageExists(id))
-            {
-                Page dbPage = this.Data.Pages.Find(id);
-                model.Id = dbPage.Id;
-                model.Title = dbPage.Title;
-                model.Summary = dbPage.Summary;
-                model.Content = dbPage.Content;
-            }
-            else
-            {
+
+		public PageViewModel GetFeaturedCustomPage(int pageId)
+		{
+			PageViewModel model = new PageViewModel();
+			if (this.PageExists(pageId))
+			{
+				Page dbPage = this.Data.Pages.Find(pageId);
+				model.Id = dbPage.Id;
+				model.Title = dbPage.Title;
+				model.Summary = dbPage.Summary;
+			}
+			else
+			{
+				model.Id = 99999;
+				model.Title = "Page Do Not Exists";
+				model.Summary = "There are no pages, please contact the system administrator";
+			}
+
+			return model;
+		}
+
+
+		public PageViewModel GetPageById(int id)
+		{
+			PageViewModel model = new PageViewModel();
+			if (this.PageExists(id))
+			{
+				Page dbPage = this.Data.Pages.Find(id);
+				model.Id = dbPage.Id;
+				model.Title = dbPage.Title;
+				model.Summary = dbPage.Summary;
+				model.Content = dbPage.Content;
+			}
+			else
+			{
 				model = null;
-            }
+			}
 
-            return model;
-        }
+			return model;
+		}
 
 		public PageViewModel GetPageByUrlName(string urlName)
 		{

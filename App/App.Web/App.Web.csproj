@@ -188,13 +188,10 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\BaseController.cs" />
     <Compile Include="Areas\Administration\Controllers\ClientsController.cs" />
-    <Compile Include="Areas\Administration\Controllers\GalleryController.cs" />
     <Compile Include="Areas\Administration\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
-    <Compile Include="Areas\Administration\Models\ViewModels\HomeViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -205,15 +202,13 @@
     <Compile Include="Infrastructure\Bundling\NonOrderingBundleOrderer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactFormInputModel.cs" />
-    <Compile Include="Models\HomeViewModel.cs" />
-    <Compile Include="Models\LayoutModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\RoomDetailsViewModel.cs" />
     <Compile Include="Models\UpdateProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\AdminProfileImage\avatar.jpg" />
     <Content Include="App_Data\StaticPages\calculator.html" />
     <Content Include="App_Data\StaticPages\faq.html" />
     <Content Include="App_Data\StaticPages\make-sliding-doors.html" />
@@ -1025,12 +1020,6 @@
     <Content Include="Areas\Administration\Views\Pages\Create.cshtml" />
     <Content Include="Areas\Administration\Views\Pages\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Pages\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\Articles\Partials\_CreateEditArticlePartial.cshtml" />
-    <Content Include="Areas\Administration\Views\Articles\Partials\_Articles.cshtml" />
-    <Content Include="Areas\Administration\Views\Articles\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\Articles\Edit.cshtml" />
-    <Content Include="Areas\Administration\Views\Articles\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\Gallery\Index.cshtml" />
     <Content Include="Config\Connections.config" />
     <Content Include="Areas\Administration\Views\Orders\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Clients\Index.cshtml" />
@@ -1233,7 +1222,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -1249,12 +1237,8 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Profile.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
@@ -1269,27 +1253,15 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full_compressed.cshtml" />
-    <Content Include="Views\Home\Partials\_TopFeatures.cshtml" />
-    <Content Include="Views\Home\Partials\_HomeAttractions.cshtml" />
-    <Content Include="Views\Home\Partials\_HomeFeaturedRooms.cshtml" />
-    <Content Include="Views\Rooms\Index.cshtml" />
-    <Content Include="Views\Home\Partials\_GalleryImages.cshtml" />
-    <Content Include="Views\Articles\Index.cshtml" />
-    <Content Include="Views\Shared\_Sidebar.cshtml" />
-    <Content Include="Views\Articles\Partials\_Attractions.cshtml" />
     <Content Include="Views\Pages\Index.cshtml" />
-    <Content Include="Views\Rooms\Details.cshtml" />
-    <Content Include="Views\Articles\Details.cshtml" />
-    <Content Include="Views\Shared\_QuickReservation.cshtml" />
-    <Content Include="Views\Home\QuickReservation.cshtml" />
-    <Content Include="Views\Shared\_QuickReservationScripts.cshtml" />
-    <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\codemirror.cshtml" />
     <Content Include="Views\Shared\_ProfileLinks.cshtml" />
     <Content Include="Views\Orders\Make.cshtml" />
     <Content Include="Views\Shared\_MessagePartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Models\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

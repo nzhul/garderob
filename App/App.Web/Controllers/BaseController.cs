@@ -20,11 +20,6 @@ namespace App.Web.Controllers
 			this.data = new UoWData();
 			this.pagesService = new PagesService(this.data);
 			this.clientsService = new ClientsService(this.data);
-
-			LayoutModel model = new LayoutModel();
-			model.Pages = this.pagesService.GetPages();
-
-			ViewBag.LayoutModel = model;
 		}
 	}
 }

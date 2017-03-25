@@ -109,10 +109,7 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Service\ClientsService.cs" />
     <Compile Include="Service\IClientsServices.cs" />
-    <Compile Include="Service\IImagesService.cs" />
-    <Compile Include="Service\ImagesService.cs" />
     <Compile Include="Service\IPagesService.cs" />
-    <Compile Include="Service\Mappers\Mapper.cs" />
     <Compile Include="Service\PagesService.cs" />
     <Compile Include="UoWData.cs" />
   </ItemGroup>
