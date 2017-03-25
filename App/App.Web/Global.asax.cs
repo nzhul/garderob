@@ -1,4 +1,5 @@
 ﻿using App.Utilities;
+using App.Web.Infrastructure.ControllerFactory;
 using System;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -14,6 +15,7 @@ namespace App.Web
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+			ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
 			ModelBinders.Binders.Add(typeof(DateTime), new BulgarianTimeModelBinder());
 		}
 	}

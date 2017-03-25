@@ -1,26 +1,24 @@
-﻿using App.Data;
-using App.Data.Service;
-using System.Web.Mvc;
+﻿using App.Data.Service;
+using App.Models;
+using System.Collections.Generic;
 using System.Linq;
-using PagedList;
+using System.Web.Mvc;
 
 namespace App.Web.Areas.Administration.Controllers
 {
 	public class ClientsController : Controller
 	{
-		private readonly IClientsServices clientsService;
-		private readonly IUoWData data;
+		private IClientsService clientsService;
 
-		public ClientsController()
+		public ClientsController(IClientsService clientsService)
 		{
-			this.data = new UoWData();
-			this.clientsService = new ClientsService(data);
+			this.clientsService = clientsService;
 		}
 
 		public ActionResult Index(int? page)
 		{
-			IPagedList pagedList = this.clientsService.GetUsers().ToList().ToPagedList(page ?? 1, 3);
-			return View(pagedList);
+			ICollection<ApplicationUser> clients = this.clientsService.GetUsers().ToList();
+			return View(clients);
 		}
 	}
 }

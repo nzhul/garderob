@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using App.Data.Service;
+using App.Models;
 using App.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -11,13 +12,15 @@ using System.Web.Mvc;
 namespace App.Web.Controllers
 {
 	[Authorize]
-	public class ManageController : BaseController
+	public class ManageController : Controller
 	{
 		private ApplicationSignInManager _signInManager;
 		private ApplicationUserManager _userManager;
+		private IClientsService clientsService;
 
-		public ManageController()
+		public ManageController(IClientsService clientsService)
 		{
+			this.clientsService = clientsService;
 		}
 
 		public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

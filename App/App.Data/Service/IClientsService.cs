@@ -5,7 +5,7 @@ using System.Web;
 
 namespace App.Data.Service
 {
-	public interface IClientsServices
+	public interface IClientsService
 	{
 		IEnumerable<ApplicationUser> GetUsers();
 

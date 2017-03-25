@@ -3,8 +3,8 @@
 namespace App.Web.Areas.Administration.Controllers
 {
 	[Authorize(Roles = "Admin")]
-    public class BaseController : Controller
-    {
+	public class BaseController : Controller
+	{
 
-    }
+	}
 }

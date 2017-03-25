@@ -5,13 +5,17 @@ using System.Net.Mail;
 using System.Web.Mvc;
 using System.Linq;
 using System.Globalization;
+using App.Data;
 
 namespace App.Web.Controllers
 {
-	public class HomeController : BaseController
+	public class HomeController : Controller
 	{
-		public HomeController()
+		private IUoWData data;
+
+		public HomeController(IUoWData data)
 		{
+			this.data = data;
 		}
 
 		public ActionResult Index()
@@ -28,7 +32,6 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult Contact(ContactFormInputModel contactData)
 		{
-			System.Threading.Thread.Sleep(3000);
 			if (Request.IsAuthenticated)
 			{
 				// Get the userData from the database and use it to populate the email

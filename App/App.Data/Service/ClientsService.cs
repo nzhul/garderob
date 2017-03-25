@@ -7,7 +7,7 @@ using System.Web;
 
 namespace App.Data.Service
 {
-	public class ClientsService : IClientsServices
+	public class ClientsService : IClientsService
 	{
 		private readonly IUoWData Data;
 

@@ -5,8 +5,15 @@ using System.Web.Mvc;
 
 namespace App.Web.Controllers
 {
-	public class PagesController : BaseController
+	public class PagesController : Controller
 	{
+		private IPagesService pagesService;
+
+		public PagesController(IPagesService pagesService)
+		{
+			this.pagesService = pagesService;
+		}
+
 		public ActionResult Index(string urlName)
 		{
 			PageViewModel model = this.pagesService.GetPageByUrlName(urlName);
