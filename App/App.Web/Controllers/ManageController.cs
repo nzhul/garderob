@@ -128,21 +128,19 @@ namespace App.Web.Controllers
 			{
 				HttpPostedFile uploadedImage = System.Web.HttpContext.Current.Request.Files["ProfileImage"];
 
+
+
 				// RESIZE
 
-				//MemoryStream stream = new MemoryStream();
+				MemoryStream stream = new MemoryStream();
 
-				//ImageResizer.ImageJob i = new ImageResizer.ImageJob(uploadedImage, stream, new ImageResizer.Instructions("width=20;height=20;format=jpg;mode=max"));
-				//i.Build();
+				ImageResizer.ImageJob i = new ImageResizer.ImageJob(uploadedImage, stream, new ImageResizer.Instructions("width=150&height=150&crop=auto&format=jpg"));
+				i.Build();
 
 				string userId = this.User.Identity.GetUserId(); // TODO: get this from POST data.
 				ApplicationUser user = this.clientsService.GetUserById(userId);
-				user.ProfileImage = new byte[uploadedImage.ContentLength];
-				uploadedImage.InputStream.Read(user.ProfileImage, 0, uploadedImage.ContentLength);
-				//user.ProfileImage = new byte[(int)stream.Length];
-				//stream.Read(user.ProfileImage, 0, (int)stream.Length);
 
-				//TODO: Resize and crop the image
+				user.ProfileImage = stream.ToArray();
 
 				this.clientsService.UpdateClient(user);
 
