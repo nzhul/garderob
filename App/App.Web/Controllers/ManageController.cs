@@ -1,16 +1,12 @@
-﻿using System;
+﻿using App.Models;
+using App.Web.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using App.Web.Models;
-using App.Models;
-using ImageResizer;
-using System.Drawing;
-using System.IO;
 
 namespace App.Web.Controllers
 {
