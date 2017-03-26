@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace App.Web.Areas.Administration.Controllers
 {
-	public class ClientsController : Controller
+	public class ClientsController : BaseController
 	{
 		private IClientsService clientsService;
 		private const int defaultPageSize = 10;
@@ -37,6 +37,15 @@ namespace App.Web.Areas.Administration.Controllers
 			NameValueCollection queryString = this.HttpContext.Request.QueryString;
 
 			return new PagingData(totalItemsCount, pageSize, linksRadius, false, pageUrl, queryString);
+		}
+
+		[HttpGet]
+		public ActionResult RemoveFromRole(string userId)
+		{
+			// TODO: Add dependency to userManager and use:
+			// this.userManager.RemoveFromRole(userId, "User");
+
+			return null;
 		}
 	}
 }

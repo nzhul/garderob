@@ -61,11 +61,11 @@ namespace App.Data.Migrations
 				admin.Roles.Add(new IdentityUserRole { RoleId = userRole.Id, UserId = admin.Id });
 				context.SaveChanges();
 
-				this.InitializeDummyUsers(context);
+				this.InitializeDummyUsers(context, userManager);
 			}
 		}
 
-		private void InitializeDummyUsers(ApplicationDbContext context)
+		private void InitializeDummyUsers(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -77,7 +77,9 @@ namespace App.Data.Migrations
 				newUser.PhoneNumber = "123456789";
 				newUser.RegisterDate = DateTime.UtcNow;
 
-				context.Users.Add(newUser);
+				userManager.Create(newUser, "1234567");
+
+				userManager.AddToRole(newUser.Id, "User");
 			}
 
 			context.SaveChanges();
