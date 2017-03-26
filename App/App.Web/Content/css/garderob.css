@@ -80,7 +80,7 @@ label {
 		padding-left: 0px;
 	}
 /*Navigation end*/
-footer.footer.fixed {
+footer {
 	background-image: url('../img/footer/footer-bg.jpg');
 }
 
@@ -897,8 +897,8 @@ i.submit-loading {
 		color: #237dc8;
 	}
 
-.profile-container .profile-image-loading, 
-.profile-container .profile-image-success, 
+.profile-container .profile-image-loading,
+.profile-container .profile-image-success,
 .profile-container .profile-image-fail {
 	display: none;
 	position: absolute;

@@ -1,19 +1,36 @@
-﻿using System;
+﻿using App.Models.Images;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Models.Materials
 {
 	public class Material
 	{
+		private ICollection<Image> images;
+
+		public Material()
+		{
+			this.images = new HashSet<Image>();
+		}
+
 		public int Id { get; set; }
 
 		public string Name { get; set; }
 
-		// collection of images or one image
+		public int CategoryId { get; set; }
 
-		// material category/type
+		public MaterialCategory Category { get; set; }
+
+		public virtual ICollection<Image> Images
+		{
+			get
+			{
+				return this.images;
+			}
+			set
+			{
+				this.images = value;
+			}
+		}
+
 	}
 }

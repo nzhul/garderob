@@ -1,4 +1,5 @@
 ﻿using App.Models;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,15 +11,30 @@ namespace App.Data.Service
 	public class ClientsService : IClientsService
 	{
 		private readonly IUoWData Data;
+		private const int defaultPageSize = 10;
+		private const int defaultPage = 0;
 
 		public ClientsService(IUoWData data)
 		{
 			this.Data = data;
 		}
 
-		public IEnumerable<ApplicationUser> GetUsers()
+		public IQueryable<ApplicationUser> GetUsers(int? page, int? pagesize)
 		{
-			return this.Data.Users.All();
+			if (page == null || page < 0)
+			{
+				page = defaultPage;
+			}
+
+			if (pagesize == null || pagesize < 1)
+			{
+				pagesize = defaultPageSize;
+			}
+
+			IQueryable<ApplicationUser> users = this.Data.Users.All().OrderByDescending(u => u.Email);
+			users = users.Skip(page.Value * pagesize.Value).Take(pagesize.Value);
+
+			return users;
 		}
 
 		public ApplicationUser GetUserById(string id)
@@ -29,6 +45,7 @@ namespace App.Data.Service
 		public void UpdateClient(ApplicationUser user)
 		{
 			ApplicationUser dbUser = this.Data.Users.All().Single(u => u.Email == user.Email);
+
 			dbUser.FirstName = user.FirstName;
 			dbUser.LastName = user.LastName;
 			dbUser.Company = user.Company;
@@ -59,6 +76,11 @@ namespace App.Data.Service
 			this.UpdateClient(user);
 
 			return user.ProfileImage;
+		}
+
+		public int GetUsersCount()
+		{
+			return this.Data.Users.All().Count();
 		}
 	}
 }

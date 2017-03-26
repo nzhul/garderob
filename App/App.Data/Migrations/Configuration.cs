@@ -54,12 +54,33 @@ namespace App.Data.Migrations
 				admin.Email = config.Email;
 				admin.PhoneNumber = config.Phone;
 				admin.ProfileImage = this.LoadAdminProfileImage();
+				admin.RegisterDate = DateTime.UtcNow;
 
 				userManager.Create(admin, config.Password);
 				admin.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = admin.Id });
 				admin.Roles.Add(new IdentityUserRole { RoleId = userRole.Id, UserId = admin.Id });
 				context.SaveChanges();
+
+				this.InitializeDummyUsers(context);
 			}
+		}
+
+		private void InitializeDummyUsers(ApplicationDbContext context)
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				ApplicationUser newUser = new ApplicationUser();
+				newUser.UserName = "user" + i.ToString() + "@gmail.com";
+				newUser.FirstName = "UserFirstName" + i.ToString();
+				newUser.LastName = "UserLastName" + i.ToString();
+				newUser.Email = "user" + i.ToString() + "@gmail.com";
+				newUser.PhoneNumber = "123456789";
+				newUser.RegisterDate = DateTime.UtcNow;
+
+				context.Users.Add(newUser);
+			}
+
+			context.SaveChanges();
 		}
 
 		private byte[] LoadAdminProfileImage()

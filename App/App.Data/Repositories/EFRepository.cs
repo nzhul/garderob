@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Data.Repositories
 {
-    public class EFRepository<T> : IRepository<T> where T : class
+	public class EFRepository<T> : IRepository<T> where T : class
     {
         private DbContext context;
         private IDbSet<T> set;

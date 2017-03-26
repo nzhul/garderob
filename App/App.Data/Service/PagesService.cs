@@ -1,11 +1,10 @@
 ﻿using App.Models.InputModels;
 using App.Models.Pages;
 using App.Models.ViewModels;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Data.Service
 {
@@ -20,23 +19,11 @@ namespace App.Data.Service
 
 		public IEnumerable<PageViewModel> GetPages()
 		{
-			IEnumerable<PageViewModel> model = this.Data.Pages.All().Select(MapPageViewModel);
+			IEnumerable<PageViewModel> model = this.Data.Pages.All().ToList()
+				.Select(x => Mapper.Map<Page, PageViewModel>(x));
 
 			return model;
 		}
-
-		private PageViewModel MapPageViewModel(Page page)
-		{
-			PageViewModel model = new PageViewModel();
-			model.Id = page.Id;
-			model.Title = page.Title;
-			model.Summary = page.Summary;
-			model.Content = page.Content;
-			model.UrlName = page.UrlName;
-
-			return model;
-		}
-
 
 		public int CreatePage(CreatePageInputModel inputModel)
 		{

@@ -1,18 +1,19 @@
 ﻿using App.Models;
-using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 
 namespace App.Data.Service
 {
 	public interface IClientsService
 	{
-		IEnumerable<ApplicationUser> GetUsers();
+		IQueryable<ApplicationUser> GetUsers(int? page, int? pagesize);
 
 		ApplicationUser GetUserById(string id);
 
 		void UpdateClient(ApplicationUser user);
 
 		byte[] UploadProfileImage(HttpPostedFile uploadedImage, string userId);
+
+		int GetUsersCount();
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using App.Models.Orders;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -27,12 +28,13 @@ namespace App.Models
 
 		public byte[] ProfileImage { get; set; }
 
+		public DateTime RegisterDate { get; set; }
+
 		public virtual ICollection<Order> Orders
 		{
 			get { return orders; }
 			set { orders = value; }
 		}
-
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
 		{

@@ -1,5 +1,9 @@
-﻿using App.Utilities;
+﻿using App.Models;
+using App.Models.Pages;
+using App.Models.ViewModels;
+using App.Utilities;
 using App.Web.Infrastructure.ControllerFactory;
+using AutoMapper;
 using System;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -17,6 +21,12 @@ namespace App.Web
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 			ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
 			ModelBinders.Binders.Add(typeof(DateTime), new BulgarianTimeModelBinder());
+
+			Mapper.Initialize(cfg => cfg.CreateMap<Page, PageViewModel>());
+			//Mapper.Initialize(
+			//	cfg => cfg.CreateMap<ApplicationUser, ApplicationUser>()
+			//	.ForMember(x => x.Id, opt => opt.Ignore())
+			//	.ForMember(x => x.PasswordHash, opt => opt.Ignore()));
 		}
 	}
 }

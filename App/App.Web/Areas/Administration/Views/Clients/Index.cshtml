@@ -1,4 +1,5 @@
 ﻿@using App.Models;
+@using App.Web.Areas.Administration.Models;
 @model ICollection<ApplicationUser>
 
 @{
@@ -20,5 +21,11 @@
 				@Html.Partial("Partials/_Clients", Model)
 			</tbody>
 		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		@Html.Partial("_Pager", ViewBag.PagingData as PagingData)
 	</div>
 </div>
