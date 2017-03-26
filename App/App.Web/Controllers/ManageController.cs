@@ -55,7 +55,7 @@ namespace App.Web.Controllers
 
 		//
 		// GET: /Manage/Index
-		public async Task<ActionResult> Profile(ManageMessageId? message)
+		public async Task<ActionResult> Profile()
 		{
 			string userId = User.Identity.GetUserId();
 

@@ -20,6 +20,7 @@ namespace App.Web.Areas.Administration.Controllers
 			this.clientsService = clientsService;
 		}
 
+		[HttpGet]
 		public ActionResult Index(int? page, int? pagesize)
 		{
 			ICollection<ApplicationUser> clients = this.clientsService.GetUsers(page - 1, pagesize).ToList();
