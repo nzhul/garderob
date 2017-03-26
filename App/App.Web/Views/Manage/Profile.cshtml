@@ -96,12 +96,15 @@
 
 				<div class="profile-image-loading">
 					<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+					<p>Зареждане ...</p>
 				</div>
 				<div class="profile-image-success">
 					<i class="fa fa-check-circle fa-3x"></i>
+					<p>Успешно качване!</p>
 				</div>
 				<div class="profile-image-fail">
 					<i class="fa fa-remove fa-3x"></i>
+					<p>Невалиден файл!</p>
 				</div>
 				<label id="profile-image-input-label" for="profile-image-input">Качи Снимка</label>
 				<input type="file" name="profile-image-input" id="profile-image-input" multiple="multiple" />
@@ -121,7 +124,6 @@
 		$(document).ready(function () {
 			var imageInput = $('#profile-image-input');
 			imageInput.on('change', function () {
-				debugger;
 				var data = new FormData();
 				var files = imageInput.get(0).files;
 				if (files.length > 0) {
@@ -135,10 +137,10 @@
 					method: 'POST',
 					data: data,
 					beforeSend: function () {
+						$('.profile-image-fail').hide();
 						$('.profile-image-loading').show();
 					},
 					success: function (imageData) {
-						debugger;
 						if (imageData.length > 1) {
 							$('.profile-image-loading').hide();
 							$('.profile-image-success').show();

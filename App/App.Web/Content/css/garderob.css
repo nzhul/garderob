@@ -890,6 +890,8 @@ i.submit-loading {
 	line-height: 25px;
 	margin-top: 0px;
 	border-top: 0px;
+	position:relative;
+	z-index:2;
 }
 
 	.profile-container label#profile-image-input-label:hover, .profile-container label#profile-image-input-label:focus {
@@ -906,7 +908,7 @@ i.submit-loading {
 	right: 16px;
 	width: 148px;
 	height: 148px;
-	line-height: 180px;
+	line-height: 148px;
 	text-align: center;
 	background-color: white;
 }
@@ -924,5 +926,12 @@ i.submit-loading {
 	color: red;
 	background-color: #ffa9a9;
 }
+
+	.profile-container .profile-image-fail p, .profile-container .profile-image-success p, .profile-container .profile-image-loading p {
+		position: absolute;
+		top: 25px;
+		margin: 0 auto;
+		width: 100%;
+	}
 
 /*Profile end*/

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Utilities;
 
 namespace App.Web.Controllers
 {
@@ -127,10 +128,13 @@ namespace App.Web.Controllers
 			{
 				HttpPostedFile uploadedImage = System.Web.HttpContext.Current.Request.Files["ProfileImage"];
 
-				string userId = this.User.Identity.GetUserId(); // TODO: get this from POST data.
-				byte[] resizedImage = this.clientsService.UploadProfileImage(uploadedImage, userId);
+				if (uploadedImage.IsImage())
+				{
+					string userId = this.User.Identity.GetUserId(); // TODO: get this from POST data.
+					byte[] resizedImage = this.clientsService.UploadProfileImage(uploadedImage, userId);
 
-				return this.Content(string.Format("data:image/jpg;base64,{0}", System.Convert.ToBase64String(resizedImage)));
+					return this.Content(string.Format("data:image/jpg;base64,{0}", System.Convert.ToBase64String(resizedImage)));
+				}
 			}
 
 			return Content("");

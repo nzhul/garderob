@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -71,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BulgarianTimeModelBinder.cs" />
+    <Compile Include="HttpPostedFileExtensions.cs" />
     <Compile Include="IpUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlUtilities.cs" />
