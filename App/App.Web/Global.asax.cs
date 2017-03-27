@@ -15,11 +15,11 @@ namespace App.Web
 	{
 		protected void Application_Start()
 		{
+			ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
 			AreaRegistration.RegisterAllAreas();
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
-			ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
 			ModelBinders.Binders.Add(typeof(DateTime), new BulgarianTimeModelBinder());
 
 			Mapper.Initialize(cfg => cfg.CreateMap<Page, PageViewModel>());

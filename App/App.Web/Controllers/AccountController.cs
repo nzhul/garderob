@@ -3,6 +3,7 @@ using App.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -168,7 +169,8 @@ namespace App.Web.Controllers
 					Address = model.Address,
 					DeliveryAddress = model.DeliveryAddress,
 					PhoneNumber = model.Phone,
-					InvoiceData = model.InvoiceData
+					InvoiceData = model.InvoiceData,
+					RegisterDate = DateTime.UtcNow
 				};
 
 				var result = await UserManager.CreateAsync(user, model.Password);

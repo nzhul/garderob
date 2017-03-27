@@ -11,7 +11,7 @@ namespace App.Data
 	public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 	{
 		public ApplicationDbContext()
-			: base("DefaultConnection", throwIfV1Schema: false)
+			: base("garderobConnection", throwIfV1Schema: false)
 		{
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
 		}
