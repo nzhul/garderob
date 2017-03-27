@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace App.Web.Areas.Administration.Models.InputModels
+namespace App.Models.InputModels
 {
 	public class EditClientInputModel
 	{

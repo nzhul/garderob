@@ -1,7 +1,7 @@
 ﻿using App.Models;
+using App.Models.InputModels;
 using App.Models.Pages;
 using App.Models.ViewModels;
-using App.Web.Areas.Administration.Models.InputModels;
 using AutoMapper;
 
 namespace App.Web.Infrastructure.Mapping
@@ -11,7 +11,8 @@ namespace App.Web.Infrastructure.Mapping
 		public MappingProfile()
 		{
 			CreateMap<Page, PageViewModel>();
-			CreateMap<ApplicationUser, EditClientInputModel>();
+			CreateMap<ApplicationUser, EditClientInputModel>().ForMember(x => x.Phone, opt => opt.MapFrom(u => u.PhoneNumber));
+			CreateMap<EditClientInputModel, ApplicationUser>().ForMember(x => x.PhoneNumber, opt => opt.MapFrom(u => u.Phone));
 
 			//Mapper.Initialize(cfg => cfg.CreateMap<Page, PageViewModel>());
 			//Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, EditClientInputModel>());

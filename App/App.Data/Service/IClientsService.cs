@@ -1,6 +1,7 @@
 ﻿using App.Models;
 using System.Linq;
 using System.Web;
+using App.Models.InputModels;
 
 namespace App.Data.Service
 {
@@ -13,6 +14,8 @@ namespace App.Data.Service
 		ApplicationUser GetUserById(string id);
 
 		void UpdateClient(ApplicationUser user);
+
+		bool UpdateClient(string id, EditClientInputModel inputModel);
 
 		byte[] UploadProfileImage(HttpPostedFile uploadedImage, string userId);
 

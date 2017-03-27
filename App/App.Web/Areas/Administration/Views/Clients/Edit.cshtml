@@ -1,4 +1,4 @@
-﻿@using App.Web.Areas.Administration.Models.InputModels
+﻿@using App.Models.InputModels
 @model EditClientInputModel
 @{
 	ViewBag.Title = "Клиент: Редакция";
@@ -9,11 +9,47 @@
 	<div class="row">
 		@using (Html.BeginForm("Edit", "Clients", FormMethod.Post, new { @class = "form-horizontal " }))
 		{
-			<div class="col-md-7">
+			<div class="col-md-6">
 				@Html.LabelFor(model => model.FirstName, new { @class = "dab-input-label" })
 				@Html.ValidationMessageFor(model => model.FirstName)
-				@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: Съевата дупка" } })
+				@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(model => model.LastName, new { @class = "dab-input-label" })
+				@Html.ValidationMessageFor(model => model.LastName)
+				@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+
+
+				@Html.LabelFor(model => model.Company, new { @class = "dab-input-label" })
+				@Html.ValidationMessageFor(model => model.Company)
+				@Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(model => model.City, new { @class = "dab-input-label" })
+				@Html.ValidationMessageFor(model => model.City)
+				@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(model => model.Address, new { @class = "dab-input-label" })
+				@Html.ValidationMessageFor(model => model.Address)
+				@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(model => model.DeliveryAddress, new { @class = "dab-input-label" })
+				@Html.ValidationMessageFor(model => model.DeliveryAddress)
+				@Html.EditorFor(model => model.DeliveryAddress, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(model => model.Phone, new { @class = "dab-input-label" })
+				@Html.ValidationMessageFor(model => model.Phone)
+				@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(model => model.InvoiceData, new { @class = "dab-input-label" })
+				@Html.ValidationMessageFor(model => model.InvoiceData)
+				@Html.EditorFor(model => model.InvoiceData, new { htmlAttributes = new { @class = "form-control" } })
+
+				<p>Render client image here</p>
+
+				<button type="submit" class="btn btn-warning">Запиши</button>
 			</div>
 		}
+		<div class="col-md-6">
+			Render client orders here
+		</div>
 	</div>
 </div>

@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System;
+using App.Models.InputModels;
+using AutoMapper;
 
 namespace App.Data.Service
 {
@@ -117,6 +119,21 @@ namespace App.Data.Service
 			else
 			{
 				return this.Data.Users.All().Any(u => u.Id == id);
+			}
+		}
+
+		public bool UpdateClient(string id, EditClientInputModel inputModel)
+		{
+			ApplicationUser dbUser = this.Data.Users.Find(id);
+			if (dbUser != null)
+			{
+				dbUser = Mapper.Map(inputModel, dbUser);
+				this.Data.SaveChanges();
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 	}

@@ -192,7 +192,6 @@
     <Compile Include="Areas\Administration\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
     <Compile Include="Areas\Administration\Models\ClientsMasterModel.cs" />
-    <Compile Include="Areas\Administration\Models\InputModels\EditClientInputModel.cs" />
     <Compile Include="Areas\Administration\Models\PageUrlItem.cs" />
     <Compile Include="Areas\Administration\Models\PagingData.cs" />
     <Compile Include="Controllers\AccountController.cs" />

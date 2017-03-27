@@ -1,10 +1,9 @@
 ﻿using App.Data.Service;
 using App.Models;
+using App.Models.InputModels;
 using App.Web.Areas.Administration.Models;
-using App.Web.Areas.Administration.Models.InputModels;
 using AutoMapper;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Web.Mvc;
@@ -55,6 +54,24 @@ namespace App.Web.Areas.Administration.Controllers
 			}
 
 			return View(model);
+		}
+
+		[HttpPost]
+		public ActionResult Edit(string id, EditClientInputModel inputModel)
+		{
+			if (ModelState.IsValid)
+			{
+				bool IsUpdateSuccessfull = this.clientsService.UpdateClient(id, inputModel);
+				if (IsUpdateSuccessfull)
+				{
+					TempData["message"] = "Клиента беше редактиран успешно!";
+					TempData["messageType"] = "success";
+					return RedirectToAction("Index");
+				}
+			}
+			TempData["message"] = "Невалидни данни за клиента!<br/> Моля попълнете <strong>всички</strong> задължителни полета!";
+			TempData["messageType"] = "danger";
+			return View(inputModel);
 		}
 
 		[HttpGet]

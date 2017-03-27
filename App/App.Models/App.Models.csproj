@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="InputModels\CreatePageInputModel.cs" />
+    <Compile Include="InputModels\EditClientInputModel.cs" />
     <Compile Include="InputModels\UploadAttractionPhotoModel.cs" />
     <Compile Include="InputModels\UploadPhotoModel.cs" />
     <Compile Include="Materials\Material.cs" />
