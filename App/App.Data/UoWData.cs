@@ -21,8 +21,20 @@ namespace App.Data
 
 		public UoWData(DbContext context)
 		{
-			this.context = context;
+			this.Context = context;
 			this.repositories = new Dictionary<Type, object>();
+		}
+
+		public DbContext Context
+		{
+			get
+			{
+				return this.context;
+			} 
+			private set
+			{
+				this.context = value;
+			}
 		}
 
 		public IRepository<ApplicationUser> Users

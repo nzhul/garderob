@@ -30,6 +30,8 @@ namespace App.Models
 
 		public DateTime RegisterDate { get; set; }
 
+		public bool IsActive { get; set; }
+
 		public virtual ICollection<Order> Orders
 		{
 			get { return orders; }

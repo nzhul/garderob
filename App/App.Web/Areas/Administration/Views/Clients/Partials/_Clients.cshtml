@@ -6,12 +6,22 @@
 	foreach (var Client in Model)
 	{
 		<tr>
-			<td>@string.Format("{0} {1}", Client.FirstName, Client.LastName)</td>
-			<td>@Client.Email</td>
+			<td><a href="@Url.Action("Edit", new { @id = Client.Id })">@string.Format("{0} {1}", Client.FirstName, Client.LastName)</a></td>
+			<td><a href="@Url.Action("Edit", new { @id = Client.Id })">@Client.Email</a></td>
 			<td class="centered">
-				<a href="@Url.Action("Edit", new { @id = Client.Id })"><img src="~/Areas/Administration/Content/img/edit-icon.png" /></a>
-				<a onclick="return confirm('Сигурни ли сте, че искате да изтриете?');" href="@Url.Action("Delete", new { @id = Client.Id })"><img src="~/Areas/Administration/Content/img/delete-icon.png" /></a>
+				<a href="@Url.Action("Edit", new { @id = Client.Id })"><i class="fa fa-edit"></i></a>
+				@{
+					string renderingActiveUsers = this.ViewData.ContainsKey("ActiveUsers") ? this.ViewData["ActiveUsers"].ToString() : string.Empty;
+					if (renderingActiveUsers == "true")
+					{
+						<a onclick="return confirm('Сигурни ли сте, че искате да деактивирате клиента?');" title="Деактивирай" href="@Url.Action("DeactivateClient", new { @id = Client.Id })"><i class="fa fa-arrow-down"></i></a>
+					}
+					else
+					{
+						<a onclick="return confirm('Сигурни ли сте, че искате да активирате клиента?');" title="Активирай" href="@Url.Action("ActivateClient", new { @id = Client.Id })"><i class="fa fa-arrow-up"></i></a>
+					}
+				}
 			</td>
 		</tr>
-	}
-}
+						}
+					}

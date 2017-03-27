@@ -3,11 +3,14 @@ using App.Models;
 using App.Models.Materials;
 using App.Models.Orders;
 using App.Models.Pages;
+using System.Data.Entity;
 
 namespace App.Data
 {
 	public interface IUoWData
 	{
+		DbContext Context { get; }
+
 		IRepository<ApplicationUser> Users { get; }
 
 		IRepository<Page> Pages { get; }

@@ -55,6 +55,7 @@ namespace App.Data.Migrations
 				admin.PhoneNumber = config.Phone;
 				admin.ProfileImage = this.LoadAdminProfileImage();
 				admin.RegisterDate = DateTime.UtcNow;
+				admin.IsActive = true;
 
 				userManager.Create(admin, config.Password);
 				admin.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = admin.Id });
@@ -76,6 +77,7 @@ namespace App.Data.Migrations
 				newUser.Email = "user" + i.ToString() + "@gmail.com";
 				newUser.PhoneNumber = "123456789";
 				newUser.RegisterDate = DateTime.UtcNow;
+				newUser.IsActive = true;
 
 				userManager.Create(newUser, "1234567");
 

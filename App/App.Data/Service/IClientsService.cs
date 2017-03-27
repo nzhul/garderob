@@ -8,6 +8,8 @@ namespace App.Data.Service
 	{
 		IQueryable<ApplicationUser> GetUsers(int? page, int? pagesize);
 
+		IQueryable<ApplicationUser> GetInactiveUsers();
+
 		ApplicationUser GetUserById(string id);
 
 		void UpdateClient(ApplicationUser user);
@@ -15,5 +17,11 @@ namespace App.Data.Service
 		byte[] UploadProfileImage(HttpPostedFile uploadedImage, string userId);
 
 		int GetUsersCount();
+
+		void DeactivateClient(string id);
+
+		void ActivateClient(string id);
+
+		bool ClientExists(string id);
 	}
 }

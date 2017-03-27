@@ -191,6 +191,8 @@
     <Compile Include="Areas\Administration\Controllers\ClientsController.cs" />
     <Compile Include="Areas\Administration\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Administration\Models\ClientsMasterModel.cs" />
+    <Compile Include="Areas\Administration\Models\InputModels\EditClientInputModel.cs" />
     <Compile Include="Areas\Administration\Models\PageUrlItem.cs" />
     <Compile Include="Areas\Administration\Models\PagingData.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -203,6 +205,7 @@
     </Compile>
     <Compile Include="Infrastructure\Bundling\NonOrderingBundleOrderer.cs" />
     <Compile Include="Infrastructure\ControllerFactory\NinjectControllerFactory.cs" />
+    <Compile Include="Infrastructure\Mapping\MappingProfile.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactFormInputModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -275,6 +278,7 @@
     <Content Include="Config\Connections.Example.config" />
     <Content Include="Areas\Administration\Views\Clients\Partials\_Clients.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Pager.cshtml" />
+    <Content Include="Areas\Administration\Views\Clients\Edit.cshtml" />
     <None Include="Config\Credentials.config">
       <SubType>Designer</SubType>
     </None>

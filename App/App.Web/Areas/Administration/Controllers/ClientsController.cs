@@ -1,6 +1,8 @@
 ﻿using App.Data.Service;
 using App.Models;
 using App.Web.Areas.Administration.Models;
+using App.Web.Areas.Administration.Models.InputModels;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -23,11 +25,13 @@ namespace App.Web.Areas.Administration.Controllers
 		[HttpGet]
 		public ActionResult Index(int? page, int? pagesize)
 		{
-			ICollection<ApplicationUser> clients = this.clientsService.GetUsers(page - 1, pagesize).ToList();
+			ClientsMasterModel model = new ClientsMasterModel();
+			model.ActiveUsers = this.clientsService.GetUsers(page - 1, pagesize).ToList();
+			model.InActiveUsers = this.clientsService.GetInactiveUsers().ToList();
 
 			int totalClientsCount = this.clientsService.GetUsersCount();
 			ViewBag.PagingData = this.GeneratePagingData(totalClientsCount, pagesize ?? ClientsController.defaultPageSize, ClientsController.defaultLinksRadius);
-			return View(clients);
+			return View(model);
 		}
 
 		private PagingData GeneratePagingData(int totalItemsCount, int pageSize, int linksRadius)
@@ -40,12 +44,33 @@ namespace App.Web.Areas.Administration.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult RemoveFromRole(string userId)
+		public ActionResult Edit(string id)
 		{
-			// TODO: Add dependency to userManager and use:
-			// this.userManager.RemoveFromRole(userId, "User");
+			EditClientInputModel model = new EditClientInputModel();
 
-			return null;
+			if (this.clientsService.ClientExists(id))
+			{
+				ApplicationUser dbUser = this.clientsService.GetUserById(id);
+				model = Mapper.Map(dbUser, model);
+			}
+
+			return View(model);
+		}
+
+		[HttpGet]
+		public ActionResult DeactivateClient(string id)
+		{
+			this.clientsService.DeactivateClient(id);
+
+			return this.RedirectToAction("Index");
+		}
+
+		[HttpGet]
+		public ActionResult ActivateClient(string id)
+		{
+			this.clientsService.ActivateClient(id);
+
+			return this.RedirectToAction("Index");
 		}
 	}
 }

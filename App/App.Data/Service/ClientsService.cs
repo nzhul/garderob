@@ -1,10 +1,8 @@
 ﻿using App.Models;
-using AutoMapper;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System;
 
 namespace App.Data.Service
 {
@@ -31,10 +29,15 @@ namespace App.Data.Service
 				pagesize = defaultPageSize;
 			}
 
-			IQueryable<ApplicationUser> users = this.Data.Users.All().OrderByDescending(u => u.Email);
+			IQueryable<ApplicationUser> users = this.Data.Users.All().Where(u => u.IsActive == true).OrderByDescending(u => u.Email);
 			users = users.Skip(page.Value * pagesize.Value).Take(pagesize.Value);
 
 			return users;
+		}
+
+		public IQueryable<ApplicationUser> GetInactiveUsers()
+		{
+			return this.Data.Users.All().Where(u => u.IsActive == false).OrderByDescending(u => u.Email);
 		}
 
 		public ApplicationUser GetUserById(string id)
@@ -80,7 +83,41 @@ namespace App.Data.Service
 
 		public int GetUsersCount()
 		{
-			return this.Data.Users.All().Count();
+			return this.Data.Users.All().Where(u => u.IsActive).Count();
+		}
+
+		public void DeactivateClient(string id)
+		{
+			ApplicationUser dbUser = this.Data.Users.Find(id);
+
+			if (dbUser != null)
+			{
+				dbUser.IsActive = false;
+				this.Data.SaveChanges();
+			}
+		}
+
+		public void ActivateClient(string id)
+		{
+			ApplicationUser dbUser = this.Data.Users.Find(id);
+
+			if (dbUser != null)
+			{
+				dbUser.IsActive = true;
+				this.Data.SaveChanges();
+			}
+		}
+
+		public bool ClientExists(string id)
+		{
+			if (string.IsNullOrEmpty(id))
+			{
+				return false;
+			}
+			else
+			{
+				return this.Data.Users.All().Any(u => u.Id == id);
+			}
 		}
 	}
 }
