@@ -13,11 +13,25 @@ namespace App.Models.Orders
 		public List<HttpPostedFileBase> ResultImages { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
+		[Display( Name = "Име на проекта:")]
 		public string Title { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
+		[Display(Name = "Допълнителна информация:")]
+		[DataType(DataType.MultilineText)]
 		public string OrderText { get; set; }
 
+		[Required(ErrorMessage = " * Задължително!")]
+		public int BaseMaterialId { get; set; }
+
+		[Required(ErrorMessage = " * Задължително!")]
+		public int DoorsMaterialId { get; set; }
+
+		[Required(ErrorMessage = " * Задължително!")]
+		public int FazerMaterialId { get; set; }
+
+		[Required(ErrorMessage = " * Задължително!")]
+		public int HandlesMaterialId { get; set; }
 	}
 }
 

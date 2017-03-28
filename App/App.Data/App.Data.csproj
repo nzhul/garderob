@@ -115,6 +115,7 @@
     <Compile Include="Service\IClientsService.cs" />
     <Compile Include="Service\IOrdersService.cs" />
     <Compile Include="Service\IPagesService.cs" />
+    <Compile Include="Service\OrdersService.cs" />
     <Compile Include="Service\PagesService.cs" />
     <Compile Include="UoWData.cs" />
   </ItemGroup>

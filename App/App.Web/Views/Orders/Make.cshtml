@@ -1,7 +1,213 @@
-﻿
+﻿@using App.Models.Orders;
+@model OrderInputModel
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<!-- breadcrumbs start-->
+<section class="breadcrumbs">
+	<div class="container">
+		<div class="text-center breadcrumbs-item">
+			<h1>Заявка</h1><a href="#">Начало</a><i class="fa fa-angle-right"></i><a href="#">Направи</a><i class="fa fa-angle-right"></i><a href="#">Заявка</a>
+		</div>
+	</div>
+</section>
+<!-- ! breadcrumbs end-->
+<div class="container mt-40 pb-60">
+	<div class="row" style="margin-bottom:30px;">
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="title-section mb-0 mt-0 text-center">Изпратете вашите скици</h2>
+			<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
+			<p class="text-center mb-0">Преди да качите вашия проект, вие може да видите как ще изглеждат избраните от вас декоративни плоскости <a href="#">ТУК</a>, както и да сметнете с нашия калкулатор колко приблизително ще Ви излезе проекта <a href="#">ТУК</a>. Не е нужно да имате регистрация за да обработим вашият проект, но за да пристъпим към неговата реализация, трябва да се регистрирате <a href="#">ТУК</a>.</p>
+		</div>
+	</div>
+	@using (Ajax.BeginForm("Make", "Orders", null, new AjaxOptions
+	{
+		OnFailure = "ContactFormServerFail",
+		OnSuccess = "ContactFormServerSuccess",
+		OnBegin = "ContactFormBegin"
+	},
+		new { @class = "form contact-form alt clearfix", @id = "result" }))
+	{
+		<div class="row">
+			<div class="col-md-6">
+				<!-- contact-form-->
+				@Html.AntiForgeryToken()
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+
+				@Html.LabelFor(model => model.Title) @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+				@Html.EditorFor(model => model.Title)
+				<br />
+
+				@Html.LabelFor(model => model.OrderText) @Html.ValidationMessageFor(model => model.OrderText, "", new { @class = "text-danger" })
+				@Html.EditorFor(model => model.OrderText)
+
+				@Html.HiddenFor(model => model.BaseMaterialId)
+				@Html.HiddenFor(model => model.DoorsMaterialId)
+				@Html.HiddenFor(model => model.FazerMaterialId)
+				@Html.HiddenFor(model => model.HandlesMaterialId)
+				<br />
+				<div class="cs-loader">
+					<div class="cs-loader-inner">
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+					</div>
+				</div>
+				<div class="dropzone-container">
+					<img src="~/content/img/order/drop-sketches-icon.png" alt="Пусни скиците тук - иконка" />
+					<a href="#" class="cws-button white">Пуснете скиците тук</a>
+				</div>
+
+				<!-- ! contact-form-->
+			</div>
+			<div class="col-md-6">
+				<div class="order-category">
+					Плоча за основа:<br />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+				</div>
+				<div class="order-category">
+					Плоча за врати:<br />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+				</div>
+				<div class="order-category">
+					Фазер:<br />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
+					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+				</div>
+				<div class="order-category">
+					Дръжки:<br />
+					<img src="~/content/img/order/materials/handle01.jpg" alt="Дръжка" />
+					<img src="~/content/img/order/materials/handle02.jpg" alt="Дръжка" />
+					<img src="~/content/img/order/materials/handle03.jpg" alt="Дръжка" />
+					<img src="~/content/img/order/materials/handle04.jpg" alt="Дръжка" />
+					<img src="~/content/img/order/materials/handle05.jpg" alt="Дръжка" />
+					<img src="~/content/img/order/materials/handle06.jpg" alt="Дръжка" />
+					<img src="~/content/img/order/materials/handle07.jpg" alt="Дръжка" />
+					<img src="~/content/img/order/materials/handle08.jpg" alt="Дръжка" />
+					<img src="~/content/img/order/materials/handle09.jpg" alt="Дръжка" />
+				</div>
+			</div>
+		</div>
+		<hr class="mt-60 mb-60" />
+		<div class="row">
+			<div class="col-md-12">
+				<button type="submit" style="width:50%;margin:0 auto;display:block;" class="cws-button alt">Изпрати</button>
+			</div>
+		</div>
+	}
+	<div class="row mt-50">
+		<div class="col-md-12">
+			<p>* След като дадете Вашия проект, до 24 часа ние ще се свържем с Вас за неговото уточняване, след което ще Ви пратим по email как ще изглежда Вашия готов проект и колко точно ще Ви струва той.</p>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@*@Scripts.Render("~/bundles/jqueryval")*@
+	<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+	<script>
+		function ContactFormServerFail(data) {
+			var alertBox = $('.widget-contact-form .alert.alert-danger');
+			alertBox.show();
+			$('.cs-loader').hide();
+		}
+
+		function ContactFormServerSuccess(data) {
+			$('.cs-loader').hide();
+			if (data.Status === "InvalidModel") {
+				console.log('Please update your data and try again');
+				var warningBox = $('.widget-contact-form .alert.alert-warning');
+				warningBox.show();
+			}
+
+			if (data.Status === 'Success') {
+				console.log('Show succeess message');
+				var result = $('#result');
+				result.hide();
+
+				var successBox = $('.widget-contact-form .alert.alert-success');
+				successBox.show();
+			}
+		}
+
+		function ContactFormBegin() {
+			$('.cs-loader').show();
+		}
+	</script>
+}

@@ -71,24 +71,29 @@
 					if (!Request.IsAuthenticated)
 					{
 						@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-						@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @placeholder = "Име" } })
+						@Html.LabelFor(model => model.Name)
+						@Html.EditorFor(model => model.Name)
 						<br />
 
 						@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-						@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email" } })
+						@Html.LabelFor(model => model.Email)
+						@Html.EditorFor(model => model.Email)
 						<br />
 
 						@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-						@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @placeholder = "Телефон" } })
+						@Html.LabelFor(model => model.Phone)
+						@Html.EditorFor(model => model.Phone)
 						<br />
 					}
 
-					@Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-					@Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @placeholder = "Относно" } })
+					
+					@Html.LabelFor(model => model.Subject) @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Subject)
 					<br />
 
-					@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-					@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @placeholder = "Съобщение" } })
+					
+					@Html.LabelFor(model => model.Content) @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.Content)
 					<br />
 					<div class="cs-loader">
 						<div class="cs-loader-inner">
