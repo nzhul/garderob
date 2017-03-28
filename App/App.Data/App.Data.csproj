@@ -113,6 +113,7 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Service\ClientsService.cs" />
     <Compile Include="Service\IClientsService.cs" />
+    <Compile Include="Service\IOrdersService.cs" />
     <Compile Include="Service\IPagesService.cs" />
     <Compile Include="Service\PagesService.cs" />
     <Compile Include="UoWData.cs" />

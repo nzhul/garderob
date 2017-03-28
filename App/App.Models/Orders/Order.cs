@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Models.Orders
 {
@@ -48,6 +49,9 @@ namespace App.Models.Orders
 			get { return this.resultImages; }
 			set { this.resultImages = value; }
 		}
+
+		[ForeignKey("Client")]
+		public string ClientId { get; set; }
 
 		public virtual ApplicationUser Client { get; set; }
 
