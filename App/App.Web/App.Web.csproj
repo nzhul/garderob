@@ -216,6 +216,69 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AdminProfileImage\avatar.jpg" />
+    <Content Include="App_Data\Materials\Handles\Small\handle01.jpg" />
+    <Content Include="App_Data\Materials\Handles\Small\handle02.jpg" />
+    <Content Include="App_Data\Materials\Handles\Small\handle03.jpg" />
+    <Content Include="App_Data\Materials\Handles\Small\handle04.jpg" />
+    <Content Include="App_Data\Materials\Handles\Small\handle05.jpg" />
+    <Content Include="App_Data\Materials\Handles\Small\handle06.jpg" />
+    <Content Include="App_Data\Materials\Handles\Small\handle07.jpg" />
+    <Content Include="App_Data\Materials\Handles\Small\handle08.jpg" />
+    <Content Include="App_Data\Materials\Handles\Small\handle09.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\1-white.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\10-oak-country.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\11-branch.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\12-caribbean-walnut.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\13-cherry-tree.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\14-steingrau.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\15-fango.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\16-zebrano.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\17-slate-gray.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\18-rosewood.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\19-merano-brown.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\2-cream.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\20-walnut.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\21-aubergine.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\22-beech-chocolate.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\23-black.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\24-black-satin.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\25-white-high-gloss.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\26-cream-high-gloss.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\27-pinie-limed.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\3-white-satin.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\4-loire-ash.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\5-beech.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\6-beech-tuscany.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\7-plating-gray.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\8-maple.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Big\9-oak.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\1-white.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\10-oak-country.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\11-branch.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\12-caribbean-walnut.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\13-cherry-tree.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\14-steingrau.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\15-fango.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\16-zebrano.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\17-slate-gray.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\18-rosewood.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\19-merano-brown.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\2-cream.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\20-walnut.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\21-aubergine.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\22-beech-chocolate.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\23-black.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\24-black-satin.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\25-white-high-gloss.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\26-cream-high-gloss.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\27-pinie-limed.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\3-white-satin.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\4-loire-ash.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\5-beech.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\6-beech-tuscany.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\7-plating-gray.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\8-maple.jpg" />
+    <Content Include="App_Data\Materials\Surfaces\Small\9-oak.jpg" />
     <Content Include="App_Data\StaticPages\calculator.html" />
     <Content Include="App_Data\StaticPages\faq.html" />
     <Content Include="App_Data\StaticPages\make-sliding-doors.html" />
@@ -1325,7 +1388,10 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\Materials\Surfaces\LivePreview\Back\" />
+    <Folder Include="App_Data\Materials\Surfaces\LivePreview\Front\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

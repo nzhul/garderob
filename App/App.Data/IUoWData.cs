@@ -21,6 +21,8 @@ namespace App.Data
 
 		IRepository<Material> Materials { get; }
 
+		IRepository<SurfaceMaterial> SurfaceMaterials { get; }
+
 		IRepository<MaterialCategory> MaterialCategories { get; }
 
 		int SaveChanges();

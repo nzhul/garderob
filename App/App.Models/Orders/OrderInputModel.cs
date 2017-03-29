@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using App.Models.Materials;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
@@ -6,11 +7,11 @@ namespace App.Models.Orders
 {
 	public class OrderInputModel
 	{
-		public List<HttpPostedFileBase> SketchImages { get; set; }
+		public List<HttpPostedFileBase> PostedSketches { get; set; }
 
-		public List<HttpPostedFileBase> DesignImages { get; set; }
+		public IList<Material> SurfaceMaterials { get; set; }
 
-		public List<HttpPostedFileBase> ResultImages { get; set; }
+		public IList<Material> HandlesMaterials { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
 		[Display( Name = "Име на проекта:")]
