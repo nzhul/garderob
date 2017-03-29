@@ -67,8 +67,6 @@ namespace App.Web.Controllers
 								   "Запитване: <br/>" + contactData.Content;
 
 				SmtpClient smtpClient = new SmtpClient();
-
-				// The settings are in web.config file
 				smtpClient.Send(mailMessage);
 
 				return Json(new { Status = "Success" });

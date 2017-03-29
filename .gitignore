@@ -252,3 +252,4 @@ paket-files/
 *.sln.iml
 /App/App.Web/Config/Credentials.config
 /App/App.Web/Config/Connections.config
+/App/App.Web/Config/Email.config
