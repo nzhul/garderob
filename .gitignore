@@ -250,6 +250,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
-/App/App.Web/Config/Credentials.config
-/App/App.Web/Config/Connections.config
-/App/App.Web/Config/Email.config
+/App/App.Web/Config/Credentials.Release.config
+/App/App.Web/Config/Connections.Release.config
+/App/App.Web/Config/Email.Release.config

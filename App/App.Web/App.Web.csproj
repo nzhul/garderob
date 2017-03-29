@@ -25,6 +25,8 @@
     <RestorePackages>true</RestorePackages>
     <UseGlobalApplicationHostFile />
     <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -271,15 +273,31 @@
     <Content Include="Areas\Administration\Content\datetimepicker\jquery-ui-timepicker-addon.js" />
     <Content Include="Areas\Administration\Content\datetimepicker\jquery-ui-timepicker-addon.min.css" />
     <Content Include="Areas\Administration\Content\datetimepicker\jquery-ui-timepicker-addon.min.js" />
-    <Content Include="Config\Credentials.Example.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Config\Connections.Example.config" />
     <Content Include="Areas\Administration\Views\Clients\Partials\_Clients.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Pager.cshtml" />
     <Content Include="Areas\Administration\Views\Clients\Edit.cshtml" />
-    <None Include="Config\Credentials.config">
-      <SubType>Designer</SubType>
+    <None Include="Config\Connections.FolderProfile.config">
+      <DependentUpon>Connections.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Config\Connections.Release.config">
+      <DependentUpon>Connections.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <Content Include="Config\Credentials.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <None Include="Config\Connections.Debug.config">
+      <DependentUpon>Connections.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Config\Credentials.FolderProfile.config">
+      <DependentUpon>Credentials.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Config\Credentials.Release.config">
+      <DependentUpon>Credentials.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
     </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -1025,7 +1043,9 @@
     <Content Include="Areas\Administration\Views\Pages\Create.cshtml" />
     <Content Include="Areas\Administration\Views\Pages\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Pages\Index.cshtml" />
-    <Content Include="Config\Connections.config" />
+    <Content Include="Config\Connections.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
     <Content Include="Areas\Administration\Views\Orders\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Clients\Index.cshtml" />
     <Content Include="Content\fonts\fi\Flaticon.eot" />
@@ -1062,8 +1082,26 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="Config\Email.config" />
-    <Content Include="Config\Email.Example.config" />
+    <Content Include="Config\Email.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <None Include="Config\Credentials.Debug.config">
+      <DependentUpon>Credentials.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Config\Email.FolderProfile.config">
+      <DependentUpon>Email.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Config\Email.Release.config">
+      <DependentUpon>Email.config</DependentUpon>
+      <SubType>Designer</SubType>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="Config\Email.Debug.config">
+      <DependentUpon>Email.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\garderob.dobromirivanov.net - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1344,7 +1382,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\SlowCheetah.2.5.48\build\SlowCheetah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SlowCheetah.2.5.48\build\SlowCheetah.targets'))" />
   </Target>
+  <Import Project="..\packages\SlowCheetah.2.5.48\build\SlowCheetah.targets" Condition="Exists('..\packages\SlowCheetah.2.5.48\build\SlowCheetah.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
