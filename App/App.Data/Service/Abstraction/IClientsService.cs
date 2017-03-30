@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web;
 using App.Models.InputModels;
 
-namespace App.Data.Service
+namespace App.Data.Service.Abstraction
 {
 	public interface IClientsService
 	{

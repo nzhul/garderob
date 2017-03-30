@@ -1,12 +1,12 @@
-﻿using App.Models;
+﻿using App.Data.Service.Abstraction;
+using App.Models;
+using App.Models.InputModels;
+using AutoMapper;
 using System.IO;
 using System.Linq;
 using System.Web;
-using System;
-using App.Models.InputModels;
-using AutoMapper;
 
-namespace App.Data.Service
+namespace App.Data.Service.Implementation
 {
 	public class ClientsService : IClientsService
 	{

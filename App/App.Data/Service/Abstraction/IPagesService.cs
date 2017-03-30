@@ -2,7 +2,7 @@
 using App.Models.ViewModels;
 using System.Collections.Generic;
 
-namespace App.Data.Service
+namespace App.Data.Service.Abstraction
 {
 	public interface IPagesService
 	{

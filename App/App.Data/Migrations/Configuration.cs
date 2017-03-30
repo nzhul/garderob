@@ -1,6 +1,7 @@
 namespace App.Data.Migrations
 {
 	using App.Models;
+	using App.Models.Materials;
 	using App.Models.Pages;
 	using Microsoft.AspNet.Identity;
 	using Microsoft.AspNet.Identity.EntityFramework;
@@ -31,6 +32,74 @@ namespace App.Data.Migrations
 		{
 			this.AddInitialStaticPages(context);
 			this.InitializeAdministrator(context);
+			this.InitializeMaterials(context);
+		}
+
+		private void InitializeMaterials(ApplicationDbContext context)
+		{
+			if (!context.Materials.Any() && !context.MaterialCategories.Any())
+			{
+				MaterialCategory otherCategory = new MaterialCategory
+				{
+					Name = "Други",
+					Description = "In this category are placed all materials that do not belong in any other category.",
+					Slug = "others"
+				};
+
+				MaterialCategory surfaceCategory = new MaterialCategory
+				{
+					Name = "Повърхности",
+					Description = "Описание на повърхностите",
+					Slug = "surfaces"
+				};
+
+				context.MaterialCategories.Add(otherCategory);
+				context.MaterialCategories.Add(surfaceCategory);
+				context.SaveChanges();
+
+				this.GenerateSurfaceMaterials(context, surfaceCategory.Id);
+			}
+		}
+
+		private void GenerateSurfaceMaterials(ApplicationDbContext context, int surfaceCategoryId)
+		{
+			if (HttpContext.Current != null)
+			{
+				string bigImagesFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials/Surfaces/Big");
+				IEnumerable<string> bigImages = Directory.EnumerateFiles(bigImagesFolder);
+
+				// enumerate the big images
+
+				string smallImagesFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials/Surfaces/Small");
+				IEnumerable<string> smallImages = Directory.EnumerateFiles(smallImagesFolder);
+
+				// enumerate the small images
+
+				string livePreviewFrontImagesFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials/Surfaces/LivePreview/Front");
+				IEnumerable<string> livePreviewFrontImages = Directory.EnumerateFiles(livePreviewFrontImagesFolder);
+
+				// enumerate the front images
+
+				string livePreviewBackImagesFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials/Surfaces/LivePreview/Back");
+				IEnumerable<string> livePreviewBackImages = Directory.EnumerateFiles(livePreviewBackImagesFolder);
+
+				// enumerate the front images
+
+
+				//for (int i = 0; i < 10; i++)
+				//{
+				//	SurfaceMaterial surfaceMaterial = new SurfaceMaterial
+				//	{
+				//		CategoryId = surfaceCategoryId,
+				//		Name = "Повърхност" + i.ToString(),
+				//		Slug = "00-surface-name" + i.ToString(),
+				//	};
+
+				//	context.SurfaceMaterials.Add(surfaceMaterial);
+				//}
+
+				//context.SaveChanges();
+			}
 		}
 
 		private void InitializeAdministrator(ApplicationDbContext context)

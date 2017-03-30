@@ -111,12 +111,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Service\ClientsService.cs" />
-    <Compile Include="Service\IClientsService.cs" />
-    <Compile Include="Service\IOrdersService.cs" />
-    <Compile Include="Service\IPagesService.cs" />
-    <Compile Include="Service\OrdersService.cs" />
-    <Compile Include="Service\PagesService.cs" />
+    <Compile Include="Service\Abstraction\IMessagingService.cs" />
+    <Compile Include="Service\Implementation\ClientsService.cs" />
+    <Compile Include="Service\Abstraction\IClientsService.cs" />
+    <Compile Include="Service\Abstraction\IMaterialsService.cs" />
+    <Compile Include="Service\Abstraction\IOrdersService.cs" />
+    <Compile Include="Service\Abstraction\IPagesService.cs" />
+    <Compile Include="Service\Implementation\EmailService.cs" />
+    <Compile Include="Service\Implementation\MaterialsService.cs" />
+    <Compile Include="Service\Implementation\OrdersService.cs" />
+    <Compile Include="Service\Implementation\PagesService.cs" />
+    <Compile Include="Service\Messaging\MessageData.cs" />
     <Compile Include="UoWData.cs" />
   </ItemGroup>
   <ItemGroup>

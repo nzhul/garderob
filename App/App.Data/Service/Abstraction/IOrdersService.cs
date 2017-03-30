@@ -2,15 +2,15 @@
 using App.Models.Orders;
 using System.Linq;
 
-namespace App.Data.Service
+namespace App.Data.Service.Abstraction
 {
 	public interface IOrdersService
 	{
-		IQueryable<Order> GetOrdersByUserId(string userId);
+		IQueryable<Order> GetUserOrders(string userId);
 
 		IQueryable<Order> GetOrdersByCategory(string category);
 
-		Order GetOrderById(int id);
+		Order GetOrder(int id);
 
 		bool UpdateOrder(int id, OrderInputModel inputModel);
 

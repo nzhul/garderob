@@ -1,10 +1,8 @@
 ﻿using App.Data;
-using App.Data.Service;
+using App.Data.Service.Abstraction;
+using App.Data.Service.Implementation;
 using Ninject;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -31,6 +29,8 @@ namespace App.Web.Infrastructure.ControllerFactory
 			ninjectKernel.Bind<IClientsService>().To<ClientsService>();
 			ninjectKernel.Bind<IPagesService>().To<PagesService>();
 			ninjectKernel.Bind<IOrdersService>().To<OrdersService>();
+			ninjectKernel.Bind<IMaterialsService>().To<MaterialsService>();
+			ninjectKernel.Bind<IMessagingService>().To<App.Data.Service.Implementation.EmailService>();
 		}
 	}
 }

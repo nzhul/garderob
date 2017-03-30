@@ -15,10 +15,12 @@ namespace App.Models.Orders
 
 		[Required(ErrorMessage = " * Задължително!")]
 		[Display( Name = "Име на проекта:")]
+		[StringLength(250, MinimumLength = 3, ErrorMessage = "Невалидно име - Максимална дължина 250 символа, минимална 3")]
 		public string Title { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
 		[Display(Name = "Допълнителна информация:")]
+		[StringLength(2500, MinimumLength = 3, ErrorMessage = "Невалидно име - Максимална дължина 2500 символа, минимална 3")]
 		[DataType(DataType.MultilineText)]
 		public string OrderText { get; set; }
 

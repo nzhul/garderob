@@ -86,7 +86,9 @@
     <Compile Include="InputModels\UploadPhotoModel.cs" />
     <Compile Include="Materials\Material.cs" />
     <Compile Include="Materials\MaterialCategory.cs" />
+    <Compile Include="Materials\MaterialInputModel.cs" />
     <Compile Include="Materials\SurfaceMaterial.cs" />
+    <Compile Include="Materials\SurfaceMaterialInputModel.cs" />
     <Compile Include="Orders\Order.cs" />
     <Compile Include="Orders\OrderCategory.cs" />
     <Compile Include="Images\Image.cs" />

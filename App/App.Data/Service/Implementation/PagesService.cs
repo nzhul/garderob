@@ -1,4 +1,5 @@
-﻿using App.Models.InputModels;
+﻿using App.Data.Service.Abstraction;
+using App.Models.InputModels;
 using App.Models.Pages;
 using App.Models.ViewModels;
 using AutoMapper;
@@ -6,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace App.Data.Service
+namespace App.Data.Service.Implementation
 {
 	public class PagesService : IPagesService
 	{

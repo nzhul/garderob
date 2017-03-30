@@ -9,7 +9,7 @@ namespace App.Web.Models
     public class ContactFormInputModel
     {
         [Required(ErrorMessage = " Моля попълнете вашето собствено и фамилно име!")]
-        [StringLength(250, MinimumLength = 3, ErrorMessage = "Невалидно име - Максимална дължина 250 символа, минимална 3")]
+        [StringLength(250, MinimumLength = 3, ErrorMessage = " Максимална дължина 250 символа, минимална 3")]
         [Display(Name = "Имена:")]
         public string Name { get; set; }
 
@@ -21,17 +21,18 @@ namespace App.Web.Models
 
         [Display(Name = "Телефон:")]
         [Required(ErrorMessage = " Моля предоставете валиден телефонен номер!")]
-        public string Phone { get; set; }
+		[StringLength(250, MinimumLength = 3, ErrorMessage = " Максимална дължина 250 символа, минимална 3")]
+		public string Phone { get; set; }
 
 
         [Required(ErrorMessage = " * Задължително!")]
-        [StringLength(250, MinimumLength = 3, ErrorMessage = "Невалидно заглавие - Максимална дължина 250 символа, минимална 3")]
+        [StringLength(250, MinimumLength = 3, ErrorMessage = " Максимална дължина 250 символа, минимална 3")]
         [Display(Name = "Относно:")]
         public string Subject { get; set; }
 
 
         [Required(ErrorMessage = " * Задължително!")]
-        [StringLength(5000, MinimumLength = 3, ErrorMessage = "Невалидно заглавие - Максимална дължина 5000 символа, минимална 3")]
+        [StringLength(5000, MinimumLength = 3, ErrorMessage = " Максимална дължина 5000 символа, минимална 3")]
         [Display(Name = "Съдържание:")]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }

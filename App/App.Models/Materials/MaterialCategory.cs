@@ -19,6 +19,8 @@ namespace App.Models.Materials
 
 		public string Description { get; set; }
 
+		public string Slug { get; set; }
+
 		public virtual ICollection<Material> Materials
 		{
 			get

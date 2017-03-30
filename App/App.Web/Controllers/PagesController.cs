@@ -1,5 +1,4 @@
-﻿using App.Data;
-using App.Data.Service;
+﻿using App.Data.Service.Abstraction;
 using App.Models.ViewModels;
 using System.Web.Mvc;
 

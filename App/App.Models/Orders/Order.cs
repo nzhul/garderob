@@ -1,4 +1,5 @@
 ﻿using App.Models.Images;
+using App.Models.Materials;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -32,6 +33,8 @@ namespace App.Models.Orders
 
 		public DateTime CompleteDate { get; set; }
 
+		public OrderState State { get; set; }
+
 		public virtual ICollection<Image> SketchImages
 		{
 			get { return this.sketchImages; }
@@ -55,9 +58,17 @@ namespace App.Models.Orders
 
 		public virtual ApplicationUser Client { get; set; }
 
+		[ForeignKey("OrderCategory")]
 		public int OrderCategoryId { get; set; }
 
 		public virtual OrderCategory OrderCategory { get; set; }
 
+		public Material BaseMaterial { get; set; }
+
+		public Material DoorsMaterial { get; set; }
+
+		public Material FazerMaterial { get; set; }
+
+		public Material HandlesMaterial { get; set; }
 	}
 }
