@@ -33,6 +33,12 @@ namespace App.Models.Orders
 
 		[Required(ErrorMessage = " * Задължително!")]
 		public int HandlesMaterialId { get; set; }
+
+		[Required]
+		public string ClientId { get; set; }
+
+		[Required]
+		public int OrderCategoryId { get; set; } // Pass default value of 0 = "Other"
 	}
 }
 

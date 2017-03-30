@@ -1,5 +1,6 @@
 ﻿using App.Models;
 using App.Models.InputModels;
+using App.Models.Orders;
 using App.Models.Pages;
 using App.Models.ViewModels;
 using AutoMapper;
@@ -13,6 +14,7 @@ namespace App.Web.Infrastructure.Mapping
 			CreateMap<Page, PageViewModel>();
 			CreateMap<ApplicationUser, EditClientInputModel>().ForMember(x => x.Phone, opt => opt.MapFrom(u => u.PhoneNumber));
 			CreateMap<EditClientInputModel, ApplicationUser>().ForMember(x => x.PhoneNumber, opt => opt.MapFrom(u => u.Phone));
+			CreateMap<OrderInputModel, Order>();
 
 			//Mapper.Initialize(cfg => cfg.CreateMap<Page, PageViewModel>());
 			//Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, EditClientInputModel>());

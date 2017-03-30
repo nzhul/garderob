@@ -1,6 +1,8 @@
 ﻿using App.Models.Orders;
+using AutoMapper;
 using System;
 using System.Linq;
+using App.Models.Images;
 
 namespace App.Data.Service
 {
@@ -11,6 +13,26 @@ namespace App.Data.Service
 		public OrdersService(IUoWData data)
 		{
 			this.Data = data;
+		}
+
+		public void AddDesignImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddResultImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddSketchImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void ChangeOrderState(int orderId, OrderState newState, bool notifyClient, bool notifyAdmin)
+		{
+			throw new NotImplementedException();
 		}
 
 		public bool DeleteOrder(int id)
@@ -64,6 +86,22 @@ namespace App.Data.Service
 		public IQueryable<Order> GetOrdersByUserId(string userId)
 		{
 			return this.Data.Orders.All().Where(o => o.Client.Id == userId);
+		}
+
+		public int MakeOrder(OrderInputModel model)
+		{
+			// Check what happens with ClientId and OrderId. They are required
+			// If the client id is not automaticaly mapped - use the provided cliendId from the model. Find the user in the database and assign it ot "Client" property
+			// It must be set to default "Other" category, and later the admin can change the category from the backend
+
+			Order newOrder = new Order();
+			newOrder = Mapper.Map(model, newOrder);
+			newOrder.RequestDate = DateTime.UtcNow;
+
+			this.Data.Orders.Add(newOrder);
+			this.Data.SaveChanges();
+
+			return newOrder.Id;
 		}
 
 		public bool UpdateOrder(int id, OrderInputModel inputModel)

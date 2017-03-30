@@ -30,6 +30,7 @@ namespace App.Web.Infrastructure.ControllerFactory
 			ninjectKernel.Bind<IUoWData>().To<UoWData>();
 			ninjectKernel.Bind<IClientsService>().To<ClientsService>();
 			ninjectKernel.Bind<IPagesService>().To<PagesService>();
+			ninjectKernel.Bind<IOrdersService>().To<OrdersService>();
 		}
 	}
 }
