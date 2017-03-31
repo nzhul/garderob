@@ -16,7 +16,9 @@ namespace App.Models.Materials
 
 		public MaterialCategory Category { get; set; }
 
-		public virtual Image Image { get; set; }
+		public virtual Image BigImage { get; set; }
+
+		public virtual Image SmallImage { get; set; }
 
 	}
 }

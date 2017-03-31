@@ -1,6 +1,7 @@
-namespace App.Data.Migrations
+Ôªønamespace App.Data.Migrations
 {
 	using App.Models;
+	using App.Models.Images;
 	using App.Models.Materials;
 	using App.Models.Pages;
 	using Microsoft.AspNet.Identity;
@@ -31,8 +32,14 @@ namespace App.Data.Migrations
 		protected override void Seed(ApplicationDbContext context)
 		{
 			this.AddInitialStaticPages(context);
-			this.InitializeAdministrator(context);
+			this.InitializeAdministrator(context, true);
 			this.InitializeMaterials(context);
+			this.InitializeDummyOrders(context);
+		}
+
+		private void InitializeDummyOrders(ApplicationDbContext context)
+		{
+			// not implemented
 		}
 
 		private void InitializeMaterials(ApplicationDbContext context)
@@ -41,15 +48,15 @@ namespace App.Data.Migrations
 			{
 				MaterialCategory otherCategory = new MaterialCategory
 				{
-					Name = "ƒÛ„Ë",
+					Name = "–î—Ä—É–≥–∏",
 					Description = "In this category are placed all materials that do not belong in any other category.",
 					Slug = "others"
 				};
 
 				MaterialCategory surfaceCategory = new MaterialCategory
 				{
-					Name = "œÓ‚˙ıÌÓÒÚË",
-					Description = "ŒÔËÒ‡ÌËÂ Ì‡ ÔÓ‚˙ıÌÓÒÚËÚÂ",
+					Name = "–ü–æ–≤—ä—Ä—Ö–Ω–æ—Å—Ç–∏",
+					Description = "–û–ø–∏—Å–∞–Ω–∏–µ –Ω–∞ –∫–∞—Ç–µ–≥–æ—Ä–∏—è—Ç–∞",
 					Slug = "surfaces"
 				};
 
@@ -57,7 +64,66 @@ namespace App.Data.Migrations
 				context.MaterialCategories.Add(surfaceCategory);
 				context.SaveChanges();
 
+				this.GenerateMaterials(context);
 				this.GenerateSurfaceMaterials(context, surfaceCategory.Id);
+			}
+		}
+
+		private void GenerateMaterials(ApplicationDbContext context)
+		{
+			if (HttpContext.Current != null)
+			{
+				string materialsFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials");
+				IEnumerable<string> subFolders = Directory.EnumerateDirectories(materialsFolder);
+
+				foreach (string folderPath in subFolders)
+				{
+					string folderName = new DirectoryInfo(folderPath).Name;
+					if (folderName == "Surfaces")
+					{
+						continue;
+					}
+
+					string bigFolderPath = Path.Combine(folderPath, "Big");
+					string smallFolderPath = Path.Combine(folderPath, "Small");
+
+					// Create new material category based on folder name
+					MaterialCategory category = new MaterialCategory
+					{
+						Name = folderName,
+						Slug = folderName.ToLower(),
+						Description = folderName + " description",
+					};
+
+					context.MaterialCategories.Add(category);
+					context.SaveChanges();
+
+					IEnumerable<string> bigImagePaths = Directory.EnumerateFiles(bigFolderPath);
+
+					foreach (var imagePath in bigImagePaths)
+					{
+						string bigImagePath = imagePath;
+						string smallImagePath = imagePath.Replace("\\Big\\", "\\Small\\"); // This could fail on the server!
+
+						byte[] bigImageData = this.LoadImageData(bigImagePath);
+						byte[] smallImageData = this.LoadImageData(smallImagePath);
+
+						string fileName = Path.GetFileNameWithoutExtension(bigImagePath);
+
+						Material material = new Material
+						{
+							CategoryId = category.Id,
+							Name = fileName,
+							Slug = fileName,
+							BigImage = new Image { ImageData = bigImageData },
+							SmallImage = new Image { ImageData = smallImageData }
+						};
+
+						context.Materials.Add(material);
+					}
+
+					context.SaveChanges();
+				}
 			}
 		}
 
@@ -68,41 +134,39 @@ namespace App.Data.Migrations
 				string bigImagesFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials/Surfaces/Big");
 				IEnumerable<string> bigImages = Directory.EnumerateFiles(bigImagesFolder);
 
-				// enumerate the big images
+				foreach (string imagePath in bigImages)
+				{
+					string bigImagePath = imagePath;
+					string smallImagePath = imagePath.Replace("\\Big\\", "\\Small\\"); // This could fail on the server!
+					string liveFrontImagePath = imagePath.Replace("\\Big\\", "\\LivePreview\\Front\\"); // This could fail on the server!
+					string liveBackImagePath = imagePath.Replace("\\Big\\", "\\LivePreview\\Back\\"); // This could fail on the server!
 
-				string smallImagesFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials/Surfaces/Small");
-				IEnumerable<string> smallImages = Directory.EnumerateFiles(smallImagesFolder);
+					byte[] bigImageData = this.LoadImageData(bigImagePath);
+					byte[] smallImageData = this.LoadImageData(smallImagePath);
+					byte[] liveFrontImageData = this.LoadImageData(liveFrontImagePath);
+					byte[] livebackImageData = this.LoadImageData(liveBackImagePath);
 
-				// enumerate the small images
+					string fileName = Path.GetFileNameWithoutExtension(bigImagePath);
 
-				string livePreviewFrontImagesFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials/Surfaces/LivePreview/Front");
-				IEnumerable<string> livePreviewFrontImages = Directory.EnumerateFiles(livePreviewFrontImagesFolder);
+					SurfaceMaterial surfaceMaterial = new SurfaceMaterial
+					{
+						CategoryId = surfaceCategoryId,
+						Name = fileName,
+						Slug = fileName,
+						BigImage = new Image { ImageData = bigImageData },
+						SmallImage = new Image { ImageData = smallImageData },
+						LivePreviewFrontImage = new Image { ImageData = liveFrontImageData },
+						LivePreviewBackImage = new Image { ImageData = livebackImageData }
+					};
 
-				// enumerate the front images
+					context.SurfaceMaterials.Add(surfaceMaterial);
+				}
 
-				string livePreviewBackImagesFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials/Surfaces/LivePreview/Back");
-				IEnumerable<string> livePreviewBackImages = Directory.EnumerateFiles(livePreviewBackImagesFolder);
-
-				// enumerate the front images
-
-
-				//for (int i = 0; i < 10; i++)
-				//{
-				//	SurfaceMaterial surfaceMaterial = new SurfaceMaterial
-				//	{
-				//		CategoryId = surfaceCategoryId,
-				//		Name = "œÓ‚˙ıÌÓÒÚ" + i.ToString(),
-				//		Slug = "00-surface-name" + i.ToString(),
-				//	};
-
-				//	context.SurfaceMaterials.Add(surfaceMaterial);
-				//}
-
-				//context.SaveChanges();
+				context.SaveChanges();
 			}
 		}
 
-		private void InitializeAdministrator(ApplicationDbContext context)
+		private void InitializeAdministrator(ApplicationDbContext context, bool generateDummyUsers)
 		{
 			if (!context.Users.Any())
 			{
@@ -122,7 +186,7 @@ namespace App.Data.Migrations
 				admin.LastName = config.Lastname;
 				admin.Email = config.Email;
 				admin.PhoneNumber = config.Phone;
-				admin.ProfileImage = this.LoadAdminProfileImage();
+				admin.ProfileImage = this.LoadImageData(HttpContext.Current.Server.MapPath("~/App_Data/AdminProfileImage/avatar.jpg"));
 				admin.RegisterDate = DateTime.UtcNow;
 				admin.IsActive = true;
 
@@ -131,7 +195,10 @@ namespace App.Data.Migrations
 				admin.Roles.Add(new IdentityUserRole { RoleId = userRole.Id, UserId = admin.Id });
 				context.SaveChanges();
 
-				this.InitializeDummyUsers(context, userManager);
+				if (generateDummyUsers)
+				{
+					this.InitializeDummyUsers(context, userManager);
+				}
 			}
 		}
 
@@ -156,9 +223,8 @@ namespace App.Data.Migrations
 			context.SaveChanges();
 		}
 
-		private byte[] LoadAdminProfileImage()
+		private byte[] LoadImageData(string filePath)
 		{
-			string filePath = HttpContext.Current.Server.MapPath("~/App_Data/AdminProfileImage/avatar.jpg");
 			byte[] imageData = File.ReadAllBytes(filePath);
 
 			if (imageData != null && imageData.Length > 0)
