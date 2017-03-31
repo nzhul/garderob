@@ -1450,6 +1450,7 @@
     <Content Include="Views\Shared\_MessagePartial.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Home\Debug.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

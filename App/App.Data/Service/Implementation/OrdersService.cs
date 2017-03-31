@@ -173,6 +173,8 @@ namespace App.Data.Service.Implementation
 			Order newOrder = new Order();
 			newOrder = Mapper.Map(model, newOrder);
 			newOrder.RequestDate = DateTime.UtcNow;
+			newOrder.OfferDate = DateTime.MaxValue;
+			newOrder.CompleteDate = DateTime.MaxValue;
 
 			this.Data.Orders.Add(newOrder);
 			this.Data.SaveChanges();

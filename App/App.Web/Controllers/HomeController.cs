@@ -29,6 +29,11 @@ namespace App.Web.Controllers
 			return View(model);
 		}
 
+		public ActionResult Debug()
+		{
+			return View();
+		}
+
 		[HttpPost]
 		public ActionResult Contact(ContactFormInputModel contactData)
 		{

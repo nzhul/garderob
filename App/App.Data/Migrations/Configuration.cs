@@ -138,7 +138,9 @@
 							Name = fileName,
 							Slug = fileName,
 							BigImage = new Image { ImageData = bigImageData },
-							SmallImage = new Image { ImageData = smallImageData }
+							SmallImage = new Image { ImageData = smallImageData },
+							DateCreated = DateTime.UtcNow,
+							LastModified = DateTime.UtcNow
 						};
 
 						context.Materials.Add(material);
@@ -178,7 +180,9 @@
 						BigImage = new Image { ImageData = bigImageData },
 						SmallImage = new Image { ImageData = smallImageData },
 						LivePreviewFrontImage = new Image { ImageData = liveFrontImageData },
-						LivePreviewBackImage = new Image { ImageData = livebackImageData }
+						LivePreviewBackImage = new Image { ImageData = livebackImageData },
+						DateCreated = DateTime.UtcNow,
+						LastModified = DateTime.UtcNow
 					};
 
 					context.SurfaceMaterials.Add(surfaceMaterial);
@@ -291,7 +295,8 @@
 							Content = fileContents,
 							Title = fileName,
 							Slug = fileName,
-							DateCreated = DateTime.UtcNow
+							DateCreated = DateTime.UtcNow,
+							LastModified = DateTime.UtcNow
 						};
 
 						context.Pages.Add(newPage);

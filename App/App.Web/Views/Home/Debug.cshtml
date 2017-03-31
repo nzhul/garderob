@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Debug";
+}
+
+<h2>Debug</h2>
+
+@{ 
+	string bigImagesFolder = HttpContext.Current.Server.MapPath("~/App_Data/Materials/Surfaces/Big");
+	IEnumerable<string> bigImages = Directory.EnumerateFiles(bigImagesFolder);
+
+	foreach (var item in bigImages)
+	{
+		@:<p>@item</p>
+	}
+}
