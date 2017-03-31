@@ -3,6 +3,7 @@
 	using App.Models;
 	using App.Models.Images;
 	using App.Models.Materials;
+	using App.Models.Orders;
 	using App.Models.Pages;
 	using Microsoft.AspNet.Identity;
 	using Microsoft.AspNet.Identity.EntityFramework;
@@ -39,7 +40,22 @@
 
 		private void InitializeDummyOrders(ApplicationDbContext context)
 		{
-			// not implemented
+			if (!context.Orders.Any() && !context.OrderCategories.Any())
+			{
+				OrderCategory defaultCategory = new OrderCategory
+				{
+					Name = "Други",
+					Slug = "others",
+					Description = "Описание на категорията",
+					DateCreated = DateTime.UtcNow,
+					LastModified = DateTime.UtcNow
+				};
+
+				context.OrderCategories.Add(defaultCategory);
+				context.SaveChanges();
+
+				// Seed some complete orders to use them in gallery page.
+			}
 		}
 
 		private void InitializeMaterials(ApplicationDbContext context)
@@ -50,14 +66,18 @@
 				{
 					Name = "Други",
 					Description = "In this category are placed all materials that do not belong in any other category.",
-					Slug = "others"
+					Slug = "others",
+					DateCreated = DateTime.UtcNow,
+					LastModified = DateTime.UtcNow
 				};
 
 				MaterialCategory surfaceCategory = new MaterialCategory
 				{
 					Name = "Повърхности",
 					Description = "Описание на категорията",
-					Slug = "surfaces"
+					Slug = "surfaces",
+					DateCreated = DateTime.UtcNow,
+					LastModified = DateTime.UtcNow
 				};
 
 				context.MaterialCategories.Add(otherCategory);
@@ -93,6 +113,8 @@
 						Name = folderName,
 						Slug = folderName.ToLower(),
 						Description = folderName + " description",
+						DateCreated = DateTime.UtcNow,
+						LastModified = DateTime.UtcNow
 					};
 
 					context.MaterialCategories.Add(category);
@@ -268,7 +290,7 @@
 						{
 							Content = fileContents,
 							Title = fileName,
-							UrlName = fileName,
+							Slug = fileName,
 							DateCreated = DateTime.UtcNow
 						};
 
@@ -282,7 +304,7 @@
 
 		private bool PageExistsInDatabase(ApplicationDbContext context, string fileName)
 		{
-			if (context.Pages.Any(p => p.UrlName == fileName))
+			if (context.Pages.Any(p => p.Slug == fileName))
 			{
 				return true;
 			}

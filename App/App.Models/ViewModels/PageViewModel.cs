@@ -10,6 +10,6 @@
 
 		public string Content { get; set; }
 
-		public string UrlName { get; set; }
+		public string Slug { get; set; }
 	}
 }

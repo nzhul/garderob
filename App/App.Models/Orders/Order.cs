@@ -33,7 +33,11 @@ namespace App.Models.Orders
 
 		public DateTime CompleteDate { get; set; }
 
+		public DateTime LastModified { get; set; }
+
 		public OrderState State { get; set; }
+
+		public decimal Price { get; set; }
 
 		public virtual ICollection<Image> SketchImages
 		{

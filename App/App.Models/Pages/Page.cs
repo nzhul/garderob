@@ -14,6 +14,8 @@ namespace App.Models.Pages
 
         public DateTime DateCreated { get; set; }
 
-		public string UrlName { get; set; }
+		public DateTime LastModified { get; set; }
+
+		public string Slug { get; set; }
 	}
 }

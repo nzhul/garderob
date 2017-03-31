@@ -17,7 +17,7 @@ namespace App.Web
 
 			routes.MapRoute(
 				name: "pages",
-				url: "{urlName}",
+				url: "{slug}",
 				defaults: new { controller = "Pages", action = "Index" },
 				namespaces: new string[] { "App.Web.Controllers" }
 			);

@@ -1,4 +1,5 @@
 ﻿using App.Models.Images;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Models.Materials
@@ -20,5 +21,8 @@ namespace App.Models.Materials
 
 		public virtual Image SmallImage { get; set; }
 
+		public DateTime DateCreated { get; set; }
+
+		public DateTime LastModified { get; set; }
 	}
 }

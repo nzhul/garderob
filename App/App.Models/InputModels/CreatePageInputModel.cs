@@ -28,7 +28,7 @@ namespace App.Models.InputModels
         [Display(Name = "Позиция:")]
         public int DisplayOrder { get; set; }
 
-		[Display(Name = "Адрес на страницата (UrlName):")]
-		public string UrlName { get; set; }
+		[Display(Name = "Адрес на страницата (Slug):")]
+		public string Slug { get; set; }
 	}
 }

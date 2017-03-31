@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace App.Models.Materials
@@ -20,6 +21,10 @@ namespace App.Models.Materials
 		public string Description { get; set; }
 
 		public string Slug { get; set; }
+
+		public DateTime DateCreated { get; set; }
+
+		public DateTime LastModified { get; set; }
 
 		public virtual ICollection<Material> Materials
 		{

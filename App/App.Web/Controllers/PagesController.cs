@@ -13,9 +13,9 @@ namespace App.Web.Controllers
 			this.pagesService = pagesService;
 		}
 
-		public ActionResult Index(string urlName)
+		public ActionResult Index(string slug)
 		{
-			PageViewModel model = this.pagesService.GetPageByUrlName(urlName);
+			PageViewModel model = this.pagesService.GetPageBySlug(slug);
 
 			if (model != null)
 			{

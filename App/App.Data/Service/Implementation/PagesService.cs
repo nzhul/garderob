@@ -33,7 +33,7 @@ namespace App.Data.Service.Implementation
 			newPage.Summary = inputModel.Summary;
 			newPage.Content = inputModel.Content;
 			newPage.DateCreated = DateTime.Now;
-			newPage.UrlName = inputModel.UrlName;
+			newPage.Slug = inputModel.Slug;
 
 			this.Data.Pages.Add(newPage);
 			this.Data.SaveChanges();
@@ -69,7 +69,7 @@ namespace App.Data.Service.Implementation
 			model.Title = dbPage.Title;
 			model.Summary = dbPage.Summary;
 			model.Content = dbPage.Content;
-			model.UrlName = dbPage.UrlName;
+			model.Slug = dbPage.Slug;
 
 			return model;
 		}
@@ -83,7 +83,7 @@ namespace App.Data.Service.Implementation
 				dbPage.Title = inputModel.Title;
 				dbPage.Summary = inputModel.Summary;
 				dbPage.Content = inputModel.Content;
-				dbPage.UrlName = inputModel.UrlName;
+				dbPage.Slug = inputModel.Slug;
 
 				this.Data.SaveChanges();
 
@@ -152,9 +152,9 @@ namespace App.Data.Service.Implementation
 			return model;
 		}
 
-		public PageViewModel GetPageByUrlName(string urlName)
+		public PageViewModel GetPageBySlug(string slug)
 		{
-			Page dbPage = this.Data.Pages.All().Where(p => p.UrlName == urlName).FirstOrDefault();
+			Page dbPage = this.Data.Pages.All().Where(p => p.Slug == slug).FirstOrDefault();
 
 			PageViewModel model = new PageViewModel();
 
@@ -164,7 +164,7 @@ namespace App.Data.Service.Implementation
 				model.Title = dbPage.Title;
 				model.Summary = dbPage.Summary;
 				model.Content = dbPage.Content;
-				model.UrlName = dbPage.UrlName;
+				model.Slug = dbPage.Slug;
 			}
 			else
 			{

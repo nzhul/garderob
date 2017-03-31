@@ -20,7 +20,7 @@ namespace App.Data.Service.Abstraction
 
 		bool DeletePage(int id);
 
-		PageViewModel GetPageByUrlName(string urlName);
+		PageViewModel GetPageBySlug(string slug);
 
 		PageViewModel GetFeaturedCustomPage(int pageId);
 	}
