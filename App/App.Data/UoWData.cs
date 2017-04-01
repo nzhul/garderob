@@ -3,6 +3,7 @@ using App.Models;
 using App.Models.Materials;
 using App.Models.Orders;
 using App.Models.Pages;
+using App.Models.Testimonials;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -84,6 +85,14 @@ namespace App.Data
 			get
 			{
 				return this.GetRepository<MaterialCategory>();
+			}
+		}
+
+		public IRepository<Testimonial> Testimonials
+		{
+			get
+			{
+				return this.GetRepository<Testimonial>();
 			}
 		}
 

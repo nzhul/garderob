@@ -1,5 +1,6 @@
 ﻿using App.Data.Service.Abstraction;
 using App.Models.Orders;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace App.Web.Controllers
@@ -8,15 +9,24 @@ namespace App.Web.Controllers
 	public class OrdersController : Controller
 	{
 		private IOrdersService ordersService;
+		private IMaterialsService materialsService;
 
-		public OrdersController(IOrdersService ordersService)
+		public OrdersController(IOrdersService ordersService, IMaterialsService materialsService)
 		{
 			this.ordersService = ordersService;
+			this.materialsService = materialsService;
 		}
 
 		public ActionResult Make()
 		{
-			return this.View();
+			OrderInputModel model = new OrderInputModel
+			{
+				// TODO: do view model in order to skip big images!
+				SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList(),
+				HandlesMaterials = this.materialsService.GetAllMaterials("handles").ToList()
+			};
+
+			return this.View(model);
 		}
 
 		[HttpPost]

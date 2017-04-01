@@ -7,6 +7,13 @@ namespace App.Data.Service.Implementation
 {
 	public class MaterialsService : IMaterialsService
 	{
+		private IUoWData data;
+
+		public MaterialsService(IUoWData data)
+		{
+			this.data = data;
+		}
+
 		public int CreateMaterial(MaterialInputModel model)
 		{
 			throw new NotImplementedException();
@@ -27,9 +34,9 @@ namespace App.Data.Service.Implementation
 			throw new NotImplementedException();
 		}
 
-		public IQueryable<SurfaceMaterial> GetAllSurfaceMaterials()
+		public IQueryable<Material> GetAllMaterials(string materialCategorySlug)
 		{
-			throw new NotImplementedException();
+			return this.data.Materials.All().Where(m => m.Category.Slug == materialCategorySlug);
 		}
 
 		public Material GetMaterial(int id)

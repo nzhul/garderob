@@ -3,6 +3,7 @@ using App.Models;
 using App.Models.Materials;
 using App.Models.Orders;
 using App.Models.Pages;
+using App.Models.Testimonials;
 using System.Data.Entity;
 
 namespace App.Data
@@ -24,6 +25,8 @@ namespace App.Data
 		IRepository<SurfaceMaterial> SurfaceMaterials { get; }
 
 		IRepository<MaterialCategory> MaterialCategories { get; }
+
+		IRepository<Testimonial> Testimonials { get; }
 
 		int SaveChanges();
 	}

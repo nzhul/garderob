@@ -1,5 +1,6 @@
 ﻿using App.Models.Images;
 using App.Models.Materials;
+using App.Models.Testimonials;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,12 +13,14 @@ namespace App.Models.Orders
 		private ICollection<Image> sketchImages;
 		private ICollection<Image> designImages;
 		private ICollection<Image> resultImages;
+		private ICollection<Testimonial> testimonials;
 
 		public Order()
 		{
 			this.sketchImages = new HashSet<Image>();
 			this.designImages = new HashSet<Image>();
 			this.resultImages = new HashSet<Image>();
+			this.testimonials = new HashSet<Testimonial>();
 		}
 
 		[Key]
@@ -57,6 +60,12 @@ namespace App.Models.Orders
 		{
 			get { return this.resultImages; }
 			set { this.resultImages = value; }
+		}
+
+		public virtual ICollection<Testimonial> Testimonials
+		{
+			get { return this.testimonials; }
+			set { this.testimonials = value; }
 		}
 
 		[ForeignKey("Client")]

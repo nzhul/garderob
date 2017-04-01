@@ -17,7 +17,7 @@ namespace App.Data.Service.Abstraction
 
 		IQueryable<Material> GetAllMaterials();
 
-		IQueryable<SurfaceMaterial> GetAllSurfaceMaterials();
+		IQueryable<Material> GetAllMaterials(string materialCategorySlug);
 
 		Material GetMaterial(int id);
 

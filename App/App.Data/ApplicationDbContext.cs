@@ -3,6 +3,7 @@ using App.Models;
 using App.Models.Materials;
 using App.Models.Orders;
 using App.Models.Pages;
+using App.Models.Testimonials;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
@@ -32,5 +33,7 @@ namespace App.Data
 		public IDbSet<SurfaceMaterial> SurfaceMaterials { get; set; }
 
 		public IDbSet<MaterialCategory> MaterialCategories { get; set; }
+
+		public IDbSet<Testimonial> Testimonials { get; set; }
 	}
 }

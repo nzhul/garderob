@@ -5,6 +5,7 @@
 	using App.Models.Materials;
 	using App.Models.Orders;
 	using App.Models.Pages;
+	using App.Models.Testimonials;
 	using Microsoft.AspNet.Identity;
 	using Microsoft.AspNet.Identity.EntityFramework;
 	using System;
@@ -22,6 +23,7 @@
 		private const string adminEmailConfigKey = "adminEmail";
 		private const string adminPasswordConfigKey = "adminPassword";
 		private const string adminPhoneConfigKey = "adminPhone";
+		private ApplicationUser theAdmin;
 
 		public Configuration()
 		{
@@ -82,7 +84,7 @@
 								State = OrderState.Done,
 								OrderText = "-Empty-",
 								OrderCategory = category,
-								Client = null, // Get the admin user here
+								Client = this.theAdmin,
 								BaseMaterial = null,
 								DoorsMaterial = null,
 								FazerMaterial = null,
@@ -91,18 +93,27 @@
 
 							string bigImagePath = imagePath;
 							string smallImagePath = imagePath.Replace("\\Big\\", "\\Small\\");
+
 							byte[] bigImageData = this.LoadImageData(bigImagePath);
 							byte[] smallImageData = this.LoadImageData(smallImagePath);
 
+							order.SketchImages.Add(new Image { Big = bigImageData, Small = smallImageData });
+							order.DesignImages.Add(new Image { Big = bigImageData, Small = smallImageData });
 							order.ResultImages.Add(new Image { Big = bigImageData, Small = smallImageData });
+							order.Testimonials.Add(new Testimonial
+							{
+								Client = this.theAdmin,
+								Rating = 5,
+								Text = "Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.",
+								SubmissionDate = DateTime.UtcNow,
+								IsApproved = true
+							});
 							context.Orders.Add(order);
 						}
 
 						context.SaveChanges();
 					}
 				}
-
-				// Seed some complete orders to use them in gallery page.
 			}
 		}
 
@@ -250,6 +261,7 @@
 				var userStore = new UserStore<ApplicationUser>(context);
 				var userManager = new UserManager<ApplicationUser>(userStore);
 				AdminConfiguration config = this.GetAdminConfiguration();
+				this.theAdmin = context.Users.FirstOrDefault(u => u.Email == config.Email);
 
 				ApplicationUser admin = new ApplicationUser();
 				admin.UserName = config.Email;

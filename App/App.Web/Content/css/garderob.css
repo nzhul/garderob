@@ -357,6 +357,16 @@ ul.leaders {
 			outline-offset: -3px;
 		}
 
+		.order-category img.selected {
+			outline: 3px solid #237dc8;
+			outline-offset: -3px;
+			opacity: 1!important;
+		}
+
+		.order-category img.dimmed {
+			opacity: 0.5;
+		}
+
 i.submit-loading {
 	/*display:none;*/
 }
@@ -890,8 +900,8 @@ i.submit-loading {
 	line-height: 25px;
 	margin-top: 0px;
 	border-top: 0px;
-	position:relative;
-	z-index:2;
+	position: relative;
+	z-index: 2;
 }
 
 	.profile-container label#profile-image-input-label:hover, .profile-container label#profile-image-input-label:focus {

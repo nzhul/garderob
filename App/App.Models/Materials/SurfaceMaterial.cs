@@ -4,8 +4,8 @@ namespace App.Models.Materials
 {
 	public class SurfaceMaterial : Material
 	{
-		public Image LivePreviewFrontImage { get; set; }
+		public virtual Image LivePreviewFrontImage { get; set; }
 
-		public Image LivePreviewBackImage { get; set; }
+		public virtual Image LivePreviewBackImage { get; set; }
 	}
 }

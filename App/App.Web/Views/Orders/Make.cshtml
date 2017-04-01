@@ -27,7 +27,7 @@
 		OnSuccess = "ContactFormServerSuccess",
 		OnBegin = "ContactFormBegin"
 	},
-		new { @class = "form contact-form alt clearfix", @id = "result" }))
+								new { @class = "form contact-form alt clearfix", @id = "result" }))
 	{
 		<div class="row">
 			<div class="col-md-6">
@@ -68,96 +68,51 @@
 			<div class="col-md-6">
 				<div class="order-category">
 					Плоча за основа:<br />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					@foreach (var material in Model.SurfaceMaterials)
+					{
+						@Html.ByteImage(
+							material.Image.Small,
+							"js-base-surface-material",
+							material.Id.ToString(),
+							material.Name,
+							material.Name)
+					}
 				</div>
 				<div class="order-category">
 					Плоча за врати:<br />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					@foreach (var material in Model.SurfaceMaterials)
+					{
+						@Html.ByteImage(
+							material.Image.Small,
+							"js-door-surface-material",
+							material.Id.ToString(),
+							material.Name,
+							material.Name)
+					}
 				</div>
 				<div class="order-category">
 					Фазер:<br />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/01-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/02-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/03-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/04-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/05-material.jpg" alt="Материал" />
-					<img src="~/content/img/order/materials/06-material.jpg" alt="Материал" />
+					@foreach (var material in Model.SurfaceMaterials)
+					{
+						@Html.ByteImage(
+							material.Image.Small,
+							"js-fazer-surface-material",
+							material.Id.ToString(),
+							material.Name,
+							material.Name)
+					}
 				</div>
 				<div class="order-category">
 					Дръжки:<br />
-					<img src="~/content/img/order/materials/handle01.jpg" alt="Дръжка" />
-					<img src="~/content/img/order/materials/handle02.jpg" alt="Дръжка" />
-					<img src="~/content/img/order/materials/handle03.jpg" alt="Дръжка" />
-					<img src="~/content/img/order/materials/handle04.jpg" alt="Дръжка" />
-					<img src="~/content/img/order/materials/handle05.jpg" alt="Дръжка" />
-					<img src="~/content/img/order/materials/handle06.jpg" alt="Дръжка" />
-					<img src="~/content/img/order/materials/handle07.jpg" alt="Дръжка" />
-					<img src="~/content/img/order/materials/handle08.jpg" alt="Дръжка" />
-					<img src="~/content/img/order/materials/handle09.jpg" alt="Дръжка" />
+					@foreach (var material in Model.HandlesMaterials)
+					{
+						@Html.ByteImage(
+							material.Image.Small,
+							"js-handle-material",
+							material.Id.ToString(),
+							material.Name,
+							material.Name)
+					}
 				</div>
 			</div>
 		</div>
@@ -170,7 +125,7 @@
 	}
 	<div class="row mt-50">
 		<div class="col-md-12">
-			<p>* След като дадете Вашия проект, до 24 часа ние ще се свържем с Вас за неговото уточняване, след което ще Ви пратим по email как ще изглежда Вашия готов проект и колко точно ще Ви струва той.</p>
+			<p>* След като дадете Вашия проект, до 24 часа ние ще се свържем с Вас за неговото уточняване, след което ще Ви пратим по email как ще изглежда Вашия готов проект и колко точно ще Ви струва той.</p>
 		</div>
 	</div>
 </div>
@@ -182,6 +137,13 @@
 	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 	<script>
+		$(document).ready(function () {
+			$('[data-toggle="tooltip"]').tooltip({
+				animated: 'fade',
+				html: true
+			});
+		})
+
 		function ContactFormServerFail(data) {
 			var alertBox = $('.widget-contact-form .alert.alert-danger');
 			alertBox.show();
@@ -208,6 +170,37 @@
 
 		function ContactFormBegin() {
 			$('.cs-loader').show();
+		}
+
+		// Surface selection logic
+		$(document).ready(function () {
+			updateHiddenInput('.js-base-surface-material', '#BaseMaterialId');
+			updateHiddenInput('.js-door-surface-material', '#DoorsMaterialId');
+			updateHiddenInput('.js-fazer-surface-material', '#FazerMaterialId');
+			updateHiddenInput('.js-handle-material', '#HandlesMaterialId');
+		});
+
+		function updateHiddenInput(materialClassNameSelector, inputIdSelector) {
+			var baseSurfaceMaterials = $(materialClassNameSelector);
+			var baseMaterialIdInput = $(inputIdSelector);
+
+			for (var i = 0; i < baseSurfaceMaterials.length; i++) {
+				$(baseSurfaceMaterials[i]).on('click', function () {
+					var material = $(this);
+					var materialId = material.attr('id');
+					baseMaterialIdInput.val(parseInt(materialId));
+					dimMaterials(baseSurfaceMaterials);
+					material.addClass('selected');
+				});
+			}
+		}
+
+		function dimMaterials(materials) {
+			for (var i = 0; i < materials.length; i++) {
+				var material = $(materials[i]);
+				material.addClass('dimmed');
+				material.removeClass('selected');
+			}
 		}
 	</script>
 }

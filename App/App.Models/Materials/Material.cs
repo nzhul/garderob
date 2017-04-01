@@ -15,9 +15,9 @@ namespace App.Models.Materials
 		[ForeignKey("Category")]
 		public int CategoryId { get; set; }
 
-		public MaterialCategory Category { get; set; }
+		public virtual MaterialCategory Category { get; set; }
 
-		public Image Image { get; set; }
+		public virtual Image Image { get; set; }
 
 		public DateTime DateCreated { get; set; }
 
