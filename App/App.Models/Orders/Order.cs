@@ -25,6 +25,8 @@ namespace App.Models.Orders
 
 		public string Title { get; set; }
 
+		public string Slug { get; set; }
+
 		public string OrderText { get; set; }
 
 		public DateTime RequestDate { get; set; }

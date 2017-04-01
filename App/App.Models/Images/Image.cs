@@ -7,6 +7,8 @@ namespace App.Models.Images
 		[Key]
 		public int Id { get; set; }
 
-		public byte[] ImageData { get; set; }
+		public byte[] Big { get; set; }
+
+		public byte[] Small { get; set; }
 	}
 }

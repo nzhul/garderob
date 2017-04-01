@@ -23,7 +23,6 @@
 		private const string adminPasswordConfigKey = "adminPassword";
 		private const string adminPhoneConfigKey = "adminPhone";
 
-		static Random rand = new Random();
 		public Configuration()
 		{
 			AutomaticMigrationsEnabled = true;
@@ -42,17 +41,66 @@
 		{
 			if (!context.Orders.Any() && !context.OrderCategories.Any())
 			{
-				OrderCategory defaultCategory = new OrderCategory
+				if (HttpContext.Current != null)
 				{
-					Name = "Други",
-					Slug = "others",
-					Description = "Описание на категорията",
-					DateCreated = DateTime.UtcNow,
-					LastModified = DateTime.UtcNow
-				};
+					string ordersFolder = HttpContext.Current.Server.MapPath("~/App_Data/Orders");
+					IEnumerable<string> subFolders = Directory.EnumerateDirectories(ordersFolder);
 
-				context.OrderCategories.Add(defaultCategory);
-				context.SaveChanges();
+					foreach (string folderPath in subFolders)
+					{
+						string folderName = new DirectoryInfo(folderPath).Name;
+
+						OrderCategory category = new OrderCategory
+						{
+							Name = folderName,
+							Slug = folderName,
+							Description = folderName + " description",
+							DateCreated = DateTime.UtcNow,
+							LastModified = DateTime.UtcNow
+						};
+
+						context.OrderCategories.Add(category);
+						context.SaveChanges();
+
+						string bigFolderPath = Path.Combine(folderPath, "Big");
+
+						IEnumerable<string> bigImagePaths = Directory.EnumerateFiles(bigFolderPath);
+
+						foreach (var imagePath in bigImagePaths)
+						{
+							string fileName = Path.GetFileNameWithoutExtension(imagePath);
+
+							Order order = new Order
+							{
+								RequestDate = DateTime.UtcNow,
+								CompleteDate = DateTime.UtcNow,
+								OfferDate = DateTime.UtcNow,
+								LastModified = DateTime.UtcNow,
+								Title = fileName,
+								Slug = fileName,
+								Price = 0,
+								State = OrderState.Done,
+								OrderText = "-Empty-",
+								OrderCategory = category,
+								Client = null, // Get the admin user here
+								BaseMaterial = null,
+								DoorsMaterial = null,
+								FazerMaterial = null,
+								HandlesMaterial = null,
+							};
+
+							string bigImagePath = imagePath;
+							string smallImagePath = imagePath.Replace("\\Big\\", "\\Small\\");
+							byte[] bigImageData = this.LoadImageData(bigImagePath);
+							byte[] smallImageData = this.LoadImageData(smallImagePath);
+
+							order.ResultImages.Add(new Image { Big = bigImageData, Small = smallImageData });
+							context.Orders.Add(order);
+						}
+
+						context.SaveChanges();
+					}
+				}
 
 				// Seed some complete orders to use them in gallery page.
 			}
@@ -105,7 +153,6 @@
 					}
 
 					string bigFolderPath = Path.Combine(folderPath, "Big");
-					string smallFolderPath = Path.Combine(folderPath, "Small");
 
 					// Create new material category based on folder name
 					MaterialCategory category = new MaterialCategory
@@ -137,8 +184,7 @@
 							CategoryId = category.Id,
 							Name = fileName,
 							Slug = fileName,
-							BigImage = new Image { ImageData = bigImageData },
-							SmallImage = new Image { ImageData = smallImageData },
+							Image = new Image { Big = bigImageData, Small = smallImageData },
 							DateCreated = DateTime.UtcNow,
 							LastModified = DateTime.UtcNow
 						};
@@ -177,10 +223,9 @@
 						CategoryId = surfaceCategoryId,
 						Name = fileName,
 						Slug = fileName,
-						BigImage = new Image { ImageData = bigImageData },
-						SmallImage = new Image { ImageData = smallImageData },
-						LivePreviewFrontImage = new Image { ImageData = liveFrontImageData },
-						LivePreviewBackImage = new Image { ImageData = livebackImageData },
+						Image = new Image { Big = bigImageData, Small = smallImageData },
+						LivePreviewFrontImage = new Image { Big = liveFrontImageData },
+						LivePreviewBackImage = new Image { Big = livebackImageData },
 						DateCreated = DateTime.UtcNow,
 						LastModified = DateTime.UtcNow
 					};
