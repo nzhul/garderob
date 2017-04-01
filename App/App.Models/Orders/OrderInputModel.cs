@@ -25,21 +25,23 @@ namespace App.Models.Orders
 		public string OrderText { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
+		[Range(1, int.MaxValue, ErrorMessage = "Invalid")]
 		public int BaseMaterialId { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
+		[Range(1, int.MaxValue)]
 		public int DoorsMaterialId { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
+		[Range(1, int.MaxValue)]
 		public int FazerMaterialId { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
+		[Range(1, int.MaxValue)]
 		public int HandlesMaterialId { get; set; }
 
-		[Required]
 		public string ClientId { get; set; }
 
-		[Required]
 		public int OrderCategoryId { get; set; } // Pass default value of 0 = "Other"
 	}
 }

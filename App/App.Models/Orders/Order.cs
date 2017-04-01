@@ -78,12 +78,14 @@ namespace App.Models.Orders
 
 		public virtual OrderCategory OrderCategory { get; set; }
 
-		public Material BaseMaterial { get; set; }
 
-		public Material DoorsMaterial { get; set; }
+		//?? ForeignKeys do not work here for some reason
+		public virtual Material BaseMaterial { get; set; } 
 
-		public Material FazerMaterial { get; set; }
+		public virtual Material DoorsMaterial { get; set; }
 
-		public Material HandlesMaterial { get; set; }
+		public virtual Material FazerMaterial { get; set; }
+
+		public virtual Material HandlesMaterial { get; set; }
 	}
 }

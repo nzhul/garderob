@@ -20,6 +20,8 @@ namespace App.Data.Service.Abstraction
 
 		OrderCategory GetOrderCategoryById(int id);
 
+		OrderCategory GetOrderCategoryBySlug(string slug);
+
 		bool UpdateOrderCategory(int id, OrderCategoryInputModel inputModel);
 
 		bool DeleteOrderCategory(int id); // do cannonical delete for all orders in that category OR transfer all orders into "Unknown" category

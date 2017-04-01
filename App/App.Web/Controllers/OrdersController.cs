@@ -1,5 +1,7 @@
 ﻿using App.Data.Service.Abstraction;
+using App.Models;
 using App.Models.Orders;
+using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -10,11 +12,16 @@ namespace App.Web.Controllers
 	{
 		private IOrdersService ordersService;
 		private IMaterialsService materialsService;
+		private IClientsService clientsService;
 
-		public OrdersController(IOrdersService ordersService, IMaterialsService materialsService)
+		public OrdersController(
+			IOrdersService ordersService, 
+			IMaterialsService materialsService,
+			IClientsService clientsService)
 		{
 			this.ordersService = ordersService;
 			this.materialsService = materialsService;
+			this.clientsService = clientsService;
 		}
 
 		public ActionResult Make()
@@ -32,8 +39,12 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult Make(OrderInputModel model)
 		{
+			// TODO: Do manual javascript validation for all hidden input fields and uploaded images
 			if (ModelState.IsValid)
 			{
+				ApplicationUser currentUser = this.clientsService.GetUserById(this.User.Identity.GetUserId());
+				model.ClientId = currentUser.Id;
+				model.OrderCategoryId = this.ordersService.GetOrderCategoryBySlug("standard-wardrobes").Id;
 				int newPageId = this.ordersService.MakeOrder(model);
 				if (newPageId > 0)
 				{

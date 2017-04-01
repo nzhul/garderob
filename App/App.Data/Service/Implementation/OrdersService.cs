@@ -154,6 +154,11 @@ namespace App.Data.Service.Implementation
 			return this.Data.OrderCategories.Find(id);
 		}
 
+		public OrderCategory GetOrderCategoryBySlug(string slug)
+		{
+			return this.Data.OrderCategories.All().Where(c => c.Slug == slug).FirstOrDefault();
+		}
+
 		public IQueryable<Order> GetOrdersByCategory(string category)
 		{
 			return this.Data.Orders.All().Where(o => o.OrderCategory.Name == category);
@@ -166,15 +171,12 @@ namespace App.Data.Service.Implementation
 
 		public int MakeOrder(OrderInputModel model)
 		{
-			// Check what happens with ClientId and OrderId. They are required
-			// If the client id is not automaticaly mapped - use the provided cliendId from the model. Find the user in the database and assign it ot "Client" property
-			// It must be set to default "Other" category, and later the admin can change the category from the backend
-
 			Order newOrder = new Order();
-			newOrder = Mapper.Map(model, newOrder);
+			newOrder = Mapper.Map(model, newOrder); //TODO: See what happens with BaseMaterialId, FazermaterialId and the others. Probably we will need manual Mapping
 			newOrder.RequestDate = DateTime.UtcNow;
 			newOrder.OfferDate = DateTime.MaxValue;
 			newOrder.CompleteDate = DateTime.MaxValue;
+			newOrder.LastModified = DateTime.UtcNow;
 
 			this.Data.Orders.Add(newOrder);
 			this.Data.SaveChanges();
