@@ -44,8 +44,8 @@ namespace App.Web.Controllers
 				ApplicationUser currentUser = this.clientsService.GetUserById(this.User.Identity.GetUserId());
 				model.ClientId = currentUser.Id;
 				model.OrderCategoryId = this.ordersService.GetOrderCategoryBySlug("standard-wardrobes").Id;
-				int newPageId = this.ordersService.MakeOrder(model);
-				if (newPageId > 0)
+				int orderId = this.ordersService.MakeOrder(model);
+				if (orderId > 0)
 				{
 					return this.RedirectToAction("Success");
 				}

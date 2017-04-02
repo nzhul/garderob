@@ -17,7 +17,7 @@ namespace App.Data.Service.Abstraction
 
 		bool UpdateClient(string id, EditClientInputModel inputModel);
 
-		byte[] UploadProfileImage(HttpPostedFile uploadedImage, string userId);
+		byte[] UploadProfileImage(HttpPostedFileBase uploadedImage, string userId);
 
 		int GetUsersCount();
 

@@ -21,7 +21,7 @@
 			<p class="text-center mb-0">Преди да качите вашия проект, вие може да видите как ще изглеждат избраните от вас декоративни плоскости <a href="#">ТУК</a>, както и да сметнете с нашия калкулатор колко приблизително ще Ви излезе проекта <a href="#">ТУК</a>. Не е нужно да имате регистрация за да обработим вашият проект, но за да пристъпим към неговата реализация, трябва да се регистрирате <a href="#">ТУК</a>.</p>
 		</div>
 	</div>
-	@using (Html.BeginForm("Make", "Orders", FormMethod.Post, new { @class = "form contact-form alt clearfix" }))
+	@using (Html.BeginForm("Make", "Orders", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form contact-form alt clearfix" }))
 	{
 		<div class="row">
 			<div class="col-md-6">
@@ -41,6 +41,12 @@
 				@Html.TextBoxFor(model => model.DoorsMaterialId, "", new { @class = "concealed" })
 				@Html.TextBoxFor(model => model.FazerMaterialId, "", new { @class = "concealed" })
 				@Html.TextBoxFor(model => model.HandlesMaterialId, "", new { @class = "concealed" })
+
+				<label for="sketches-input" class="custom-sketches-input">
+					<i class="fa fa-cloud-upload"></i> Custom Upload
+				</label>
+				<input type="file" id="sketches-input" name="PostedSketches" multiple />
+				@Html.ValidationMessageFor(model => model.PostedSketches, "", new { @class = "text-danger" })
 				<br />
 				<div class="dropzone-container">
 					<img src="~/content/img/order/drop-sketches-icon.png" alt="Пусни скиците тук - иконка" />

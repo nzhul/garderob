@@ -955,9 +955,23 @@ i.submit-loading {
 
 /*Profile end*/
 
+/*Orders form*/
+/*input[type=file]#sketches-input {
+	display: none;
+}*/
+
+label.custom-sketches-input {
+	border: 1px solid #ccc;
+	display: inline-block;
+	padding: 6px 12px;
+	cursor: pointer;
+}
+/*Orders form end*/
 .concealed {
 	visibility: hidden;
 	width: 1% !important;
 	height: 1% !important;
-	line-height: 0px!important;
+	line-height: 0px !important;
+	position: absolute;
+	top: -99999px;
 }

@@ -68,7 +68,7 @@ namespace App.Data.Service.Implementation
 			this.Data.SaveChanges();
 		}
 
-		public byte[] UploadProfileImage(HttpPostedFile uploadedImage, string userId)
+		public byte[] UploadProfileImage(HttpPostedFileBase uploadedImage, string userId)
 		{
 			MemoryStream stream = new MemoryStream();
 

@@ -178,6 +178,11 @@ namespace App.Data.Service.Implementation
 			newOrder.CompleteDate = DateTime.MaxValue;
 			newOrder.LastModified = DateTime.UtcNow;
 
+			// TODO: get all images from model.PostedSketches (they are valid already)
+			// do crop job with ImageResizer
+			// Create new Image ( small and big )
+			// Add the images in newOrder.SketchImages !
+
 			this.Data.Orders.Add(newOrder);
 			this.Data.SaveChanges();
 

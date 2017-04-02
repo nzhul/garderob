@@ -1,4 +1,5 @@
 ﻿using App.Models.Materials;
+using App.Models.ValidationAttributes;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
@@ -7,6 +8,7 @@ namespace App.Models.Orders
 {
 	public class OrderInputModel
 	{
+		[RequireImageFile(MissingFileErrorMessage = " * Задължително качете поне една скица!", InvalidFileErrorMessage = "Невалиден файл!")]
 		public List<HttpPostedFileBase> PostedSketches { get; set; }
 
 		public IList<Material> SurfaceMaterials { get; set; }

@@ -126,7 +126,7 @@ namespace App.Web.Controllers
 		{
 			if (System.Web.HttpContext.Current.Request.Files.AllKeys.Any())
 			{
-				HttpPostedFile uploadedImage = System.Web.HttpContext.Current.Request.Files["ProfileImage"];
+				HttpPostedFileBase uploadedImage = new HttpPostedFileWrapper(System.Web.HttpContext.Current.Request.Files["ProfileImage"]);
 
 				if (uploadedImage.IsImage())
 				{

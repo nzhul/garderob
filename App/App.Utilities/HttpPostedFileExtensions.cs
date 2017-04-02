@@ -9,7 +9,7 @@ namespace Utilities
 	{
 		public const int ImageMinimumBytes = 512;
 
-		public static bool IsImage(this HttpPostedFile postedFile)
+		public static bool IsImage(this HttpPostedFileBase postedFile)
 		{
 			//-------------------------------------------
 			//  Check the image mime types
