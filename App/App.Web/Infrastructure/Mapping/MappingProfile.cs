@@ -14,14 +14,10 @@ namespace App.Web.Infrastructure.Mapping
 			CreateMap<Page, PageViewModel>();
 			CreateMap<ApplicationUser, EditClientInputModel>().ForMember(x => x.Phone, opt => opt.MapFrom(u => u.PhoneNumber));
 			CreateMap<EditClientInputModel, ApplicationUser>().ForMember(x => x.PhoneNumber, opt => opt.MapFrom(u => u.Phone));
-			CreateMap<OrderInputModel, Order>();
+			CreateMap<OrderInputModel, Order>().ForMember(x => x.Slug, opt => opt.MapFrom(u => u.Title.ToLower()));
 
-			//Mapper.Initialize(cfg => cfg.CreateMap<Page, PageViewModel>());
-			//Mapper.Initialize(cfg => cfg.CreateMap<ApplicationUser, EditClientInputModel>());
-			//Mapper.Initialize(
-			//	cfg => cfg.CreateMap<ApplicationUser, ApplicationUser>()
-			//	.ForMember(x => x.Id, opt => opt.Ignore())
-			//	.ForMember(x => x.PasswordHash, opt => opt.Ignore()));
+			//TODO: use slugify for OrderInputModel to Order mapping -> Slug
+			// http://stackoverflow.com/questions/2920744/url-slugify-algorithm-in-c
 		}
 	}
 }

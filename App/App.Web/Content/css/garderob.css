@@ -27,6 +27,15 @@ label {
 	color: #a9a9a9;
 }
 
+/*Bootstrap modifications*/
+.panel {
+	border-radius: 0px;
+}
+.panel-heading {
+	 border-top-left-radius: 0px; 
+	 border-top-right-radius: 0px; 
+}
+/*Bootstrap modifications end*/
 /*Navigation*/
 .inner-nav.desktop-nav ul li .mn-sub li > a {
 	font-size: 13px;
@@ -360,7 +369,7 @@ ul.leaders {
 		.order-category img.selected {
 			outline: 3px solid #237dc8;
 			outline-offset: -3px;
-			opacity: 1!important;
+			opacity: 1 !important;
 		}
 
 		.order-category img.dimmed {
@@ -945,3 +954,10 @@ i.submit-loading {
 	}
 
 /*Profile end*/
+
+.concealed {
+	visibility: hidden;
+	width: 1% !important;
+	height: 1% !important;
+	line-height: 0px!important;
+}

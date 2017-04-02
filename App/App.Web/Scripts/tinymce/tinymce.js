@@ -28794,7 +28794,6 @@ define("tinymce/Editor", [
 			}
 
 			// Create iframe
-			// TODO: ACC add the appropriate description on this.
 			var ifr = DOM.create('iframe', {
 				id: self.id + "_ifr",
 				//src: url || 'javascript:""', // Workaround for HTTPS warning in IE6/7

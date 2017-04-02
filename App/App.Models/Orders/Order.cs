@@ -80,12 +80,17 @@ namespace App.Models.Orders
 
 
 		//?? ForeignKeys do not work here for some reason
-		public virtual Material BaseMaterial { get; set; } 
 
+		public int? BaseMaterialId { get; set; }
+		public virtual Material BaseMaterial { get; set; }
+
+		public int? DoorsMaterialId { get; set; }
 		public virtual Material DoorsMaterial { get; set; }
 
+		public int? FazerMaterialId { get; set; }
 		public virtual Material FazerMaterial { get; set; }
 
+		public int? HandlesMaterialId { get; set; }
 		public virtual Material HandlesMaterial { get; set; }
 	}
 }

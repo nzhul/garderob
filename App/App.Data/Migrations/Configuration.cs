@@ -85,10 +85,10 @@
 								OrderText = "-Empty-",
 								OrderCategory = category,
 								Client = this.theAdmin,
-								BaseMaterial = null,
-								DoorsMaterial = null,
-								FazerMaterial = null,
-								HandlesMaterial = null,
+								BaseMaterial = context.SurfaceMaterials.FirstOrDefault(),
+								DoorsMaterial = context.SurfaceMaterials.FirstOrDefault(),
+								FazerMaterial = context.SurfaceMaterials.FirstOrDefault(),
+								HandlesMaterial = context.Materials.FirstOrDefault()
 							};
 
 							string bigImagePath = imagePath;

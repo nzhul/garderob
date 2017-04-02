@@ -172,7 +172,7 @@ namespace App.Data.Service.Implementation
 		public int MakeOrder(OrderInputModel model)
 		{
 			Order newOrder = new Order();
-			newOrder = Mapper.Map(model, newOrder); //TODO: See what happens with BaseMaterialId, FazermaterialId and the others. Probably we will need manual Mapping
+			newOrder = Mapper.Map(model, newOrder);
 			newOrder.RequestDate = DateTime.UtcNow;
 			newOrder.OfferDate = DateTime.MaxValue;
 			newOrder.CompleteDate = DateTime.MaxValue;

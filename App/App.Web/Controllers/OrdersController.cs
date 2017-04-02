@@ -39,7 +39,6 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult Make(OrderInputModel model)
 		{
-			// TODO: Do manual javascript validation for all hidden input fields and uploaded images
 			if (ModelState.IsValid)
 			{
 				ApplicationUser currentUser = this.clientsService.GetUserById(this.User.Identity.GetUserId());
@@ -48,15 +47,22 @@ namespace App.Web.Controllers
 				int newPageId = this.ordersService.MakeOrder(model);
 				if (newPageId > 0)
 				{
-					TempData["message"] = "Заявката беше направена успешно!";
-					TempData["messageType"] = "success";
-					return View(model);
+					return this.RedirectToAction("Success");
 				}
 			}
 
 			TempData["message"] = "Невалидни данни!<br/> Моля попълнете <strong>всички</strong> задължителни полета!";
 			TempData["messageType"] = "danger";
+
+			model.SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList();
+			model.HandlesMaterials = this.materialsService.GetAllMaterials("handles").ToList();
+
 			return View(model);
+		}
+
+		public ActionResult Success()
+		{
+			return this.View();
 		}
 	}
 }

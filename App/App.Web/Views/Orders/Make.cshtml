@@ -21,13 +21,7 @@
 			<p class="text-center mb-0">Преди да качите вашия проект, вие може да видите как ще изглеждат избраните от вас декоративни плоскости <a href="#">ТУК</a>, както и да сметнете с нашия калкулатор колко приблизително ще Ви излезе проекта <a href="#">ТУК</a>. Не е нужно да имате регистрация за да обработим вашият проект, но за да пристъпим към неговата реализация, трябва да се регистрирате <a href="#">ТУК</a>.</p>
 		</div>
 	</div>
-	@using (Ajax.BeginForm("Make", "Orders", null, new AjaxOptions
-	{
-		OnFailure = "ContactFormServerFail",
-		OnSuccess = "ContactFormServerSuccess",
-		OnBegin = "ContactFormBegin"
-	},
-		new { @class = "form contact-form alt clearfix", @id = "result" }))
+	@using (Html.BeginForm("Make", "Orders", FormMethod.Post, new { @class = "form contact-form alt clearfix" }))
 	{
 		<div class="row">
 			<div class="col-md-6">
@@ -43,21 +37,11 @@
 				@Html.LabelFor(model => model.OrderText) @Html.ValidationMessageFor(model => model.OrderText, "", new { @class = "text-danger" })
 				@Html.EditorFor(model => model.OrderText)
 
-				@Html.HiddenFor(model => model.BaseMaterialId)
-				@Html.HiddenFor(model => model.DoorsMaterialId)
-				@Html.HiddenFor(model => model.FazerMaterialId)
-				@Html.HiddenFor(model => model.HandlesMaterialId)
+				@Html.TextBoxFor(model => model.BaseMaterialId, "", new { @class = "concealed" })
+				@Html.TextBoxFor(model => model.DoorsMaterialId, "", new { @class = "concealed" })
+				@Html.TextBoxFor(model => model.FazerMaterialId, "", new { @class = "concealed" })
+				@Html.TextBoxFor(model => model.HandlesMaterialId, "", new { @class = "concealed" })
 				<br />
-				<div class="cs-loader">
-					<div class="cs-loader-inner">
-						<label>	●</label>
-						<label>	●</label>
-						<label>	●</label>
-						<label>	●</label>
-						<label>	●</label>
-						<label>	●</label>
-					</div>
-				</div>
 				<div class="dropzone-container">
 					<img src="~/content/img/order/drop-sketches-icon.png" alt="Пусни скиците тук - иконка" />
 					<a href="#" class="cws-button white">Пуснете скиците тук</a>
@@ -67,7 +51,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="order-category">
-					Плоча за основа:<br />
+					Плоча за основа: @Html.ValidationMessageFor(model => model.BaseMaterialId, "", new { @class = "text-danger" })<br />
 					@foreach (var material in Model.SurfaceMaterials)
 					{
 						@Html.ByteImage(
@@ -79,7 +63,7 @@
 					}
 				</div>
 				<div class="order-category">
-					Плоча за врати:<br />
+					Плоча за врати: @Html.ValidationMessageFor(model => model.DoorsMaterialId, "", new { @class = "text-danger" })<br />
 					@foreach (var material in Model.SurfaceMaterials)
 					{
 						@Html.ByteImage(
@@ -91,7 +75,7 @@
 					}
 				</div>
 				<div class="order-category">
-					Фазер:<br />
+					Фазер: @Html.ValidationMessageFor(model => model.FazerMaterialId, "", new { @class = "text-danger" })<br />
 					@foreach (var material in Model.SurfaceMaterials)
 					{
 						@Html.ByteImage(
@@ -103,7 +87,7 @@
 					}
 				</div>
 				<div class="order-category">
-					Дръжки:<br />
+					Дръжки: @Html.ValidationMessageFor(model => model.HandlesMaterialId, "", new { @class = "text-danger" })<br />
 					@foreach (var material in Model.HandlesMaterials)
 					{
 						@Html.ByteImage(
@@ -119,7 +103,17 @@
 		<hr class="mt-60 mb-60" />
 		<div class="row">
 			<div class="col-md-12">
-				<button type="submit" style="width:50%;margin:0 auto;display:block;" class="cws-button alt">Изпрати</button>
+				<div class="cs-loader">
+					<div class="cs-loader-inner">
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+					</div>
+				</div>
+				<button type="submit" id="order-submit-form-button" style="width:50%;margin:0 auto;display:block;" class="cws-button alt">Изпрати</button>
 			</div>
 		</div>
 	}
@@ -142,54 +136,71 @@
 				animated: 'fade',
 				html: true
 			});
-		})
-
-		function ContactFormServerFail(data) {
-			var alertBox = $('.widget-contact-form .alert.alert-danger');
-			alertBox.show();
-			$('.cs-loader').hide();
-		}
-
-		function ContactFormServerSuccess(data) {
-			$('.cs-loader').hide();
-			if (data.Status === "InvalidModel") {
-				console.log('Please update your data and try again');
-				var warningBox = $('.widget-contact-form .alert.alert-warning');
-				warningBox.show();
-			}
-
-			if (data.Status === 'Success') {
-				console.log('Show succeess message');
-				var result = $('#result');
-				result.hide();
-
-				var successBox = $('.widget-contact-form .alert.alert-success');
-				successBox.show();
-			}
-		}
+		});
 
 		function ContactFormBegin() {
 			$('.cs-loader').show();
 		}
 
-		// Surface selection logic
+		// MarkSelected material on load
 		$(document).ready(function () {
-			updateHiddenInput('.js-base-surface-material', '#BaseMaterialId');
-			updateHiddenInput('.js-door-surface-material', '#DoorsMaterialId');
-			updateHiddenInput('.js-fazer-surface-material', '#FazerMaterialId');
-			updateHiddenInput('.js-handle-material', '#HandlesMaterialId');
+			var baseInput = $('#BaseMaterialId');
+			var doorInput = $('#DoorsMaterialId');
+			var fazerInput = $('#FazerMaterialId');
+			var handleInput = $('#HandlesMaterialId');
+
+			var baseMaterials = $('.js-base-surface-material');
+			var doorMaterials = $('.js-door-surface-material');
+			var fazerMaterials = $('.js-fazer-surface-material');
+			var handleMaterials = $('.js-handle-material');
+
+			initializeMaterialsState(baseMaterials, baseInput);
+			initializeMaterialsState(doorMaterials, doorInput);
+			initializeMaterialsState(fazerMaterials, fazerInput);
+			initializeMaterialsState(handleMaterials, handleInput);
+
+			// Surface selection logic
+			updateHiddenInput(baseMaterials, baseInput);
+			updateHiddenInput(doorMaterials, doorInput);
+			updateHiddenInput(fazerMaterials, fazerInput);
+			updateHiddenInput(handleMaterials, handleInput);
+
+			//var submitBtn = $('#order-submit-form-button');
+			//submitBtn.on('click', function () {
+			//	////using the form as the jQuery selector (recommended)
+			//	//$('form').submit(function (evt) {
+			//	//	evt.preventDefault();
+			//	//	var $form = $(this);
+			//	//	if ($form.valid()) {
+			//	//		//Ajax call here
+			//	//	}
+			//	//});
+
+
+			//});
+
+			//using the click event on the submit button
+			$('#order-submit-form-button').click(function (evt) {
+				var $form = $('form.contact-form');
+				var btn = $(this);
+				if ($form.valid()) {
+					// the form is valid 
+					// dim out and disable the submit button to prevent multiple sends
+					btn.attr('disabled', 'disabled');
+					btn.css('opacity', '0.5');
+					$('.cs-loader').show();
+					$form.submit();
+				}
+			});
 		});
 
-		function updateHiddenInput(materialClassNameSelector, inputIdSelector) {
-			var baseSurfaceMaterials = $(materialClassNameSelector);
-			var baseMaterialIdInput = $(inputIdSelector);
-
-			for (var i = 0; i < baseSurfaceMaterials.length; i++) {
-				$(baseSurfaceMaterials[i]).on('click', function () {
+		function updateHiddenInput(materials, inputElement) {
+			for (var i = 0; i < materials.length; i++) {
+				$(materials[i]).on('click', function () {
 					var material = $(this);
 					var materialId = material.attr('id');
-					baseMaterialIdInput.val(parseInt(materialId));
-					dimMaterials(baseSurfaceMaterials);
+					inputElement.val(parseInt(materialId));
+					dimMaterials(materials);
 					material.addClass('selected');
 				});
 			}
@@ -202,5 +213,18 @@
 				material.removeClass('selected');
 			}
 		}
+
+		function initializeMaterialsState(materials, inputElement) {
+			if (inputElement.val() >= 1) {
+				var element = $.grep(materials, function (e) {
+					return $(e).attr('id') == inputElement.val();
+				});
+
+				dimMaterials(materials);
+				$(element).addClass('selected');
+			}
+		}
+
+
 	</script>
 }

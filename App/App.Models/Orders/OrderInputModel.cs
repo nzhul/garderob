@@ -25,19 +25,19 @@ namespace App.Models.Orders
 		public string OrderText { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
-		[Range(1, int.MaxValue, ErrorMessage = "Invalid")]
+		[Range(1, int.MaxValue, ErrorMessage = " * Задължително!")]
 		public int BaseMaterialId { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
-		[Range(1, int.MaxValue)]
+		[Range(1, int.MaxValue, ErrorMessage = " * Задължително!")]
 		public int DoorsMaterialId { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
-		[Range(1, int.MaxValue)]
+		[Range(1, int.MaxValue, ErrorMessage = " * Задължително!")]
 		public int FazerMaterialId { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
-		[Range(1, int.MaxValue)]
+		[Range(1, int.MaxValue, ErrorMessage = " * Задължително!")]
 		public int HandlesMaterialId { get; set; }
 
 		public string ClientId { get; set; }
