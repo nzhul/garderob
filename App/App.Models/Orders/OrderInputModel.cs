@@ -8,7 +8,7 @@ namespace App.Models.Orders
 {
 	public class OrderInputModel
 	{
-		[RequireImageFile(MissingFileErrorMessage = " * Задължително качете поне една скица!", InvalidFileErrorMessage = " * Невалиден файл!")]
+		[RequireImageFile(MissingFileErrorMessage = " * Задължително качете поне една скица!", InvalidFileErrorMessage = " * Невалиден файл! Позволени са само: .jpg, .png и .gif")]
 		public List<HttpPostedFileBase> PostedSketches { get; set; }
 
 		public IList<Material> SurfaceMaterials { get; set; }
