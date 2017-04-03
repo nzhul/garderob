@@ -1,10 +1,12 @@
 ﻿using App.Data.Service.Abstraction;
 using App.Data.Service.Messaging;
+using App.Data.Utilities;
 using App.Models.Images;
 using App.Models.Orders;
 using AutoMapper;
 using System;
 using System.Linq;
+using System.Web;
 
 namespace App.Data.Service.Implementation
 {
@@ -178,12 +180,23 @@ namespace App.Data.Service.Implementation
 			newOrder.CompleteDate = DateTime.MaxValue;
 			newOrder.LastModified = DateTime.UtcNow;
 
-			// TODO: get all images from model.PostedSketches (they are valid already)
-			// do crop job with ImageResizer
-			// Create new Image ( small and big )
-			// Add the images in newOrder.SketchImages !
-
 			this.Data.Orders.Add(newOrder);
+			this.Data.SaveChanges();
+
+			foreach (HttpPostedFileBase image in model.PostedSketches)
+			{
+				byte[] bigImageData = ImageUtilities.CropImage(image, "width=1139&height=578&crop=auto&scale=both&format=jpg");
+				byte[] smallImageData = ImageUtilities.CropImage(image, "width=150&height=150&crop=auto&format=jpg"); //TODO: Check if this crop is ok
+
+				Image newSketch = new Image
+				{
+					Big = bigImageData,
+					Small = smallImageData
+				};
+
+				newOrder.SketchImages.Add(newSketch);
+			}
+
 			this.Data.SaveChanges();
 
 			return newOrder.Id;

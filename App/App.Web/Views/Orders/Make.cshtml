@@ -42,17 +42,20 @@
 				@Html.TextBoxFor(model => model.FazerMaterialId, "", new { @class = "concealed" })
 				@Html.TextBoxFor(model => model.HandlesMaterialId, "", new { @class = "concealed" })
 
+				<div class="sketches-preview-box">
+					<h3>Прикачени скици:</h3>
+					<ul class="sketches-names-list">
+						@*<li><span class="label label-success">13537676_10208317155461281_8621096185091439877_n.jpg</span></li>
+						<li><span class="label label-success">13537676_10208317155461281_8621096185091439877_n.jpg</span></li>*@
+					</ul>
+				</div>
+
 				<label for="sketches-input" class="custom-sketches-input">
-					<i class="fa fa-cloud-upload"></i> Custom Upload
+					<i class="fa fa-file-picture-o"></i> Прикачи Скици
 				</label>
 				<input type="file" id="sketches-input" name="PostedSketches" multiple />
 				@Html.ValidationMessageFor(model => model.PostedSketches, "", new { @class = "text-danger" })
-				<br />
-				<div class="dropzone-container">
-					<img src="~/content/img/order/drop-sketches-icon.png" alt="Пусни скиците тук - иконка" />
-					<a href="#" class="cws-button white">Пуснете скиците тук</a>
-				</div>
-
+				<br /><span style="font-size:10px;text-transform:uppercase;" >* Може да качиш повече от една скица!</span>
 				<!-- ! contact-form-->
 			</div>
 			<div class="col-md-6">
@@ -137,19 +140,13 @@
 	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 	<script>
+		// MarkSelected material on load
 		$(document).ready(function () {
 			$('[data-toggle="tooltip"]').tooltip({
 				animated: 'fade',
 				html: true
 			});
-		});
 
-		function ContactFormBegin() {
-			$('.cs-loader').show();
-		}
-
-		// MarkSelected material on load
-		$(document).ready(function () {
 			var baseInput = $('#BaseMaterialId');
 			var doorInput = $('#DoorsMaterialId');
 			var fazerInput = $('#FazerMaterialId');
@@ -171,26 +168,12 @@
 			updateHiddenInput(fazerMaterials, fazerInput);
 			updateHiddenInput(handleMaterials, handleInput);
 
-			//var submitBtn = $('#order-submit-form-button');
-			//submitBtn.on('click', function () {
-			//	////using the form as the jQuery selector (recommended)
-			//	//$('form').submit(function (evt) {
-			//	//	evt.preventDefault();
-			//	//	var $form = $(this);
-			//	//	if ($form.valid()) {
-			//	//		//Ajax call here
-			//	//	}
-			//	//});
-
-
-			//});
-
 			//using the click event on the submit button
 			$('#order-submit-form-button').click(function (evt) {
 				var $form = $('form.contact-form');
 				var btn = $(this);
 				if ($form.valid()) {
-					// the form is valid 
+					// the form is valid
 					// dim out and disable the submit button to prevent multiple sends
 					btn.attr('disabled', 'disabled');
 					btn.css('opacity', '0.5');
@@ -198,7 +181,30 @@
 					$form.submit();
 				}
 			});
+
+			// UI visual feedback for file loaded in files input
+			var previewBox = $('.sketches-preview-box');
+			var sketchNamesUl = $('.sketches-names-list');
+
+			$('#sketches-input').on('change', function () {
+				debugger;
+				var input = this;
+				if (input.files && input.files[0]) {
+					previewBox.show();
+					sketchNamesUl.html('');
+					for (var i = 0; i < input.files.length; i++) {
+						var liElement = generateLiElement(input.files[i]);
+						sketchNamesUl.append(liElement);
+					}
+				}
+			})
 		});
+
+		function generateLiElement(file) {
+			var element = $('<li>');
+			element.html('<span class="label label-success">' + file.name + '</span>');
+			return element;
+		}
 
 		function updateHiddenInput(materials, inputElement) {
 			for (var i = 0; i < materials.length; i++) {
@@ -230,7 +236,5 @@
 				$(element).addClass('selected');
 			}
 		}
-
-
 	</script>
 }

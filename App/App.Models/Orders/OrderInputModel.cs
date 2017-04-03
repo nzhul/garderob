@@ -8,7 +8,7 @@ namespace App.Models.Orders
 {
 	public class OrderInputModel
 	{
-		[RequireImageFile(MissingFileErrorMessage = " * Задължително качете поне една скица!", InvalidFileErrorMessage = "Невалиден файл!")]
+		[RequireImageFile(MissingFileErrorMessage = " * Задължително качете поне една скица!", InvalidFileErrorMessage = " * Невалиден файл!")]
 		public List<HttpPostedFileBase> PostedSketches { get; set; }
 
 		public IList<Material> SurfaceMaterials { get; set; }
@@ -17,12 +17,12 @@ namespace App.Models.Orders
 
 		[Required(ErrorMessage = " * Задължително!")]
 		[Display( Name = "Име на проекта:")]
-		[StringLength(250, MinimumLength = 3, ErrorMessage = "Невалидно име - Максимална дължина 250 символа, минимална 3")]
+		[StringLength(250, MinimumLength = 3, ErrorMessage = " *Невалидна дължина!")]
 		public string Title { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
 		[Display(Name = "Допълнителна информация:")]
-		[StringLength(2500, MinimumLength = 3, ErrorMessage = "Невалидно име - Максимална дължина 2500 символа, минимална 3")]
+		[StringLength(2500, MinimumLength = 3, ErrorMessage = " *Невалидна дължина!")]
 		[DataType(DataType.MultilineText)]
 		public string OrderText { get; set; }
 

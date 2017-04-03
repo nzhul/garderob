@@ -201,6 +201,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\WarehouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1467,6 +1468,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\Debug.cshtml" />
     <Content Include="Views\Orders\Success.cshtml" />
+    <Content Include="Views\Warehouse\Orders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Orders\Partials\" />

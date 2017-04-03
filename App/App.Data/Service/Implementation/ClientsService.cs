@@ -1,4 +1,5 @@
 ﻿using App.Data.Service.Abstraction;
+using App.Data.Utilities;
 using App.Models;
 using App.Models.InputModels;
 using AutoMapper;
@@ -70,13 +71,8 @@ namespace App.Data.Service.Implementation
 
 		public byte[] UploadProfileImage(HttpPostedFileBase uploadedImage, string userId)
 		{
-			MemoryStream stream = new MemoryStream();
-
-			ImageResizer.ImageJob i = new ImageResizer.ImageJob(uploadedImage, stream, new ImageResizer.Instructions("width=150&height=150&crop=auto&format=jpg"));
-			i.Build();
-
 			ApplicationUser user = this.GetUserById(userId);
-			user.ProfileImage = stream.ToArray();
+			user.ProfileImage = ImageUtilities.CropImage(uploadedImage, "width=150&height=150&crop=auto&format=jpg");
 
 			this.UpdateClient(user);
 

@@ -14,7 +14,7 @@
 					</button>
 					<ul class="dropdown-menu">
 						<li><a href="/manage/profile"><i class="fa fa-user"></i> Профил</a></li>
-						<li><a href="@Url.Action("Index", "Warehouse")"><i class="fa fa-home"></i> Склад</a></li>
+						<li><a href="@Url.Action("Orders", "Warehouse")"><i class="fa fa-home"></i> Склад</a></li>
 						@if (this.User.IsInRole("Admin"))
 						{
 							<li><a href="@Url.Action("Index", "Orders", new { area = "Administration" }, null)"><i class="fa fa-lock"></i> Администрация</a></li>

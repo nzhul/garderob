@@ -123,6 +123,7 @@
     <Compile Include="Service\Implementation\PagesService.cs" />
     <Compile Include="Service\Messaging\MessageData.cs" />
     <Compile Include="UoWData.cs" />
+    <Compile Include="Utilities\ImageUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
