@@ -80,7 +80,8 @@
 								LastModified = DateTime.UtcNow,
 								Title = fileName,
 								Slug = fileName,
-								Price = 0,
+								Price = 1350,
+								Count = 1,
 								State = OrderState.Done,
 								OrderText = "-Empty-",
 								OrderCategory = category,
@@ -261,7 +262,6 @@
 				var userStore = new UserStore<ApplicationUser>(context);
 				var userManager = new UserManager<ApplicationUser>(userStore);
 				AdminConfiguration config = this.GetAdminConfiguration();
-				this.theAdmin = context.Users.FirstOrDefault(u => u.Email == config.Email);
 
 				ApplicationUser admin = new ApplicationUser();
 				admin.UserName = config.Email;
@@ -277,6 +277,8 @@
 				admin.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = admin.Id });
 				admin.Roles.Add(new IdentityUserRole { RoleId = userRole.Id, UserId = admin.Id });
 				context.SaveChanges();
+
+				this.theAdmin = context.Users.FirstOrDefault(u => u.Email == config.Email);
 
 				if (generateDummyUsers)
 				{

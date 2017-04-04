@@ -28,6 +28,8 @@ namespace App.Data.Service.Abstraction
 
 		int MakeOrder(OrderInputModel model);
 
+		bool ConfirmOrderOffer(int orderId, int count, bool notifyAdmin);
+
 		void AddSketchImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
 
 		void AddDesignImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);

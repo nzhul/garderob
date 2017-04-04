@@ -44,6 +44,8 @@ namespace App.Models.Orders
 
 		public decimal Price { get; set; }
 
+		public int Count { get; set; }
+
 		public virtual ICollection<Image> SketchImages
 		{
 			get { return this.sketchImages; }

@@ -51,9 +51,6 @@ namespace App.Web.Controllers
 				}
 			}
 
-			TempData["message"] = "Невалидни данни!<br/> Моля попълнете <strong>всички</strong> задължителни полета!";
-			TempData["messageType"] = "danger";
-
 			model.SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList();
 			model.HandlesMaterials = this.materialsService.GetAllMaterials("handles").ToList();
 

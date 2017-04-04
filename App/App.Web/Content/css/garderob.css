@@ -644,7 +644,6 @@ i.submit-loading {
 
 /*Order now*/
 .warehouse-container {
-	min-height: 600px;
 	padding-left: 40px;
 	padding-bottom: 40px;
 }
@@ -697,6 +696,11 @@ i.submit-loading {
 		.warehouse-container .order-container table .cws-button.white {
 			margin-bottom: 10px;
 			margin-top: 20px;
+		}
+
+		.warehouse-container img.warehouse-image {
+			width: 210px;
+			height: 203px;
 		}
 /*Order now end*/
 
@@ -1015,3 +1019,5 @@ label.custom-sketches-input {
 	margin-top: 0px;
 }
 /*Orders form end*/
+
+/**/

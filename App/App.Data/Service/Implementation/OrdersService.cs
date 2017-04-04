@@ -113,6 +113,29 @@ namespace App.Data.Service.Implementation
 			}
 		}
 
+		public bool ConfirmOrderOffer(int orderId, int count, bool notifyAdmin)
+		{
+			Order dbOrder = this.Data.Orders.Find(orderId);
+
+			if (dbOrder == null)
+			{
+				return false;
+			}
+
+			dbOrder.State = OrderState.OfferConfirmed;
+			dbOrder.Count = count;
+			this.Data.SaveChanges();
+
+			if (notifyAdmin)
+			{
+				MessageData message = new MessageData();
+				this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
+			}
+
+			return true;
+
+		}
+
 		public bool DeleteOrder(int id)
 		{
 			Order dbOrder = this.Data.Orders.Find(id);
@@ -168,7 +191,7 @@ namespace App.Data.Service.Implementation
 
 		public IQueryable<Order> GetUserOrders(string userId)
 		{
-			return this.Data.Orders.All().Where(o => o.Client.Id == userId);
+			return this.Data.Orders.All().Where(o => o.Client.Id == userId).OrderByDescending(o => o.LastModified);
 		}
 
 		public int MakeOrder(OrderInputModel model)
@@ -179,6 +202,7 @@ namespace App.Data.Service.Implementation
 			newOrder.OfferDate = DateTime.MaxValue;
 			newOrder.CompleteDate = DateTime.MaxValue;
 			newOrder.LastModified = DateTime.UtcNow;
+			newOrder.Count = 1;
 
 			this.Data.Orders.Add(newOrder);
 			this.Data.SaveChanges();
@@ -186,7 +210,7 @@ namespace App.Data.Service.Implementation
 			foreach (HttpPostedFileBase image in model.PostedSketches)
 			{
 				byte[] bigImageData = ImageUtilities.CropImage(image, "width=1139&height=578&crop=auto&scale=both&format=jpg");
-				byte[] smallImageData = ImageUtilities.CropImage(image, "width=150&height=150&crop=auto&format=jpg"); //TODO: Check if this crop is ok
+				byte[] smallImageData = ImageUtilities.CropImage(image, "width=210&height=203&crop=auto&format=jpg"); //TODO: Check if this crop is ok
 
 				Image newSketch = new Image
 				{
