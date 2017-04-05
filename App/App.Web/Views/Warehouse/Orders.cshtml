@@ -86,39 +86,49 @@
 								Име: @order.Title<br />
 								@if (order.State == OrderState.Done) { @Html.Raw(string.Format("Направен на: {0}<br />", order.CompleteDate.ToLongDateString())); }
 								@if (order.Price > 0) { @Html.Raw(string.Format("Цена: {0} лв", order.Price)); }
+								@if (order.State == OrderState.New ) { @Html.Raw("<strong>Вашата заявка се обработва!</strong>") }
 							</p>
 						</div>
-						<div class="col-md-2 col-md-offset-4">
-							<span class="count-label">Брой:</span>
-							<div class="selection-box" style="background-color:white;">
-								<select>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-								</select>
+						@if (order.State == OrderState.WaitingClientResponse || order.State == OrderState.Done)
+						{
+							<div class="col-md-2 col-md-offset-4">
+								<span class="count-label">Брой:</span>
+								<div class="selection-box" style="background-color:white;">
+									<select>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+										<option>6</option>
+										<option>7</option>
+										<option>8</option>
+										<option>9</option>
+										<option>10</option>
+									</select>
+								</div>
+								<div class="checkbox mt-10">
+									<input id="checkbox1" type="checkbox" value="None" name="check">
+									<label for="checkbox1">Монтаж</label>
+								</div>
 							</div>
-							<div class="checkbox mt-10">
-								<input id="checkbox1" type="checkbox" value="None" name="check">
-								<label for="checkbox1">Монтаж</label>
+						}
+					</div>
+					if (order.State == OrderState.WaitingClientResponse || order.State == OrderState.Done)
+					{
+						<div class="row" style="padding-right:20px;padding-top:20px;">
+							<div class="col-xs-3 col-xs-offset-9">
+								<a class="cws-button alt order-now-add-button" href="#">Добави в кошницата</a>
 							</div>
 						</div>
-					</div>
-					<div class="row" style="padding-right:20px;padding-top:20px;">
-						<div class="col-xs-3 col-xs-offset-6">
-							<a class="cws-button alt order-now-add-button" href="#">Добави</a>
-						</div>
-						<div class="col-xs-3">
-							<a class="cws-button gray alt order-now-add-button" href="#">Премахни</a>
-						</div>
-					</div>
+					}
 					<div class="cws_divider with-plus long mt-40 mb-40"></div>
 				<!-- Wardrobe item end -->
 				}
 			</div>
 			<div class="col-md-4 col-sm-offset-1">
-				<div class="order-container">
-					<h3>Поръчка</h3>
+				<div id="order-container" class="order-container">
+					<h3>Кошница</h3>
 					<table>
 						<thead>
 							<tr>
@@ -203,3 +213,32 @@
 </div>
 <div style="clear:both;margin-top:60px;">&nbsp;</div>
 <!-- ! content-->
+
+@section Scripts {
+	<script>
+
+		$(document).ready(function () {
+			if ($(window).width() > 1200) {
+				var cartContainer = $('#order-container');
+				var originalLeftPosition = cartContainer.offset().left;
+				var originalWidth = cartContainer.outerWidth();
+
+				$(window).scroll(function () {
+					var documentScrollPosition = $(document).scrollTop();
+					if (600 < documentScrollPosition) {
+						if (!cartContainer.hasClass('sticky-cart')) {
+							cartContainer.addClass('sticky-cart');
+							cartContainer.css('left', originalLeftPosition);
+							cartContainer.css('width', originalWidth);
+						}
+					} else {
+						if (cartContainer.hasClass('sticky-cart')) {
+							cartContainer.removeClass('sticky-cart');
+							cartContainer.css('left', '-50px');
+						}
+					}
+				})
+			}
+		});
+	</script>
+}

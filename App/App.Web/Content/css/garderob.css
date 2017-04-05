@@ -698,13 +698,19 @@ i.submit-loading {
 			margin-top: 20px;
 		}
 
-		.warehouse-container img.warehouse-image {
-			width: 210px;
-			height: 203px;
-		}
+	.warehouse-container img.warehouse-image {
+		width: 210px;
+		height: 203px;
+	}
+
+	.warehouse-container .order-container.sticky-cart {
+		position: fixed;
+		width: 400px;
+		top: 100px;
+		z-index: 9999;
+	}
+
 /*Order now end*/
-
-
 /*Live preview*/
 .live-preview-container {
 	margin-top: 30px;
@@ -979,10 +985,10 @@ label.custom-sketches-input {
 }
 
 	label.custom-sketches-input i {
-		font-size:40px;
-		padding-right:40px;
-		position:relative;
-		top:7px;
+		font-size: 40px;
+		padding-right: 40px;
+		position: relative;
+		top: 7px;
 	}
 
 .concealed {
@@ -1011,13 +1017,13 @@ label.custom-sketches-input {
 .sketches-preview-box {
 	border: 1px solid #237dc8;
 	padding: 15px;
-	margin-top:-15px;
+	margin-top: -15px;
 	display: none;
 }
 
-.sketches-preview-box h3 {
-	margin-top: 0px;
-}
+	.sketches-preview-box h3 {
+		margin-top: 0px;
+	}
 /*Orders form end*/
 
 /**/
