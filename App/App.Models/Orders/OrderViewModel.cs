@@ -18,6 +18,8 @@ namespace App.Models.Orders
 
 		public int Count { get; set; }
 
+		public bool IsInCart { get; set; }
+
 		public byte[] SketchImage { get; set; }
 
 		public byte[] DesignImage { get; set; }

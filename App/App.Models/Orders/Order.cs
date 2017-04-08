@@ -46,6 +46,10 @@ namespace App.Models.Orders
 
 		public int Count { get; set; }
 
+		public bool Installation { get; set; }
+
+		public bool IsInCart { get; set; }
+
 		public virtual ICollection<Image> SketchImages
 		{
 			get { return this.sketchImages; }

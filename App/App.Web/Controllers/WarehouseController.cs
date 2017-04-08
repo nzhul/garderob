@@ -19,9 +19,64 @@ namespace App.Web.Controllers
 
 		public ActionResult Orders()
 		{
-			IList<Order> userOrders = this.ordersService.GetUserOrders(this.User.Identity.GetUserId()).ToList();
-			IEnumerable<OrderViewModel> model = userOrders.Select(o => AutoMapper.Mapper.Map(o, new OrderViewModel()));
+			IList<Order> dbOrders = this.ordersService.GetUserOrders(this.User.Identity.GetUserId()).ToList();
+			IEnumerable<OrderViewModel> orders = dbOrders.Select(o => AutoMapper.Mapper.Map(o, new OrderViewModel()));
+
+			IList<Order> dbCart = this.ordersService.GetUserCart(this.User.Identity.GetUserId()).ToList();
+			IEnumerable<OrderViewModel> cart = dbCart.Select(o => AutoMapper.Mapper.Map(o, new OrderViewModel()));
+
+			CartViewModel model = new CartViewModel
+			{
+				Orders = orders,
+				Cart = cart
+			};
+
 			return this.View(model);
+		}
+
+		[HttpPost]
+		public ActionResult AddCartItem(int orderId, int orderCount, bool installation)
+		{
+			//TODO: remove the threading
+
+			System.Threading.Thread.Sleep(2500);
+
+			string userId = this.User.Identity.GetUserId();
+			Order dbOrder = this.ordersService.AddCartItem(orderId, orderCount, installation, userId);
+			if (dbOrder != null)
+			{
+				return Json(
+					new
+					{
+						Status = "Success",
+						Data = new
+						{
+							id = dbOrder.Id,
+							count = dbOrder.Count,
+							title = dbOrder.Title,
+							installation = dbOrder.Installation
+						}
+					});
+			}
+			else
+			{
+				return Json(new { Status = "Fail" });
+			}
+		}
+
+		[HttpPost]
+		public ActionResult RemoveCartItem(int orderId)
+		{
+			string userId = this.User.Identity.GetUserId();
+			if (this.ordersService.RemoveCartItem(orderId, userId))
+			{
+				return Json(new { Status = "Success" });
+			}
+			else
+			{
+				// order or client was not found, or the order do not belong to the user ( hack )
+				return Json(new { Status = "Fail" });
+			}
 		}
 	}
 }

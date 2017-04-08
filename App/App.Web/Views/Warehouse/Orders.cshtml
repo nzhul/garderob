@@ -1,5 +1,5 @@
 ﻿@using App.Models.Orders;
-@model IEnumerable<OrderViewModel>
+@model CartViewModel
 @{
 	ViewBag.Title = "Склад";
 }
@@ -31,10 +31,10 @@
 		</div>
 	</div>
 	<div class="row gallery-row">
-		@if (Model.Count() > 0)
+		@if (Model.Orders.Count() > 0)
 			{
 			<div class="col-md-7">
-				@foreach (var order in Model)
+				@foreach (OrderViewModel order in Model.Orders)
 				{
 				<!-- Wardrobe item -->
 					<div class="row">
@@ -84,9 +84,14 @@
 						<div class="col-md-6">
 							<p>
 								Име: @order.Title<br />
-								@if (order.State == OrderState.Done) { @Html.Raw(string.Format("Направен на: {0}<br />", order.CompleteDate.ToLongDateString())); }
-								@if (order.Price > 0) { @Html.Raw(string.Format("Цена: {0} лв", order.Price)); }
-								@if (order.State == OrderState.New ) { @Html.Raw("<strong>Вашата заявка се обработва!</strong>") }
+								@if (order.State == OrderState.Done)
+								{ @Html.Raw(string.Format("Направен на: {0}<br />", order.CompleteDate.ToLongDateString()));
+								}
+								@if (order.Price > 0)
+								{ @Html.Raw(string.Format("Цена: {0} лв", order.Price));
+								}
+								@if (order.State == OrderState.New)
+								{ @Html.Raw("<strong>Вашата заявка се обработва!</strong>") }
 							</p>
 						</div>
 						@if (order.State == OrderState.WaitingClientResponse || order.State == OrderState.Done)
@@ -114,11 +119,30 @@
 							</div>
 						}
 					</div>
-					if (order.State == OrderState.WaitingClientResponse || order.State == OrderState.Done)
+					if ((order.State == OrderState.WaitingClientResponse || order.State == OrderState.Done) && !order.IsInCart)
 					{
 						<div class="row" style="padding-right:20px;padding-top:20px;">
 							<div class="col-xs-3 col-xs-offset-9">
-								<button class="cws-button alt order-now-add-button" data-order-id="@order.Id" href="#">Добави в кошницата</button>
+								<div class="alert alert-danger add-cart-fail">
+									<p>Неуспешно!</p>
+								</div>
+								<div class="alert alert-success add-cart-success">
+									<p>Успешно!</p>
+								</div>
+								<p class="add-cart-loading"><i class="fa fa-refresh fa-spin fa-fw"></i>Зареждане ...</p>
+								@Ajax.ActionLink(
+									"Добави в кошницата",
+									"AddCartItem",
+									new { orderId = order.Id },
+									new AjaxOptions
+									{
+										HttpMethod = "Post",
+										OnBegin = "addToCartBegin",
+										OnFailure = "addToCartFail",
+										OnSuccess = "addToCartSuccess"
+									},
+									new { @class = "cws-button alt order-now-add-button" })
+								@*<button class="cws-button alt order-now-add-button" data-order-id="@order.Id" href="#">Добави в кошницата</button>*@
 							</div>
 						</div>
 					}
@@ -129,63 +153,93 @@
 			<div class="col-md-4 col-sm-offset-1">
 				<div id="order-container" class="order-container">
 					<h3>Кошница</h3>
-					<table>
-						<thead>
+					<div class="basket-full-view">
+						<table>
+							<thead>
+								<tr>
+									<td>Продукт</td>
+									<td>бр.</td>
+									<td>цена</td>
+									<td></td>
+								</tr>
+							</thead>
+							<tbody class="basket-items-container">
+								@foreach (OrderViewModel order in Model.Cart)
+								{
+									<tr>
+										<td>@order.Title</td>
+										<td>@order.Count</td>
+										<td>@order.Price &nbsp;лв</td>
+										<td>
+											@Ajax.ActionLink(
+												" ",
+												"RemoveCartItem",
+												new { orderId = order.Id },
+												new AjaxOptions
+												{
+													HttpMethod = "Post",
+													OnBegin = "removeFromCartBegin",
+													OnFailure = "removeFromCartFail",
+													OnSuccess = "removeFromCartSuccess"
+												},
+												new { @class = "fa fa-remove" })
+										</td>
+									</tr>
+								}
+								@*<tr>
+										<td>Трикрилен гардероб</td>
+										<td>1&nbsp;бр</td>
+										<td>580&nbsp;лв</td>
+										<td><a href="#"><i class="fa fa-remove"></i></a></td>
+									</tr>
+									<tr>
+										<td>Гардероб с плъзгащи се врати</td>
+										<td>1&nbsp;бр</td>
+										<td>852&nbsp;лв</td>
+										<td><a href="#"><i class="fa fa-remove"></i></a></td>
+									</tr>*@
+							</tbody>
+						</table>
+						<table>
+							<thead>
+								<tr>
+									<td></td>
+								</tr>
+							</thead>
 							<tr>
-								<td>Продукт</td>
-								<td>бр.</td>
-								<td>цена</td>
-								<td></td>
+								<td>Общо цена:</td>
+								<td>2548 лв</td>
 							</tr>
-						</thead>
-						<tr>
-							<td>Трикрилен гардероб</td>
-							<td>1&nbsp;бр</td>
-							<td>580&nbsp;лв</td>
-							<td><a href="#"><i class="fa fa-remove"></i></a></td>
-						</tr>
-						<tr>
-							<td>Гардероб с плъзгащи се врати</td>
-							<td>1&nbsp;бр</td>
-							<td>852&nbsp;лв</td>
-							<td><a href="#"><i class="fa fa-remove"></i></a></td>
-						</tr>
-					</table>
-
-					<table>
-						<thead>
+							<tr>
+								<td>Доставка:</td>
+								<td>0 лв</td>
+							</tr>
+							<tr>
+								<td>Монтаж:</td>
+								<td>58 лв</td>
+							</tr>
+						</table>
+						<table>
+							<thead>
+								<tr>
+									<td></td>
+								</tr>
+							</thead>
+							<tr class="total-price-row">
+								<td>Общо:</td>
+								<td>3512 лв</td>
+							</tr>
 							<tr>
 								<td></td>
+								<td><a class="cws-button white" href="#">Поръчай</a></td>
 							</tr>
-						</thead>
-						<tr>
-							<td>Общо цена:</td>
-							<td>2548 лв</td>
-						</tr>
-						<tr>
-							<td>Доставка:</td>
-							<td>0 лв</td>
-						</tr>
-						<tr>
-							<td>Монтаж:</td>
-							<td>58 лв</td>
-						</tr>
-					</table>
-					<table>
-						<thead>
-							<tr>
-								<td></td>
-							</tr>
-						</thead>
-						<tr class="total-price-row">
-							<td>Общо:</td>
-							<td>3512 лв</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><a class="cws-button white" href="#">Поръчай</a></td>
-						</tr>
-					</table>
+						</table>
+					</div>
+					<div class="basket-empty-view">
+						<i class="fa fa-shopping-basket"></i>
+						<p>Вашата кошница е празна!</p>
+						<p>Използвайте бутона "Добави в кошницата" под за да добавите артикул в кошницата.</p>
+					</div>
 				</div>
 
 			</div>
@@ -215,9 +269,11 @@
 <!-- ! content-->
 
 @section Scripts {
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 	<script>
 
 		$(document).ready(function () {
+			// sticky basket
 			if ($(window).width() > 1200) {
 				var cartContainer = $('#order-container');
 				var originalLeftPosition = cartContainer.offset().left;
@@ -239,6 +295,94 @@
 					}
 				})
 			}
+
+			// basket logic
+			updateBasketView();
+
 		});
+
+		function updateBasketView() {
+			var basketEmptyView = $('.basket-empty-view');
+			var basketFullVIew = $('.basket-full-view');
+			var basketItemsContainer = $('.basket-items-container');
+
+			if (basketItemsContainer.children().length > 0) {
+				basketFullVIew.show();
+				basketEmptyView.hide();
+			} else {
+				basketFullVIew.hide();
+				basketEmptyView.show();
+			}
+		}
+
+		// ajaxActionLink functions:
+		function addToCartBegin(xhr, request) {
+			var clickedBtn = $(this);
+			var nearestLoadingElement = clickedBtn.prev('.add-cart-loading');
+
+			clickedBtn.removeAttr('href');
+			clickedBtn.css('opacity', '0.5');
+			nearestLoadingElement.show();
+
+			debugger;
+			// TODO: get the count and installation variables from the inputs!!!
+			request.url = request.url + '&orderCount=' + 10 + '&installation=true';
+		}
+
+		function addToCartFail() {
+			var clickedBtn = $(this);
+			var nearestLoadingElement = clickedBtn.prev('.add-cart-loading');
+			var nearestFailElement = clickedBtn.prevAll('.add-cart-fail');
+
+			clickedBtn.hide();
+			nearestLoadingElement.hide();
+			nearestFailElement.show();
+		}
+
+		function addToCartSuccess(response) {
+			var clickedBtn = $(this);
+			var nearestLoadingElement = clickedBtn.prev('.add-cart-loading');
+			var nearestSuccessElement = clickedBtn.prevAll('.add-cart-success');
+			var nearestFailElement = clickedBtn.prevAll('.add-cart-fail');
+
+			if (response.Status && response.Status === 'Success') {
+				clickedBtn.hide();
+				nearestLoadingElement.hide();
+				nearestSuccessElement.show();
+				nearestSuccessElement.delay(1500).fadeOut(1000);
+
+				//TODO: update the basket view
+				var basketItemsContainer = $('.basket-items-container');
+				console.log(response);
+
+			} else if (response.Status && response.Status === 'Fail') {
+				clickedBtn.hide();
+				nearestLoadingElement.hide();
+				nearestFailElement.show();
+				nearestFailElement.delay(1500).fadeOut(1000);
+			}
+		}
+
+		// ajaxActionLink remove functions:
+		function removeFromCartBegin(arg1, arg2, arg3) {
+			console.log('begin');
+			console.log(arg1);
+			console.log(arg2);
+			console.log(arg3);
+		}
+
+		function removeFromCartFail(arg1, arg2, arg3) {
+			console.log('fail');
+			console.log(arg1);
+			console.log(arg2);
+			console.log(arg3);
+		}
+
+		function removeFromCartSuccess(arg1, arg2, arg3) {
+			console.log('success');
+			console.log(arg1);
+			console.log(arg2);
+			console.log(arg3);
+		}
 	</script>
 }

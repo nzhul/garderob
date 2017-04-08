@@ -8,6 +8,8 @@ namespace App.Data.Service.Abstraction
 	{
 		IQueryable<Order> GetUserOrders(string userId);
 
+		IQueryable<Order> GetUserCart(string userId);
+
 		IQueryable<Order> GetOrdersByCategory(string category);
 
 		Order GetOrder(int id);
@@ -37,5 +39,9 @@ namespace App.Data.Service.Abstraction
 		void AddResultImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
 
 		void ChangeOrderState(int orderId, OrderState newState, bool notifyClient, bool notifyAdmin);
+
+		Order AddCartItem(int orderId, int orderCount, bool installation, string userId);
+
+		bool RemoveCartItem(int orderId, string userId);
 	}
 }

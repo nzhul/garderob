@@ -11,6 +11,13 @@ namespace App.Models
 	public class ApplicationUser : IdentityUser
 	{
 		private ICollection<Order> orders;
+		private ICollection<Order> cart;
+
+		public ApplicationUser()
+		{
+			this.orders = new HashSet<Order>();
+			this.cart = new HashSet<Order>();
+		}
 
 		public string FirstName { get; set; }
 
@@ -36,6 +43,12 @@ namespace App.Models
 		{
 			get { return orders; }
 			set { orders = value; }
+		}
+
+		public virtual ICollection<Order> Cart
+		{
+			get { return this.cart; }
+			set { this.cart = value; }
 		}
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

@@ -1,6 +1,7 @@
 ﻿using App.Data.Service.Abstraction;
 using App.Data.Service.Messaging;
 using App.Data.Utilities;
+using App.Models;
 using App.Models.Images;
 using App.Models.Orders;
 using AutoMapper;
@@ -194,6 +195,20 @@ namespace App.Data.Service.Implementation
 			return this.Data.Orders.All().Where(o => o.Client.Id == userId).OrderByDescending(o => o.LastModified);
 		}
 
+		public IQueryable<Order> GetUserCart(string userId)
+		{
+			ApplicationUser dbUser = this.Data.Users.Find(userId);
+
+			if (dbUser != null)
+			{
+				return dbUser.Cart.AsQueryable();
+			}
+			else
+			{
+				throw new ArgumentNullException("Cannot find cart for user with ID: " + userId);
+			}
+		}
+
 		public int MakeOrder(OrderInputModel model)
 		{
 			Order newOrder = new Order();
@@ -251,6 +266,44 @@ namespace App.Data.Service.Implementation
 			}
 
 			return false;
+		}
+
+		public Order AddCartItem(int orderId,int orderCount, bool installation, string userId)
+		{
+			Order dbOrder = this.Data.Orders.Find(orderId);
+			ApplicationUser dbUser = this.Data.Users.Find(userId);
+
+			if (dbOrder != null && dbUser != null && dbOrder.Client.Id == dbUser.Id)
+			{
+				dbOrder.IsInCart = true;
+				dbOrder.Count = orderCount;
+				dbOrder.Installation = installation;
+				dbUser.Cart.Add(dbOrder);
+				this.Data.SaveChanges();
+				return dbOrder;
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+		public bool RemoveCartItem(int orderId, string userId)
+		{
+			Order dbOrder = this.Data.Orders.Find(orderId);
+			ApplicationUser dbUser = this.Data.Users.Find(userId);
+
+			if (dbOrder != null && dbUser != null && dbOrder.Client.Id == dbUser.Id)
+			{
+				dbOrder.IsInCart = false;
+				dbUser.Cart.Remove(dbOrder);
+				this.Data.SaveChanges();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 }

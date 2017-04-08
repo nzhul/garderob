@@ -90,6 +90,7 @@
     <Compile Include="Materials\MaterialInputModel.cs" />
     <Compile Include="Materials\SurfaceMaterial.cs" />
     <Compile Include="Materials\SurfaceMaterialInputModel.cs" />
+    <Compile Include="Orders\CartViewModel.cs" />
     <Compile Include="Orders\Order.cs" />
     <Compile Include="Orders\OrderCategory.cs" />
     <Compile Include="Orders\OrderCategoryInputModel.cs" />

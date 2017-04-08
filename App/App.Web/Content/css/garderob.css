@@ -710,6 +710,32 @@ i.submit-loading {
 		z-index: 9999;
 	}
 
+.order-container .basket-full-view {
+	display: none;
+}
+
+.order-container .basket-empty-view {
+	display: none;
+	text-align: center;
+}
+
+	.order-container .basket-empty-view i {
+		font-size: 50px;
+		margin: 10px 0 20px 0px;
+	}
+
+.warehouse-container .add-cart-success, .warehouse-container .add-cart-fail {
+	display: none;
+	width: 160px;
+	height: 58px;
+	text-align: center;
+}
+
+.warehouse-container .add-cart-loading {
+	display: none;
+	position: absolute;
+	top: 60px;
+}
 /*Order now end*/
 /*Live preview*/
 .live-preview-container {
