@@ -54,7 +54,8 @@ namespace App.Web.Controllers
 							id = dbOrder.Id,
 							count = dbOrder.Count,
 							title = dbOrder.Title,
-							installation = dbOrder.Installation
+							installation = dbOrder.Installation,
+							price = dbOrder.Price,
 						}
 					});
 			}

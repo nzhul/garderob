@@ -91,7 +91,9 @@
 								{ @Html.Raw(string.Format("Цена: {0} лв", order.Price));
 								}
 								@if (order.State == OrderState.New)
-								{ @Html.Raw("<strong>Вашата заявка се обработва!</strong>") }
+								{ @Html.Raw("<strong>Вашата заявка се обработва!</strong>") } <!-- TODO: improve the design if those messages -->  
+								@if (order.State == OrderState.InProduction)
+								{ @Html.Raw("<strong>Поръчката Ви е приета и се изработва!</strong> <br/> Ще получите известие веднага след като сме готови!") } <!-- TODO: improve the design if those messages -->  
 							</p>
 						</div>
 						@if (order.State == OrderState.WaitingClientResponse || order.State == OrderState.Done)
@@ -99,22 +101,37 @@
 							<div class="col-md-2 col-md-offset-4">
 								<span class="count-label">Брой:</span>
 								<div class="selection-box" style="background-color:white;">
-									<select>
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-										<option>6</option>
-										<option>7</option>
-										<option>8</option>
-										<option>9</option>
-										<option>10</option>
+									@{ 
+										string disabled = string.Empty;
+										if (order.IsInCart)
+										{
+											disabled = "disabled";
+										}
+									}
+									<select @disabled id="@Html.Raw("order-count-ddl-" + order.Id)">
+										@for (int i = 1; i <= 10; i++)
+										{
+											if (i == order.Count)
+											{
+												<option selected>@i</option>
+											}
+											else
+											{
+												<option>@i</option>
+											}
+										}
 									</select>
 								</div>
 								<div class="checkbox mt-10">
-									<input id="checkbox1" type="checkbox" value="None" name="check">
-									<label for="checkbox1">Монтаж</label>
+									@{ 
+										string isChecked = string.Empty;
+										if (order.Installation)
+										{
+											isChecked = "checked";
+										}
+									}
+									<input @disabled id="installationcb-@order.Id" @isChecked class="installationcb" type="checkbox" value="None" name="check">
+									<label for="installationcb-@order.Id">Монтаж</label>
 								</div>
 							</div>
 						}
@@ -141,8 +158,7 @@
 										OnFailure = "addToCartFail",
 										OnSuccess = "addToCartSuccess"
 									},
-									new { @class = "cws-button alt order-now-add-button" })
-								@*<button class="cws-button alt order-now-add-button" data-order-id="@order.Id" href="#">Добави в кошницата</button>*@
+									new { @class = "cws-button alt order-now-add-button", data_orderid = order.Id })
 							</div>
 						</div>
 					}
@@ -158,6 +174,7 @@
 							<thead>
 								<tr>
 									<td>Продукт</td>
+									<td>Монтаж</td>
 									<td>бр.</td>
 									<td>цена</td>
 									<td></td>
@@ -168,8 +185,18 @@
 								{
 									<tr>
 										<td>@order.Title</td>
-										<td>@order.Count</td>
-										<td>@order.Price &nbsp;лв</td>
+										<td class="js-installation" style="text-align:center;">
+											@if (order.Installation)
+											{
+												@:Да
+											}
+											else
+											{
+												@:Не
+											}
+										</td>
+										<td class="js-count">@order.Count</td>
+										<td class="js-price">@order.Price</td>
 										<td>
 											@Ajax.ActionLink(
 												" ",
@@ -182,22 +209,10 @@
 													OnFailure = "removeFromCartFail",
 													OnSuccess = "removeFromCartSuccess"
 												},
-												new { @class = "fa fa-remove" })
+												new { @class = "fa fa-remove", data_orderId = order.Id })
 										</td>
 									</tr>
 								}
-								@*<tr>
-										<td>Трикрилен гардероб</td>
-										<td>1&nbsp;бр</td>
-										<td>580&nbsp;лв</td>
-										<td><a href="#"><i class="fa fa-remove"></i></a></td>
-									</tr>
-									<tr>
-										<td>Гардероб с плъзгащи се врати</td>
-										<td>1&nbsp;бр</td>
-										<td>852&nbsp;лв</td>
-										<td><a href="#"><i class="fa fa-remove"></i></a></td>
-									</tr>*@
 							</tbody>
 						</table>
 						<table>
@@ -208,7 +223,7 @@
 							</thead>
 							<tr>
 								<td>Общо цена:</td>
-								<td>2548 лв</td>
+								<td><span class="js-total-price">0</span> лв</td>
 							</tr>
 							<tr>
 								<td>Доставка:</td>
@@ -216,7 +231,7 @@
 							</tr>
 							<tr>
 								<td>Монтаж:</td>
-								<td>58 лв</td>
+								<td><span class="js-total-installation-price">0</span> лв</td>
 							</tr>
 						</table>
 						<table>
@@ -227,7 +242,7 @@
 							</thead>
 							<tr class="total-price-row">
 								<td>Общо:</td>
-								<td>3512 лв</td>
+								<td><span class="js-total-final-price">0</span> лв</td>
 							</tr>
 							<tr>
 								<td></td>
@@ -238,7 +253,7 @@
 					<div class="basket-empty-view">
 						<i class="fa fa-shopping-basket"></i>
 						<p>Вашата кошница е празна!</p>
-						<p>Използвайте бутона "Добави в кошницата" под за да добавите артикул в кошницата.</p>
+						<p>Използвайте бутона "Добави в кошницата" за да добавите артикул в кошницата.</p>
 					</div>
 				</div>
 
@@ -270,119 +285,5 @@
 
 @section Scripts {
 	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-	<script>
-
-		$(document).ready(function () {
-			// sticky basket
-			if ($(window).width() > 1200) {
-				var cartContainer = $('#order-container');
-				var originalLeftPosition = cartContainer.offset().left;
-				var originalWidth = cartContainer.outerWidth();
-
-				$(window).scroll(function () {
-					var documentScrollPosition = $(document).scrollTop();
-					if (600 < documentScrollPosition) {
-						if (!cartContainer.hasClass('sticky-cart')) {
-							cartContainer.addClass('sticky-cart');
-							cartContainer.css('left', originalLeftPosition);
-							cartContainer.css('width', originalWidth);
-						}
-					} else {
-						if (cartContainer.hasClass('sticky-cart')) {
-							cartContainer.removeClass('sticky-cart');
-							cartContainer.css('left', '-50px');
-						}
-					}
-				})
-			}
-
-			// basket logic
-			updateBasketView();
-
-		});
-
-		function updateBasketView() {
-			var basketEmptyView = $('.basket-empty-view');
-			var basketFullVIew = $('.basket-full-view');
-			var basketItemsContainer = $('.basket-items-container');
-
-			if (basketItemsContainer.children().length > 0) {
-				basketFullVIew.show();
-				basketEmptyView.hide();
-			} else {
-				basketFullVIew.hide();
-				basketEmptyView.show();
-			}
-		}
-
-		// ajaxActionLink functions:
-		function addToCartBegin(xhr, request) {
-			var clickedBtn = $(this);
-			var nearestLoadingElement = clickedBtn.prev('.add-cart-loading');
-
-			clickedBtn.removeAttr('href');
-			clickedBtn.css('opacity', '0.5');
-			nearestLoadingElement.show();
-
-			debugger;
-			// TODO: get the count and installation variables from the inputs!!!
-			request.url = request.url + '&orderCount=' + 10 + '&installation=true';
-		}
-
-		function addToCartFail() {
-			var clickedBtn = $(this);
-			var nearestLoadingElement = clickedBtn.prev('.add-cart-loading');
-			var nearestFailElement = clickedBtn.prevAll('.add-cart-fail');
-
-			clickedBtn.hide();
-			nearestLoadingElement.hide();
-			nearestFailElement.show();
-		}
-
-		function addToCartSuccess(response) {
-			var clickedBtn = $(this);
-			var nearestLoadingElement = clickedBtn.prev('.add-cart-loading');
-			var nearestSuccessElement = clickedBtn.prevAll('.add-cart-success');
-			var nearestFailElement = clickedBtn.prevAll('.add-cart-fail');
-
-			if (response.Status && response.Status === 'Success') {
-				clickedBtn.hide();
-				nearestLoadingElement.hide();
-				nearestSuccessElement.show();
-				nearestSuccessElement.delay(1500).fadeOut(1000);
-
-				//TODO: update the basket view
-				var basketItemsContainer = $('.basket-items-container');
-				console.log(response);
-
-			} else if (response.Status && response.Status === 'Fail') {
-				clickedBtn.hide();
-				nearestLoadingElement.hide();
-				nearestFailElement.show();
-				nearestFailElement.delay(1500).fadeOut(1000);
-			}
-		}
-
-		// ajaxActionLink remove functions:
-		function removeFromCartBegin(arg1, arg2, arg3) {
-			console.log('begin');
-			console.log(arg1);
-			console.log(arg2);
-			console.log(arg3);
-		}
-
-		function removeFromCartFail(arg1, arg2, arg3) {
-			console.log('fail');
-			console.log(arg1);
-			console.log(arg2);
-			console.log(arg3);
-		}
-
-		function removeFromCartSuccess(arg1, arg2, arg3) {
-			console.log('success');
-			console.log(arg1);
-			console.log(arg2);
-			console.log(arg3);
-		}
-	</script>
+	<script src="~/Scripts/order-page.js"></script>
 }

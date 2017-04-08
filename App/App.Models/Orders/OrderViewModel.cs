@@ -25,5 +25,7 @@ namespace App.Models.Orders
 		public byte[] DesignImage { get; set; }
 
 		public byte[] ResultImage { get; set; }
+
+		public bool Installation { get; set; }
 	}
 }
