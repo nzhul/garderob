@@ -6,6 +6,7 @@ using App.Models.Images;
 using App.Models.Orders;
 using AutoMapper;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
@@ -304,6 +305,66 @@ namespace App.Data.Service.Implementation
 			{
 				return false;
 			}
+		}
+
+		public bool OrderNow(string userId)
+		{
+			// get all items from applicationuser.cart
+			// remove them from cart collection
+			// set their status to InProduction
+			// Send notifications to both client and administrator
+
+			ApplicationUser currentUser = this.Data.Users.Find(userId);
+
+			if (currentUser != null)
+			{
+				ICollection<Order> cartItems = currentUser.Cart;
+				//this.SendOrderSuccessMessage(userId, cartItems);
+				//this.SendAdminNotification("adminId", cartItems);
+
+				foreach (Order order in cartItems)
+				{
+					order.IsInCart = false;
+					order.State = OrderState.InProduction;
+					this.Data.SaveChanges();
+				}
+
+				currentUser.Cart.ToList().ForEach(x => currentUser.Cart.Remove(x));
+				this.Data.SaveChanges();
+
+				return true;
+			}
+
+			return false;
+		}
+
+		private void SendAdminNotification(string adminId, ICollection<Order> cartItems)
+		{
+			MessageData message = new MessageData();
+
+			foreach (Order order in cartItems)
+			{
+
+			}
+
+			this.MessagingService.Notify(adminId, message);
+		}
+
+		private void SendOrderSuccessMessage(string userId, ICollection<Order> cartItems)
+		{
+			MessageData message = new MessageData();
+
+			foreach (Order order in cartItems)
+			{
+
+			}
+
+			this.MessagingService.Notify(userId, message);
+		}
+
+		public IQueryable<Order> GetAllDoneOrders()
+		{
+			return this.Data.Orders.All().Where(o => o.State == OrderState.Done);
 		}
 	}
 }

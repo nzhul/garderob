@@ -32,6 +32,10 @@ function updateBasketView() {
 	var basketFullVIew = $('.basket-full-view');
 	var basketItemsContainer = $('.basket-items-container');
 
+	var successView = $('.basket-success-view').hide();
+	var failView = $('.basket-fail-view').hide();
+	var loadingView = $('.basket-loading-view').hide();
+
 	if (basketItemsContainer.children().length > 0) {
 
 		calculateAndUpdateTotalPrice(basketItemsContainer.children());
@@ -45,7 +49,6 @@ function updateBasketView() {
 
 function appendNewBasketRow(data) {
 	if (data) {
-		debugger;
 		var basketItemsContainer = $('.basket-items-container');
 		var title = data.title;
 		var installation = data.installation == true ? "Да" : "Не";
@@ -66,7 +69,6 @@ function calculateAndUpdateTotalPrice(products) {
 	var installationPercent = 7; // TODO: check if this value is the right one
 
 	for (var i = 0; i < products.length; i++) {
-		debugger;
 		var productRow = $(products[i]);
 		var installation = productRow.children('td.js-installation').html().trim() === 'Да' ? true : false;
 		var count = productRow.children('td.js-count').html();
@@ -91,11 +93,10 @@ function calculateAndUpdateTotalPrice(products) {
 // ajaxActionLink functions:
 function addToCartBegin(xhr, request) {
 	var clickedBtn = $(this);
+	clickedBtn.hide();
 	var orderId = clickedBtn.data('orderid');
 	var nearestLoadingElement = clickedBtn.prev('.add-cart-loading');
 
-	clickedBtn.removeAttr('href');
-	clickedBtn.css('opacity', '0.5');
 	nearestLoadingElement.show();
 
 	var requireInstallation = $('#installationcb-' + orderId).is(":checked");
@@ -141,10 +142,10 @@ function addToCartSuccess(response) {
 
 // ajaxActionLink remove functions:
 function removeFromCartBegin(arg1, arg2, arg3) {
-	console.log('begin');
-	console.log(arg1);
-	console.log(arg2);
-	console.log(arg3);
+	var clickedBtn = $(this);
+	clickedBtn.removeAttr('href');
+	clickedBtn.html('<i class="fa fa-refresh fa-spin fa-fw"></i>');
+	clickedBtn.removeClass();
 }
 
 function removeFromCartFail(arg1, arg2, arg3) {
@@ -155,8 +156,44 @@ function removeFromCartFail(arg1, arg2, arg3) {
 }
 
 function removeFromCartSuccess(arg1, arg2, arg3) {
-	console.log('success');
-	console.log(arg1);
-	console.log(arg2);
-	console.log(arg3);
+	debugger;
+	var clickedBtn = $(this);
+	var orderid = clickedBtn.data('orderid');
+	clickedBtn.fadeOut(500);
+	clickedBtn.parents('tr').remove();
+	updateBasketView();
+
+	// Show related Add to basket button
+	var relatedAddToCartBtn = $('a[data-orderid="' + orderid + '"]');
+	relatedAddToCartBtn.show();
+}
+
+function orderNowBegin() {
+	var fullView = $('.basket-full-view');
+	var emptyView = $('.basket-empty-view');
+	var successView = $('.basket-success-view');
+	var failView = $('.basket-fail-view');
+	var loadingView = $('.basket-loading-view');
+
+	fullView.hide();
+	loadingView.show();
+}
+
+function orderNowFail() {
+	var failView = $('.basket-fail-view');
+	var loadingView = $('.basket-loading-view');
+
+	loadingView.hide();
+	failView.show();
+}
+
+function orderNowSuccess() {
+	var successView = $('.basket-success-view');
+	var loadingView = $('.basket-loading-view');
+
+	var basketItemsContainer = $('.basket-items-container');
+	basketItemsContainer.empty();
+
+	loadingView.hide();
+	successView.show();
 }

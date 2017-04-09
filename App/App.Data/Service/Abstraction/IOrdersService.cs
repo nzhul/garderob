@@ -1,6 +1,7 @@
 ﻿using App.Models.Images;
 using App.Models.Orders;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace App.Data.Service.Abstraction
 {
@@ -24,6 +25,8 @@ namespace App.Data.Service.Abstraction
 
 		OrderCategory GetOrderCategoryBySlug(string slug);
 
+		IQueryable<Order> GetAllDoneOrders();
+
 		bool UpdateOrderCategory(int id, OrderCategoryInputModel inputModel);
 
 		bool DeleteOrderCategory(int id); // do cannonical delete for all orders in that category OR transfer all orders into "Unknown" category
@@ -43,5 +46,7 @@ namespace App.Data.Service.Abstraction
 		Order AddCartItem(int orderId, int orderCount, bool installation, string userId);
 
 		bool RemoveCartItem(int orderId, string userId);
+
+		bool OrderNow(string userId);
 	}
 }

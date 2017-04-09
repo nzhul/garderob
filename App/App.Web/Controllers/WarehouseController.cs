@@ -68,6 +68,7 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult RemoveCartItem(int orderId)
 		{
+			System.Threading.Thread.Sleep(2500);
 			string userId = this.User.Identity.GetUserId();
 			if (this.ordersService.RemoveCartItem(orderId, userId))
 			{
@@ -76,6 +77,21 @@ namespace App.Web.Controllers
 			else
 			{
 				// order or client was not found, or the order do not belong to the user ( hack )
+				return Json(new { Status = "Fail" });
+			}
+		}
+
+		[HttpPost]
+		public ActionResult OrderNow()
+		{
+			System.Threading.Thread.Sleep(2500);
+			string userId = this.User.Identity.GetUserId();
+			if (this.ordersService.OrderNow(userId))
+			{
+				return Json(new { Status = "Success" });
+			}
+			else
+			{
 				return Json(new { Status = "Fail" });
 			}
 		}

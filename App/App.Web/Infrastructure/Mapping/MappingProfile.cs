@@ -21,6 +21,10 @@ namespace App.Web.Infrastructure.Mapping
 				.ForMember(x => x.DesignImage, opt => opt.MapFrom(u => u.DesignImages.FirstOrDefault().Small))
 				.ForMember(x => x.ResultImage, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small));
 
+			CreateMap<Order, ProductViewModel>()
+				.ForMember(x => x.ResultImageSmall, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small))
+				.ForMember(x => x.ResultImageBig, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Big));
+
 			//TODO: use slugify for OrderInputModel to Order mapping -> Slug
 			// http://stackoverflow.com/questions/2920744/url-slugify-algorithm-in-c
 		}

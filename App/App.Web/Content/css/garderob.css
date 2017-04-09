@@ -724,6 +724,16 @@ i.submit-loading {
 		margin: 10px 0 20px 0px;
 	}
 
+.order-container .basket-success-view, .order-container .basket-fail-view, .order-container .basket-loading-view {
+	display: none;
+	text-align: center;
+}
+
+	.order-container .basket-success-view i, .order-container .basket-fail-view i, .order-container .basket-loading-view i {
+		font-size: 80px;
+		margin: 10px 0 0px 0px;
+	}
+
 .warehouse-container .add-cart-success, .warehouse-container .add-cart-fail {
 	display: none;
 	width: 160px;
@@ -733,8 +743,12 @@ i.submit-loading {
 
 .warehouse-container .add-cart-loading {
 	display: none;
-	position: absolute;
-	top: 60px;
+	width: 160px;
+	line-height: 58px;
+	height: 58px;
+	color: white;
+	background-color: #237dc8;
+	text-align: center;
 }
 /*Order now end*/
 /*Live preview*/

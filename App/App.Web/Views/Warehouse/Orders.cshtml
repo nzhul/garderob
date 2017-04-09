@@ -93,7 +93,7 @@
 								@if (order.State == OrderState.New)
 								{ @Html.Raw("<strong>Вашата заявка се обработва!</strong>") } <!-- TODO: improve the design if those messages -->  
 								@if (order.State == OrderState.InProduction)
-								{ @Html.Raw("<strong>Поръчката Ви е приета и се изработва!</strong> <br/> Ще получите известие веднага след като сме готови!") } <!-- TODO: improve the design if those messages -->  
+								{ @Html.Raw("<br/><strong>Поръчката Ви е приета и се изработва!</strong> <br/> Ще получите известие веднага след като сме готови!") } <!-- TODO: improve the design if those messages -->  
 							</p>
 						</div>
 						@if (order.State == OrderState.WaitingClientResponse || order.State == OrderState.Done)
@@ -146,7 +146,7 @@
 								<div class="alert alert-success add-cart-success">
 									<p>Успешно!</p>
 								</div>
-								<p class="add-cart-loading"><i class="fa fa-refresh fa-spin fa-fw"></i>Зареждане ...</p>
+								<p class="add-cart-loading"><i class="fa fa-refresh fa-spin fa-fw"></i>Добавяне ...</p>
 								@Ajax.ActionLink(
 									"Добави в кошницата",
 									"AddCartItem",
@@ -246,7 +246,21 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td><a class="cws-button white" href="#">Поръчай</a></td>
+								<td>
+									@Ajax.ActionLink(
+											"Поръчай",
+											"OrderNow",
+											null,
+											new AjaxOptions
+											{
+												HttpMethod = "Post",
+												OnBegin = "orderNowBegin",
+												OnFailure = "orderNowFail",
+												OnSuccess = "orderNowSuccess"
+											},
+											new { @class = "cws-button white" })
+									@*<a class="cws-button white" href="#">Поръчай</a>*@
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -254,6 +268,21 @@
 						<i class="fa fa-shopping-basket"></i>
 						<p>Вашата кошница е празна!</p>
 						<p>Използвайте бутона "Добави в кошницата" за да добавите артикул в кошницата.</p>
+					</div>
+					<div class="basket-success-view">
+						<i class="fa fa-check-circle"></i>
+						<h3>Поръчката Ви е изпратена!</h3>
+						<p>Поръчката ви беше успешно приета при нас за изработка. Ако имате някакви допълнителни въпроси, не се колебайте да се свържете с нас на телефон: 0887556644</p>
+					</div>
+					<div class="basket-loading-view">
+						<i class="fa fa-refresh fa-spin fa-fw"></i>
+						<h3>Изпращане ...</h3>
+						<p>Поръчката ви се изпраща за обработка. Моля изчакайте!</p>
+					</div>
+					<div class="basket-fail-view">
+						<i class="fa fa-remove"></i>
+						<h3>Грешка!</h3>
+						<p>Възникна сървърна грешка! Моля свържете се с администратор за съдействие!</p>
 					</div>
 				</div>
 
