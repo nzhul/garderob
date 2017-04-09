@@ -22,7 +22,10 @@ namespace App.Web.Infrastructure.Helpers
 
 			return new HtmlString(htmlString);
 		}
+
+		public static IHtmlString ByteImage(this HtmlHelper helper, byte[] imageData)
+		{
+			return AppHelpers.ByteImage(helper, imageData, "", "", "", "");
+		}
 	}
 }
-
-//<img src = "img/live-preview/materials/small/1-white.jpg" alt="Материал" data-toggle="tooltip" data-material-id="1" title="" data-original-title="Име на материала">

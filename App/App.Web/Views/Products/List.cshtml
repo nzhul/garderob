@@ -13,123 +13,44 @@
 	</section>
 	<!-- ! breadcrumbs end-->
 	<div class="container mt-40 pb-60 products-container">
-
-		@foreach (var category in Model.Categories)
-		{
-			@category.Slug <br/>
-		}
-
-		<br />
-
-		@foreach (var product in Model.Products)
-		{
-			@product.Slug <br />
-			@Html.ByteImage(product.ResultImageSmall, "", "", "", "");<br />
-		}
-
 		<div class="work-filter">
 			<a href="#" data-filter="*" class="filter active">Всички</a>
+			@foreach (var category in Model.Categories)
+			{
+				<a href="#" data-filter=".@category.Slug" class="filter">@category.Title</a>
+			}
+			@*<a href="#" data-filter="*" class="filter active">Всички</a>
 			<a href="#" data-filter=".branding" class="filter">Трикрилни гардероби</a>
 			<a href="#" data-filter=".design" class="filter">Плъзгащи се врати</a>
 			<a href="#" data-filter=".photo" class="filter">Чекмеджета</a>
-			<a href="#" data-filter=".office" class="filter">Други</a>
+			<a href="#" data-filter=".office" class="filter">Други</a>*@
 		</div>
 		<div id="filter-grid" class="row cws-multi-col masonry portfolio-grid">
-			<div class="col-md-4 col-sm-6 all branding design other">
-				<!-- portfolio item-->
-				<div class="portfolio-item text-center">
-					<!-- media-->
-					<div class="pic">
-						<img src="~/content/img/products/product-example-1.jpg">
-						<!-- item content -->
-						<div class="item-content">
-							<h3 class="portfolio-title">Трикрилен гардероб</h3>
-							<!--<div class="categories"><a href="page-portfolio-single.html">Projects</a>, <a href="page-portfolio-single.html">Branding</a></div>-->
-							<div class="links"><a href="pic/portfolio/370x310/1@2x.jpg" class="fa fa-search reorder-link fancy"></a><a href="mvc-re-order-action" class="fa fa-shopping-cart reorder-link"></a></div>
+			@foreach (ProductViewModel product in Model.Products)
+			{
+				<div class="col-md-4 col-sm-6 all @product.CategorySlug">
+					<!-- portfolio item-->
+					<div class="portfolio-item text-center">
+						<!-- media-->
+						<div class="pic">
+							@Html.ByteImage(product.ResultImageSmall)
+							@*<img src="~/content/img/products/product-example-1.jpg">*@
+							<!-- item content -->
+							<div class="item-content">
+								<h3 class="portfolio-title">@product.Title</h3>
+								@{
+									var base64 = Convert.ToBase64String(product.ResultImageBig);
+									var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+								 }
+								<div class="links">
+									<a href="@imgSrc" class="fa fa-search reorder-link fancy"></a>
+									@*<a href="mvc-re-order-action" class="fa fa-shopping-cart reorder-link"></a>*@
+								</div>
+							</div>
 						</div>
 					</div>
+					<!-- ! portfolio item-->
 				</div>
-				<!-- ! portfolio item-->
-			</div>
-			<div class="col-md-4 col-sm-6 all design office projects">
-				<!-- portfolio item-->
-				<div class="portfolio-item text-center">
-					<!-- media-->
-					<div class="pic">
-						<img src="~/content/img/products/product-example-2.jpg">
-						<!-- item content -->
-						<div class="item-content">
-							<h3 class="portfolio-title">Трикрилен гардероб</h3>
-							<!--<div class="categories"><a href="page-portfolio-single.html">Projects</a>, <a href="page-portfolio-single.html">Branding</a></div>-->
-							<div class="links"><a href="pic/portfolio/370x310/1@2x.jpg" class="fa fa-search reorder-link fancy"></a><a href="mvc-re-order-action" class="fa fa-shopping-cart reorder-link"></a></div>
-						</div>
-					</div>
-				</div>
-				<!-- ! portfolio item-->
-			</div>
-			<div class="col-md-4 col-sm-6 all branding photo office other">
-				<!-- portfolio item-->
-				<div class="portfolio-item text-center">
-					<!-- media-->
-					<div class="pic">
-						<img src="~/content/img/products/product-example-3.jpg">
-						<!-- item content -->
-						<div class="item-content">
-							<h3 class="portfolio-title">Трикрилен гардероб</h3>
-							<!--<div class="categories"><a href="page-portfolio-single.html">Projects</a>, <a href="page-portfolio-single.html">Branding</a></div>-->
-							<div class="links"><a href="pic/portfolio/370x310/1@2x.jpg" class="fa fa-search reorder-link fancy"></a><a href="mvc-re-order-action" class="fa fa-shopping-cart reorder-link"></a></div>
-						</div>
-					</div>
-				</div>
-				<!-- ! portfolio item-->
-			</div>
-			<div class="col-md-4 col-sm-6 all photo office">
-				<!-- portfolio item-->
-				<div class="portfolio-item text-center">
-					<!-- media-->
-					<div class="pic">
-						<img src="~/content/img/products/product-example-4.jpg">
-						<!-- item content -->
-						<div class="item-content">
-							<h3 class="portfolio-title">Трикрилен гардероб</h3>
-							<!--<div class="categories"><a href="page-portfolio-single.html">Projects</a>, <a href="page-portfolio-single.html">Branding</a></div>-->
-							<div class="links"><a href="pic/portfolio/370x310/1@2x.jpg" class="fa fa-search reorder-link fancy"></a><a href="mvc-re-order-action" class="fa fa-shopping-cart reorder-link"></a></div>
-						</div>
-					</div>
-				</div>
-				<!-- ! portfolio item-->
-			</div>
-			<div class="col-md-4 col-sm-6 all design projects other">
-				<!-- portfolio item-->
-				<div class="portfolio-item text-center">
-					<!-- media-->
-					<div class="pic">
-						<img src="~/content/img/products/product-example-3.jpg">
-						<!-- item content -->
-						<div class="item-content">
-							<h3 class="portfolio-title">Трикрилен гардероб</h3>
-							<!--<div class="categories"><a href="page-portfolio-single.html">Projects</a>, <a href="page-portfolio-single.html">Branding</a></div>-->
-							<div class="links"><a href="pic/portfolio/370x310/1@2x.jpg" class="fa fa-search reorder-link fancy"></a><a href="mvc-re-order-action" class="fa fa-shopping-cart reorder-link"></a></div>
-						</div>
-					</div>
-				</div>
-				<!-- ! portfolio item-->
-			</div>
-			<div class="col-md-4 col-sm-6 all branding photo projects">
-				<!-- portfolio item-->
-				<div class="portfolio-item text-center">
-					<!-- media-->
-					<div class="pic">
-						<img src="~/content/img/products/product-example-4.jpg">
-						<!-- item content -->
-						<div class="item-content">
-							<h3 class="portfolio-title">Трикрилен гардероб</h3>
-							<!--<div class="categories"><a href="page-portfolio-single.html">Projects</a>, <a href="page-portfolio-single.html">Branding</a></div>-->
-							<div class="links"><a href="pic/portfolio/370x310/1@2x.jpg" class="fa fa-search reorder-link fancy"></a><a href="mvc-re-order-action" class="fa fa-shopping-cart reorder-link"></a></div>
-						</div>
-					</div>
-				</div>
-				<!-- ! portfolio item-->
-			</div>
+			}
 		</div>
 	</div>

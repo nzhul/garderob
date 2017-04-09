@@ -10,6 +10,8 @@
 
 		public decimal Price { get; set; }
 
+		public string CategorySlug { get; set; }
+
 		public byte[] ResultImageSmall { get; set; }
 
 		public byte[] ResultImageBig { get; set; }
