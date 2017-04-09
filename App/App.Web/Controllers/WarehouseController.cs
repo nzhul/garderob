@@ -37,10 +37,6 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult AddCartItem(int orderId, int orderCount, bool installation)
 		{
-			//TODO: remove the threading
-
-			System.Threading.Thread.Sleep(2500);
-
 			string userId = this.User.Identity.GetUserId();
 			Order dbOrder = this.ordersService.AddCartItem(orderId, orderCount, installation, userId);
 			if (dbOrder != null)
@@ -68,7 +64,6 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult RemoveCartItem(int orderId)
 		{
-			System.Threading.Thread.Sleep(2500);
 			string userId = this.User.Identity.GetUserId();
 			if (this.ordersService.RemoveCartItem(orderId, userId))
 			{
@@ -84,7 +79,6 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult OrderNow()
 		{
-			System.Threading.Thread.Sleep(2500);
 			string userId = this.User.Identity.GetUserId();
 			if (this.ordersService.OrderNow(userId))
 			{
