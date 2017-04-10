@@ -52,6 +52,11 @@
 					@Html.EditorFor(model => model.LastName)
 					<br />
 
+					@Html.LabelFor(model => model.JobTitle)
+					@Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.JobTitle)
+					<br />
+
 					@Html.LabelFor(model => model.Company)
 					@Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
 					@Html.EditorFor(model => model.Company)

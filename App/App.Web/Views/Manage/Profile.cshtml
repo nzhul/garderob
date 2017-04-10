@@ -34,39 +34,48 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6">
+						@Html.LabelFor(m => m.JobTitle)<br />
+						@Html.ValidationMessageFor(m => m.JobTitle, "", new { @class = "text-danger" })
+						@Html.EditorFor(m => m.JobTitle)
+						<br />
+					</div>
+					<div class="col-md-6">
 						@Html.LabelFor(m => m.Company)<br />
 						@Html.ValidationMessageFor(m => m.Company, "", new { @class = "text-danger" })
 						@Html.EditorFor(m => m.Company)
 						<br />
 					</div>
+				</div>
+				<div class="row">
+
 					<div class="col-md-6">
 						@Html.LabelFor(m => m.City)<br />
 						@Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
 						@Html.EditorFor(m => m.City)
 						<br />
 					</div>
-				</div>
-				<div class="row">
 					<div class="col-md-6">
 						@Html.LabelFor(m => m.Address)<br />
 						@Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
 						@Html.EditorFor(m => m.Address)
 						<br />
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-md-6">
 						@Html.LabelFor(m => m.DeliveryAddress)<br />
 						@Html.ValidationMessageFor(m => m.DeliveryAddress, "", new { @class = "text-danger" })
 						@Html.EditorFor(m => m.DeliveryAddress)
 						<br />
 					</div>
-				</div>
-				<div class="row">
 					<div class="col-md-6">
 						@Html.LabelFor(m => m.Phone)<br />
 						@Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
 						@Html.EditorFor(m => m.Phone)
 						<br />
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-md-6">
 						@Html.LabelFor(m => m.InvoiceData)<br />
 						@Html.ValidationMessageFor(m => m.InvoiceData, "", new { @class = "text-danger" })

@@ -202,6 +202,7 @@
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\TestimonialsController.cs" />
     <Compile Include="Controllers\WarehouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1474,6 +1475,7 @@
     <Content Include="Views\Products\List.cshtml" />
     <Content Include="Views\Warehouse\AddTestimonial.cshtml" />
     <Content Include="Views\Warehouse\SuccessTestimonial.cshtml" />
+    <Content Include="Views\Testimonials\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Orders\Partials\" />

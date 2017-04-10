@@ -12,10 +12,12 @@ namespace App.Web.Controllers
 	public class WarehouseController : Controller
 	{
 		private IOrdersService ordersService;
+		private ITestimonialsService testimonialsService;
 
-		public WarehouseController(IOrdersService ordersService)
+		public WarehouseController(IOrdersService ordersService, ITestimonialsService testimonialsService)
 		{
 			this.ordersService = ordersService;
+			this.testimonialsService = testimonialsService;
 		}
 
 		public ActionResult Orders()
@@ -114,7 +116,7 @@ namespace App.Web.Controllers
 			if (ModelState.IsValid)
 			{
 				string userId = this.User.Identity.GetUserId();
-				Testimonial dbTestimonial = this.ordersService.AddTestimonial(model, userId);
+				Testimonial dbTestimonial = this.testimonialsService.AddTestimonial(model, userId);
 
 				if (dbTestimonial != null)
 				{

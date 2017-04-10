@@ -271,6 +271,7 @@
 				admin.PhoneNumber = config.Phone;
 				admin.ProfileImage = this.LoadImageData(HttpContext.Current.Server.MapPath("~/App_Data/AdminProfileImage/avatar.jpg"));
 				admin.RegisterDate = DateTime.UtcNow;
+				admin.JobTitle = "Консултант";
 				admin.IsActive = true;
 
 				userManager.Create(admin, config.Password);
@@ -298,6 +299,7 @@
 				newUser.Email = "user" + i.ToString() + "@gmail.com";
 				newUser.PhoneNumber = "123456789";
 				newUser.RegisterDate = DateTime.UtcNow;
+				newUser.JobTitle = "Job Title";
 				newUser.IsActive = true;
 
 				userManager.Create(newUser, "1234567");

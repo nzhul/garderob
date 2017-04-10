@@ -6,20 +6,24 @@ namespace App.Web.Models
 	{
 		[Required(ErrorMessage = " * Задължително!")]
 		[Display(Name = "Име:")]
-		[StringLength(250, MinimumLength = 3, ErrorMessage = " Максимална дължина 250 символа, минимална 3")]
+		[StringLength(100, MinimumLength = 3, ErrorMessage = " Максимална дължина 100 символа, минимална 3")]
 		public string FirstName { get; set; }
 
 		[Required(ErrorMessage = " * Задължително!")]
 		[Display(Name = "Фамилия:")]
-		[StringLength(250, MinimumLength = 3, ErrorMessage = " Максимална дължина 250 символа, минимална 3")]
+		[StringLength(100, MinimumLength = 3, ErrorMessage = " Максимална дължина 100 символа, минимална 3")]
 		public string LastName { get; set; }
 
+		[Display(Name = "Професия:")]
+		[StringLength(100, MinimumLength = 3, ErrorMessage = " Максимална дължина 100 символа, минимална 3")]
+		public string JobTitle { get; set; }
+
 		[Display(Name = "Фирма:")]
-		[StringLength(250, MinimumLength = 3, ErrorMessage = " Максимална дължина 250 символа, минимална 3")]
+		[StringLength(100, MinimumLength = 3, ErrorMessage = " Максимална дължина 100 символа, минимална 3")]
 		public string Company { get; set; }
 
 		[Display(Name = "Град:")]
-		[StringLength(250, MinimumLength = 3, ErrorMessage = " Максимална дължина 250 символа, минимална 3")]
+		[StringLength(100, MinimumLength = 3, ErrorMessage = " Максимална дължина 100 символа, минимална 3")]
 		public string City { get; set; }
 
 		[Display(Name = "Адрес:")]

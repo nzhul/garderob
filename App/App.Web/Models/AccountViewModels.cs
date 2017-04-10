@@ -79,6 +79,9 @@ namespace App.Web.Models
 		[Display(Name = "Фамилия:")]
 		public string LastName { get; set; }
 
+		[Display(Name = "Професия:")]
+		public string JobTitle { get; set; }
+
 		[Required(ErrorMessage = " * Паролата е задължителна!")]
 		[StringLength(100, ErrorMessage = " * Паролата трябва да е поне дълга минимум {2} символа!", MinimumLength = 6)]
 		[DataType(DataType.Password)]

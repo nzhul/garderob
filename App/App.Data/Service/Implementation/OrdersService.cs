@@ -367,32 +367,5 @@ namespace App.Data.Service.Implementation
 		{
 			return this.Data.Orders.All().Where(o => o.State == OrderState.Done);
 		}
-
-		public Testimonial AddTestimonial(TestimonialInputModel model, string userId)
-		{
-			Order dbOrder = this.Data.Orders.Find(model.OrderId);
-			ApplicationUser dbUser = this.Data.Users.Find(userId);
-
-			if (dbOrder != null && dbUser != null && dbOrder.Client.Id == dbUser.Id)
-			{
-				Testimonial newTestimonial = new Testimonial
-				{
-					Client = dbUser,
-					Order = dbOrder,
-					Rating = model.Rating,
-					SubmissionDate = DateTime.UtcNow,
-					Text = model.Text
-				};
-
-				dbOrder.Testimonials.Add(newTestimonial);
-				this.Data.SaveChanges();
-
-				return newTestimonial;
-			}
-			else
-			{
-				return null;
-			}
-		}
 	}
 }

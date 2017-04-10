@@ -60,6 +60,7 @@ namespace App.Data.Service.Implementation
 			dbUser.DeliveryAddress = user.DeliveryAddress;
 			dbUser.PhoneNumber = user.PhoneNumber;
 			dbUser.InvoiceData = user.InvoiceData;
+			dbUser.JobTitle = user.JobTitle;
 
 			if (user.ProfileImage != null && user.ProfileImage.Length > 0)
 			{

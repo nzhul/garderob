@@ -112,6 +112,7 @@
     <Compile Include="Repositories\EFRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Service\Abstraction\IMessagingService.cs" />
+    <Compile Include="Service\Abstraction\ITestimonialsService.cs" />
     <Compile Include="Service\Implementation\ClientsService.cs" />
     <Compile Include="Service\Abstraction\IClientsService.cs" />
     <Compile Include="Service\Abstraction\IMaterialsService.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Service\Implementation\MaterialsService.cs" />
     <Compile Include="Service\Implementation\OrdersService.cs" />
     <Compile Include="Service\Implementation\PagesService.cs" />
+    <Compile Include="Service\Implementation\TestimonialsService.cs" />
     <Compile Include="Service\Messaging\MessageData.cs" />
     <Compile Include="UoWData.cs" />
     <Compile Include="Utilities\ImageUtilities.cs" />

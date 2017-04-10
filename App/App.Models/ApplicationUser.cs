@@ -25,6 +25,8 @@ namespace App.Models
 
 		public string Company { get; set; }
 
+		public string JobTitle { get; set; }
+
 		public string City { get; set; }
 
 		public string Address { get; set; }

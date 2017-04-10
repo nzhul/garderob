@@ -170,6 +170,7 @@ namespace App.Web.Controllers
 					DeliveryAddress = model.DeliveryAddress,
 					PhoneNumber = model.Phone,
 					InvoiceData = model.InvoiceData,
+					JobTitle = model.JobTitle,
 					RegisterDate = DateTime.UtcNow
 				};
 

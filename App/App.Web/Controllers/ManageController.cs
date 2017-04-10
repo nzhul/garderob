@@ -80,6 +80,7 @@ namespace App.Web.Controllers
 				DeliveryAddress = currentUser.DeliveryAddress,
 				Phone = currentUser.PhoneNumber,
 				InvoiceData = currentUser.InvoiceData,
+				JobTitle = currentUser.JobTitle,
 				ProfileImage = currentUser.ProfileImage
 			};
 
@@ -108,6 +109,7 @@ namespace App.Web.Controllers
 					DeliveryAddress = model.DeliveryAddress,
 					PhoneNumber = model.Phone,
 					InvoiceData = model.InvoiceData,
+					JobTitle = model.JobTitle,
 					ProfileImage = currentUser.ProfileImage
 				};
 
