@@ -194,8 +194,6 @@
     <Compile Include="Areas\Administration\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
     <Compile Include="Areas\Administration\Models\ClientsMasterModel.cs" />
-    <Compile Include="Areas\Administration\Models\PageUrlItem.cs" />
-    <Compile Include="Areas\Administration\Models\PagingData.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1476,6 +1474,7 @@
     <Content Include="Views\Warehouse\AddTestimonial.cshtml" />
     <Content Include="Views\Warehouse\SuccessTestimonial.cshtml" />
     <Content Include="Views\Testimonials\List.cshtml" />
+    <Content Include="Views\Shared\_Pager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Orders\Partials\" />

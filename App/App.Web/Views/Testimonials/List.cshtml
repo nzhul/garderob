@@ -1,4 +1,6 @@
-﻿
+﻿@using App.Models.Testimonials
+@using App.Models.Pages
+@model IEnumerable<TestimonialViewModel>
 @{
 	ViewBag.Title = "List";
 }
@@ -13,6 +15,7 @@
 <!-- ! breadcrumbs end-->
 <!-- content-->
 <div class="container mt-40 pb-60">
+
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<h2 class="title-section mb-0 mt-0 text-center">Разгледайте нашите завършени проекти</h2>
@@ -20,135 +23,51 @@
 			<p class="text-center mb-0">Вижте какво казват за нашата услуга клиентите ни. Също така разгледайте как от вашите скици успяваме да направим завършени и качествени гардероби и мебели.</p>
 		</div>
 	</div>
-	<div class="row gallery-row">
-		<div class="col-md-2">
-			<div class="gallery-row-image-wrapper">
-				<img src="~/content/img/gallery/sketch.jpg" alt="Скица на гардероб" />
-				<i class="fa fa-angle-double-right"></i>
-				<span>Скица</span>
+	@foreach (TestimonialViewModel testimonial in Model)
+	{
+		<div class="row gallery-row">
+			<div class="col-md-2">
+				<div class="gallery-row-image-wrapper">
+					@Html.ByteImage(testimonial.OrderSketch.Small, "Скица на продукта")
+					<i class="fa fa-angle-double-right"></i>
+					<span>Скица</span>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="gallery-row-image-wrapper">
-				<img src="~/content/img/gallery/model.jpg" alt="3D модел на гардероб" />
-				<i class="fa fa-angle-double-right"></i>
-				<span>Модел</span>
+			<div class="col-md-2">
+				<div class="gallery-row-image-wrapper">
+					@Html.ByteImage(testimonial.OrderDesign.Small, "Дизайн на продукта")
+					<i class="fa fa-angle-double-right"></i>
+					<span>Модел</span>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="gallery-row-image-wrapper">
-				<img src="~/content/img/gallery/result.jpg" alt="Готов гардероб" />
-				<span>Резултат</span>
+			<div class="col-md-2">
+				<div class="gallery-row-image-wrapper">
+					@Html.ByteImage(testimonial.OrderResult.Small, "Краен резултат")
+					<span>Резултат</span>
+				</div>
 			</div>
-		</div>
-		<div class="col-sm-6">
-			<div class="widget_wrapper">
-				<div class="testimonial">
-					<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
-					<div class="author">
-						<img src="~/content/img/testimonials/users/anton-radev.jpg" alt="Снимка на доволен клиент">
-						<figure>
-							<figcaption>
-								Антон Радев<span>[ Софтуерен Архитект ]</span>
-								<div class="stars"></div>
-							</figcaption>
-						</figure>
+			<div class="col-sm-6">
+				<div class="widget_wrapper">
+					<div class="testimonial">
+						<div class="quote">@testimonial.Text</div>
+						<div class="author">
+							@Html.ByteImage(testimonial.ClientPhoto, "Снимка на доволен клиент", "testimonial-client-photo")
+							<figure>
+								<figcaption>
+									@testimonial.ClientFullName<span>[ @testimonial.ClientJobTitle ]</span>
+									<div class="stars"></div>
+								</figcaption>
+							</figure>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="cws_divider with-plus long color-line-1 mt-40"></div>
-	<div class="row gallery-row">
-		<div class="col-md-2">
-			<div class="gallery-row-image-wrapper">
-				<img src="~/content/img/gallery/sketch.jpg" alt="Скица на гардероб" />
-				<i class="fa fa-angle-double-right"></i>
-				<span>Скица</span>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="gallery-row-image-wrapper">
-				<img src="~/content/img/gallery/model.jpg" alt="3D модел на гардероб" />
-				<i class="fa fa-angle-double-right"></i>
-				<span>Модел</span>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="gallery-row-image-wrapper">
-				<img src="~/content/img/gallery/result.jpg" alt="Готов гардероб" />
-				<span>Резултат</span>
-			</div>
-		</div>
-		<div class="col-sm-6">
-			<div class="widget_wrapper">
-				<div class="testimonial">
-					<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
-					<div class="author">
-						<img src="~/content/img/testimonials/users/anton-radev.jpg" alt="Снимка на доволен клиент">
-						<figure>
-							<figcaption>
-								Антон Радев<span>[ Софтуерен Архитект ]</span>
-								<div class="stars"></div>
-							</figcaption>
-						</figure>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="cws_divider with-plus long color-line-1 mt-40"></div><div class="row gallery-row">
-		<div class="col-md-2">
-			<div class="gallery-row-image-wrapper">
-				<img src="~/content/img/gallery/sketch.jpg" alt="Скица на гардероб" />
-				<i class="fa fa-angle-double-right"></i>
-				<span>Скица</span>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="gallery-row-image-wrapper">
-				<img src="~/content/img/gallery/model.jpg" alt="3D модел на гардероб" />
-				<i class="fa fa-angle-double-right"></i>
-				<span>Модел</span>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="gallery-row-image-wrapper">
-				<img src="~/content/img/gallery/result.jpg" alt="Готов гардероб" />
-				<span>Резултат</span>
-			</div>
-		</div>
-		<div class="col-sm-6">
-			<div class="widget_wrapper">
-				<div class="testimonial">
-					<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
-					<div class="author">
-						<img src="~/content/img/testimonials/users/anton-radev.jpg" alt="Снимка на доволен клиент">
-						<figure>
-							<figcaption>
-								Антон Радев<span>[ Софтуерен Архитект ]</span>
-								<div class="stars"></div>
-							</figcaption>
-						</figure>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="cws_divider with-plus long color-line-1 mt-40"></div>
-	<!-- pagination-->
+		<div class="cws_divider with-plus long color-line-1 mt-40"></div>
+	}
 	<div class="row">
-		<nav class="text-left">
-			<ul class="pagination">
-				<li><a href="#" aria-label="Previous"><span class="fa fa-angle-left"></span></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#" class="active">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">...</a></li>
-				<li><a href="#">23</a></li>
-				<li><a href="#" aria-label="Next"><span class="fa fa-angle-right"></span></a></li>
-			</ul>
-		</nav>
+		<div class="col-md-12">
+			@Html.Partial("_Pager", ViewBag.PagingData as PagingData)
+		</div>
 	</div>
-	<!-- ! pagination-->
 </div>

@@ -42,7 +42,7 @@
 							<div class="gallery-row-image-wrapper">
 								@if (order.SketchImage.Length > 0)
 								{
-									@Html.ByteImage(order.SketchImage, "warehouse-image", "", order.Title + " Скица", order.Title + " Скица")
+									@Html.ByteImage(order.SketchImage, order.Title + " Скица", "warehouse-image", "", order.Title + " Скица")
 								}
 								else
 								{
@@ -56,7 +56,7 @@
 							<div class="gallery-row-image-wrapper">
 								@if (order.DesignImage.Length > 0)
 								{
-									@Html.ByteImage(order.DesignImage, "warehouse-image", "", order.Title + " 3D модел", order.Title + " 3D модел")
+									@Html.ByteImage(order.DesignImage, order.Title + " 3D модел", "warehouse-image", "", order.Title + " 3D модел")
 								}
 								else
 								{
@@ -70,7 +70,7 @@
 							<div class="gallery-row-image-wrapper">
 								@if (order.ResultImage.Length > 0)
 								{
-									@Html.ByteImage(order.ResultImage, "warehouse-image", "", order.Title + " 3D модел", order.Title + " 3D модел")
+									@Html.ByteImage(order.ResultImage, order.Title + " 3D модел", "warehouse-image", "", order.Title + " 3D модел")
 								}
 								else
 								{

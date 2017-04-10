@@ -1,0 +1,43 @@
+﻿@model App.Models.Pages.PagingData
+
+<nav class="text-left">
+	<ul class="pagination">
+
+		<li>
+			@if (Model.DisplayPrev)
+			{
+				<a class="pager-previous" href="@Model.PrevUrl"><span class="fa fa-angle-left"></span></a>
+			}
+			else
+			{
+				<a class="pager-previous disabled"><span class="fa fa-angle-left"></span></a>
+			}
+		</li>
+		@foreach (var urlItem in Model.Urls)
+		{
+			string isActive = urlItem.IsSelected == true ? "active" : "";
+
+			<li class="@isActive">
+				@if (!string.IsNullOrEmpty(urlItem.Url))
+				{
+					<a href="@urlItem.Url">@urlItem.Text</a>
+				}
+				else
+				{
+					<a href="#">...</a>
+				}
+			</li>
+		}
+
+		<li>
+			@if (Model.DisplayNext)
+			{
+				<a class="pager-next" href="@Model.NextUrl"><span class="fa fa-angle-right"></span></a>
+			}
+			else
+			{
+				<a class="pager-next disabled"><span class="fa fa-angle-right"></span></a>
+			}
+		</li>
+	</ul>
+</nav>

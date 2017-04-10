@@ -1087,4 +1087,9 @@ label.custom-sketches-input {
 	min-height: 200px;
 	padding: 10px 0 0 10px;
 }
+
+.testimonial-client-photo {
+	width: 60px;
+	height: 60px;
+}
 /*Testimonials END*/

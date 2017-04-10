@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using Utilities;
 
-namespace App.Web.Areas.Administration.Models
+namespace App.Models.Pages
 {
 	public class PagingData
 	{

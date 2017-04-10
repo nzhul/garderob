@@ -1,6 +1,7 @@
 ﻿using App.Data.Service.Abstraction;
 using App.Models;
 using App.Models.InputModels;
+using App.Models.Pages;
 using App.Web.Areas.Administration.Models;
 using AutoMapper;
 using System;

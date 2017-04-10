@@ -6,7 +6,7 @@ namespace App.Web.Infrastructure.Helpers
 {
 	public static class AppHelpers
 	{
-		public static IHtmlString ByteImage(this HtmlHelper helper, byte[] imageData, string className, string id, string title, string alt)
+		public static IHtmlString ByteImage(this HtmlHelper helper, byte[] imageData, string alt, string className, string id, string title)
 		{
 			var base64 = Convert.ToBase64String(imageData);
 			var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
@@ -26,6 +26,21 @@ namespace App.Web.Infrastructure.Helpers
 		public static IHtmlString ByteImage(this HtmlHelper helper, byte[] imageData)
 		{
 			return AppHelpers.ByteImage(helper, imageData, "", "", "", "");
+		}
+
+		public static IHtmlString ByteImage(this HtmlHelper helper, byte[] imageData, string alt)
+		{
+			return AppHelpers.ByteImage(helper, imageData, alt, "", "", "");
+		}
+
+		public static IHtmlString ByteImage(this HtmlHelper helper, byte[] imageData, string alt, string className)
+		{
+			return AppHelpers.ByteImage(helper, imageData, alt, className, "", "");
+		}
+
+		public static IHtmlString ByteImage(this HtmlHelper helper, byte[] imageData, string alt, string className, string id)
+		{
+			return AppHelpers.ByteImage(helper, imageData, alt, className, id, "");
 		}
 	}
 }

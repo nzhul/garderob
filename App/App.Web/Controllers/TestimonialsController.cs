@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using App.Models.Testimonials;
 using System.Linq;
 using AutoMapper;
+using App.Models.Pages;
 
 namespace App.Web.Controllers
 {

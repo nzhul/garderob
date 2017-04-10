@@ -1,4 +1,4 @@
-﻿namespace App.Web.Areas.Administration.Models
+﻿namespace App.Models.Pages
 {
 	public class PageUrlItem
 	{

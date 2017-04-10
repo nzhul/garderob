@@ -3,6 +3,7 @@ using App.Models;
 using App.Models.Orders;
 using App.Models.Testimonials;
 using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace App.Data.Service.Implementation
@@ -57,7 +58,13 @@ namespace App.Data.Service.Implementation
 				pagesize = defaultPageSize;
 			}
 
-			IQueryable<Testimonial> testimonials = this.Data.Testimonials.All().Where(t => t.IsApproved == true).OrderByDescending(t=>t.SubmissionDate);
+			IQueryable<Testimonial> testimonials = this.Data.Testimonials
+				.All()
+				.Include(t => t.Order)
+				.Include(t => t.Client)
+				.Where(t => t.IsApproved == true)
+				.OrderByDescending(t=>t.SubmissionDate);
+
 			testimonials = testimonials.Skip(page.Value * pagesize.Value).Take(pagesize.Value);
 
 			return testimonials;
