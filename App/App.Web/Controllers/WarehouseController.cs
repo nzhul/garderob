@@ -1,5 +1,6 @@
 ﻿using App.Data.Service.Abstraction;
 using App.Models.Orders;
+using App.Models.Testimonials;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,6 +89,51 @@ namespace App.Web.Controllers
 			{
 				return Json(new { Status = "Fail" });
 			}
+		}
+
+		[HttpGet]
+		public ActionResult AddTestimonial(int id)
+		{
+			TestimonialInputModel model = new TestimonialInputModel();
+
+			Order dbOrder = this.ordersService.GetOrder(id);
+			if (dbOrder != null)
+			{
+				string orderTitle = this.ordersService.GetOrder(id).Title;
+				model.OrderTitle = orderTitle;
+				model.OrderId = id;
+				return this.View(model);
+			}
+
+			return HttpNotFound();
+		}
+
+		[HttpPost]
+		public ActionResult AddTestimonial(int id, TestimonialInputModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				string userId = this.User.Identity.GetUserId();
+				Testimonial dbTestimonial = this.ordersService.AddTestimonial(model, userId);
+
+				if (dbTestimonial != null)
+				{
+					return this.RedirectToAction("SuccessTestimonial");
+				}
+				else
+				{
+					ModelState.AddModelError("InvalidOrderId", " * Имате право да изпращате атестати само за поръчки които са ваши!");
+					return View(model);
+				}
+			}
+
+			return View(model);
+		}
+
+		[HttpGet]
+		public ActionResult SuccessTestimonial()
+		{
+			return this.View();
 		}
 	}
 }

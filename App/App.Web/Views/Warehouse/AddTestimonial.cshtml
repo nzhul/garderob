@@ -1,0 +1,70 @@
+﻿@using App.Models.Testimonials;
+@model TestimonialInputModel
+@{
+    ViewBag.Title = "Добави Атестат";
+}
+
+<!-- breadcrumbs start-->
+<section class="breadcrumbs">
+	<div class="container">
+		<div class="text-center breadcrumbs-item">
+			<h1>Атестат</h1><a href="@Url.Action("Orders", "Warehouse")">Склад</a><i class="fa fa-angle-right"></i><a href="@Url.Action("List", "Testimonials")">Атестати</a><i class="fa fa-angle-right"></i><a href="">Изпрати</a>
+		</div>
+	</div>
+</section>
+<!-- ! breadcrumbs end-->
+<div class="container mt-40 pb-60">
+	<div class="row" style="margin-bottom:30px;">
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="title-section mb-0 mt-0 text-center">Изпрати Атестат</h2>
+			<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
+			<p class="text-center mb-0">Изпратете вашия атестат за завършен проект. <br/>След удобрение от администратор, той ще се появи в нашия сайт.</p>
+		</div>
+	</div>
+	@using (Html.BeginForm("AddTestimonial", "Warehouse", FormMethod.Post, new { @class = "form contact-form alt clearfix" }))
+	{
+		<div class="row">
+			<div class="col-md-12">
+				<h4>Добави атестат за: @Model.OrderTitle</h4>
+				@Html.ValidationMessage("InvalidOrderId", new { @class = "text-danger" })<br/>
+				@Html.LabelFor(m => m.Text) @Html.ValidationMessageFor(m => m.Text, "", new { @class = "text-danger" })
+				@Html.TextAreaFor(m => m.Text, new { @class = "fe-textarea" })
+				@Html.HiddenFor(m => m.OrderTitle)
+				@Html.HiddenFor(m => m.OrderId)
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="cs-loader">
+					<div class="cs-loader-inner">
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+						<label>	●</label>
+					</div>
+				</div>
+				<button type="submit" id="order-submit-form-button" style="width:50%;margin:0 auto;display:block;" class="cws-button alt">Изпрати</button>
+			</div>
+		</div>
+	}
+</div>
+
+@section Scripts {
+	<script>
+		//using the click event on the submit button
+		$('#order-submit-form-button').click(function (evt) {
+			var $form = $('form.contact-form');
+			var btn = $(this);
+			if ($form.valid()) {
+				// the form is valid
+				// dim out and disable the submit button to prevent multiple sends
+				btn.attr('disabled', 'disabled');
+				btn.css('opacity', '0.5');
+				$('.cs-loader').show();
+				$form.submit();
+			}
+		});
+	</script>
+	}

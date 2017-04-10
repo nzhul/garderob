@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using App.Models.Testimonials;
 
 namespace App.Data.Service.Implementation
 {
@@ -269,7 +270,7 @@ namespace App.Data.Service.Implementation
 			return false;
 		}
 
-		public Order AddCartItem(int orderId,int orderCount, bool installation, string userId)
+		public Order AddCartItem(int orderId, int orderCount, bool installation, string userId)
 		{
 			Order dbOrder = this.Data.Orders.Find(orderId);
 			ApplicationUser dbUser = this.Data.Users.Find(userId);
@@ -365,6 +366,33 @@ namespace App.Data.Service.Implementation
 		public IQueryable<Order> GetAllDoneOrders()
 		{
 			return this.Data.Orders.All().Where(o => o.State == OrderState.Done);
+		}
+
+		public Testimonial AddTestimonial(TestimonialInputModel model, string userId)
+		{
+			Order dbOrder = this.Data.Orders.Find(model.OrderId);
+			ApplicationUser dbUser = this.Data.Users.Find(userId);
+
+			if (dbOrder != null && dbUser != null && dbOrder.Client.Id == dbUser.Id)
+			{
+				Testimonial newTestimonial = new Testimonial
+				{
+					Client = dbUser,
+					Order = dbOrder,
+					Rating = model.Rating,
+					SubmissionDate = DateTime.UtcNow,
+					Text = model.Text
+				};
+
+				dbOrder.Testimonials.Add(newTestimonial);
+				this.Data.SaveChanges();
+
+				return newTestimonial;
+			}
+			else
+			{
+				return null;
+			}
 		}
 	}
 }

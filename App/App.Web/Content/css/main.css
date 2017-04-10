@@ -304,7 +304,7 @@ li > ul {
 	margin-bottom: 0;
 }
 
-ul li:before {
+/*ul li:before {
 	position: absolute;
 	left: 0px;
 	top: 5px;
@@ -316,7 +316,7 @@ ul li:before {
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-}
+}*/
 
 ul.style-2 li:before {
 	content: "";

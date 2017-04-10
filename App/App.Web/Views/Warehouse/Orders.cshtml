@@ -91,9 +91,9 @@
 								{ @Html.Raw(string.Format("Цена: {0} лв", order.Price));
 								}
 								@if (order.State == OrderState.New)
-								{ @Html.Raw("<strong>Вашата заявка се обработва!</strong>") } <!-- TODO: improve the design if those messages -->  
+								{ @Html.Raw("<strong>Вашата заявка се обработва!</strong>") } <!-- TODO: improve the design if those messages -->
 								@if (order.State == OrderState.InProduction)
-								{ @Html.Raw("<br/><strong>Поръчката Ви е приета и се изработва!</strong> <br/> Ще получите известие веднага след като сме готови!") } <!-- TODO: improve the design if those messages -->  
+								{ @Html.Raw("<br/><strong>Поръчката Ви е приета и се изработва!</strong> <br/> Ще получите известие веднага след като сме готови!") } <!-- TODO: improve the design if those messages -->
 							</p>
 						</div>
 						@if (order.State == OrderState.WaitingClientResponse || order.State == OrderState.Done)
@@ -101,9 +101,9 @@
 							<div class="col-md-2 col-md-offset-4">
 								<span class="count-label">Брой:</span>
 								<div class="selection-box" style="background-color:white;">
-									@{ 
+									@{
 										string disabled = string.Empty;
-										if (order.IsInCart)
+										if (order.IsInCart || order.State == OrderState.Done)
 										{
 											disabled = "disabled";
 										}
@@ -123,7 +123,7 @@
 									</select>
 								</div>
 								<div class="checkbox mt-10">
-									@{ 
+									@{
 										string isChecked = string.Empty;
 										if (order.Installation)
 										{
@@ -134,11 +134,11 @@
 									<label for="installationcb-@order.Id">Монтаж</label>
 								</div>
 							</div>
-						}
+										}
 					</div>
-					if ((order.State == OrderState.WaitingClientResponse || order.State == OrderState.Done) && !order.IsInCart)
-					{
-						<div class="row" style="padding-right:20px;padding-top:20px;">
+					<div class="row" style="padding-right:20px;padding-top:20px;">
+						@if ((order.State == OrderState.WaitingClientResponse) && !order.IsInCart)
+						{
 							<div class="col-xs-3 col-xs-offset-9">
 								<div class="alert alert-danger add-cart-fail">
 									<p>Неуспешно!</p>
@@ -158,11 +158,20 @@
 										OnFailure = "addToCartFail",
 										OnSuccess = "addToCartSuccess"
 									},
-									new { @class = "cws-button alt order-now-add-button", data_orderid = order.Id })
+									new { @class = "cws-button alt order-now-add-button", data_orderid = order.Id })<br />
 							</div>
-						</div>
-					}
-					<div class="cws_divider with-plus long mt-40 mb-40"></div>
+						}
+
+						@if (order.State == OrderState.Done)
+						{
+							<div class="col-xs-12">
+								@*<a class="cws-button alt reorder-btn" href="@Url.Action("ReOrder", new { orderId = order.Id })">Поръчай отново</a>*@
+								<a class="cws-button alt add-testimonial-btn" href="@Url.Action("AddTestimonial", new { id = order.Id })">Добави Атестат</a>
+							</div>
+						}
+					</div>
+
+							<div class="cws_divider with-plus long mt-40 mb-40"></div>
 				<!-- Wardrobe item end -->
 				}
 			</div>
@@ -290,21 +299,21 @@
 			}
 			else
 			{
-			<div class="col-md-6 col-md-offset-3">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Склада е празен</h3>
-					</div>
-					<div class="panel-body">
-						<p><strong>Вашият склад</strong> е празен!</p>
-						<p>
-							Когато направите поръчка при нас - тук ще може да следите нейния статус. Ако не сте сигурни как точно да направите скицата за вашия проект може да прочетете в нашата <a href="/make">"Направи"</a> секция.
-						</p>
-						<p>Ако сте готови да направите поръчка, да качите вашите скици от тук:</p>
-						<a href="@Url.Action("Make", "Orders")" class="cws-button gray alt pull-right">Качи скици</a>
-					</div>
-				</div>
-			</div>
+											<div class="col-md-6 col-md-offset-3">
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h3 class="panel-title">Склада е празен</h3>
+													</div>
+													<div class="panel-body">
+														<p><strong>Вашият склад</strong> е празен!</p>
+														<p>
+															Когато направите поръчка при нас - тук ще може да следите нейния статус. Ако не сте сигурни как точно да направите скицата за вашия проект може да прочетете в нашата <a href="/make">"Направи"</a> секция.
+														</p>
+														<p>Ако сте готови да направите поръчка, да качите вашите скици от тук:</p>
+														<a href="@Url.Action("Make", "Orders")" class="cws-button gray alt pull-right">Качи скици</a>
+													</div>
+												</div>
+											</div>
 			}
 
 	</div>

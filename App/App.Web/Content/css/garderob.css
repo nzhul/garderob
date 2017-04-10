@@ -710,6 +710,20 @@ i.submit-loading {
 		z-index: 9999;
 	}
 
+	.warehouse-container .add-testimonial-btn {
+		background-color: #3fb618;
+		border-color: #3fb618;
+		color: white;
+	}
+
+		.warehouse-container .add-testimonial-btn:hover {
+			color: #3fb618;
+		}
+
+		.warehouse-container .reorder-btn {
+
+		}
+
 .order-container .basket-full-view {
 	display: none;
 }
@@ -1067,3 +1081,10 @@ label.custom-sketches-input {
 /*Orders form end*/
 
 /**/
+
+/*Testimonials*/
+.contact-form textarea.fe-textarea {
+	min-height: 200px;
+	padding: 10px 0 0 10px;
+}
+/*Testimonials END*/

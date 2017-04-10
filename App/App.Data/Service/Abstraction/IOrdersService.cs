@@ -2,6 +2,7 @@
 using App.Models.Orders;
 using System.Linq;
 using System.Collections.Generic;
+using App.Models.Testimonials;
 
 namespace App.Data.Service.Abstraction
 {
@@ -48,5 +49,7 @@ namespace App.Data.Service.Abstraction
 		bool RemoveCartItem(int orderId, string userId);
 
 		bool OrderNow(string userId);
+
+		Testimonial AddTestimonial(TestimonialInputModel model, string userId);
 	}
 }

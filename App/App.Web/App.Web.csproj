@@ -1472,6 +1472,8 @@
     <Content Include="Views\Orders\Success.cshtml" />
     <Content Include="Views\Warehouse\Orders.cshtml" />
     <Content Include="Views\Products\List.cshtml" />
+    <Content Include="Views\Warehouse\AddTestimonial.cshtml" />
+    <Content Include="Views\Warehouse\SuccessTestimonial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Orders\Partials\" />
