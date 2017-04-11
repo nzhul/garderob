@@ -367,5 +367,10 @@ namespace App.Data.Service.Implementation
 		{
 			return this.Data.Orders.All().Where(o => o.State == OrderState.Done);
 		}
+
+		public IQueryable<Order> GetOrdersByState(OrderState state)
+		{
+			return this.Data.Orders.All().Where(o => o.State == state);
+		}
 	}
 }

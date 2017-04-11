@@ -26,7 +26,8 @@ namespace App.Web.Infrastructure.Mapping
 				.ForMember(x => x.DesignImage, opt => opt.MapFrom(u => u.DesignImages.FirstOrDefault().Small))
 				.ForMember(x => x.ResultImage, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small));
 
-			CreateMap<Order, OrderViewModelSimple>();
+			CreateMap<Order, OrderViewModelSimple>()
+				.ForMember(x=> x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName ));
 
 			CreateMap<Order, ProductViewModel>()
 				.ForMember(x => x.ResultImageSmall, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small))

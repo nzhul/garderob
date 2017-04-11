@@ -3,48 +3,48 @@
 @Styles.Render("~/bundles/codemirror-styles")
 @Scripts.Render("~/bundles/codemirror-scripts")
 
+<div style="padding-right: 20px;padding-left:20px;">
+	<div class="row">
+		<div class="col-md-11">
+			<h3>@ViewBag.Title</h3>
+			<hr />
+		</div>
+	</div>
+	@using (Html.BeginForm((string)ViewBag.FormMode, "Pages", FormMethod.Post, new { @class = "form-horizontal " }))
+	{
+		@Html.AntiForgeryToken()
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					@Html.LabelFor(model => model.Title, new { @class = "dab-input-label" })
+					@Html.ValidationMessageFor(model => model.Title)
+					@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: Често задавани въпроси" } })
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Summary, new { @class = "dab-input-label" })
+					@Html.ValidationMessageFor(model => model.Summary)
+					@Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Content, new { @class = "dab-input-label" })
+					@Html.ValidationMessageFor(model => model.Content)
+					@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Slug, new { @class = "dab-input-label" })
+					@Html.ValidationMessageFor(model => model.Slug)
+					@Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-warning">
+						@ViewBag.FormModeText
+					</button>
+				</div>
+			</div>
+		</div>
+	}
 
-<div class="row">
-    <div class="col-md-11">
-        <h3>@ViewBag.Title</h3>
-        <hr />
-    </div>
-</div>
-@using (Html.BeginForm((string)ViewBag.FormMode, "Pages", FormMethod.Post, new { @class = "form-horizontal " }))
-{
-    @Html.AntiForgeryToken()
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Title, new { @class = "dab-input-label" })
-                @Html.ValidationMessageFor(model => model.Title)
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: Често задавани въпроси" } })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Summary, new { @class = "dab-input-label" })
-                @Html.ValidationMessageFor(model => model.Summary)
-                @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Content, new { @class = "dab-input-label" })
-                @Html.ValidationMessageFor(model => model.Content)
-                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Slug, new { @class = "dab-input-label" })
-                @Html.ValidationMessageFor(model => model.Slug)
-                @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-warning">
-                    @ViewBag.FormModeText
-                </button>
-            </div>
-        </div>
-    </div>
-}
-
-<script>
+	<script>
 		$(document).ready(function () {
 			var code = $('.codemirror-textarea')[0];
 			var editor = CodeMirror.fromTextArea(code, {
@@ -53,4 +53,5 @@
 				htmlMode: true
 			});
 		});
-</script>
+	</script>
+</div>

@@ -22,6 +22,8 @@ namespace App.Data.Service.Abstraction
 
 		IQueryable<OrderCategory> GetOrderCategories();
 
+		IQueryable<Order> GetOrdersByState(OrderState state);
+
 		OrderCategory GetOrderCategoryById(int id);
 
 		OrderCategory GetOrderCategoryBySlug(string slug);
