@@ -31,6 +31,7 @@ namespace App.Web.Infrastructure.ControllerFactory
 			ninjectKernel.Bind<IOrdersService>().To<OrdersService>();
 			ninjectKernel.Bind<IMaterialsService>().To<MaterialsService>();
 			ninjectKernel.Bind<ITestimonialsService>().To<TestimonialsService>();
+			ninjectKernel.Bind<IImagesService>().To<ImagesService>();
 			ninjectKernel.Bind<IMessagingService>().To<App.Data.Service.Implementation.EmailService>();
 		}
 	}

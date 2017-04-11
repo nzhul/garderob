@@ -1,5 +1,6 @@
 ﻿using App.Data.Repositories;
 using App.Models;
+using App.Models.Images;
 using App.Models.Materials;
 using App.Models.Orders;
 using App.Models.Pages;
@@ -27,6 +28,8 @@ namespace App.Data
 		IRepository<MaterialCategory> MaterialCategories { get; }
 
 		IRepository<Testimonial> Testimonials { get; }
+
+		IRepository<Image> Images { get; }
 
 		int SaveChanges();
 	}

@@ -33,7 +33,7 @@ namespace App.Data.Service.Implementation
 				pagesize = defaultPageSize;
 			}
 
-			IQueryable<ApplicationUser> users = this.Data.Users.All().Where(u => u.IsActive == true).OrderByDescending(u => u.Email);
+			IQueryable<ApplicationUser> users = this.Data.Users.All().Where(u => u.IsActive == true).OrderByDescending(u => u.RegisterDate);
 			users = users.Skip(page.Value * pagesize.Value).Take(pagesize.Value);
 
 			return users;

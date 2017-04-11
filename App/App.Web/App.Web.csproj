@@ -197,6 +197,7 @@
     <Compile Include="Areas\Administration\Models\OrdersMasterModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
@@ -422,6 +423,7 @@
     <Content Include="Areas\Administration\Views\Clients\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Clients\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Orders\Partials\_OrderRow.cshtml" />
+    <Content Include="Areas\Administration\Views\Orders\Edit.cshtml" />
     <None Include="Config\Connections.FolderProfile.config">
       <DependentUpon>Connections.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>

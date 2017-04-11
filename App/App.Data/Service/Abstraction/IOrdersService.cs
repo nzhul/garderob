@@ -3,6 +3,7 @@ using App.Models.Orders;
 using System.Linq;
 using System.Collections.Generic;
 using App.Models.Testimonials;
+using App.Models.InputModels;
 
 namespace App.Data.Service.Abstraction
 {
@@ -15,8 +16,6 @@ namespace App.Data.Service.Abstraction
 		IQueryable<Order> GetOrdersByCategory(string category);
 
 		Order GetOrder(int id);
-
-		bool UpdateOrder(int id, OrderInputModel inputModel);
 
 		bool DeleteOrder(int id);
 
@@ -51,5 +50,7 @@ namespace App.Data.Service.Abstraction
 		bool RemoveCartItem(int orderId, string userId);
 
 		bool OrderNow(string userId);
+
+		bool UpdateOrder(int id, EditOrderInputModel model);
 	}
 }

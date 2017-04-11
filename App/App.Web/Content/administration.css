@@ -141,3 +141,9 @@ table {
 .profile-image-fail {
 	color: red;
 }
+
+
+.order-thumbnail {
+	max-width:100px;
+	border: 1px solid gray;
+}

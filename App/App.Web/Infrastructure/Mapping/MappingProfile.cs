@@ -27,12 +27,24 @@ namespace App.Web.Infrastructure.Mapping
 				.ForMember(x => x.ResultImage, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small));
 
 			CreateMap<Order, OrderViewModelSimple>()
-				.ForMember(x=> x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName ));
+				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName))
+				.ForMember(x => x.ClientId, opt => opt.MapFrom(u => u.Client.Id));
 
 			CreateMap<Order, ProductViewModel>()
 				.ForMember(x => x.ResultImageSmall, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small))
 				.ForMember(x => x.ResultImageBig, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Big))
 				.ForMember(x => x.CategorySlug, opt => opt.MapFrom(u => u.OrderCategory.Slug));
+
+			CreateMap<Order, EditOrderInputModel>()
+				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName));
+
+			CreateMap<EditOrderInputModel, Order>()
+				.ForMember(x => x.SketchImages, opt => opt.Ignore())
+				.ForMember(x => x.DesignImages, opt => opt.Ignore())
+				.ForMember(x => x.ResultImages, opt => opt.Ignore())
+				.ForMember(x => x.RequestDate, opt => opt.Ignore())
+				.ForMember(x => x.ClientId, opt => opt.Ignore())
+				.ForMember(x => x.OrderCategoryId, opt => opt.Ignore());
 
 			CreateMap<Testimonial, TestimonialViewModel>()
 				.ForMember(x => x.OrderSketch, opt => opt.MapFrom(u => u.Order.SketchImages.FirstOrDefault()))

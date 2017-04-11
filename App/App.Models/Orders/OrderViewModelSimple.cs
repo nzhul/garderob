@@ -7,5 +7,7 @@
 		public string Title { get; set; }
 
 		public string ClientFullName { get; set; }
+
+		public string ClientId { get; set; }
 	}
 }

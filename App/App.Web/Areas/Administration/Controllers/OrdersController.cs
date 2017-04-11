@@ -1,4 +1,5 @@
 ﻿using App.Data.Service.Abstraction;
+using App.Models.InputModels;
 using App.Models.Orders;
 using App.Web.Areas.Administration.Models;
 using AutoMapper;
@@ -10,12 +11,15 @@ namespace App.Web.Areas.Administration.Controllers
 	public class OrdersController : BaseController
 	{
 		IOrdersService ordersService;
+		IMaterialsService materialsService;
 
-		public OrdersController(IOrdersService ordersService)
+		public OrdersController(IOrdersService ordersService, IMaterialsService materialsService)
 		{
 			this.ordersService = ordersService;
+			this.materialsService = materialsService;
 		}
 
+		[HttpGet]
 		public ActionResult Index()
 		{
 			OrdersMasterModel model = new OrdersMasterModel();
@@ -25,6 +29,39 @@ namespace App.Web.Areas.Administration.Controllers
 			model.Canceled = this.ordersService.GetOrdersByState(OrderState.Canceled).ToList().Select(o => Mapper.Map(o, new OrderViewModelSimple()));
 			model.Done = this.ordersService.GetOrdersByState(OrderState.Done).ToList().Select(o => Mapper.Map(o, new OrderViewModelSimple()));
 
+			return View(model);
+		}
+
+		[HttpGet]
+		public ActionResult Edit(int id)
+		{
+			Order dbOrder = this.ordersService.GetOrder(id);
+			if (dbOrder != null)
+			{
+				EditOrderInputModel model = Mapper.Map(dbOrder, new EditOrderInputModel());
+				model.SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList();
+				model.HandlesMaterials = this.materialsService.GetAllMaterials("handles").ToList();
+				return this.View(model);
+			}
+
+			return HttpNotFound();
+		}
+
+		[HttpPost]
+		public ActionResult Edit(int id, EditOrderInputModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				bool IsUpdateSuccessfull = this.ordersService.UpdateOrder(id, model);
+				if (IsUpdateSuccessfull)
+				{
+					TempData["message"] = "Поръчката беше редактирана успешно!";
+					TempData["messageType"] = "success";
+					return RedirectToAction("Index");
+				}
+			}
+			TempData["message"] = "Невалидни данни за поръчката!<br/> Моля попълнете <strong>всички</strong> задължителни полета!";
+			TempData["messageType"] = "danger";
 			return View(model);
 		}
 	}

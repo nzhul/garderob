@@ -171,7 +171,8 @@ namespace App.Web.Controllers
 					PhoneNumber = model.Phone,
 					InvoiceData = model.InvoiceData,
 					JobTitle = model.JobTitle,
-					RegisterDate = DateTime.UtcNow
+					RegisterDate = DateTime.UtcNow,
+					IsActive = true
 				};
 
 				var result = await UserManager.CreateAsync(user, model.Password);

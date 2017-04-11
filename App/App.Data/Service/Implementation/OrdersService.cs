@@ -3,13 +3,13 @@ using App.Data.Service.Messaging;
 using App.Data.Utilities;
 using App.Models;
 using App.Models.Images;
+using App.Models.InputModels;
 using App.Models.Orders;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using App.Models.Testimonials;
 
 namespace App.Data.Service.Implementation
 {
@@ -17,6 +17,8 @@ namespace App.Data.Service.Implementation
 	{
 		private readonly IUoWData Data;
 		private readonly IMessagingService MessagingService;
+		private const string defaultBigImageQuery = "width=1920&height=1080&crop=auto&scale=both&format=jpg";
+		private const string defaultSmallImageQuery = "width=210&height=203&crop=auto&format=jpg";
 
 		public OrdersService(IUoWData data, IMessagingService messagingService)
 		{
@@ -226,8 +228,8 @@ namespace App.Data.Service.Implementation
 
 			foreach (HttpPostedFileBase image in model.PostedSketches)
 			{
-				byte[] bigImageData = ImageUtilities.CropImage(image, "width=1139&height=578&crop=auto&scale=both&format=jpg");
-				byte[] smallImageData = ImageUtilities.CropImage(image, "width=210&height=203&crop=auto&format=jpg"); //TODO: Check if this crop is ok
+				byte[] bigImageData = ImageUtilities.CropImage(image, OrdersService.defaultBigImageQuery);
+				byte[] smallImageData = ImageUtilities.CropImage(image, OrdersService.defaultSmallImageQuery); //TODO: Check if this crop is ok
 
 				Image newSketch = new Image
 				{
@@ -243,19 +245,20 @@ namespace App.Data.Service.Implementation
 			return newOrder.Id;
 		}
 
-		public bool UpdateOrder(int id, OrderInputModel inputModel)
-		{
-			Order dbOrder = this.GetOrder(id);
+		//TODO: delete this
+		//public bool UpdateOrder(int id, OrderInputModel inputModel)
+		//{
+		//	Order dbOrder = this.GetOrder(id);
 
-			if (dbOrder != null)
-			{
-				// TODO: DO the mapping with Automapper and manual for images
-				this.Data.SaveChanges();
-				return true;
-			}
+		//	if (dbOrder != null)
+		//	{
+		//		// TODO: DO the mapping with Automapper and manual for images
+		//		this.Data.SaveChanges();
+		//		return true;
+		//	}
 
-			return false;
-		}
+		//	return false;
+		//}
 
 		public bool UpdateOrderCategory(int id, OrderCategoryInputModel inputModel)
 		{
@@ -371,6 +374,86 @@ namespace App.Data.Service.Implementation
 		public IQueryable<Order> GetOrdersByState(OrderState state)
 		{
 			return this.Data.Orders.All().Where(o => o.State == state);
+		}
+
+		public bool UpdateOrder(int id, EditOrderInputModel model)
+		{
+			Order dbOrder = this.GetOrder(id);
+			if (dbOrder != null)
+			{
+				dbOrder = Mapper.Map(model, dbOrder);
+
+				if (model.PostedSketches != null && model.PostedSketches.Count > 0 && model.PostedSketches[0] != null)
+				{
+					foreach (HttpPostedFileBase image in model.PostedSketches)
+					{
+						byte[] smallImageData = ImageUtilities.CropImage(image, OrdersService.defaultSmallImageQuery);
+						byte[] bigImageData = ImageUtilities.CropImage(image, OrdersService.defaultBigImageQuery);
+
+						Image newImage = new Image
+						{
+							Small = smallImageData,
+							Big = bigImageData
+						};
+
+						dbOrder.SketchImages.Add(newImage);
+					}
+				}
+
+				if (model.PostedDesigns != null && model.PostedDesigns.Count > 0 && model.PostedDesigns[0] != null)
+				{
+					foreach (HttpPostedFileBase image in model.PostedDesigns)
+					{
+						byte[] smallImageData = ImageUtilities.CropImage(image, OrdersService.defaultSmallImageQuery);
+						byte[] bigImageData = ImageUtilities.CropImage(image, OrdersService.defaultBigImageQuery);
+
+						Image newImage = new Image
+						{
+							Small = smallImageData,
+							Big = bigImageData
+						};
+
+						dbOrder.DesignImages.Add(newImage);
+					}
+				}
+
+				if (model.PostedResults != null && model.PostedResults.Count > 0 && model.PostedResults[0] != null)
+				{
+					foreach (HttpPostedFileBase image in model.PostedResults)
+					{
+						byte[] smallImageData = ImageUtilities.CropImage(image, OrdersService.defaultSmallImageQuery);
+						byte[] bigImageData = ImageUtilities.CropImage(image, OrdersService.defaultBigImageQuery);
+
+						Image newImage = new Image
+						{
+							Small = smallImageData,
+							Big = bigImageData
+						};
+
+						dbOrder.ResultImages.Add(newImage);
+					}
+				}
+
+				if (model.State == OrderState.Done)
+				{
+					dbOrder.CompleteDate = DateTime.UtcNow;
+				}
+
+				if (model.State == OrderState.WaitingClientResponse)
+				{
+					dbOrder.OfferDate = DateTime.UtcNow;
+				}
+
+
+				dbOrder.LastModified = DateTime.UtcNow;
+				this.Data.SaveChanges();
+
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 }

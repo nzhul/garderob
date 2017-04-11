@@ -1,0 +1,140 @@
+﻿@using App.Models.InputModels;
+@using App.Models.Images;
+@model EditOrderInputModel
+@{
+	ViewBag.Title = "Edit";
+}
+
+	<h2>Редакция на поръчка: </h2>
+	@using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal " }))
+			{
+		<div class="row">
+			<div class="col-md-6">
+				@Html.LabelFor(m => m.Title)
+				@Html.ValidationMessageFor(m => m.Title)
+				@Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(m => m.Slug)
+				@Html.ValidationMessageFor(m => m.Slug)
+				@Html.EditorFor(m => m.Slug, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(m => m.OrderText)
+				@Html.ValidationMessageFor(m => m.OrderText)
+				@Html.EditorFor(m => m.OrderText, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(m => m.Count)
+				@Html.ValidationMessageFor(m => m.Count)
+				@Html.EditorFor(m => m.Count, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(m => m.Price)
+				@Html.ValidationMessageFor(m => m.Price)
+				@Html.EditorFor(m => m.Price, new { htmlAttributes = new { @class = "form-control" } })
+
+				@Html.LabelFor(m => m.State)
+				@Html.ValidationMessageFor(m => m.State)
+				@Html.EnumDropDownListFor(m => m.State, "- Избери статус -", new { @class = "form-control" })
+
+				@Html.LabelFor(m => m.Installation)
+				@Html.ValidationMessageFor(m => m.Installation)
+				@Html.EditorFor(m => m.Installation)
+
+				<div class="order-category">
+					Плоча за основа: @Html.ValidationMessageFor(model => model.BaseMaterialId, "", new { @class = "text-danger" })<br />
+					@foreach (var material in Model.SurfaceMaterials)
+					{
+						@Html.ByteImage(
+							material.Image.Small,
+							material.Name,
+							"js-base-surface-material",
+							material.Id.ToString(),
+							material.Name)
+					}
+				</div>
+				<div class="order-category">
+					Плоча за врати: @Html.ValidationMessageFor(model => model.DoorsMaterialId, "", new { @class = "text-danger" })<br />
+					@foreach (var material in Model.SurfaceMaterials)
+					{
+						@Html.ByteImage(
+							material.Image.Small,
+							material.Name,
+							"js-door-surface-material",
+							material.Id.ToString(),
+							material.Name)
+					}
+				</div>
+				<div class="order-category">
+					Фазер: @Html.ValidationMessageFor(model => model.FazerMaterialId, "", new { @class = "text-danger" })<br />
+					@foreach (var material in Model.SurfaceMaterials)
+					{
+						@Html.ByteImage(
+							material.Image.Small,
+							material.Name,
+							"js-fazer-surface-material",
+							material.Id.ToString(),
+							material.Name)
+					}
+				</div>
+				<div class="order-category">
+					Дръжки: @Html.ValidationMessageFor(model => model.HandlesMaterialId, "", new { @class = "text-danger" })<br />
+					@foreach (var material in Model.HandlesMaterials)
+					{
+						@Html.ByteImage(
+							material.Image.Small,
+							material.Name,
+							"js-handle-material",
+							material.Id.ToString(),
+							material.Name)
+					}
+				</div>
+				@Html.TextBoxFor(model => model.BaseMaterialId, "", new { @class = "concealed" })
+				@Html.TextBoxFor(model => model.DoorsMaterialId, "", new { @class = "concealed" })
+				@Html.TextBoxFor(model => model.FazerMaterialId, "", new { @class = "concealed" })
+				@Html.TextBoxFor(model => model.HandlesMaterialId, "", new { @class = "concealed" })
+
+			</div>
+			<div class="col-md-6">
+				<h4>Скици:</h4>
+				@foreach (Image image in Model.SketchImages)
+				{
+					<a href="@Url.Action("Show", "Image", new { Area = "", id = image.Id, imageType = "big" })">
+						@Html.ByteImage(image.Small, "Скица", "order-thumbnail")
+					</a>
+				}
+				<br/><br />
+				<label for="PostedSketches">Качи скици:</label>
+				<input type="file" id="PostedSketches" name="PostedSketches" multiple />
+				<hr/>
+
+				<h4>Дизайни:</h4>
+				@foreach (Image image in Model.DesignImages)
+				{
+					<a href="@Url.Action("Show", "Image", new { Area = "", id = image.Id, imageType = "big" })">
+						@Html.ByteImage(image.Small, "Дизайн", "order-thumbnail")
+					</a>
+				}
+
+				<br /><br />
+				<label for="PostedDesigns">Качи дизайни:</label>
+				<input type="file" id="PostedDesigns" name="PostedDesigns" multiple />
+				<hr />
+
+				<h4>Резултат:</h4>
+				@foreach (Image image in Model.ResultImages)
+				{
+					<a href="@Url.Action("Show", "Image", new { Area = "", id = image.Id, imageType = "big" })">
+						@Html.ByteImage(image.Small, "Резултат", "order-thumbnail")
+					</a>
+				}
+
+				<br /><br />
+				<label for="PostedResults">Качи резултат:</label>
+				<input type="file" id="PostedResults" name="PostedResults" multiple />
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-success save-btn">Запиши</button>
+			</div>
+		</div>
+	}
