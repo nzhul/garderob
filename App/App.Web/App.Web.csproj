@@ -211,6 +211,7 @@
     <Compile Include="Infrastructure\Mapping\MappingProfile.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactFormInputModel.cs" />
+    <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UpdateProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -418,6 +419,7 @@
     <Content Include="Areas\Administration\Views\Clients\Partials\_Clients.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Pager.cshtml" />
     <Content Include="Areas\Administration\Views\Clients\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Clients\Index.cshtml" />
     <None Include="Config\Connections.FolderProfile.config">
       <DependentUpon>Connections.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
@@ -1176,7 +1178,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Administration\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_MessagePartial.cshtml" />
@@ -1189,7 +1193,6 @@
       <TransformOnBuild>true</TransformOnBuild>
     </Content>
     <Content Include="Areas\Administration\Views\Orders\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\Clients\Index.cshtml" />
     <Content Include="Content\fonts\fi\Flaticon.eot" />
     <Content Include="Content\fonts\fi\Flaticon.ttf" />
     <Content Include="Content\fonts\fi\Flaticon.woff" />

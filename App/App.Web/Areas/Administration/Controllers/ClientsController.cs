@@ -1,10 +1,12 @@
 ﻿using App.Data.Service.Abstraction;
 using App.Models;
 using App.Models.InputModels;
+using App.Models.Orders;
 using App.Models.Pages;
 using App.Web.Areas.Administration.Models;
 using AutoMapper;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Web.Mvc;
@@ -13,12 +15,14 @@ namespace App.Web.Areas.Administration.Controllers
 {
 	public class ClientsController : BaseController
 	{
+		private IOrdersService ordersService;
 		private IClientsService clientsService;
 		private const int defaultPageSize = 10;
 		private const int defaultLinksRadius = 2;
 
-		public ClientsController(IClientsService clientsService)
+		public ClientsController(IOrdersService ordersService, IClientsService clientsService)
 		{
+			this.ordersService = ordersService;
 			this.clientsService = clientsService;
 		}
 
@@ -30,11 +34,11 @@ namespace App.Web.Areas.Administration.Controllers
 			model.InActiveUsers = this.clientsService.GetInactiveUsers().ToList();
 
 			int totalClientsCount = this.clientsService.GetUsersCount();
-			ViewBag.PagingData = this.GeneratePagingData(totalClientsCount, pagesize ?? ClientsController.defaultPageSize, ClientsController.defaultLinksRadius);
+			ViewBag.PagingData = this.GeneratePaginationData(totalClientsCount, pagesize ?? ClientsController.defaultPageSize, ClientsController.defaultLinksRadius);
 			return View(model);
 		}
 
-		private PagingData GeneratePagingData(int totalItemsCount, int pageSize, int linksRadius)
+		private PagingData GeneratePaginationData(int totalItemsCount, int pageSize, int linksRadius)
 		{
 			string rawUrl = this.HttpContext.Request.Url.ToString();
 			Uri pageUrl = new Uri(rawUrl);
@@ -52,6 +56,9 @@ namespace App.Web.Areas.Administration.Controllers
 			{
 				ApplicationUser dbUser = this.clientsService.GetUserById(id);
 				model = Mapper.Map(dbUser, model);
+
+				IList<Order> dbOrders = this.ordersService.GetUserOrders(id).ToList();
+				model.Orders = dbOrders.Select(o => Mapper.Map(o, new OrderViewModelSimple()));
 			}
 
 			return View(model);
@@ -89,6 +96,20 @@ namespace App.Web.Areas.Administration.Controllers
 			this.clientsService.ActivateClient(id);
 
 			return this.RedirectToAction("Index");
+		}
+
+		[HttpPost]
+		public ActionResult DeleteProfilePhoto(string id)
+		{
+			if (this.clientsService.DeleteUserPhoto(id))
+			{
+				return this.Json(new { Status = "Success" });
+			}
+			else
+			{
+				return this.Json(new { Status = "Fail" });
+			}
+
 		}
 	}
 }

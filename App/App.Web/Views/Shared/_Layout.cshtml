@@ -92,8 +92,14 @@
 					<div class="widget-footer text">
 						<h3><span style="font-weight:700;">ТВОЯТ</span><br />ГАРДЕРОБ</h3>
 						<div class="cws_divider with-plus short-2 mb-5 mt-10"></div>
-						<p>Тук може да сложим някакъв много кратък текст който да представя фирмата.</p>
-						<div class="footer-cws-social mt-25"><a href="#" class="cws-social flaticon-social-4"></a><a href="#" class="cws-social flaticon-social"></a><a href="#" class="cws-social flaticon-social-3"></a><a href="#" class="cws-social flaticon-social-1"></a><a href="#" class="cws-social flaticon-social-network"></a></div>
+						<p>Всичко от което се нуждаеш за да направиш твоя индивидуален гардероб е идея, молив и лист.</p>
+						<div class="footer-cws-social mt-25">
+							<a href="#" class="cws-social flaticon-social-4"></a>
+							<a href="#" class="cws-social flaticon-social"></a>
+							<a href="#" class="cws-social flaticon-social-3"></a>
+							<a href="#" class="cws-social flaticon-social-1"></a>
+							<a href="#" class="cws-social flaticon-social-network"></a>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 mb-md-50">
@@ -101,11 +107,10 @@
 						<h3>Полезни връзки</h3>
 						<div class="cws_divider with-plus short-2 mb-5 mt-10"></div>
 						<ul>
-							<li><a href="#">За нас</a> <a href="#">Помощ и Условия</a></li>
-							<li><a href="#">Контакти</a> <a href="/make">Направи гардероб</a></li>
-							<li><a href="/services">Услуги</a> <a href="#">Качи проект</a></li>
-							<li><a href="#">Галерия</a> <a href="#">Калкулатор</a></li>
-							<li><a href="#">Материали</a> <a href="#"></a></li>
+							<li><a href="@Url.Action("Contact", "Home")">Контакти</a> <a href="/make">Направи гардероб</a></li>
+							<li><a href="/services">Услуги</a> <a href="@Url.Action("Make", "Orders")">Качи проект</a></li>
+							<li><a href="@Url.Action("List", "Testimonials")">Галерия</a> <a href="@Url.Action("Calculator", "Orders")">Калкулатор</a></li>
+							<li><a href="/faq">Помощ и Условия</a> <a href=""></a></li>
 						</ul>
 					</div>
 				</div>
@@ -129,15 +134,15 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-5">
-						<p>© Copyright 2017 <span>Твоят</span> Гардероб &nbsp;&nbsp;|&nbsp;&nbsp; Всички права запазени</p>
+						<p><span>Твоят</span> Гардероб - @DateTime.Now.Year</p>
 					</div>
 					<div class="col-sm-7 text-right">
 						<a href="@Url.Action("Index", "Home")" class="footer-nav">Начало</a>
 						<a href="/make" class="footer-nav">Направи Гардероб</a>
-						<a href="#" class="footer-nav">Материали</a>
+						@*<a href="#" class="footer-nav">Материали</a>*@
 						<a href="/price" class="footer-nav">Цени и плащания</a>
 						<a href="/services" class="footer-nav">Услуги</a>
-						<a href="#" class="footer-nav">Галерия</a>
+						<a href="@Url.Action("List", "Testimonials")" class="footer-nav">Галерия</a>
 						<a href="@Url.Action("Contact", "Home")" class="footer-nav">Контакти</a>
 					</div>
 				</div>
@@ -160,7 +165,7 @@
 					<div class="checkbox">
 						<input id="checkbox3" type="checkbox" value="None" name="check">
 						<label for="checkbox3">Запомни ме</label>
-					</div><a href="#">Забравена парола ?</a>
+					</div>@*<a href="#">Забравена парола ?</a>*@
 				</div><a id="login-button" class="cws-button gray alt full-width mt-20">Влез</a>
 				<span id="login-status" class="label label-info">Влизане в системата ...</span>
 			</div>

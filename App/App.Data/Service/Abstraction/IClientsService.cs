@@ -26,5 +26,7 @@ namespace App.Data.Service.Abstraction
 		void ActivateClient(string id);
 
 		bool ClientExists(string id);
+
+		bool DeleteUserPhoto(string id);
 	}
 }

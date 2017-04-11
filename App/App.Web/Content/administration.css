@@ -19,7 +19,7 @@ table {
 	}
 
 	table tr th.centered, table tr td.centered {
-		text-align: center!important;
+		text-align: center !important;
 	}
 
 	table td {
@@ -103,4 +103,41 @@ table {
 
 .upload-container .upload {
 	margin-top: 10px;
+}
+
+.client-photo {
+	width: 100px;
+	height: 100px;
+	display: block;
+}
+
+.delete-profile-photo-btn {
+	border-radius: 0px;
+	width: 100px;
+}
+
+.save-btn {
+	width: 100%;
+}
+
+.profile-image-loading, .profile-image-success, .profile-image-fail {
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	border: 1px solid #d7d7d7;
+	line-height:100px;
+	background-color: white;
+	display: none;
+}
+
+.profile-image-loading {
+	color: dodgerblue;
+}
+
+.profile-image-success {
+	color: green;
+}
+
+.profile-image-fail {
+	color: red;
 }

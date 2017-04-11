@@ -6,6 +6,7 @@ using AutoMapper;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System;
 
 namespace App.Data.Service.Implementation
 {
@@ -125,7 +126,30 @@ namespace App.Data.Service.Implementation
 			if (dbUser != null)
 			{
 				dbUser = Mapper.Map(inputModel, dbUser);
+
+				if (inputModel.PostedNewProfilePhoto != null)
+				{
+					dbUser.ProfileImage = ImageUtilities.CropImage(inputModel.PostedNewProfilePhoto, "width=150&height=150&crop=auto&format=jpg");
+				}
+
 				this.Data.SaveChanges();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool DeleteUserPhoto(string id)
+		{
+			ApplicationUser dbUser = this.GetUserById(id);
+
+			if (dbUser != null)
+			{
+				dbUser.ProfileImage = null;
+				this.Data.SaveChanges();
+
 				return true;
 			}
 			else

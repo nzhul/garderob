@@ -1,4 +1,6 @@
-﻿@{
+﻿@using App.Models.Testimonials
+@model IEnumerable<TestimonialViewModel>
+@{
 	ViewBag.Title = "Home Page";
 }
 
@@ -73,7 +75,7 @@
 								<p>
 									Нарисувайте Вашият гардероб така, както искате той да бъде, и ние ще го направим за Вас. Сами изберете размера, цвета, колко рафтове, чекмеджета и деления да има, както и какви врати и закачалки.
 								</p>
-								<a href="#" class="cws-button alt">Научи повече</a>
+								<a href="/make" class="cws-button alt">Научи повече</a>
 							</div>
 						</div>
 					</div>
@@ -85,7 +87,7 @@
 								<p>
 									Разгледайте нашата богата гама на декоративни плоскости и вижте коя ще е най-подходяща за Вас. Ние ползваме само качествени материали от доказали се на пазара фирми.
 								</p>
-								<a href="#" class="cws-button alt">Научи повече</a>
+								<a href="@Url.Action("LivePreview", "Orders")" class="cws-button alt">Научи повече</a>
 							</div>
 						</div>
 					</div>
@@ -99,7 +101,7 @@
 								<p>
 									Нашия експертен персонал е винаги готов да Ви помогне със проектирането и реализацията на Вашите проекти.
 								</p>
-								<a href="#" class="cws-button alt">Научи повече</a>
+								<a href="/services" class="cws-button alt">Научи повече</a>
 							</div>
 						</div>
 					</div>
@@ -111,7 +113,7 @@
 								<p>
 									С нашия калкулатор може да видите колко ще струва вашия проект и така по-лесно да се съобразите с бюджета Ви.
 								</p>
-								<a href="/calculator" class="cws-button alt">Научи повече</a>
+								<a href="@Url.Action("Calculator", "Orders")" class="cws-button alt">Научи повече</a>
 							</div>
 						</div>
 					</div>
@@ -123,7 +125,7 @@
 								<p>
 									Изберете подходяща комбинация от цветове със нашата система за визуализация
 								</p>
-								<a href="#" class="cws-button alt">Научи повече</a>
+								<a href="@Url.Action("LivePreview", "Orders")" class="cws-button alt">Научи повече</a>
 							</div>
 						</div>
 					</div>
@@ -145,6 +147,38 @@
 		<div class="carousel-container">
 			<div class="row">
 				<div class="owl-two-pag pagiation-carousel mb-20">
+					@foreach (TestimonialViewModel testimonial in Model)
+					{
+						<div class="widget_wrapper">
+							<div class="testimonial">
+								<div class="quote">@testimonial.Text</div>
+								<div class="author">
+									@Html.ByteImage(testimonial.ClientPhoto, "Снимка на доволен клиент", "testimonial-client-photo")
+									<figure>
+										<figcaption>
+											@testimonial.ClientFullName<span>[ @testimonial.ClientJobTitle ]</span>
+											<div class="stars"></div>
+										</figcaption>
+									</figure>
+								</div>
+							</div>
+						</div>
+					}
+
+					@*<div class="widget_wrapper">
+						<div class="testimonial">
+							<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
+							<div class="author">
+								<img src="content/img/testimonials/users/natalia-nikolova.jpg" alt="Снимка на доволен клиент">
+								<figure>
+									<figcaption>
+										Наталия Николова<span>[ Бизнес Мениджър ]</span>
+										<div class="stars"></div>
+									</figcaption>
+								</figure>
+							</div>
+						</div>
+					</div>
 					<div class="widget_wrapper">
 						<div class="testimonial">
 							<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
@@ -172,41 +206,13 @@
 								</figure>
 							</div>
 						</div>
-					</div>
-					<div class="widget_wrapper">
-						<div class="testimonial">
-							<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
-							<div class="author">
-								<img src="content/img/testimonials/users/anton-radev.jpg" alt="Снимка на доволен клиент">
-								<figure>
-									<figcaption>
-										Антон Радев<span>[ Софтуерен Архитект ]</span>
-										<div class="stars"></div>
-									</figcaption>
-								</figure>
-							</div>
-						</div>
-					</div>
-					<div class="widget_wrapper">
-						<div class="testimonial">
-							<div class="quote">Бързо и лесно направихме това което искахме. Проекта отговаряше изцяло на това което нарисувахме. Много Ви благодарим за професионалното изпълнение.</div>
-							<div class="author">
-								<img src="content/img/testimonials/users/natalia-nikolova.jpg" alt="Снимка на доволен клиент">
-								<figure>
-									<figcaption>
-										Наталия Николова<span>[ Бизнес Мениджър ]</span>
-										<div class="stars"></div>
-									</figcaption>
-								</figure>
-							</div>
-						</div>
-					</div>
+					</div>*@
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<section class="page-section pb-0">
+@*<section class="page-section pb-0">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
@@ -246,7 +252,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section>*@
 
 @section scripts {
 

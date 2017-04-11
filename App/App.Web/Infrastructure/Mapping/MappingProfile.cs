@@ -15,12 +15,18 @@ namespace App.Web.Infrastructure.Mapping
 		{
 			CreateMap<Page, PageViewModel>();
 			CreateMap<ApplicationUser, EditClientInputModel>().ForMember(x => x.Phone, opt => opt.MapFrom(u => u.PhoneNumber));
-			CreateMap<EditClientInputModel, ApplicationUser>().ForMember(x => x.PhoneNumber, opt => opt.MapFrom(u => u.Phone));
+
+			CreateMap<EditClientInputModel, ApplicationUser>()
+				.ForMember(x => x.PhoneNumber, opt => opt.MapFrom(u => u.Phone))
+				.ForMember(x => x.ProfileImage, opt => opt.Ignore());
+
 			CreateMap<OrderInputModel, Order>().ForMember(x => x.Slug, opt => opt.MapFrom(u => u.Title.ToLower()));
 			CreateMap<Order, OrderViewModel>()
 				.ForMember(x => x.SketchImage, opt => opt.MapFrom(u => u.SketchImages.FirstOrDefault().Small))
 				.ForMember(x => x.DesignImage, opt => opt.MapFrom(u => u.DesignImages.FirstOrDefault().Small))
 				.ForMember(x => x.ResultImage, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small));
+
+			CreateMap<Order, OrderViewModelSimple>();
 
 			CreateMap<Order, ProductViewModel>()
 				.ForMember(x => x.ResultImageSmall, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small))

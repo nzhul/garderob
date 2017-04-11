@@ -97,6 +97,7 @@
     <Compile Include="Orders\OrderInputModel.cs" />
     <Compile Include="Orders\OrderState.cs" />
     <Compile Include="Orders\OrderViewModel.cs" />
+    <Compile Include="Orders\OrderViewModelSimple.cs" />
     <Compile Include="Orders\ProductGalleryViewModel.cs" />
     <Compile Include="Orders\ProductViewModel.cs" />
     <Compile Include="Pages\Page.cs" />

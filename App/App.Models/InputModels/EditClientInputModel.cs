@@ -1,9 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using App.Models.Orders;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace App.Models.InputModels
 {
 	public class EditClientInputModel
 	{
+		public string Id { get; set; }
+
 		[Required(ErrorMessage = " * Задължително!")]
 		[Display(Name = "Име:")]
 		public string FirstName { get; set; }
@@ -32,6 +37,11 @@ namespace App.Models.InputModels
 		[DataType(DataType.MultilineText)]
 		public string InvoiceData { get; set; }
 
+		[Display(Name = "Професия:")]
+		public string JobTitle { get; set; }
+
+		public HttpPostedFileBase PostedNewProfilePhoto { get; set; }
+
 		public string FullName
 		{
 			get
@@ -41,5 +51,7 @@ namespace App.Models.InputModels
 		}
 
 		public byte[] ProfileImage { get; set; }
+
+		public IEnumerable<OrderViewModelSimple> Orders { get; set; }
 	}
 }

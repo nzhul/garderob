@@ -6,21 +6,29 @@ using System.Web.Mvc;
 using System.Linq;
 using System.Globalization;
 using App.Data;
+using App.Models.Testimonials;
+using System.Collections.Generic;
+using App.Data.Service.Abstraction;
+using AutoMapper;
 
 namespace App.Web.Controllers
 {
 	public class HomeController : Controller
 	{
+		private ITestimonialsService testimonialsService;
 		private IUoWData data;
 
-		public HomeController(IUoWData data)
+		public HomeController(IUoWData data, ITestimonialsService testimonialsService)
 		{
 			this.data = data;
+			this.testimonialsService = testimonialsService;
 		}
 
 		public ActionResult Index()
 		{
-			return View();
+			IEnumerable<TestimonialViewModel> model = new List<TestimonialViewModel>();
+			model = this.testimonialsService.GetTestimonials(0, 4).ToList().Select(t => Mapper.Map(t, new TestimonialViewModel()));
+			return View(model);
 		}
 
 		public ActionResult Contact()
