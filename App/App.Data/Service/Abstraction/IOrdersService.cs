@@ -1,9 +1,6 @@
-﻿using App.Models.Images;
+﻿using App.Models.InputModels;
 using App.Models.Orders;
 using System.Linq;
-using System.Collections.Generic;
-using App.Models.Testimonials;
-using App.Models.InputModels;
 
 namespace App.Data.Service.Abstraction
 {
@@ -35,15 +32,20 @@ namespace App.Data.Service.Abstraction
 
 		int MakeOrder(OrderInputModel model);
 
-		bool ConfirmOrderOffer(int orderId, int count, bool notifyAdmin);
+		//TODO: delete
+		//bool ConfirmOrderOffer(int orderId, int count, bool notifyAdmin);
 
-		void AddSketchImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
+		//TODO: delete
+		//void AddSketchImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
 
-		void AddDesignImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
+		//TODO: delete
+		//void AddDesignImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
 
-		void AddResultImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
+		//TODO: delete
+		//void AddResultImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
 
-		void ChangeOrderState(int orderId, OrderState newState, bool notifyClient, bool notifyAdmin);
+		//TODO: delete
+		//void ChangeOrderState(int orderId, OrderState newState, bool notifyClient, bool notifyAdmin);
 
 		Order AddCartItem(int orderId, int orderCount, bool installation, string userId);
 

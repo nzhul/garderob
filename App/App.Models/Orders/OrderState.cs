@@ -4,10 +4,8 @@
 	{
 		New,
 		WaitingClientResponse,
-		OfferConfirmed,
 		InProduction,
 		Done,
-		Rejected,
 		Canceled
 	}
 }

@@ -17,7 +17,7 @@ namespace App.Data.Service.Implementation
 	{
 		private readonly IUoWData Data;
 		private readonly IMessagingService MessagingService;
-		private const string defaultBigImageQuery = "width=1920&height=1080&crop=auto&scale=both&format=jpg";
+		private const string defaultBigImageQuery = "width=1650&height=1050&crop=auto&scale=both&format=jpg";
 		private const string defaultSmallImageQuery = "width=210&height=203&crop=auto&format=jpg";
 
 		public OrdersService(IUoWData data, IMessagingService messagingService)
@@ -26,120 +26,125 @@ namespace App.Data.Service.Implementation
 			this.MessagingService = messagingService;
 		}
 
-		public void AddDesignImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
-		{
-			Order dbOrder = this.GetOrder(orderId);
+		//TODO: delete
+		//public void AddDesignImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
+		//{
+		//	Order dbOrder = this.GetOrder(orderId);
 
-			if (dbOrder != null)
-			{
-				dbOrder.DesignImages.Add(image);
-				this.Data.SaveChanges();
-			}
+		//	if (dbOrder != null)
+		//	{
+		//		dbOrder.DesignImages.Add(image);
+		//		this.Data.SaveChanges();
+		//	}
 
-			if (notifyClient)
-			{
-				MessageData message = new MessageData();
-				this.MessagingService.Notify(dbOrder.ClientId, message);
-			}
+		//	if (notifyClient)
+		//	{
+		//		MessageData message = new MessageData();
+		//		this.MessagingService.Notify(dbOrder.ClientId, message);
+		//	}
 
-			if (notifyAdmin)
-			{
-				MessageData message = new MessageData();
-				this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-			}
-		}
+		//	if (notifyAdmin)
+		//	{
+		//		MessageData message = new MessageData();
+		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
+		//	}
+		//}
 
-		public void AddResultImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
-		{
-			Order dbOrder = this.GetOrder(orderId);
+		//TODO: delete
+		//public void AddResultImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
+		//{
+		//	Order dbOrder = this.GetOrder(orderId);
 
-			if (dbOrder != null)
-			{
-				dbOrder.ResultImages.Add(image);
-				this.Data.SaveChanges();
-			}
+		//	if (dbOrder != null)
+		//	{
+		//		dbOrder.ResultImages.Add(image);
+		//		this.Data.SaveChanges();
+		//	}
 
-			if (notifyClient)
-			{
-				MessageData message = new MessageData();
-				this.MessagingService.Notify(dbOrder.ClientId, message);
-			}
+		//	if (notifyClient)
+		//	{
+		//		MessageData message = new MessageData();
+		//		this.MessagingService.Notify(dbOrder.ClientId, message);
+		//	}
 
-			if (notifyAdmin)
-			{
-				MessageData message = new MessageData();
-				this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-			}
-		}
+		//	if (notifyAdmin)
+		//	{
+		//		MessageData message = new MessageData();
+		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
+		//	}
+		//}
 
-		public void AddSketchImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
-		{
-			Order dbOrder = this.GetOrder(orderId);
+		//TODO: delete
+		//public void AddSketchImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
+		//{
+		//	Order dbOrder = this.GetOrder(orderId);
 
-			if (dbOrder != null)
-			{
-				dbOrder.SketchImages.Add(image);
-				this.Data.SaveChanges();
-			}
+		//	if (dbOrder != null)
+		//	{
+		//		dbOrder.SketchImages.Add(image);
+		//		this.Data.SaveChanges();
+		//	}
 
-			if (notifyClient)
-			{
-				MessageData message = new MessageData();
-				this.MessagingService.Notify(dbOrder.ClientId, message);
-			}
+		//	if (notifyClient)
+		//	{
+		//		MessageData message = new MessageData();
+		//		this.MessagingService.Notify(dbOrder.ClientId, message);
+		//	}
 
-			if (notifyAdmin)
-			{
-				MessageData message = new MessageData();
-				this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-			}
-		}
+		//	if (notifyAdmin)
+		//	{
+		//		MessageData message = new MessageData();
+		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
+		//	}
+		//}
 
-		public void ChangeOrderState(int orderId, OrderState newState, bool notifyClient, bool notifyAdmin)
-		{
-			Order dbOrder = this.GetOrder(orderId);
+		//TODO: Delete this
+		//public void ChangeOrderState(int orderId, OrderState newState, bool notifyClient, bool notifyAdmin)
+		//{
+		//	Order dbOrder = this.GetOrder(orderId);
 
-			if (dbOrder != null)
-			{
-				dbOrder.State = newState;
-				this.Data.SaveChanges();
-			}
+		//	if (dbOrder != null)
+		//	{
+		//		dbOrder.State = newState;
+		//		this.Data.SaveChanges();
+		//	}
 
-			if (notifyClient)
-			{
-				MessageData message = new MessageData();
-				this.MessagingService.Notify(dbOrder.ClientId, message);
-			}
+		//	if (notifyClient)
+		//	{
+		//		MessageData message = new MessageData();
+		//		this.MessagingService.Notify(dbOrder.ClientId, message);
+		//	}
 
-			if (notifyAdmin)
-			{
-				MessageData message = new MessageData();
-				this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-			}
-		}
+		//	if (notifyAdmin)
+		//	{
+		//		MessageData message = new MessageData();
+		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
+		//	}
+		//}
 
-		public bool ConfirmOrderOffer(int orderId, int count, bool notifyAdmin)
-		{
-			Order dbOrder = this.Data.Orders.Find(orderId);
+		//TODO: Delete this
+		//public bool ConfirmOrderOffer(int orderId, int count, bool notifyAdmin)
+		//{
+		//	Order dbOrder = this.Data.Orders.Find(orderId);
 
-			if (dbOrder == null)
-			{
-				return false;
-			}
+		//	if (dbOrder == null)
+		//	{
+		//		return false;
+		//	}
 
-			dbOrder.State = OrderState.OfferConfirmed;
-			dbOrder.Count = count;
-			this.Data.SaveChanges();
+		//	dbOrder.State = OrderState.OfferConfirmed;
+		//	dbOrder.Count = count;
+		//	this.Data.SaveChanges();
 
-			if (notifyAdmin)
-			{
-				MessageData message = new MessageData();
-				this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-			}
+		//	if (notifyAdmin)
+		//	{
+		//		MessageData message = new MessageData();
+		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
+		//	}
 
-			return true;
+		//	return true;
 
-		}
+		//}
 
 		public bool DeleteOrder(int id)
 		{
