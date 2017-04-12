@@ -98,9 +98,9 @@
 							byte[] bigImageData = this.LoadImageData(bigImagePath);
 							byte[] smallImageData = this.LoadImageData(smallImagePath);
 
-							order.SketchImages.Add(new Image { Big = bigImageData, Small = smallImageData });
-							order.DesignImages.Add(new Image { Big = bigImageData, Small = smallImageData });
-							order.ResultImages.Add(new Image { Big = bigImageData, Small = smallImageData });
+							order.SketchImages.Add(new Image { Big = bigImageData, Medium = smallImageData, Small = smallImageData });
+							order.DesignImages.Add(new Image { Big = bigImageData, Medium = smallImageData, Small = smallImageData });
+							order.ResultImages.Add(new Image { Big = bigImageData, Medium = smallImageData, Small = smallImageData });
 							order.Testimonials.Add(new Testimonial
 							{
 								Client = this.theAdmin,

@@ -1,0 +1,17 @@
+﻿@using App.Models.Testimonials;
+@model IEnumerable<TestimonialSimpleViewModel>
+
+@if (Model != null && @Model.Count() > 0)
+{
+	foreach (var t in Model)
+	{
+		<tr>
+			<td><a href="@Url.Action("Edit", new { id = t.Id })">@t.Id</a></td>
+			<td><a href="@Url.Action("Edit", new { id = t.Id })">@t.Rating</a></td>
+			<td><a href="@Url.Action("Edit", new { id = t.Id })">@t.SubmissionDate</a></td>
+			<td><a href="@Url.Action("Edit", "Orders", new { id = t.OrderId })">@t.OrderTitle</a></td>
+			<td><a href="@Url.Action("Edit", "Clients", new { id = t.ClientId })">@t.ClientFullName</a></td>
+			<td><a href="@Url.Action("Delete", new { id = t.Id })"><i class="fa fa-remove"></i></a></td>
+		</tr>
+	}
+}

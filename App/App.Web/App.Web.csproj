@@ -193,6 +193,7 @@
     <Compile Include="Areas\Administration\Controllers\ClientsController.cs" />
     <Compile Include="Areas\Administration\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\TestimonialsController.cs" />
     <Compile Include="Areas\Administration\Models\ClientsMasterModel.cs" />
     <Compile Include="Areas\Administration\Models\OrdersMasterModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -425,6 +426,8 @@
     <Content Include="Areas\Administration\Views\Orders\Partials\_OrderRow.cshtml" />
     <Content Include="Areas\Administration\Views\Orders\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Orders\Partials\_Images.cshtml" />
+    <Content Include="Areas\Administration\Views\Testimonials\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Testimonials\Partials\_Testimonials.cshtml" />
     <None Include="Config\Connections.FolderProfile.config">
       <DependentUpon>Connections.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>

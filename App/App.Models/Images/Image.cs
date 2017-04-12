@@ -9,6 +9,8 @@ namespace App.Models.Images
 
 		public byte[] Big { get; set; }
 
+		public byte[] Medium { get; set; }
+
 		public byte[] Small { get; set; }
 	}
 }

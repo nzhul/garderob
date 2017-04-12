@@ -19,11 +19,6 @@
 			{
 				<a href="#" data-filter=".@category.Slug" class="filter">@category.Title</a>
 			}
-			@*<a href="#" data-filter="*" class="filter active">Всички</a>
-			<a href="#" data-filter=".branding" class="filter">Трикрилни гардероби</a>
-			<a href="#" data-filter=".design" class="filter">Плъзгащи се врати</a>
-			<a href="#" data-filter=".photo" class="filter">Чекмеджета</a>
-			<a href="#" data-filter=".office" class="filter">Други</a>*@
 		</div>
 		<div id="filter-grid" class="row cws-multi-col masonry portfolio-grid">
 			@foreach (ProductViewModel product in Model.Products)
@@ -33,8 +28,14 @@
 					<div class="portfolio-item text-center">
 						<!-- media-->
 						<div class="pic">
-							@Html.ByteImage(product.ResultImageSmall, "Снимка на продукт")
-							@*<img src="~/content/img/products/product-example-1.jpg">*@
+							@if (product.ResultImageSmall != null && product.ResultImageSmall.Length > 0)
+							{
+								@Html.ByteImage(product.ResultImageSmall, "Снимка на продукт")
+							}
+							else
+							{
+								<div style="width: 370px; height:310px;line-height:310px;">Липсваща снимка</div>
+							}
 							<!-- item content -->
 							<div class="item-content">
 								<h3 class="portfolio-title">@product.Title</h3>

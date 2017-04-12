@@ -31,7 +31,7 @@ namespace App.Web.Infrastructure.Mapping
 				.ForMember(x => x.ClientId, opt => opt.MapFrom(u => u.Client.Id));
 
 			CreateMap<Order, ProductViewModel>()
-				.ForMember(x => x.ResultImageSmall, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small))
+				.ForMember(x => x.ResultImageSmall, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Medium))
 				.ForMember(x => x.ResultImageBig, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Big))
 				.ForMember(x => x.CategorySlug, opt => opt.MapFrom(u => u.OrderCategory.Slug));
 
@@ -53,6 +53,10 @@ namespace App.Web.Infrastructure.Mapping
 				.ForMember(x => x.ClientPhoto, opt => opt.MapFrom(u => u.Client.ProfileImage))
 				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName))
 				.ForMember(x => x.ClientJobTitle, opt => opt.MapFrom(u => u.Client.JobTitle));
+
+			CreateMap<Testimonial, TestimonialSimpleViewModel>()
+				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName))
+				.ForMember(x => x.OrderTitle, opt => opt.MapFrom(u => u.Order.Title));
 
 			//TODO: use slugify for OrderInputModel to Order mapping -> Slug
 			// http://stackoverflow.com/questions/2920744/url-slugify-algorithm-in-c

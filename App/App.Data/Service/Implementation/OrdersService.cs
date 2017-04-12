@@ -19,6 +19,7 @@ namespace App.Data.Service.Implementation
 		private readonly IMessagingService MessagingService;
 		//private const string defaultBigImageQuery = "width=1650&height=1050&crop=auto&scale=both&format=jpg";
 		private const string defaultBigImageQuery = "width=1650&height=1050&format=jpg";
+		private const string defaultMediumImageQuery = "width=370&height=310&crop=auto&format=jpg";
 		private const string defaultSmallImageQuery = "width=210&height=203&crop=auto&format=jpg";
 
 		public OrdersService(IUoWData data, IMessagingService messagingService)
@@ -26,126 +27,6 @@ namespace App.Data.Service.Implementation
 			this.Data = data;
 			this.MessagingService = messagingService;
 		}
-
-		//TODO: delete
-		//public void AddDesignImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
-		//{
-		//	Order dbOrder = this.GetOrder(orderId);
-
-		//	if (dbOrder != null)
-		//	{
-		//		dbOrder.DesignImages.Add(image);
-		//		this.Data.SaveChanges();
-		//	}
-
-		//	if (notifyClient)
-		//	{
-		//		MessageData message = new MessageData();
-		//		this.MessagingService.Notify(dbOrder.ClientId, message);
-		//	}
-
-		//	if (notifyAdmin)
-		//	{
-		//		MessageData message = new MessageData();
-		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-		//	}
-		//}
-
-		//TODO: delete
-		//public void AddResultImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
-		//{
-		//	Order dbOrder = this.GetOrder(orderId);
-
-		//	if (dbOrder != null)
-		//	{
-		//		dbOrder.ResultImages.Add(image);
-		//		this.Data.SaveChanges();
-		//	}
-
-		//	if (notifyClient)
-		//	{
-		//		MessageData message = new MessageData();
-		//		this.MessagingService.Notify(dbOrder.ClientId, message);
-		//	}
-
-		//	if (notifyAdmin)
-		//	{
-		//		MessageData message = new MessageData();
-		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-		//	}
-		//}
-
-		//TODO: delete
-		//public void AddSketchImage(int orderId, Image image, bool notifyClient, bool notifyAdmin)
-		//{
-		//	Order dbOrder = this.GetOrder(orderId);
-
-		//	if (dbOrder != null)
-		//	{
-		//		dbOrder.SketchImages.Add(image);
-		//		this.Data.SaveChanges();
-		//	}
-
-		//	if (notifyClient)
-		//	{
-		//		MessageData message = new MessageData();
-		//		this.MessagingService.Notify(dbOrder.ClientId, message);
-		//	}
-
-		//	if (notifyAdmin)
-		//	{
-		//		MessageData message = new MessageData();
-		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-		//	}
-		//}
-
-		//TODO: Delete this
-		//public void ChangeOrderState(int orderId, OrderState newState, bool notifyClient, bool notifyAdmin)
-		//{
-		//	Order dbOrder = this.GetOrder(orderId);
-
-		//	if (dbOrder != null)
-		//	{
-		//		dbOrder.State = newState;
-		//		this.Data.SaveChanges();
-		//	}
-
-		//	if (notifyClient)
-		//	{
-		//		MessageData message = new MessageData();
-		//		this.MessagingService.Notify(dbOrder.ClientId, message);
-		//	}
-
-		//	if (notifyAdmin)
-		//	{
-		//		MessageData message = new MessageData();
-		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-		//	}
-		//}
-
-		//TODO: Delete this
-		//public bool ConfirmOrderOffer(int orderId, int count, bool notifyAdmin)
-		//{
-		//	Order dbOrder = this.Data.Orders.Find(orderId);
-
-		//	if (dbOrder == null)
-		//	{
-		//		return false;
-		//	}
-
-		//	dbOrder.State = OrderState.OfferConfirmed;
-		//	dbOrder.Count = count;
-		//	this.Data.SaveChanges();
-
-		//	if (notifyAdmin)
-		//	{
-		//		MessageData message = new MessageData();
-		//		this.MessagingService.Notify("admin-id", message); //TODO: get the admin from configuration (Email)
-		//	}
-
-		//	return true;
-
-		//}
 
 		public bool DeleteOrder(int id)
 		{
@@ -235,11 +116,13 @@ namespace App.Data.Service.Implementation
 			foreach (HttpPostedFileBase image in model.PostedSketches)
 			{
 				byte[] bigImageData = ImageUtilities.CropImage(image, OrdersService.defaultBigImageQuery);
-				byte[] smallImageData = ImageUtilities.CropImage(image, OrdersService.defaultSmallImageQuery); //TODO: Check if this crop is ok
+				byte[] mediumImageData = ImageUtilities.CropImage(image, OrdersService.defaultMediumImageQuery);
+				byte[] smallImageData = ImageUtilities.CropImage(image, OrdersService.defaultSmallImageQuery);
 
 				Image newSketch = new Image
 				{
 					Big = bigImageData,
+					Medium = mediumImageData,
 					Small = smallImageData
 				};
 
@@ -250,21 +133,6 @@ namespace App.Data.Service.Implementation
 
 			return newOrder.Id;
 		}
-
-		//TODO: delete this
-		//public bool UpdateOrder(int id, OrderInputModel inputModel)
-		//{
-		//	Order dbOrder = this.GetOrder(id);
-
-		//	if (dbOrder != null)
-		//	{
-		//		// TODO: DO the mapping with Automapper and manual for images
-		//		this.Data.SaveChanges();
-		//		return true;
-		//	}
-
-		//	return false;
-		//}
 
 		public bool UpdateOrderCategory(int id, OrderCategoryInputModel inputModel)
 		{
@@ -394,11 +262,13 @@ namespace App.Data.Service.Implementation
 					foreach (HttpPostedFileBase image in model.PostedSketches)
 					{
 						byte[] smallImageData = ImageUtilities.CropImage(image, OrdersService.defaultSmallImageQuery);
+						byte[] mediumImageData = ImageUtilities.CropImage(image, OrdersService.defaultMediumImageQuery);
 						byte[] bigImageData = ImageUtilities.CropImage(image, OrdersService.defaultBigImageQuery);
 
 						Image newImage = new Image
 						{
 							Small = smallImageData,
+							Medium = mediumImageData,
 							Big = bigImageData
 						};
 
@@ -411,11 +281,13 @@ namespace App.Data.Service.Implementation
 					foreach (HttpPostedFileBase image in model.PostedDesigns)
 					{
 						byte[] smallImageData = ImageUtilities.CropImage(image, OrdersService.defaultSmallImageQuery);
+						byte[] mediumImageData = ImageUtilities.CropImage(image, OrdersService.defaultMediumImageQuery);
 						byte[] bigImageData = ImageUtilities.CropImage(image, OrdersService.defaultBigImageQuery);
 
 						Image newImage = new Image
 						{
 							Small = smallImageData,
+							Medium = mediumImageData,
 							Big = bigImageData
 						};
 
@@ -428,11 +300,13 @@ namespace App.Data.Service.Implementation
 					foreach (HttpPostedFileBase image in model.PostedResults)
 					{
 						byte[] smallImageData = ImageUtilities.CropImage(image, OrdersService.defaultSmallImageQuery);
+						byte[] mediumImageData = ImageUtilities.CropImage(image, OrdersService.defaultMediumImageQuery);
 						byte[] bigImageData = ImageUtilities.CropImage(image, OrdersService.defaultBigImageQuery);
 
 						Image newImage = new Image
 						{
 							Small = smallImageData,
+							Medium = mediumImageData,
 							Big = bigImageData
 						};
 

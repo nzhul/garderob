@@ -1,0 +1,34 @@
+﻿@using App.Models.Testimonials;
+@using App.Models.Pages;
+@model IEnumerable<TestimonialSimpleViewModel>
+
+@{
+	ViewBag.Title = "Атестати";
+}
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>@ViewBag.Title</h3>
+		<table class="table table-striped table-hover ">
+			<thead>
+				<tr>
+					<th>№</th>
+					<th>Рейтинг</th>
+					<th>Дата</th>
+					<th>Поръчка</th>
+					<th>Клиент</th>
+					<th><i class="fa fa-trash"></i></th>
+				</tr>
+			</thead>
+			<tbody>
+				@Html.Partial("Partials/_Testimonials", Model)
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		@Html.Partial("_Pager", ViewBag.PagingData as PagingData)
+	</div>
+</div>

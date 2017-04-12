@@ -107,6 +107,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Testimonials\Testimonial.cs" />
     <Compile Include="Testimonials\TestimonialInputModel.cs" />
+    <Compile Include="Testimonials\TestimonialSimpleViewModel.cs" />
     <Compile Include="Testimonials\TestimonialViewModel.cs" />
     <Compile Include="ValidationAttributes\RequireImageFileAttribute.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
