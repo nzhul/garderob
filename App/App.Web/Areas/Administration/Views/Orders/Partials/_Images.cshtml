@@ -1,0 +1,51 @@
+﻿@using App.Models.Images;
+@model ICollection<Image>
+
+
+<div class="row">
+	<div class="col-md-12">
+		@{ int counter = 0; }
+		@foreach (Image image in Model)
+		{
+			<div class="image-wrapper">
+				<div class="profile-image-loading">
+					<i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+				</div>
+				<div class="profile-image-success">
+					<i class="fa fa-check-circle fa-2x"></i>
+				</div>
+				<div class="profile-image-fail">
+					<i class="fa fa-remove fa-2x"></i>
+				</div>
+				<a href="@Url.Action("Show", "Image", new { Area = "", id = image.Id, imageType = "big" })" class="js-order-thumbnail-link">
+					@Html.ByteImage(image.Small, "Скица", "order-thumbnail")
+				</a>
+				@Ajax.ActionLink("Изтрии",
+								"DeleteImage",
+								new { id = image.Id },
+								new AjaxOptions
+								{
+									HttpMethod = "Post",
+									OnBegin = "deletePhotoBegin",
+									OnFailure = "deletePhotoFail",
+									OnSuccess = "deletePhotoSuccess"
+								}, new { @class = "btn btn-danger delete-profile-photo-btn" })
+			</div>
+
+			counter++;
+			if (counter % 5 == 0 && counter != 0)
+			{
+				@:</div></div>
+				@:<div class="row">
+				@:<div class="col-md-12">
+			}
+		}
+	</div>
+</div>
+<div style="clear:both;">&nbsp;</div>
+<label for="PostedSketches">Качи скици:</label>
+@{ 
+	string inputFieldName = this.ViewData.ContainsKey("InputFieldName") ? this.ViewData["InputFieldName"].ToString() : string.Empty;
+}
+<input type="file" id="@inputFieldName" name="@inputFieldName" multiple />
+<hr />

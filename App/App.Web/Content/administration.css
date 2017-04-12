@@ -125,7 +125,7 @@ table {
 	height: 100px;
 	text-align: center;
 	border: 1px solid #d7d7d7;
-	line-height:100px;
+	line-height: 100px;
 	background-color: white;
 	display: none;
 }
@@ -144,6 +144,49 @@ table {
 
 
 .order-thumbnail {
-	max-width:100px;
+	width:100px;
+	height:100px;
 	border: 1px solid gray;
+	margin: 0 0 0 0px;
+}
+
+.order-category {
+	margin: -5px 0 45px 0px;
+}
+
+	.order-category img {
+		outline: 1px solid #237dc8;
+		outline-offset: -1px;
+		margin: 5px 2px 0 0px;
+		cursor: pointer;
+	}
+
+		.order-category img:hover {
+			outline: 3px solid #237dc8;
+			outline-offset: -3px;
+		}
+
+		.order-category img.selected {
+			outline: 3px solid #237dc8;
+			outline-offset: -3px;
+			opacity: 1 !important;
+		}
+
+		.order-category img.dimmed {
+			opacity: 0.5;
+		}
+
+.concealed {
+	visibility: hidden;
+	width: 1% !important;
+	height: 1% !important;
+	line-height: 0px !important;
+	position: absolute;
+	top: -99999px;
+}
+
+.image-wrapper {
+	width: 100px;
+	float: left;
+	margin: 5px;
 }

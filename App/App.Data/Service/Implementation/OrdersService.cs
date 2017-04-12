@@ -17,7 +17,8 @@ namespace App.Data.Service.Implementation
 	{
 		private readonly IUoWData Data;
 		private readonly IMessagingService MessagingService;
-		private const string defaultBigImageQuery = "width=1650&height=1050&crop=auto&scale=both&format=jpg";
+		//private const string defaultBigImageQuery = "width=1650&height=1050&crop=auto&scale=both&format=jpg";
+		private const string defaultBigImageQuery = "width=1650&height=1050&format=jpg";
 		private const string defaultSmallImageQuery = "width=210&height=203&crop=auto&format=jpg";
 
 		public OrdersService(IUoWData data, IMessagingService messagingService)

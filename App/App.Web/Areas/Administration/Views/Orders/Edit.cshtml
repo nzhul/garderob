@@ -5,136 +5,228 @@
 	ViewBag.Title = "Edit";
 }
 
-	<h2>Редакция на поръчка: </h2>
-	@using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal " }))
-			{
-		<div class="row">
-			<div class="col-md-6">
-				@Html.LabelFor(m => m.Title)
-				@Html.ValidationMessageFor(m => m.Title)
-				@Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+<h2>Редакция на поръчка: </h2>
+@using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal " }))
+{
+	<div class="row">
+		<div class="col-md-6">
+			@Html.LabelFor(m => m.Title)
+			@Html.ValidationMessageFor(m => m.Title)
+			@Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
 
-				@Html.LabelFor(m => m.Slug)
-				@Html.ValidationMessageFor(m => m.Slug)
-				@Html.EditorFor(m => m.Slug, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.LabelFor(m => m.Slug)
+			@Html.ValidationMessageFor(m => m.Slug)
+			@Html.EditorFor(m => m.Slug, new { htmlAttributes = new { @class = "form-control" } })
 
-				@Html.LabelFor(m => m.OrderText)
-				@Html.ValidationMessageFor(m => m.OrderText)
-				@Html.EditorFor(m => m.OrderText, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.LabelFor(m => m.OrderText)
+			@Html.ValidationMessageFor(m => m.OrderText)
+			@Html.EditorFor(m => m.OrderText, new { htmlAttributes = new { @class = "form-control" } })
 
-				@Html.LabelFor(m => m.Count)
-				@Html.ValidationMessageFor(m => m.Count)
-				@Html.EditorFor(m => m.Count, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.LabelFor(m => m.Count)
+			@Html.ValidationMessageFor(m => m.Count)
+			@Html.EditorFor(m => m.Count, new { htmlAttributes = new { @class = "form-control" } })
 
-				@Html.LabelFor(m => m.Price)
-				@Html.ValidationMessageFor(m => m.Price)
-				@Html.EditorFor(m => m.Price, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.LabelFor(m => m.Price)
+			@Html.ValidationMessageFor(m => m.Price)
+			@Html.EditorFor(m => m.Price, new { htmlAttributes = new { @class = "form-control" } })
 
-				@Html.LabelFor(m => m.State)
-				@Html.ValidationMessageFor(m => m.State)
-				@Html.EnumDropDownListFor(m => m.State, "- Избери статус -", new { @class = "form-control" })
+			@Html.LabelFor(m => m.State)
+			@Html.ValidationMessageFor(m => m.State)
+			@Html.EnumDropDownListFor(m => m.State, "- Избери статус -", new { @class = "form-control" })
 
-				@Html.LabelFor(m => m.Installation)
-				@Html.ValidationMessageFor(m => m.Installation)
-				@Html.EditorFor(m => m.Installation)
+			@Html.LabelFor(m => m.Installation)
+			@Html.ValidationMessageFor(m => m.Installation)
+			@Html.EditorFor(m => m.Installation)
 
-				<div class="order-category">
-					Плоча за основа: @Html.ValidationMessageFor(model => model.BaseMaterialId, "", new { @class = "text-danger" })<br />
-					@foreach (var material in Model.SurfaceMaterials)
-					{
-						@Html.ByteImage(
-							material.Image.Small,
-							material.Name,
-							"js-base-surface-material",
-							material.Id.ToString(),
-							material.Name)
-					}
-				</div>
-				<div class="order-category">
-					Плоча за врати: @Html.ValidationMessageFor(model => model.DoorsMaterialId, "", new { @class = "text-danger" })<br />
-					@foreach (var material in Model.SurfaceMaterials)
-					{
-						@Html.ByteImage(
-							material.Image.Small,
-							material.Name,
-							"js-door-surface-material",
-							material.Id.ToString(),
-							material.Name)
-					}
-				</div>
-				<div class="order-category">
-					Фазер: @Html.ValidationMessageFor(model => model.FazerMaterialId, "", new { @class = "text-danger" })<br />
-					@foreach (var material in Model.SurfaceMaterials)
-					{
-						@Html.ByteImage(
-							material.Image.Small,
-							material.Name,
-							"js-fazer-surface-material",
-							material.Id.ToString(),
-							material.Name)
-					}
-				</div>
-				<div class="order-category">
-					Дръжки: @Html.ValidationMessageFor(model => model.HandlesMaterialId, "", new { @class = "text-danger" })<br />
-					@foreach (var material in Model.HandlesMaterials)
-					{
-						@Html.ByteImage(
-							material.Image.Small,
-							material.Name,
-							"js-handle-material",
-							material.Id.ToString(),
-							material.Name)
-					}
-				</div>
-				@Html.TextBoxFor(model => model.BaseMaterialId, "", new { @class = "concealed" })
-				@Html.TextBoxFor(model => model.DoorsMaterialId, "", new { @class = "concealed" })
-				@Html.TextBoxFor(model => model.FazerMaterialId, "", new { @class = "concealed" })
-				@Html.TextBoxFor(model => model.HandlesMaterialId, "", new { @class = "concealed" })
-
+			<div class="order-category">
+				Плоча за основа: @Html.ValidationMessageFor(model => model.BaseMaterialId, "", new { @class = "text-danger" })<br />
+				@foreach (var material in Model.SurfaceMaterials)
+				{
+					@Html.ByteImage(
+				 material.Image.Small,
+				 material.Name,
+				 "js-base-surface-material",
+				 material.Id.ToString(),
+				 material.Name)
+				}
 			</div>
-			<div class="col-md-6">
-				<h4>Скици:</h4>
-				@foreach (Image image in Model.SketchImages)
+			<div class="order-category">
+				Плоча за врати: @Html.ValidationMessageFor(model => model.DoorsMaterialId, "", new { @class = "text-danger" })<br />
+				@foreach (var material in Model.SurfaceMaterials)
 				{
-					<a href="@Url.Action("Show", "Image", new { Area = "", id = image.Id, imageType = "big" })">
-						@Html.ByteImage(image.Small, "Скица", "order-thumbnail")
-					</a>
+					@Html.ByteImage(
+				 material.Image.Small,
+				 material.Name,
+				 "js-door-surface-material",
+				 material.Id.ToString(),
+				 material.Name)
 				}
-				<br/><br />
-				<label for="PostedSketches">Качи скици:</label>
-				<input type="file" id="PostedSketches" name="PostedSketches" multiple />
-				<hr/>
-
-				<h4>Дизайни:</h4>
-				@foreach (Image image in Model.DesignImages)
-				{
-					<a href="@Url.Action("Show", "Image", new { Area = "", id = image.Id, imageType = "big" })">
-						@Html.ByteImage(image.Small, "Дизайн", "order-thumbnail")
-					</a>
-				}
-
-				<br /><br />
-				<label for="PostedDesigns">Качи дизайни:</label>
-				<input type="file" id="PostedDesigns" name="PostedDesigns" multiple />
-				<hr />
-
-				<h4>Резултат:</h4>
-				@foreach (Image image in Model.ResultImages)
-				{
-					<a href="@Url.Action("Show", "Image", new { Area = "", id = image.Id, imageType = "big" })">
-						@Html.ByteImage(image.Small, "Резултат", "order-thumbnail")
-					</a>
-				}
-
-				<br /><br />
-				<label for="PostedResults">Качи резултат:</label>
-				<input type="file" id="PostedResults" name="PostedResults" multiple />
 			</div>
+			<div class="order-category">
+				Фазер: @Html.ValidationMessageFor(model => model.FazerMaterialId, "", new { @class = "text-danger" })<br />
+				@foreach (var material in Model.SurfaceMaterials)
+				{
+					@Html.ByteImage(
+				 material.Image.Small,
+				 material.Name,
+				 "js-fazer-surface-material",
+				 material.Id.ToString(),
+				 material.Name)
+				}
+			</div>
+			<div class="order-category">
+				Дръжки: @Html.ValidationMessageFor(model => model.HandlesMaterialId, "", new { @class = "text-danger" })<br />
+				@foreach (var material in Model.HandlesMaterials)
+				{
+					@Html.ByteImage(
+				 material.Image.Small,
+				 material.Name,
+				 "js-handle-material",
+				 material.Id.ToString(),
+				 material.Name)
+				}
+			</div>
+			@Html.TextBoxFor(model => model.BaseMaterialId, "", new { @class = "concealed" })
+			@Html.TextBoxFor(model => model.DoorsMaterialId, "", new { @class = "concealed" })
+			@Html.TextBoxFor(model => model.FazerMaterialId, "", new { @class = "concealed" })
+			@Html.TextBoxFor(model => model.HandlesMaterialId, "", new { @class = "concealed" })
 
 		</div>
+		<div class="col-md-6">
+			<h4>Скици:</h4>
+			@Html.Partial("Partials/_Images", Model.SketchImages, new ViewDataDictionary { { "InputFieldName", "PostedSketches" } })
+
+			<h4>Дизайни:</h4>
+			@Html.Partial("Partials/_Images", Model.DesignImages, new ViewDataDictionary { { "InputFieldName", "PostedDesigns" } })
+
+			<h4>Резултат:</h4>
+			@Html.Partial("Partials/_Images", Model.ResultImages, new ViewDataDictionary { { "InputFieldName", "PostedResults" } })
+		</div>
+
+	</div>
 		<div class="row">
 			<div class="col-md-12">
 				<button type="submit" class="btn btn-success save-btn">Запиши</button>
 			</div>
 		</div>
-	}
+}
+
+@section Scripts {
+	@*@Scripts.Render("~/bundles/jqueryval")*@
+	<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+	<script>
+		// MarkSelected material on load
+		$(document).ready(function () {
+
+			var baseInput = $('#BaseMaterialId');
+			var doorInput = $('#DoorsMaterialId');
+			var fazerInput = $('#FazerMaterialId');
+			var handleInput = $('#HandlesMaterialId');
+
+			var baseMaterials = $('.js-base-surface-material');
+			var doorMaterials = $('.js-door-surface-material');
+			var fazerMaterials = $('.js-fazer-surface-material');
+			var handleMaterials = $('.js-handle-material');
+
+			initializeMaterialsState(baseMaterials, baseInput);
+			initializeMaterialsState(doorMaterials, doorInput);
+			initializeMaterialsState(fazerMaterials, fazerInput);
+			initializeMaterialsState(handleMaterials, handleInput);
+
+			// Surface selection logic
+			updateHiddenInput(baseMaterials, baseInput);
+			updateHiddenInput(doorMaterials, doorInput);
+			updateHiddenInput(fazerMaterials, fazerInput);
+			updateHiddenInput(handleMaterials, handleInput);
+
+			//using the click event on the submit button
+			$('#order-submit-form-button').click(function (evt) {
+				var $form = $('form.contact-form');
+				var btn = $(this);
+				if ($form.valid()) {
+					// the form is valid
+					// dim out and disable the submit button to prevent multiple sends
+					btn.attr('disabled', 'disabled');
+					btn.css('opacity', '0.5');
+					$('.cs-loader').show();
+					$form.submit();
+				}
+			});
+		});
+
+		function updateHiddenInput(materials, inputElement) {
+			for (var i = 0; i < materials.length; i++) {
+				$(materials[i]).on('click', function () {
+					var material = $(this);
+					var materialId = material.attr('id');
+					inputElement.val(parseInt(materialId));
+					dimMaterials(materials);
+					material.addClass('selected');
+				});
+			}
+		}
+
+		function dimMaterials(materials) {
+			for (var i = 0; i < materials.length; i++) {
+				var material = $(materials[i]);
+				material.addClass('dimmed');
+				material.removeClass('selected');
+			}
+		}
+
+		function initializeMaterialsState(materials, inputElement) {
+			if (inputElement.val() >= 1) {
+				var element = $.grep(materials, function (e) {
+					return $(e).attr('id') == inputElement.val();
+				});
+
+				dimMaterials(materials);
+				$(element).addClass('selected');
+			}
+		}
+
+
+		// Deleting images logic
+		function deletePhotoBegin() {
+			debugger;
+			var clickedBtn = $(this);
+			var image = clickedBtn.siblings('.js-order-thumbnail-link');
+			var loadingView = clickedBtn.siblings('.profile-image-loading');
+			var failView = clickedBtn.siblings('.profile-image-fail');
+			var successView = clickedBtn.siblings('.profile-image-success');
+
+			image.hide();
+			loadingView.show();
+		}
+
+		function deletePhotoFail() {
+			var clickedBtn = $(this);
+			var loadingView = clickedBtn.siblings('.profile-image-loading');
+			var failView = clickedBtn.siblings('.profile-image-fail');
+
+			loadingView.hide();
+			failView.show();
+		}
+
+		function deletePhotoSuccess(response) {
+			var clickedBtn = $(this);
+			var loadingView = clickedBtn.siblings('.profile-image-loading');
+			var successView = clickedBtn.siblings('.profile-image-success');
+			var failView = clickedBtn.siblings('.profile-image-fail');
+
+			if (response.Status === 'Success') {
+				var clickedBtn = $(this);
+				clickedBtn.hide();
+
+				loadingView.hide();
+				successView.show();
+			} else {
+				loadingView.hide();
+				failView.show();
+			}
+		}
+	</script>
+}

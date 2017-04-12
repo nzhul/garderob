@@ -12,11 +12,13 @@ namespace App.Web.Areas.Administration.Controllers
 	{
 		IOrdersService ordersService;
 		IMaterialsService materialsService;
+		IImagesService imagesService;
 
-		public OrdersController(IOrdersService ordersService, IMaterialsService materialsService)
+		public OrdersController(IOrdersService ordersService, IMaterialsService materialsService, IImagesService imagesService)
 		{
 			this.ordersService = ordersService;
 			this.materialsService = materialsService;
+			this.imagesService = imagesService;
 		}
 
 		[HttpGet]
@@ -63,6 +65,19 @@ namespace App.Web.Areas.Administration.Controllers
 			TempData["message"] = "Невалидни данни за поръчката!<br/> Моля попълнете <strong>всички</strong> задължителни полета!";
 			TempData["messageType"] = "danger";
 			return View(model);
+		}
+
+		[HttpPost]
+		public ActionResult DeleteImage(int id)
+		{
+			if (this.imagesService.DeleteImage(id))
+			{
+				return this.Json(new { Status = "Success" });
+			}
+			else
+			{
+				return this.Json(new { Status = "Fail" });
+			}
 		}
 	}
 }

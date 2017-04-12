@@ -424,6 +424,7 @@
     <Content Include="Areas\Administration\Views\Clients\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Orders\Partials\_OrderRow.cshtml" />
     <Content Include="Areas\Administration\Views\Orders\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Orders\Partials\_Images.cshtml" />
     <None Include="Config\Connections.FolderProfile.config">
       <DependentUpon>Connections.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
@@ -1111,6 +1112,7 @@
     <Content Include="Content\img\logo-garderob-v2.png" />
     <Content Include="Content\img\logo-garderob.png" />
     <Content Include="Content\img\main-image-with-hand.jpg" />
+    <Content Include="Content\img\missing-photo-fe.jpg" />
     <Content Include="Content\img\napravi\guide1\legend.jpg" />
     <Content Include="Content\img\napravi\guide1\size-01.jpg" />
     <Content Include="Content\img\napravi\image-1.jpg" />

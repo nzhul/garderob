@@ -28,21 +28,42 @@
 		<div class="row gallery-row">
 			<div class="col-md-2">
 				<div class="gallery-row-image-wrapper">
-					@Html.ByteImage(testimonial.OrderSketch.Small, "Скица на продукта")
+					@if (testimonial.OrderSketch != null)
+					{
+						@Html.ByteImage(testimonial.OrderSketch.Small, "Скица на продукта")
+					}
+					else
+					{
+						<img src="~/Content/img/missing-photo-fe.jpg" alt="Липсваща снимка" />
+					}
 					<i class="fa fa-angle-double-right"></i>
 					<span>Скица</span>
 				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="gallery-row-image-wrapper">
-					@Html.ByteImage(testimonial.OrderDesign.Small, "Дизайн на продукта")
+					@if (testimonial.OrderDesign != null)
+					{
+						@Html.ByteImage(testimonial.OrderDesign.Small, "Дизайн на продукта")
+					}
+					else
+					{
+						<img src="~/Content/img/missing-photo-fe.jpg" alt="Липсваща снимка" />
+					}
 					<i class="fa fa-angle-double-right"></i>
 					<span>Модел</span>
 				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="gallery-row-image-wrapper">
-					@Html.ByteImage(testimonial.OrderResult.Small, "Краен резултат")
+					@if (testimonial.OrderResult != null)
+					{
+						@Html.ByteImage(testimonial.OrderResult.Small, "Краен резултат")
+					}
+					else
+					{
+						<img src="~/Content/img/missing-photo-fe.jpg" alt="Липсваща снимка" />
+					}
 					<span>Резултат</span>
 				</div>
 			</div>
@@ -54,7 +75,7 @@
 							@Html.ByteImage(testimonial.ClientPhoto, "Снимка на доволен клиент", "testimonial-client-photo")
 							<figure>
 								<figcaption>
-									@testimonial.ClientFullName<span>[ @testimonial.ClientJobTitle ]</span>
+									@testimonial.ClientFullName @if (!string.IsNullOrEmpty(testimonial.ClientJobTitle)) { <span>[ @testimonial.ClientJobTitle ]</span> }
 									<div class="stars"></div>
 								</figcaption>
 							</figure>

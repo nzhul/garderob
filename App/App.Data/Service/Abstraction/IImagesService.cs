@@ -5,5 +5,7 @@ namespace App.Data.Service.Abstraction
 	public interface IImagesService
 	{
 		Image GetImage(int id);
+
+		bool DeleteImage(int id);
 	}
 }
