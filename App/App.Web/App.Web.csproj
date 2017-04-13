@@ -442,6 +442,7 @@
     <Content Include="Areas\Administration\Views\MaterialCategories\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\MaterialCategories\Create.cshtml" />
     <Content Include="Areas\Administration\Views\MaterialCategories\Partials\_CreateEditMaterialCategory.cshtml" />
+    <Content Include="Areas\Administration\Views\Materials\Index.cshtml" />
     <None Include="Config\Connections.FolderProfile.config">
       <DependentUpon>Connections.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
@@ -1503,7 +1504,6 @@
     <Content Include="Views\Shared\_Pager.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Administration\Views\Materials\" />
     <Folder Include="Views\Orders\Partials\" />
     <Folder Include="Views\Warehouse\Partials\" />
   </ItemGroup>

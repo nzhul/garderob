@@ -190,3 +190,7 @@ table {
 	float: left;
 	margin: 5px;
 }
+
+.material-thumbnail-index {
+	max-height: 31px;
+}
