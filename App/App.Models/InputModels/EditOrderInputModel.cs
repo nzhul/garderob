@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using System.Web.Mvc;
 
 namespace App.Models.InputModels
 {
@@ -78,5 +79,10 @@ namespace App.Models.InputModels
 		public string ClientFullName { get; set; }
 
 		public int OrderCategoryId { get; set; }
+
+		[Required(ErrorMessage = "Задължително!")]
+		[Display(Name = "Категория")]
+		public int SelectedCategoryId { get; set; }
+		public IEnumerable<SelectListItem> Categories { get; set; }
 	}
 }

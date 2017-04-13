@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Utilities;
+using System.Web.Mvc;
 
 namespace App.Data.Service.Implementation
 {
@@ -104,6 +106,7 @@ namespace App.Data.Service.Implementation
 		{
 			Order newOrder = new Order();
 			newOrder = Mapper.Map(model, newOrder);
+			newOrder.Slug = SlugGenerator.Generate(model.Title);
 			newOrder.RequestDate = DateTime.UtcNow;
 			newOrder.OfferDate = DateTime.MaxValue;
 			newOrder.CompleteDate = DateTime.MaxValue;
@@ -134,17 +137,18 @@ namespace App.Data.Service.Implementation
 			return newOrder.Id;
 		}
 
-		public bool UpdateOrderCategory(int id, OrderCategoryInputModel inputModel)
+		public OrderCategory UpdateOrderCategory(int id, EditOrderCategoryInputModel inputModel)
 		{
 			OrderCategory dbCategory = this.Data.OrderCategories.Find(id);
 			if (dbCategory != null)
 			{
-				//TODO: Automapper
+				dbCategory = Mapper.Map(inputModel, dbCategory);
+				dbCategory.Slug = SlugGenerator.Generate(inputModel.Name);
+				dbCategory.LastModified = DateTime.UtcNow;
 				this.Data.SaveChanges();
-				return true;
 			}
 
-			return false;
+			return dbCategory;
 		}
 
 		public Order AddCartItem(int orderId, int orderCount, bool installation, string userId)
@@ -256,6 +260,7 @@ namespace App.Data.Service.Implementation
 			if (dbOrder != null)
 			{
 				dbOrder = Mapper.Map(model, dbOrder);
+				dbOrder.Slug = SlugGenerator.Generate(model.Title);
 
 				if (model.PostedSketches != null && model.PostedSketches.Count > 0 && model.PostedSketches[0] != null)
 				{
@@ -334,6 +339,34 @@ namespace App.Data.Service.Implementation
 			{
 				return false;
 			}
+		}
+
+		public int CreateOrderCategory(EditOrderCategoryInputModel model)
+		{
+			OrderCategory newCategory = Mapper.Map(model, new OrderCategory());
+			newCategory.DateCreated = DateTime.UtcNow;
+			newCategory.LastModified = DateTime.UtcNow;
+			newCategory.Slug = SlugGenerator.Generate(model.Name);
+
+			this.Data.OrderCategories.Add(newCategory);
+			this.Data.SaveChanges();
+
+			return newCategory.Id;
+
+		}
+
+		public IEnumerable<SelectListItem> GetCategoriesSelectData()
+		{
+			var categories = this.Data.OrderCategories
+				.All()
+				.OrderBy(x => x.Id)
+				.Select(x => new SelectListItem
+				{
+					Value = x.Id.ToString(),
+					Text = x.Name.ToString()
+				});
+
+			return new SelectList(categories, "Value", "Text");
 		}
 	}
 }

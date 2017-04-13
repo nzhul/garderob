@@ -1,0 +1,29 @@
+﻿@using App.Models.Orders;
+@model IEnumerable<OrderCategoryViewModel>
+@{
+	ViewBag.Title = "Категории поръчки";
+}
+
+<div class="row">
+	<div class="col-md-4">
+		<h3>@ViewBag.Title</h3>
+		<table class="table table-striped table-hover ">
+			<thead>
+				<tr>
+					<th>Категория</th>
+					<th>
+						<i class="fa fa-trash-o"></i>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@Html.Partial("Partials/_OrderCategories", Model)
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<a class="btn btn-primary" href="@Url.Action("Create")">Добави категория</a>
+	</div>
+</div>

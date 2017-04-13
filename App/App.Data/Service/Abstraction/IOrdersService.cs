@@ -1,6 +1,8 @@
 ﻿using App.Models.InputModels;
 using App.Models.Orders;
 using System.Linq;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace App.Data.Service.Abstraction
 {
@@ -26,26 +28,13 @@ namespace App.Data.Service.Abstraction
 
 		IQueryable<Order> GetAllDoneOrders();
 
-		bool UpdateOrderCategory(int id, OrderCategoryInputModel inputModel);
+		OrderCategory UpdateOrderCategory(int id, EditOrderCategoryInputModel inputModel);
 
 		bool DeleteOrderCategory(int id); // do cannonical delete for all orders in that category OR transfer all orders into "Unknown" category
 
 		int MakeOrder(OrderInputModel model);
 
-		//TODO: delete
-		//bool ConfirmOrderOffer(int orderId, int count, bool notifyAdmin);
-
-		//TODO: delete
-		//void AddSketchImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
-
-		//TODO: delete
-		//void AddDesignImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
-
-		//TODO: delete
-		//void AddResultImage(int orderId, Image image, bool notifyClient, bool notifyAdmin);
-
-		//TODO: delete
-		//void ChangeOrderState(int orderId, OrderState newState, bool notifyClient, bool notifyAdmin);
+		int CreateOrderCategory(EditOrderCategoryInputModel categoryInput);
 
 		Order AddCartItem(int orderId, int orderCount, bool installation, string userId);
 
@@ -54,5 +43,7 @@ namespace App.Data.Service.Abstraction
 		bool OrderNow(string userId);
 
 		bool UpdateOrder(int id, EditOrderInputModel model);
+
+		IEnumerable<SelectListItem> GetCategoriesSelectData();
 	}
 }

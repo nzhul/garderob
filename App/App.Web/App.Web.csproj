@@ -191,6 +191,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\BaseController.cs" />
     <Compile Include="Areas\Administration\Controllers\ClientsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\OrderCategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
     <Compile Include="Areas\Administration\Controllers\TestimonialsController.cs" />
@@ -429,6 +430,11 @@
     <Content Include="Areas\Administration\Views\Testimonials\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Testimonials\Partials\_Testimonials.cshtml" />
     <Content Include="Areas\Administration\Views\Testimonials\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\OrderCategories\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\OrderCategories\Partials\_OrderCategories.cshtml" />
+    <Content Include="Areas\Administration\Views\OrderCategories\Partials\_CreateEditOrderCategory.cshtml" />
+    <Content Include="Areas\Administration\Views\OrderCategories\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\OrderCategories\Edit.cshtml" />
     <None Include="Config\Connections.FolderProfile.config">
       <DependentUpon>Connections.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>

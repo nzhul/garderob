@@ -83,6 +83,7 @@
     <Compile Include="Images\Image.cs" />
     <Compile Include="InputModels\CreatePageInputModel.cs" />
     <Compile Include="InputModels\EditClientInputModel.cs" />
+    <Compile Include="InputModels\EditOrderCategoryInputModel.cs" />
     <Compile Include="InputModels\EditOrderInputModel.cs" />
     <Compile Include="InputModels\EditTestimonialInputModel.cs" />
     <Compile Include="InputModels\UploadAttractionPhotoModel.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="Orders\CartViewModel.cs" />
     <Compile Include="Orders\Order.cs" />
     <Compile Include="Orders\OrderCategory.cs" />
-    <Compile Include="Orders\OrderCategoryInputModel.cs" />
+    <Compile Include="Orders\OrderCategoryViewModel.cs" />
     <Compile Include="Orders\OrderInputModel.cs" />
     <Compile Include="Orders\OrderState.cs" />
     <Compile Include="Orders\OrderViewModel.cs" />

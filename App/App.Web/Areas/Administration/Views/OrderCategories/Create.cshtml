@@ -1,0 +1,18 @@
+﻿@using App.Models.InputModels;
+@model EditOrderCategoryInputModel
+@{
+	ViewBag.Title = "Добавяне на Категория";
+	ViewBag.FormModeText = "Добави";
+	ViewBag.FormMode = "Create";
+}
+
+<div class="container">
+	@{Html.RenderPartial("Partials/_CreateEditOrderCategory", Model);}
+</div>
+
+@section Scripts {
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+	<script>
+
+	</script>
+}

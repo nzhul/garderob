@@ -36,7 +36,8 @@ namespace App.Web.Infrastructure.Mapping
 				.ForMember(x => x.CategorySlug, opt => opt.MapFrom(u => u.OrderCategory.Slug));
 
 			CreateMap<Order, EditOrderInputModel>()
-				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName));
+				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName))
+				.ForMember(x => x.SelectedCategoryId, opt => opt.MapFrom(u => u.OrderCategoryId));
 
 			CreateMap<EditOrderInputModel, Order>()
 				.ForMember(x => x.SketchImages, opt => opt.Ignore())
@@ -44,7 +45,7 @@ namespace App.Web.Infrastructure.Mapping
 				.ForMember(x => x.ResultImages, opt => opt.Ignore())
 				.ForMember(x => x.RequestDate, opt => opt.Ignore())
 				.ForMember(x => x.ClientId, opt => opt.Ignore())
-				.ForMember(x => x.OrderCategoryId, opt => opt.Ignore());
+				.ForMember(x => x.OrderCategoryId, opt => opt.MapFrom(u => u.SelectedCategoryId));
 
 			CreateMap<Testimonial, TestimonialViewModel>()
 				.ForMember(x => x.OrderSketch, opt => opt.MapFrom(u => u.Order.SketchImages.FirstOrDefault()))
@@ -67,6 +68,10 @@ namespace App.Web.Infrastructure.Mapping
 			CreateMap<Testimonial, EditTestimonialInputModel>()
 				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName))
 				.ForMember(x => x.OrderTitle, opt => opt.MapFrom(u => u.Order.Title));
+
+			CreateMap<OrderCategory, OrderCategoryViewModel>();
+			CreateMap<OrderCategory, EditOrderCategoryInputModel>();
+			CreateMap<EditOrderCategoryInputModel, OrderCategory>();
 
 			//TODO: use slugify for OrderInputModel to Order mapping -> Slug
 			// http://stackoverflow.com/questions/2920744/url-slugify-algorithm-in-c

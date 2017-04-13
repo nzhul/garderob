@@ -43,7 +43,7 @@
 			<div class="col-md-12">
 				<div class="d-navigation">
 					<a href="@Url.Action("Index", "Orders")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Orders" ? "active" : "")">Поръчки</a>
-					<a href="@Url.Action("Index", "OrderCategories")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "OrderCategories" ? "active" : "")">Категории Поръчки</a>
+					<a href="@Url.Action("Index", "OrderCategories")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "ordercategories" ? "active" : "")">Категории Поръчки</a>
 					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Клиенти</a>
 					<a href="@Url.Action("Index", "Materials")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "materials" ? "active" : "")">Материали</a>
 					<a href="@Url.Action("Index", "Testimonials")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "testimonials" ? "active" : "")">Атестати</a>

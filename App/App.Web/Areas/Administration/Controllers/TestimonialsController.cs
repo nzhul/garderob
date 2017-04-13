@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace App.Web.Areas.Administration.Controllers
 {
-	public class TestimonialsController : Controller
+	public class TestimonialsController : BaseController
 	{
 		ITestimonialsService testimonialsService;
 		private const int defaultPageSize = 10;

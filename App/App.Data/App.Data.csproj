@@ -138,6 +138,10 @@
       <Project>{f21d474e-b746-4e71-ba7d-2be597596fcd}</Project>
       <Name>App.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\App.Utilities\App.Utilities.csproj">
+      <Project>{58e3f0b6-dc58-4f0b-b8a6-4e4df18d0ec8}</Project>
+      <Name>App.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

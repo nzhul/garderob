@@ -12,7 +12,7 @@
 			<td><a href="@Url.Action("Edit", "Orders", new { id = t.OrderId })">@t.OrderTitle</a></td>
 			<td><a href="@Url.Action("Edit", "Clients", new { id = t.ClientId })">@t.ClientFullName</a></td>
 			<td><a href="@Url.Action("Edit", new { id = t.Id})">@if (@t.IsApproved){ @Html.Raw("Да") } else { @Html.Raw("Не") }</a></td>
-			<td><a href="@Url.Action("Delete", new { id = t.Id })"><i class="fa fa-remove"></i></a></td>
+			<td><a href="@Url.Action("Delete", new { id = t.Id })"><i class="fa fa-trash-o"></i></a></td>
 		</tr>
 	}
 }
