@@ -26,7 +26,7 @@ namespace App.Web.Controllers
 		public ActionResult List(int? page, int? pagesize)
 		{
 			IEnumerable<TestimonialViewModel> model = new List<TestimonialViewModel>();
-			model = this.testimonialsService.GetTestimonials(page - 1, pagesize).ToList().Select(t => Mapper.Map(t, new TestimonialViewModel()));
+			model = this.testimonialsService.GetTestimonials(page - 1, pagesize, true).ToList().Select(t => Mapper.Map(t, new TestimonialViewModel()));
 
 			int totalTestimonialsCount = this.testimonialsService.GetTestimonialsCount();
 			ViewBag.PagingData = this.GeneratePagingData(totalTestimonialsCount, pagesize ?? TestimonialsController.defaultPageSize, TestimonialsController.defaultLinksRadius);

@@ -5,6 +5,8 @@ using App.Models.Testimonials;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using App.Models.InputModels;
+using AutoMapper;
 
 namespace App.Data.Service.Implementation
 {
@@ -46,7 +48,7 @@ namespace App.Data.Service.Implementation
 			}
 		}
 
-		public IQueryable<Testimonial> GetTestimonials(int? page, int? pagesize)
+		public IQueryable<Testimonial> GetTestimonials(int? page, int? pagesize, bool approvedOnly)
 		{
 			if (page == null || page < 0)
 			{
@@ -61,11 +63,14 @@ namespace App.Data.Service.Implementation
 			IQueryable<Testimonial> testimonials = this.Data.Testimonials
 				.All()
 				.Include(t => t.Order)
-				.Include(t => t.Client)
-				.Where(t => t.IsApproved == true)
-				.OrderByDescending(t=>t.SubmissionDate);
+				.Include(t => t.Client);
 
-			testimonials = testimonials.Skip(page.Value * pagesize.Value).Take(pagesize.Value);
+			if (approvedOnly)
+			{
+				testimonials = testimonials.Where(t => t.IsApproved == approvedOnly);
+			}
+
+			testimonials = testimonials.OrderByDescending(t => t.SubmissionDate).Skip(page.Value * pagesize.Value).Take(pagesize.Value);
 
 			return testimonials;
 		}
@@ -73,6 +78,28 @@ namespace App.Data.Service.Implementation
 		public int GetTestimonialsCount()
 		{
 			return this.Data.Testimonials.All().Where(t => t.IsApproved == true).Count();
+		}
+
+		public Testimonial GetTestimonial(int id)
+		{
+			return this.Data.Testimonials.All()
+				.Include(t => t.Order)
+				.Include(t => t.Client)
+				.Where(t => t.Id == id)
+				.Single();
+		}
+
+		public Testimonial UpdateTestimonial(int id, EditTestimonialInputModel model)
+		{
+			Testimonial dbT = this.GetTestimonial(id);
+
+			if (dbT != null)
+			{
+				dbT = Mapper.Map(model, dbT);
+				this.Data.SaveChanges();
+			}
+
+			return dbT;
 		}
 	}
 }

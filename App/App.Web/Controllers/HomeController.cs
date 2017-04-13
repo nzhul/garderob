@@ -27,7 +27,7 @@ namespace App.Web.Controllers
 		public ActionResult Index()
 		{
 			IEnumerable<TestimonialViewModel> model = new List<TestimonialViewModel>();
-			model = this.testimonialsService.GetTestimonials(0, 4).ToList().Select(t => Mapper.Map(t, new TestimonialViewModel()));
+			model = this.testimonialsService.GetTestimonials(0, 4, true).ToList().Select(t => Mapper.Map(t, new TestimonialViewModel()));
 			return View(model);
 		}
 

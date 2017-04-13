@@ -1,0 +1,46 @@
+﻿@using App.Models.InputModels;
+@model EditTestimonialInputModel
+
+@{
+	ViewBag.Title = "Атестат: Редакция";
+}
+
+<div class="container">
+	<h2>Редакция на атестат: </h2>
+	<div class="row">
+		<div class="col-md-6">
+			<p style="border: 1px solid gray; padding: 10px;">
+				Клиент: <a href="@Url.Action("Edit", "Clients", new { id = Model.ClientId })">@Model.ClientFullName</a> <br/>
+				Поръчка: <a href="@Url.Action("Edit", "Orders", new { id = Model.OrderId })">@Model.OrderTitle</a>
+			</p>
+			<hr />
+		</div>
+	</div>
+	<div class="row">
+		@using (Html.BeginForm("Edit", "Testimonials", FormMethod.Post, new { @class = "form-horizontal " }))
+		{
+		<div class="col-md-6">
+			@Html.LabelFor(m => m.Rating, new { @class = "dab-input-label" })
+			@Html.ValidationMessageFor(model => model.Rating)
+			@Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
+
+			@Html.LabelFor(m => m.Text, new { @class = "dab-input-label" })
+			@Html.ValidationMessageFor(model => model.Text)
+			@Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control", rows = "5" } })
+
+			@Html.LabelFor(m => m.IsApproved, new { @class = "dab-input-label" })
+			@Html.ValidationMessageFor(model => model.IsApproved)
+			@Html.EditorFor(model => model.IsApproved )
+			<hr />
+			<button type="submit" class="btn btn-success save-btn">Запиши</button>
+		</div>
+		}
+	</div>
+</div>
+
+@section Scripts {
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+	<script>
+
+	</script>
+}

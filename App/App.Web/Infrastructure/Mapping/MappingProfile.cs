@@ -58,6 +58,16 @@ namespace App.Web.Infrastructure.Mapping
 				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName))
 				.ForMember(x => x.OrderTitle, opt => opt.MapFrom(u => u.Order.Title));
 
+			CreateMap<EditTestimonialInputModel, Testimonial>()
+				.ForMember(x => x.SubmissionDate, opt => opt.Ignore())
+				.ForMember(x => x.OrderId, opt => opt.Ignore())
+				.ForMember(x => x.ClientId, opt => opt.Ignore());
+
+
+			CreateMap<Testimonial, EditTestimonialInputModel>()
+				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName))
+				.ForMember(x => x.OrderTitle, opt => opt.MapFrom(u => u.Order.Title));
+
 			//TODO: use slugify for OrderInputModel to Order mapping -> Slug
 			// http://stackoverflow.com/questions/2920744/url-slugify-algorithm-in-c
 		}

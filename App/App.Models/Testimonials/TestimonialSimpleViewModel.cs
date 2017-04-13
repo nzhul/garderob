@@ -16,6 +16,8 @@ namespace App.Models.Testimonials
 
 		public double Rating { get; set; }
 
+		public bool IsApproved { get; set; }
+
 		public DateTime SubmissionDate { get; set; }
 	}
 }

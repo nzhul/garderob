@@ -1,4 +1,5 @@
 ﻿using App.Data.Service.Abstraction;
+using App.Models.InputModels;
 using App.Models.Pages;
 using App.Models.Testimonials;
 using AutoMapper;
@@ -21,6 +22,7 @@ namespace App.Web.Areas.Administration.Controllers
 			this.testimonialsService = testimonialsService;
 		}
 
+		[HttpGet]
 		public ActionResult Index(int? page, int? pagesize)
 		{
 			if (page == null || page < 0)
@@ -34,7 +36,7 @@ namespace App.Web.Areas.Administration.Controllers
 			}
 
 			IEnumerable<TestimonialSimpleViewModel> model = 
-					this.testimonialsService.GetTestimonials(page - 1, pagesize)
+					this.testimonialsService.GetTestimonials(page - 1, pagesize, false)
 						.ToList().Select(t => Mapper.Map(t, new TestimonialSimpleViewModel()));
 
 			int totalCount = this.testimonialsService.GetTestimonialsCount();
@@ -50,6 +52,39 @@ namespace App.Web.Areas.Administration.Controllers
 			NameValueCollection queryString = this.HttpContext.Request.QueryString;
 
 			return new PagingData(totalItemsCount, pageSize, linksRadius, false, pageUrl, queryString);
+		}
+
+		[HttpGet]
+		public ActionResult Edit(int id)
+		{
+
+			Testimonial dbT = this.testimonialsService.GetTestimonial(id);
+			if (dbT != null)
+			{
+				EditTestimonialInputModel model = Mapper.Map(dbT, new EditTestimonialInputModel());
+				return this.View(model);
+			}
+
+			return HttpNotFound();
+		}
+
+		[HttpPost]
+		public ActionResult Edit(int id, EditTestimonialInputModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				Testimonial updatedTestimonial = this.testimonialsService.UpdateTestimonial(id, model);
+				if (updatedTestimonial != null)
+				{
+					TempData["message"] = "Атестата беше редактиран успешно!";
+					TempData["messageType"] = "success";
+					return RedirectToAction("Index");
+				}
+			}
+
+			TempData["message"] = "Невалидни данни!<br/> Моля попълнете <strong>всички</strong> задължителни полета!";
+			TempData["messageType"] = "danger";
+			return View(model);
 		}
 	}
 }

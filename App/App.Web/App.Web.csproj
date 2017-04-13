@@ -428,6 +428,7 @@
     <Content Include="Areas\Administration\Views\Orders\Partials\_Images.cshtml" />
     <Content Include="Areas\Administration\Views\Testimonials\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Testimonials\Partials\_Testimonials.cshtml" />
+    <Content Include="Areas\Administration\Views\Testimonials\Edit.cshtml" />
     <None Include="Config\Connections.FolderProfile.config">
       <DependentUpon>Connections.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
