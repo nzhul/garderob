@@ -1,5 +1,7 @@
 ﻿using App.Models.Materials;
 using System.Linq;
+using System.Collections.Generic;
+using App.Models.InputModels;
 
 namespace App.Data.Service.Abstraction
 {
@@ -22,5 +24,13 @@ namespace App.Data.Service.Abstraction
 		Material GetMaterial(int id);
 
 		SurfaceMaterial GetSurfaceMaterial(int id);
+
+		IQueryable<MaterialCategory> GetAllCategoriesWithMaterials();
+
+		int CreateMaterialCategory(EditMaterialCategoryInputModel categoryInput);
+
+		MaterialCategory GetMaterialCategory(int id);
+
+		MaterialCategory UpdateMaterialCategory(int id, EditMaterialCategoryInputModel model);
 	}
 }

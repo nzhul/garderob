@@ -191,6 +191,8 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\BaseController.cs" />
     <Compile Include="Areas\Administration\Controllers\ClientsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\MaterialCategoriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\MaterialsController.cs" />
     <Compile Include="Areas\Administration\Controllers\OrderCategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
@@ -435,6 +437,11 @@
     <Content Include="Areas\Administration\Views\OrderCategories\Partials\_CreateEditOrderCategory.cshtml" />
     <Content Include="Areas\Administration\Views\OrderCategories\Create.cshtml" />
     <Content Include="Areas\Administration\Views\OrderCategories\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\MaterialCategories\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\MaterialCategories\Partials\_MaterialCategories.cshtml" />
+    <Content Include="Areas\Administration\Views\MaterialCategories\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\MaterialCategories\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\MaterialCategories\Partials\_CreateEditMaterialCategory.cshtml" />
     <None Include="Config\Connections.FolderProfile.config">
       <DependentUpon>Connections.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
@@ -1496,6 +1503,7 @@
     <Content Include="Views\Shared\_Pager.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Administration\Views\Materials\" />
     <Folder Include="Views\Orders\Partials\" />
     <Folder Include="Views\Warehouse\Partials\" />
   </ItemGroup>

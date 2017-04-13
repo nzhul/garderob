@@ -17,6 +17,8 @@ namespace App.Models.Materials
 
 		public virtual MaterialCategory Category { get; set; }
 
+		public double Price { get; set; }
+
 		public virtual Image Image { get; set; }
 
 		public DateTime DateCreated { get; set; }

@@ -1,5 +1,6 @@
 ﻿using App.Models;
 using App.Models.InputModels;
+using App.Models.Materials;
 using App.Models.Orders;
 using App.Models.Pages;
 using App.Models.Testimonials;
@@ -72,6 +73,9 @@ namespace App.Web.Infrastructure.Mapping
 			CreateMap<OrderCategory, OrderCategoryViewModel>();
 			CreateMap<OrderCategory, EditOrderCategoryInputModel>();
 			CreateMap<EditOrderCategoryInputModel, OrderCategory>();
+
+			CreateMap<MaterialCategory, EditMaterialCategoryInputModel>();
+			CreateMap<EditMaterialCategoryInputModel, MaterialCategory>();
 
 			//TODO: use slugify for OrderInputModel to Order mapping -> Slug
 			// http://stackoverflow.com/questions/2920744/url-slugify-algorithm-in-c
