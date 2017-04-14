@@ -31,8 +31,6 @@ namespace App.Data
 
 		public IDbSet<Material> Materials { get; set; }
 
-		public IDbSet<SurfaceMaterial> SurfaceMaterials { get; set; }
-
 		public IDbSet<MaterialCategory> MaterialCategories { get; set; }
 
 		public IDbSet<Testimonial> Testimonials { get; set; }

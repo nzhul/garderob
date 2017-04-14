@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web;
 
-namespace App.Models.InputModels
+namespace App.Models.Images
 {
 	public class UploadPhotoModel
 	{

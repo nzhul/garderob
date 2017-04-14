@@ -22,6 +22,12 @@ namespace App.Models.Materials
 
 		public string Slug { get; set; }
 
+		public string SmallImageSize { get; set; }
+
+		public string MediumImageSize { get; set; }
+
+		public string BigImageSize { get; set; }
+
 		public DateTime DateCreated { get; set; }
 
 		public DateTime LastModified { get; set; }

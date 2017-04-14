@@ -81,19 +81,16 @@
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Images\Image.cs" />
-    <Compile Include="InputModels\CreatePageInputModel.cs" />
+    <Compile Include="Pages\CreatePageInputModel.cs" />
     <Compile Include="InputModels\EditClientInputModel.cs" />
-    <Compile Include="InputModels\EditMaterialCategoryInputModel.cs" />
-    <Compile Include="InputModels\EditOrderCategoryInputModel.cs" />
-    <Compile Include="InputModels\EditOrderInputModel.cs" />
-    <Compile Include="InputModels\EditTestimonialInputModel.cs" />
-    <Compile Include="InputModels\UploadAttractionPhotoModel.cs" />
-    <Compile Include="InputModels\UploadPhotoModel.cs" />
+    <Compile Include="Materials\EditMaterialCategoryInputModel.cs" />
+    <Compile Include="Orders\EditOrderCategoryInputModel.cs" />
+    <Compile Include="Orders\EditOrderInputModel.cs" />
+    <Compile Include="Testimonials\EditTestimonialInputModel.cs" />
+    <Compile Include="Images\UploadPhotoModel.cs" />
     <Compile Include="Materials\Material.cs" />
     <Compile Include="Materials\MaterialCategory.cs" />
-    <Compile Include="Materials\MaterialInputModel.cs" />
-    <Compile Include="Materials\SurfaceMaterial.cs" />
-    <Compile Include="Materials\SurfaceMaterialInputModel.cs" />
+    <Compile Include="Materials\EditMaterialInputModel.cs" />
     <Compile Include="Orders\CartViewModel.cs" />
     <Compile Include="Orders\Order.cs" />
     <Compile Include="Orders\OrderCategory.cs" />

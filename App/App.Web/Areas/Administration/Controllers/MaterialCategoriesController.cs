@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Utilities;
 
 namespace App.Web.Areas.Administration.Controllers
 {
@@ -34,11 +35,18 @@ namespace App.Web.Areas.Administration.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Create(EditMaterialCategoryInputModel categoryInput)
+		public ActionResult Create(EditMaterialCategoryInputModel model)
 		{
+			if (!string.IsNullOrEmpty(model.Name))
+			{
+				model.Slug = SlugGenerator.Generate(model.Name);
+				ModelState["Slug"].Errors.Clear();
+				UpdateModel(model);
+			}
+
 			if (ModelState.IsValid)
 			{
-				int result = this.materialsService.CreateMaterialCategory(categoryInput);
+				int result = this.materialsService.CreateMaterialCategory(model);
 				if (result > 0)
 				{
 					TempData["message"] = "Успешно добавихте нова категория!";
@@ -49,7 +57,7 @@ namespace App.Web.Areas.Administration.Controllers
 
 			TempData["message"] = "Невалидни данни за категорията!<br/> Моля попълнете <strong>всички</strong> задължителни полета!";
 			TempData["messageType"] = "danger";
-			return View(categoryInput);
+			return View(model);
 		}
 
 		[HttpGet]

@@ -443,6 +443,9 @@
     <Content Include="Areas\Administration\Views\MaterialCategories\Create.cshtml" />
     <Content Include="Areas\Administration\Views\MaterialCategories\Partials\_CreateEditMaterialCategory.cshtml" />
     <Content Include="Areas\Administration\Views\Materials\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Materials\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Materials\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Materials\Partials\_CreateEditMaterial.cshtml" />
     <None Include="Config\Connections.FolderProfile.config">
       <DependentUpon>Connections.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>

@@ -86,9 +86,9 @@
 								OrderText = "-Empty-",
 								OrderCategory = category,
 								Client = this.theAdmin,
-								BaseMaterial = context.SurfaceMaterials.FirstOrDefault(),
-								DoorsMaterial = context.SurfaceMaterials.FirstOrDefault(),
-								FazerMaterial = context.SurfaceMaterials.FirstOrDefault(),
+								BaseMaterial = context.Materials.Where(m => m.Category.Slug == "surfaces").FirstOrDefault(),
+								DoorsMaterial = context.Materials.Where(m => m.Category.Slug == "surfaces").FirstOrDefault(),
+								FazerMaterial = context.Materials.Where(m => m.Category.Slug == "surfaces").FirstOrDefault(),
 								HandlesMaterial = context.Materials.FirstOrDefault()
 							};
 
@@ -127,6 +127,9 @@
 					Name = "Други",
 					Description = "In this category are placed all materials that do not belong in any other category.",
 					Slug = "others",
+					SmallImageSize = "31x31",
+					MediumImageSize = "310x310",
+					BigImageSize = "310x310",
 					DateCreated = DateTime.UtcNow,
 					LastModified = DateTime.UtcNow
 				};
@@ -136,6 +139,9 @@
 					Name = "Повърхности",
 					Description = "Описание на категорията",
 					Slug = "surfaces",
+					SmallImageSize = "31x31",
+					MediumImageSize = "310x310",
+					BigImageSize = "310x310",
 					DateCreated = DateTime.UtcNow,
 					LastModified = DateTime.UtcNow
 				};
@@ -172,6 +178,9 @@
 						Name = folderName,
 						Slug = folderName.ToLower(),
 						Description = folderName + " description",
+						SmallImageSize = "76x31",
+						MediumImageSize = "760x310",
+						BigImageSize = "760x310",
 						DateCreated = DateTime.UtcNow,
 						LastModified = DateTime.UtcNow
 					};
@@ -220,29 +229,23 @@
 				{
 					string bigImagePath = imagePath;
 					string smallImagePath = imagePath.Replace("\\Big\\", "\\Small\\"); // This could fail on the server!
-					string liveFrontImagePath = imagePath.Replace("\\Big\\", "\\LivePreview\\Front\\"); // This could fail on the server!
-					string liveBackImagePath = imagePath.Replace("\\Big\\", "\\LivePreview\\Back\\"); // This could fail on the server!
 
 					byte[] bigImageData = this.LoadImageData(bigImagePath);
 					byte[] smallImageData = this.LoadImageData(smallImagePath);
-					byte[] liveFrontImageData = this.LoadImageData(liveFrontImagePath);
-					byte[] livebackImageData = this.LoadImageData(liveBackImagePath);
 
 					string fileName = Path.GetFileNameWithoutExtension(bigImagePath);
 
-					SurfaceMaterial surfaceMaterial = new SurfaceMaterial
+					Material surfaceMaterial = new Material
 					{
 						CategoryId = surfaceCategoryId,
 						Name = fileName,
 						Slug = fileName,
 						Image = new Image { Big = bigImageData, Small = smallImageData },
-						LivePreviewFrontImage = new Image { Big = liveFrontImageData },
-						LivePreviewBackImage = new Image { Big = livebackImageData },
 						DateCreated = DateTime.UtcNow,
 						LastModified = DateTime.UtcNow
 					};
 
-					context.SurfaceMaterials.Add(surfaceMaterial);
+					context.Materials.Add(surfaceMaterial);
 				}
 
 				context.SaveChanges();

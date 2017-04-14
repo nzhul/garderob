@@ -6,6 +6,7 @@ using App.Models.Pages;
 using App.Models.Testimonials;
 using App.Models.ViewModels;
 using AutoMapper;
+using System;
 using System.Linq;
 
 namespace App.Web.Infrastructure.Mapping
@@ -76,6 +77,18 @@ namespace App.Web.Infrastructure.Mapping
 
 			CreateMap<MaterialCategory, EditMaterialCategoryInputModel>();
 			CreateMap<EditMaterialCategoryInputModel, MaterialCategory>();
+
+			CreateMap<Material, EditMaterialInputModel>()
+				.ForMember(x => x.SmallImageSize, opt => opt.MapFrom(u => u.Category.SmallImageSize))
+				.ForMember(x => x.MediumImageSize, opt => opt.MapFrom(u => u.Category.MediumImageSize))
+				.ForMember(x => x.BigImageSize, opt => opt.MapFrom(u => u.Category.BigImageSize))
+				.ForMember(x => x.SelectedCategoryId, opt => opt.MapFrom(u => u.CategoryId));
+
+			CreateMap<EditMaterialInputModel, Material>()
+				.ForMember(x => x.DateCreated, opt => opt.Ignore())
+				.ForMember(x => x.LastModified, opt => opt.Ignore())
+				.ForMember(x => x.Image, opt => opt.Ignore())
+				.ForMember(x => x.CategoryId, opt => opt.MapFrom(u => u.SelectedCategoryId));
 
 			//TODO: use slugify for OrderInputModel to Order mapping -> Slug
 			// http://stackoverflow.com/questions/2920744/url-slugify-algorithm-in-c

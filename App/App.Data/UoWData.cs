@@ -73,14 +73,6 @@ namespace App.Data
 			}
 		}
 
-		public IRepository<SurfaceMaterial> SurfaceMaterials
-		{
-			get
-			{
-				return this.GetRepository<SurfaceMaterial>();
-			}
-		}
-
 		public IRepository<MaterialCategory> MaterialCategories
 		{
 			get

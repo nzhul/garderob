@@ -1,0 +1,16 @@
+﻿@using App.Models.Materials;
+@model EditMaterialInputModel
+@{
+	ViewBag.Title = "Редактиране на Материал";
+	ViewBag.FormModeText = "Запази";
+	ViewBag.FormMode = "Edit";
+}
+
+<div class="container">
+	@{Html.RenderPartial("Partials/_CreateEditMaterial", Model);}
+</div>
+
+@section Scripts {
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+}

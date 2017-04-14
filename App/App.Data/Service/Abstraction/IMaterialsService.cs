@@ -2,28 +2,23 @@
 using System.Linq;
 using System.Collections.Generic;
 using App.Models.InputModels;
+using System.Web.Mvc;
 
 namespace App.Data.Service.Abstraction
 {
 	public interface IMaterialsService
 	{
-		int CreateMaterial(MaterialInputModel model);
+		int CreateMaterial(EditMaterialInputModel model);
 
-		int CreateSurfaceMaterial(SurfaceMaterialInputModel model);
+		Material DeleteMaterial(int id);
 
-		bool DeleteMaterial(int id);
-
-		bool UpdateMaterial(int id, MaterialInputModel model);
-
-		bool UpdateMaterial(int id, SurfaceMaterialInputModel model);
+		Material UpdateMaterial(int id, EditMaterialInputModel model);
 
 		IQueryable<Material> GetAllMaterials();
 
 		IQueryable<Material> GetAllMaterials(string materialCategorySlug);
 
 		Material GetMaterial(int id);
-
-		SurfaceMaterial GetSurfaceMaterial(int id);
 
 		IQueryable<MaterialCategory> GetAllCategoriesWithMaterials();
 
@@ -32,5 +27,7 @@ namespace App.Data.Service.Abstraction
 		MaterialCategory GetMaterialCategory(int id);
 
 		MaterialCategory UpdateMaterialCategory(int id, EditMaterialCategoryInputModel model);
+
+		IEnumerable<SelectListItem> GetCategoriesSelectData();
 	}
 }

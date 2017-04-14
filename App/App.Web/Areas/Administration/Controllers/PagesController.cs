@@ -1,5 +1,5 @@
 ﻿using App.Data.Service.Abstraction;
-using App.Models.InputModels;
+using App.Models.Pages;
 using App.Models.ViewModels;
 using System.Collections.Generic;
 using System.Web.Mvc;

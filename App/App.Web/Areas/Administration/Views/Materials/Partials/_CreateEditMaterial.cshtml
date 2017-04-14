@@ -1,0 +1,76 @@
+﻿@using App.Models.Materials;
+@model EditMaterialInputModel
+
+<div class="row">
+	<div class="col-md-11">
+		<h3>@ViewBag.Title</h3>
+		<hr />
+	</div>
+</div>
+@using (Html.BeginForm((string)ViewBag.FormMode, "Materials", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal " }))
+{
+	<div class="row">
+		<div class="col-md-6">
+			@Html.LabelFor(model => model.Name)
+			@Html.ValidationMessageFor(model => model.Name)
+			@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+
+			@if (!string.IsNullOrEmpty(ViewBag.FormMode) && ViewBag.FormMode == "Edit")
+			{
+				@Html.LabelFor(model => model.Slug)
+				@Html.ValidationMessageFor(model => model.Slug)
+				@Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
+			}
+
+			@Html.LabelFor(model => model.SelectedCategoryId)
+			@Html.ValidationMessageFor(model => model.SelectedCategoryId)
+			@Html.DropDownListFor(model => model.SelectedCategoryId, Model.Categories, " -- Избери Категория --", new { @id = "categories-dropdown", @class = "form-control" })
+
+			@Html.LabelFor(m => m.Price)
+			@Html.ValidationMessageFor(m => m.Price)
+			@Html.EditorFor(m => m.Price, new { htmlAttributes = new { @class = "form-control" } })
+		</div>
+		<div class="col-md-6">
+			<h3>Текущо изображение:</h3>
+			@if (Model.Image == null)
+			{
+				<p>-- Липсва --</p>
+			}
+
+			@if (ViewBag.FormMode == "Edit")
+			{
+				<a href="@Url.Action("Show", "Image", new { Area = "", id = Model.Image.Id, imageType = "big" })">
+					@Html.ByteImage(Model.Image.Small, "Скица")
+				</a>
+			}
+			<hr/>
+			<h3>Качи ново изображение:</h3>
+			<p>(текущото изображение ще бъде сменено)</p>
+			<div class="row">
+				<div class="col-md-4">
+					@Html.LabelFor(model => model.SmallImageSize)
+					@Html.ValidationMessageFor(model => model.SmallImageSize)
+					@Html.EditorFor(model => model.SmallImageSize, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+				<div class="col-md-4">
+					@Html.LabelFor(model => model.MediumImageSize)
+					@Html.ValidationMessageFor(model => model.MediumImageSize)
+					@Html.EditorFor(model => model.MediumImageSize, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+				<div class="col-md-4">
+					@Html.LabelFor(model => model.BigImageSize)
+					@Html.ValidationMessageFor(model => model.BigImageSize)
+					@Html.EditorFor(model => model.BigImageSize, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+			</div>
+			<br/>
+			<label for="PostedMaterialImage">Ново изображение:</label>
+			<input type="file" name="PostedMaterialImage" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<button type="submit" class="btn btn-warning">@ViewBag.FormModeText</button>
+		</div>
+	</div>
+}

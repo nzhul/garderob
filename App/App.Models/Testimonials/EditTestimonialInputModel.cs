@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace App.Models.InputModels
+namespace App.Models.Testimonials
 {
 	public class EditTestimonialInputModel
 	{

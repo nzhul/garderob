@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace App.Models.InputModels
+namespace App.Models.Orders
 {
 	public class EditOrderCategoryInputModel
 	{

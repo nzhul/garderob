@@ -1,4 +1,4 @@
-﻿@using App.Models.InputModels;
+﻿@using App.Models.Materials;
 @model EditMaterialCategoryInputModel
 
 <div class="row">
@@ -14,12 +14,39 @@
 			<div class="form-group">
 				@Html.LabelFor(model => model.Name)
 				@Html.ValidationMessageFor(model => model.Name)
-				@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: Панти" } })
 			</div>
+			@if (!string.IsNullOrEmpty(ViewBag.FormMode) && ViewBag.FormMode == "Edit")
+			{
+				<div class="form-group">
+					@Html.LabelFor(model => model.Slug)
+					@Html.ValidationMessageFor(model => model.Slug)
+					@Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+			}
 			<div class="form-group">
 				@Html.LabelFor(model => model.Description, new { @class = "dab-input-label" })
 				@Html.ValidationMessageFor(model => model.Description)
-				@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: Пантите служат за ..." } })
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-4">
+						@Html.LabelFor(model => model.SmallImageSize, new { @class = "dab-input-label" })
+						@Html.ValidationMessageFor(model => model.SmallImageSize)
+						@Html.EditorFor(model => model.SmallImageSize, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: 31x31" } })
+					</div>
+					<div class="col-md-4">
+						@Html.LabelFor(model => model.MediumImageSize, new { @class = "dab-input-label" })
+						@Html.ValidationMessageFor(model => model.MediumImageSize)
+						@Html.EditorFor(model => model.MediumImageSize, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: 310x310" } })
+					</div>
+					<div class="col-md-4">
+						@Html.LabelFor(model => model.BigImageSize, new { @class = "dab-input-label" })
+						@Html.ValidationMessageFor(model => model.BigImageSize)
+						@Html.EditorFor(model => model.BigImageSize, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: 1600x1024" } })
+					</div>
+				</div>
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-warning">
