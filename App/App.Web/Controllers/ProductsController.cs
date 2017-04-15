@@ -40,6 +40,18 @@ namespace App.Web.Controllers
 			return this.View(model);
 		}
 
+		[HttpGet]
+		public ActionResult Calculator()
+		{
+			CalculatorViewModel model = new CalculatorViewModel()
+			{
+				SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList(),
+				HandleMaterials = this.materialsService.GetAllMaterials("handles").ToList()
+			};
+
+			return this.View(model);
+		}
+
 		private IEnumerable<CategoryItem> GetCategories(IEnumerable<Order> allDoneOrders)
 		{
 			IList<CategoryItem> categories = new List<CategoryItem>();

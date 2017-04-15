@@ -1,0 +1,437 @@
+﻿@using System.Collections.Generic;
+@using App.Models.Materials;
+@model CalculatorViewModel
+@{
+    ViewBag.Title = "Calculator";
+}
+
+<!-- breadcrumbs start-->
+<section class="breadcrumbs">
+	<div class="container">
+		<div class="text-center breadcrumbs-item">
+			<h1>Калкулатор</h1><a href="#">начало</a><i class="fa fa-angle-right"></i><a href="#">Калкулатор</a>
+		</div>
+	</div>
+</section>
+<!-- ! breadcrumbs end-->
+<!-- content-->
+<div class="container mt-40">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="title-section mb-0 mt-0 text-center">Калкулатор</h2>
+			<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
+			<p class="text-center mb-0" style="font-size:12px;">С нашия калкулатор, Вие може да пресметнете приблизително колко може да ви струва Вашия гардероб. Различните материали имат различни цени и за това за Ваше улеснение, тук може в реално време да видите цената на вашия проект и така да го съобразите с вашия бюджет. Цената която показва калкулатора може да не съвпадне с крайната цена на проекта ако вписването не бъде пределно точно и има разминаване от реалния Ви проект.</p>
+		</div>
+	</div>
+</div>
+<div class="container calculator-container">
+	<div class="row">
+		<div class="col-md-12">
+			<a href="" class="cws-button with-icon alt calculator-head-button">Калкулатор<i class="fa fa-calculator calculator-icon"></i></a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Материали</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="order-category">
+				Плоча за основа:<br />
+				@foreach (var material in Model.SurfaceMaterials)
+				{
+					Dictionary<string, string> data = new Dictionary<string, string>();
+					data.Add("price", material.Price.ToString());
+					
+					@Html.ByteImage(material.Image.Small, material.Name, "js-base-surface-material", material.Id.ToString(), material.Name, data)
+				}
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="order-category">
+				Плоча за врати:<br />
+				@foreach (var material in Model.SurfaceMaterials)
+				{
+					Dictionary<string, string> data = new Dictionary<string, string>();
+					data.Add("price", material.Price.ToString());
+
+					@Html.ByteImage(material.Image.Small, material.Name, "js-door-surface-material", material.Id.ToString(), material.Name, data)
+				}</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="order-category">
+				Фазер:<br />
+				@foreach (var material in Model.SurfaceMaterials)
+				{
+					Dictionary<string, string> data = new Dictionary<string, string>();
+					data.Add("price", material.Price.ToString());
+
+					@Html.ByteImage(material.Image.Small, material.Name, "js-fazer-surface-material", material.Id.ToString(), material.Name, data)
+				}</div>
+		</div>
+		<div class="col-md-6">
+			<div class="order-category">
+				Дръжки:<br />
+				@foreach (var material in Model.HandleMaterials)
+				{
+					Dictionary<string, string> data = new Dictionary<string, string>();
+					data.Add("price", material.Price.ToString());
+
+					@Html.ByteImage(material.Image.Small, material.Name, "js-handle-material", "material" + material.Id.ToString(), material.Name, data)
+				}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Външен размер, елементи и цокъл</h3>
+		</div>
+	</div>
+	<div class="row mt-20">
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Височина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Ширина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Дълбочина :</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row mt-40">
+		<div class="col-md-4">
+			<div class="col-md-8">
+				<span>Брой елементи:</span>
+			</div>
+			<div class="col-md-4">
+				<div class="selection-box mb-30">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="col-md-8">
+				<span>Цокъл (10 cm):</span>
+			</div>
+			<div class="col-md-4">
+				<div class="selection-box mb-30">
+					<select>
+						<option>Да</option>
+						<option>Не</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<!--- empty --->
+		</div>
+	</div>
+	<div class="cws_divider with-plus long"></div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Врати <i class="fa fa-plus-circle"></i></h3>
+		</div>
+	</div>
+	<div class="row mt-10">
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Височина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Ширина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="col-md-8">
+				<span>Брой:</span>
+			</div>
+			<div class="col-md-4">
+				<div class="selection-box mb-30">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cws_divider with-plus long"></div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Фиксирани вътрешни деления:</h3>
+		</div>
+	</div>
+	<div class="row mt-10">
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Дължина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="col-md-8">
+				<span>Брой :</span>
+			</div>
+			<div class="col-md-4">
+				<div class="selection-box mb-30">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<!--empty-->
+		</div>
+	</div>
+	<div class="cws_divider with-plus long"></div>
+	<!-- ROW -->
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Рафтове:</h3>
+		</div>
+	</div>
+	<div class="row mt-10">
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Дължина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="col-md-8">
+				<span>Брой :</span>
+			</div>
+			<div class="col-md-4">
+				<div class="selection-box mb-30">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<!--empty-->
+		</div>
+	</div>
+	<div class="cws_divider with-plus long"></div>
+	<!-- ROW end -->
+	<!-- ROW -->
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Чекмедже:</h3>
+		</div>
+	</div>
+	<div class="row mt-10">
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Височина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Ширина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="col-md-8">
+				<span>Брой :</span>
+			</div>
+			<div class="col-md-4">
+				<div class="selection-box mb-30">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cws_divider with-plus long"></div>
+	<!-- ROW end -->
+	<!-- ROW -->
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Закачалки:</h3>
+		</div>
+	</div>
+	<div class="row mt-10">
+		<div class="col-md-4">
+			<div class="col-md-7">
+				<span>Вид закачалка :</span>
+			</div>
+			<div class="col-md-5">
+				<div class="selection-box mb-30">
+					<select>
+						<option>Стандартна</option>
+						<option>Еластична</option>
+						<option>Друг вид</option>
+						<option>Трети вид</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="col-md-8">
+				<span>Брой :</span>
+			</div>
+			<div class="col-md-4">
+				<div class="selection-box mb-30">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<!--empty-->
+		</div>
+	</div>
+	<div class="cws_divider with-plus long"></div>
+	<!-- ROW end -->
+	<!-- ROW -->
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Огледала:</h3>
+		</div>
+	</div>
+	<div class="row mt-10">
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Височина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="calculator-slider">
+				<div class="col-md-8">
+					<span>Ширина:</span>
+					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="amount" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="col-md-8">
+				<span>Брой :</span>
+			</div>
+			<div class="col-md-4">
+				<div class="selection-box mb-30">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ROW end -->
+
+	<div class="row mb-30 mt-30">
+		<div class="col-md-12 col-md-offset-8">
+			<a class="cws-button alt" style="cursor:pointer;">Изчисли</a>
+			<input type="text" style="text-align:center;" readonly value="946 лв"><br />
+			<div class="checkbox" style="position:relative;left:270px;bottom:0px;">
+				<input id="checkbox1" type="checkbox" value="None" name="check">
+				<label for="checkbox1">Монтаж</label>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- ! content-->
+<div style="clear:both;height:60px;">&nbsp;</div>
+
+@section Scripts {
+<script src="~/Content/js/calculator.js"></script>
+}

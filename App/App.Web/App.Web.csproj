@@ -1507,6 +1507,7 @@
     <Content Include="Views\Testimonials\List.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
     <Content Include="Views\Products\LivePreview.cshtml" />
+    <Content Include="Views\Products\Calculator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Orders\Partials\" />

@@ -82,6 +82,7 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Documents\DocumentType.cs" />
     <Compile Include="Images\Image.cs" />
+    <Compile Include="Materials\CalculatorViewModel.cs" />
     <Compile Include="Materials\LivePreviewViewModel.cs" />
     <Compile Include="Pages\CreatePageInputModel.cs" />
     <Compile Include="InputModels\EditClientInputModel.cs" />
