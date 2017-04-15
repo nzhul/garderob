@@ -34,7 +34,7 @@ namespace App.Web.Areas.Administration.Controllers
 			model.Categories = this.materialsService.GetCategoriesSelectData();
 			model.SelectedCategoryId = id;
 
-			MaterialCategory selectedCategory = this.materialsService.GetMaterialCategory(id);
+			MaterialCategory selectedCategory = this.materialsService.GetMaterialCategory(id, false, false);
 			model.SmallImageSize = selectedCategory.SmallImageSize;
 			model.MediumImageSize = selectedCategory.MediumImageSize;
 			model.BigImageSize = selectedCategory.BigImageSize;
@@ -66,7 +66,7 @@ namespace App.Web.Areas.Administration.Controllers
 			model.Categories = this.materialsService.GetCategoriesSelectData();
 			model.SelectedCategoryId = id;
 
-			MaterialCategory selectedCategory = this.materialsService.GetMaterialCategory(id);
+			MaterialCategory selectedCategory = this.materialsService.GetMaterialCategory(id, false, false);
 			model.SmallImageSize = selectedCategory.SmallImageSize;
 			model.MediumImageSize = selectedCategory.MediumImageSize;
 			model.BigImageSize = selectedCategory.BigImageSize;

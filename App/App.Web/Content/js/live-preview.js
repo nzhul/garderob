@@ -21,27 +21,27 @@ $(document).ready(function () {
 
 	// live preview functionality
 	var frontMaterialImage = $('#front-material-image');
-	var frontImageSrcTemplate = 'img/live-preview/materials/front/material{0}.png';
+	var frontImageSrcTemplate = '../content/img/live-preview/materials/front/{0}.png';
 	var frontbuttons = $('#front-material-buttons-container img');
 
 
 	for (var i = 0; i < frontbuttons.length; i++) {
 		var button = $(frontbuttons[i]);
 		button.on('click', function () {
-			var materialId = $(this).data('material-id');
-			ChangeImageSource(frontMaterialImage, frontImageSrcTemplate, materialId);
+			var materialSlug = $(this).data('material-slug');
+			ChangeImageSource(frontMaterialImage, frontImageSrcTemplate, materialSlug);
 		});
 	}
 
 	var backMaterialImage = $('#back-material-image');
-	var backImageSrcTemplate = 'img/live-preview/materials/back/material{0}.png';
+	var backImageSrcTemplate = '../content/img/live-preview/materials/back/{0}.png';
 	var backbuttons = $('#back-material-buttons-container img');
 
 	for (var i = 0; i < backbuttons.length; i++) {
 		var button = $(backbuttons[i]);
 		button.on('click', function () {
-			var materialId = $(this).data('material-id');
-			ChangeImageSource(backMaterialImage, backImageSrcTemplate, materialId);
+			var materialSlug = $(this).data('material-slug');
+			ChangeImageSource(backMaterialImage, backImageSrcTemplate, materialSlug);
 		});
 	}
 });

@@ -1,0 +1,167 @@
+﻿@using App.Models.Materials;
+@model LivePreviewViewModel
+
+@{
+	ViewBag.Title = "Жива визуализация";
+}
+
+<!-- breadcrumbs start-->
+<section class="breadcrumbs">
+	<div class="container">
+		<div class="text-center breadcrumbs-item">
+			<h1>визуализация на живо</h1><a href="#">начало</a><i class="fa fa-angle-right"></i><a href="#">визуализация на живо</a>
+		</div>
+	</div>
+</section>
+<!-- ! breadcrumbs end-->
+<!-- content-->
+<div class="container mt-40 pb-60">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="title-section mb-0 mt-0 text-center">визуализация на живо</h2>
+			<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
+			<p class="text-center mb-0">Разгледайте как изглеждат различните ни материали в различни комбинации.<br />Така по-лесно може да изберете подходящите за вас.</p>
+		</div>
+	</div>
+	<div class="row live-preview-container">
+		<div class="col-md-9">
+			<img class="preview-image" id="base-material-image" src="~/content/img/live-preview/materials/base-image.jpg" />
+			<img class="preview-image" id="back-material-image" />
+			<img class="preview-image" id="front-material-image" />
+		</div>
+		<div class="col-md-3">
+			<div class="col-xs-6">
+				<div id="back-material-buttons-container" class="order-category">
+					Плоча за основа:<br />
+					@foreach (var material in Model.SurfaceMaterials)
+					{
+						var base64 = Convert.ToBase64String(material.Image.Small);
+						var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+						<img src="@imgSrc" alt="@material.Name" data-toggle="tooltip" data-material-slug="@material.Slug" title="@material.Name" />
+					}
+					@*<img src="~/content/img/live-preview/materials/small/1-white.jpg" alt="Материал" data-toggle="tooltip" data-material-id="1" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/2-cream.jpg" alt="Материал" data-toggle="tooltip" data-material-id="2" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/3-white-satin.jpg" alt="Материал" data-toggle="tooltip" data-material-id="3" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/4-loire-ash.jpg" alt="Материал" data-toggle="tooltip" data-material-id="4" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/5-beech.jpg" alt="Материал" data-toggle="tooltip" data-material-id="5" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/6-beech-tuscany.jpg" alt="Материал" data-toggle="tooltip" data-material-id="6" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/7-plating-gray.jpg" alt="Материал" data-toggle="tooltip" data-material-id="7" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/8-maple.jpg" alt="Материал" data-toggle="tooltip" data-material-id="8" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/9-oak.jpg" alt="Материал" data-toggle="tooltip" data-material-id="9" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/10-oak-country.jpg" alt="Материал" data-toggle="tooltip" data-material-id="10" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/11-branch.jpg" alt="Материал" data-toggle="tooltip" data-material-id="11" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/12-caribbean-walnut.jpg" alt="Материал" data-toggle="tooltip" data-material-id="12" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/13-cherry-tree.jpg" alt="Материал" data-toggle="tooltip" data-material-id="13" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/14-steingrau.jpg" alt="Материал" data-toggle="tooltip" data-material-id="14" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/15-fango.jpg" alt="Материал" data-toggle="tooltip" data-material-id="15" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/16-zebrano.jpg" alt="Материал" data-toggle="tooltip" data-material-id="16" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/17-slate-gray.jpg" alt="Материал" data-toggle="tooltip" data-material-id="17" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/18-rosewood.jpg" alt="Материал" data-toggle="tooltip" data-material-id="18" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/19-merano-brown.jpg" alt="Материал" data-toggle="tooltip" data-material-id="19" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/20-walnut.jpg" alt="Материал" data-toggle="tooltip" data-material-id="20" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/21-aubergine.jpg" alt="Материал" data-toggle="tooltip" data-material-id="21" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/22-beech-chocolate.jpg" alt="Материал" data-toggle="tooltip" data-material-id="22" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/23-black.jpg" alt="Материал" data-toggle="tooltip" data-material-id="23" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/24-black-satin.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/25-white-high-gloss.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/26-cream-high-gloss.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/27-pinie-limed.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />*@
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div id="front-material-buttons-container" class="order-category">
+					Плоча за врати:<br />
+					@foreach (var material in Model.SurfaceMaterials)
+					{
+						var base64 = Convert.ToBase64String(material.Image.Small);
+						var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+						<img src="@imgSrc" alt="@material.Name" data-toggle="tooltip" data-material-slug="@material.Slug" title="@material.Name" />
+					}
+					@*<img src="~/content/img/live-preview/materials/small/1-white.jpg" alt="Материал" data-toggle="tooltip" data-material-id="1" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/2-cream.jpg" alt="Материал" data-toggle="tooltip" data-material-id="2" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/3-white-satin.jpg" alt="Материал" data-toggle="tooltip" data-material-id="3" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/4-loire-ash.jpg" alt="Материал" data-toggle="tooltip" data-material-id="4" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/5-beech.jpg" alt="Материал" data-toggle="tooltip" data-material-id="5" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/6-beech-tuscany.jpg" alt="Материал" data-toggle="tooltip" data-material-id="6" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/7-plating-gray.jpg" alt="Материал" data-toggle="tooltip" data-material-id="7" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/8-maple.jpg" alt="Материал" data-toggle="tooltip" data-material-id="8" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/9-oak.jpg" alt="Материал" data-toggle="tooltip" data-material-id="9" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/10-oak-country.jpg" alt="Материал" data-toggle="tooltip" data-material-id="10" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/11-branch.jpg" alt="Материал" data-toggle="tooltip" data-material-id="11" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/12-caribbean-walnut.jpg" alt="Материал" data-toggle="tooltip" data-material-id="12" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/13-cherry-tree.jpg" alt="Материал" data-toggle="tooltip" data-material-id="13" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/14-steingrau.jpg" alt="Материал" data-toggle="tooltip" data-material-id="14" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/15-fango.jpg" alt="Материал" data-toggle="tooltip" data-material-id="15" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/16-zebrano.jpg" alt="Материал" data-toggle="tooltip" data-material-id="16" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/17-slate-gray.jpg" alt="Материал" data-toggle="tooltip" data-material-id="17" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/18-rosewood.jpg" alt="Материал" data-toggle="tooltip" data-material-id="18" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/19-merano-brown.jpg" alt="Материал" data-toggle="tooltip" data-material-id="19" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/20-walnut.jpg" alt="Материал" data-toggle="tooltip" data-material-id="20" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/21-aubergine.jpg" alt="Материал" data-toggle="tooltip" data-material-id="21" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/22-beech-chocolate.jpg" alt="Материал" data-toggle="tooltip" data-material-id="22" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/23-black.jpg" alt="Материал" data-toggle="tooltip" data-material-id="23" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/24-black-satin.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/25-white-high-gloss.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/26-cream-high-gloss.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />
+						<img src="~/content/img/live-preview/materials/small/27-pinie-limed.jpg" alt="Материал" data-toggle="tooltip" data-material-id="24" title="Име на материала" />*@
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ! content-->
+<div class="cws_divider with-plus long color-line-1 mt-40"></div>
+<section class="page-section mb-0 pb-60 pt-40 bg-gray-2">
+	<div class="container materials-container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="title-section text-center mt-0 mb-0">Материали</h2>
+				<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
+				<p class="text-center mb-30">Тук ще сложим някакъв общ описателен текст за видовете услуги които предлагаме.<br />Трябва да е поне две изречения за да изглежда добре.</p>
+			</div>
+		</div>
+		<div class="row">
+			@{ int counter = 0;}
+			@foreach (var category in Model.MaterialCategories)
+			{
+				<div class="col-md-3">
+					<div class="service-wrapper">
+						@if (category.Image != null)
+						{
+							@Html.ByteImage(category.Image.Small, category.Name)
+						}
+						else
+						{
+							<div style="width: 262px; height: 190px;line-height:190px;text-align:center;border: 5px solid white;">
+								<p>-- Липсва изображение -- </p>
+							</div>
+						}
+						<div class="service-wrapper-text">
+							<h3>@category.Name</h3>
+							<p>@category.Description</p>
+							@if (category.Pdf != null)
+							{
+								<a href="@Url.Action("Show", "Document", new { id = category.Pdf.Id })" class="cws-button gray download-pdf-button">Свали PDF</a>
+							}
+						</div>
+					</div>
+				</div>
+
+				counter++;
+				if (counter % 4 == 0 && counter != 0)
+				{
+					@:</div>
+					@:<div class="row mt-40">
+				}
+			}
+		</div>
+		<p class="mt-30">* За повече  информация относно видовете предлагани материали, моля обадете се на телефона за помощ и консултация: 950827582</p>
+	</div>
+</section>
+
+@section Scripts {
+
+	<script src="~/Content/js/live-preview.js"></script>
+}

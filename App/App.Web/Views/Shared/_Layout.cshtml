@@ -55,7 +55,14 @@
 								<li><a href="@Url.Action("Make", "Orders")">По твоя скица</a></li>
 							</ul>
 						</li>
-						<li><a href="@Url.Action("List", "Products")">Продукти</a></li>
+						<li>
+							<a href="@Url.Action("List", "Products")" class="mn-has-sub">Продукти <i class="fa fa-angle-down button_open"></i></a>
+							<ul class="mn-sub">
+								<li><a class="small-nav-text" href="@Url.Action("List", "Products")">Всички продукти</a></li>
+								<li><a class="small-nav-text" href="@Url.Action("LivePreview", "Products")">"Жива" визуализация</a></li>
+							</ul>
+						</li>
+
 						<li><a class="small-nav-text" href="/calculator">Калкулатор</a></li>
 						@*<li>
 							<a href="#" class="mn-has-sub">Материали <i class="fa fa-angle-down button_open"></i></a>

@@ -1,9 +1,8 @@
 ﻿using App.Data.Service.Abstraction;
+using App.Models.Materials;
 using App.Models.Orders;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace App.Web.Controllers
@@ -11,12 +10,15 @@ namespace App.Web.Controllers
 	public class ProductsController : Controller
 	{
 		private IOrdersService ordersService;
+		private IMaterialsService materialsService;
 
-		public ProductsController(IOrdersService ordersService)
+		public ProductsController(IOrdersService ordersService, IMaterialsService materialsService)
 		{
 			this.ordersService = ordersService;
+			this.materialsService = materialsService;
 		}
 
+		[HttpGet]
 		public ActionResult List()
 		{
 			ProductGalleryViewModel model = new ProductGalleryViewModel();
@@ -27,6 +29,15 @@ namespace App.Web.Controllers
 			model.Products = allDoneOrders.Select(o => AutoMapper.Mapper.Map(o, new ProductViewModel()));
 
 			return View(model);
+		}
+
+		[HttpGet]
+		public ActionResult LivePreview()
+		{
+			LivePreviewViewModel model = new LivePreviewViewModel();
+			model.SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList();
+			model.MaterialCategories = this.materialsService.GetAllCategories().ToList();
+			return this.View(model);
 		}
 
 		private IEnumerable<CategoryItem> GetCategories(IEnumerable<Order> allDoneOrders)

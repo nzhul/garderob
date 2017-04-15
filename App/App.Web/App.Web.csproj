@@ -200,6 +200,7 @@
     <Compile Include="Areas\Administration\Models\ClientsMasterModel.cs" />
     <Compile Include="Areas\Administration\Models\OrdersMasterModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1094,15 +1095,15 @@
     <Content Include="Content\img\live-preview\materials\7-plating-gray.jpg" />
     <Content Include="Content\img\live-preview\materials\8-maple.jpg" />
     <Content Include="Content\img\live-preview\materials\9-oak.jpg" />
-    <Content Include="Content\img\live-preview\materials\back\material1.png" />
-    <Content Include="Content\img\live-preview\materials\back\material2.png" />
-    <Content Include="Content\img\live-preview\materials\back\material3.png" />
-    <Content Include="Content\img\live-preview\materials\back\material4.png" />
+    <Content Include="Content\img\live-preview\materials\back\01-white.png" />
+    <Content Include="Content\img\live-preview\materials\back\02-cream.png" />
+    <Content Include="Content\img\live-preview\materials\back\03-white-satin.png" />
+    <Content Include="Content\img\live-preview\materials\back\04-loire-ash.png" />
     <Content Include="Content\img\live-preview\materials\base-image.jpg" />
-    <Content Include="Content\img\live-preview\materials\front\material1.png" />
-    <Content Include="Content\img\live-preview\materials\front\material2.png" />
-    <Content Include="Content\img\live-preview\materials\front\material3.png" />
-    <Content Include="Content\img\live-preview\materials\front\material4.png" />
+    <Content Include="Content\img\live-preview\materials\front\01-white.png" />
+    <Content Include="Content\img\live-preview\materials\front\02-cream.png" />
+    <Content Include="Content\img\live-preview\materials\front\03-white-satin.png" />
+    <Content Include="Content\img\live-preview\materials\front\04-loire-ash.png" />
     <Content Include="Content\img\live-preview\materials\small\1-white.jpg" />
     <Content Include="Content\img\live-preview\materials\small\10-oak-country.jpg" />
     <Content Include="Content\img\live-preview\materials\small\11-branch.jpg" />
@@ -1505,6 +1506,7 @@
     <Content Include="Views\Warehouse\SuccessTestimonial.cshtml" />
     <Content Include="Views\Testimonials\List.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
+    <Content Include="Views\Products\LivePreview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Orders\Partials\" />

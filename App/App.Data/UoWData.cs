@@ -1,5 +1,6 @@
 ﻿using App.Data.Repositories;
 using App.Models;
+using App.Models.Documents;
 using App.Models.Images;
 using App.Models.Materials;
 using App.Models.Orders;
@@ -94,6 +95,14 @@ namespace App.Data
 			get
 			{
 				return this.GetRepository<Image>();
+			}
+		}
+
+		public IRepository<Document> Documents
+		{
+			get
+			{
+				return this.GetRepository<Document>();
 			}
 		}
 

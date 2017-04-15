@@ -26,6 +26,9 @@ namespace App.Web.Controllers
 					case "small":
 						imageData = dbImage.Small;
 						break;
+					case "medium":
+						imageData = dbImage.Medium;
+						break;
 					case "big":
 						imageData = dbImage.Big;
 						break;

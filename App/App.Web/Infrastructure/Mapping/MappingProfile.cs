@@ -76,7 +76,10 @@ namespace App.Web.Infrastructure.Mapping
 			CreateMap<EditOrderCategoryInputModel, OrderCategory>();
 
 			CreateMap<MaterialCategory, EditMaterialCategoryInputModel>();
-			CreateMap<EditMaterialCategoryInputModel, MaterialCategory>();
+
+			CreateMap<EditMaterialCategoryInputModel, MaterialCategory>()
+				.ForMember(x => x.Image, opt => opt.Ignore())
+				.ForMember(x => x.Pdf, opt => opt.Ignore());
 
 			CreateMap<Material, EditMaterialInputModel>()
 				.ForMember(x => x.SmallImageSize, opt => opt.MapFrom(u => u.Category.SmallImageSize))

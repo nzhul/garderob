@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using App.Models.Documents;
+using App.Models.Images;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
 using System.Web.Mvc;
 
 namespace App.Models.Materials
@@ -19,6 +22,7 @@ namespace App.Models.Materials
 		[Required(ErrorMessage = " * Задължително!")]
 		[AllowHtml]
 		[Display(Name = "Описание:")]
+		[DataType(DataType.MultilineText)]
 		public string Description { get; set; }
 
 		[Required( ErrorMessage = " * Задължително")]
@@ -32,5 +36,13 @@ namespace App.Models.Materials
 		[Required(ErrorMessage = " * Задължително")]
 		[Display(Name = "Размер Голяма картинка:")]
 		public string BigImageSize { get; set; }
+
+		public Image Image { get; set; }
+
+		public Document Pdf { get; set; }
+
+		public HttpPostedFileBase PostedImage { get; set; }
+
+		public HttpPostedFileBase PostedPdf { get; set; }
 	}
 }

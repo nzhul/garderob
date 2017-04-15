@@ -14,20 +14,22 @@ namespace App.Data.Service.Abstraction
 
 		Material UpdateMaterial(int id, EditMaterialInputModel model);
 
-		IQueryable<Material> GetAllMaterials();
-
 		IQueryable<Material> GetAllMaterials(string materialCategorySlug);
 
 		Material GetMaterial(int id);
 
 		IQueryable<MaterialCategory> GetAllCategoriesWithMaterials();
 
+		IQueryable<MaterialCategory> GetAllCategories();
+
 		int CreateMaterialCategory(EditMaterialCategoryInputModel categoryInput);
 
-		MaterialCategory GetMaterialCategory(int id);
+		MaterialCategory GetMaterialCategory(int id, bool includeImage, bool includePdf);
 
 		MaterialCategory UpdateMaterialCategory(int id, EditMaterialCategoryInputModel model);
 
 		IEnumerable<SelectListItem> GetCategoriesSelectData();
+
+		MaterialCategory DeleteMaterialCategory(int id);
 	}
 }

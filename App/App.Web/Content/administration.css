@@ -194,3 +194,7 @@ table {
 .material-thumbnail-index {
 	max-height: 31px;
 }
+
+hr {
+	border-top: 1px solid #cfcfcf;
+}

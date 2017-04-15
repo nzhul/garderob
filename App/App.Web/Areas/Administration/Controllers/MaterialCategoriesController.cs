@@ -1,12 +1,9 @@
 ﻿using App.Data.Service.Abstraction;
-using App.Models.InputModels;
 using App.Models.Materials;
 using AutoMapper;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Utilities;
 
@@ -31,7 +28,8 @@ namespace App.Web.Areas.Administration.Controllers
 		[HttpGet]
 		public ActionResult Create()
 		{
-			return View();
+			EditMaterialCategoryInputModel model = new EditMaterialCategoryInputModel();
+			return View(model);
 		}
 
 		[HttpPost]
@@ -63,7 +61,7 @@ namespace App.Web.Areas.Administration.Controllers
 		[HttpGet]
 		public ActionResult Edit(int id)
 		{
-			MaterialCategory dbCategory = this.materialsService.GetMaterialCategory(id);
+			MaterialCategory dbCategory = this.materialsService.GetMaterialCategory(id, true, true);
 			EditMaterialCategoryInputModel model = Mapper.Map(dbCategory, new EditMaterialCategoryInputModel());
 			return View(model);
 		}
@@ -92,11 +90,19 @@ namespace App.Web.Areas.Administration.Controllers
 			return View(model);
 		}
 
-		[HttpPost]
+		[HttpGet]
 		public ActionResult Delete(int id)
 		{
-			// TODO Implement me
-			return this.View();
+			MaterialCategory deletedCategory = this.materialsService.DeleteMaterialCategory(id);
+
+			if (deletedCategory != null)
+			{
+				TempData["message"] = "Изтрито успешно!";
+				TempData["messageType"] = "success";
+				return this.RedirectToAction("Index");
+			}
+
+			return HttpNotFound();
 		}
 	}
 }

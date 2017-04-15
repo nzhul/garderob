@@ -1,4 +1,6 @@
 ﻿using App.Data.Service.Abstraction;
+using App.Data.Utilities;
+using App.Models.Documents;
 using App.Models.Images;
 using App.Models.Materials;
 using AutoMapper;
@@ -82,6 +84,41 @@ namespace App.Data.Service.Implementation
 			newCategory.DateCreated = DateTime.UtcNow;
 			newCategory.LastModified = DateTime.UtcNow;
 
+			if (model.PostedImage != null)
+			{
+				byte[] imageData = ImageUtilities.CropImage(model.PostedImage, "width=264&height=190&crop=auto&format=jpg");
+				Image newImage = new Image
+				{
+					Small = imageData,
+					Medium = imageData,
+					Big = imageData
+				};
+
+				this.Data.Images.Add(newImage);
+				this.Data.SaveChanges();
+
+				newCategory.Image = newImage;
+			}
+
+			if (model.PostedPdf != null)
+			{
+				byte[] pdfData = new byte[model.PostedPdf.ContentLength];
+				model.PostedPdf.InputStream.Read(pdfData, 0, pdfData.Length);
+
+				Document newPdf = new Document
+				{
+					Name = model.PostedPdf.FileName,
+					Data = pdfData,
+					Type = DocumentType.PDF
+				};
+
+				this.Data.Documents.Add(newPdf);
+				this.Data.SaveChanges();
+
+				newCategory.Pdf = newPdf;
+				this.Data.SaveChanges();
+			}
+
 			this.Data.MaterialCategories.Add(newCategory);
 			this.Data.SaveChanges();
 
@@ -107,9 +144,9 @@ namespace App.Data.Service.Implementation
 			return this.Data.MaterialCategories.All().Include(m => m.Materials);
 		}
 
-		public IQueryable<Material> GetAllMaterials()
+		public IQueryable<MaterialCategory> GetAllCategories()
 		{
-			throw new NotImplementedException();
+			return this.Data.MaterialCategories.All();
 		}
 
 		public IQueryable<Material> GetAllMaterials(string materialCategorySlug)
@@ -136,9 +173,21 @@ namespace App.Data.Service.Implementation
 			return this.Data.Materials.Find(id);
 		}
 
-		public MaterialCategory GetMaterialCategory(int id)
+		public MaterialCategory GetMaterialCategory(int id, bool includeImage, bool includePdf)
 		{
-			return this.Data.MaterialCategories.Find(id);
+			IQueryable<MaterialCategory> query = this.Data.MaterialCategories.All().Where(c => c.Id == id);
+
+			if (includeImage)
+			{
+				query = query.Include(c => c.Image);
+			}
+
+			if (includePdf)
+			{
+				query = query.Include(c => c.Pdf);
+			}
+
+			return query.Single();
 		}
 
 		public Material UpdateMaterial(int id, EditMaterialInputModel model)
@@ -154,9 +203,9 @@ namespace App.Data.Service.Implementation
 				{
 					string[] queries = this.GenerateQueries(model);
 
-					byte[] smallImageData = Utilities.ImageUtilities.CropImage(model.PostedMaterialImage, queries[0]);
-					byte[] mediumImageData = Utilities.ImageUtilities.CropImage(model.PostedMaterialImage, queries[1]);
-					byte[] bigImageData = Utilities.ImageUtilities.CropImage(model.PostedMaterialImage, queries[2]);
+					byte[] smallImageData = ImageUtilities.CropImage(model.PostedMaterialImage, queries[0]);
+					byte[] mediumImageData = ImageUtilities.CropImage(model.PostedMaterialImage, queries[1]);
+					byte[] bigImageData = ImageUtilities.CropImage(model.PostedMaterialImage, queries[2]);
 
 					Image newImage = new Image
 					{
@@ -185,6 +234,72 @@ namespace App.Data.Service.Implementation
 			{
 				dbCategory = Mapper.Map(model, dbCategory);
 				dbCategory.LastModified = DateTime.UtcNow;
+
+				if (model.PostedImage != null)
+				{
+					byte[] imageData = ImageUtilities.CropImage(model.PostedImage, "width=264&height=190&crop=auto&format=jpg");
+					Image newImage = new Image
+					{
+						Small = imageData,
+						Medium = imageData,
+						Big = imageData
+					};
+
+					this.Data.Images.Add(newImage);
+					this.Data.SaveChanges();
+
+					dbCategory.Image = newImage;
+				}
+
+				if (model.PostedPdf != null)
+				{
+					byte[] pdfData = new byte[model.PostedPdf.ContentLength];
+					model.PostedPdf.InputStream.Read(pdfData, 0, pdfData.Length);
+
+					Document newPdf = new Document
+					{
+						Name = model.PostedPdf.FileName,
+						Data = pdfData,
+						Type = DocumentType.PDF
+					};
+
+					this.Data.Documents.Add(newPdf);
+					this.Data.SaveChanges();
+
+					dbCategory.Pdf = newPdf;
+					this.Data.SaveChanges();
+				}
+
+				this.Data.SaveChanges();
+			}
+
+			return dbCategory;
+		}
+
+		public MaterialCategory DeleteMaterialCategory(int id)
+		{
+			MaterialCategory dbCategory = this.GetMaterialCategory(id, true, true);
+
+			if (dbCategory != null)
+			{
+				foreach (var material in dbCategory.Materials)
+				{
+					this.DeleteMaterial(material.Id);
+				}
+
+				if (dbCategory.Image != null)
+				{
+					this.Data.Images.Delete(dbCategory.Image);
+					this.Data.SaveChanges();
+				}
+
+				if (dbCategory.Pdf != null)
+				{
+					this.Data.Documents.Delete(dbCategory.Pdf);
+					this.Data.SaveChanges();
+				}
+
+				this.Data.MaterialCategories.Delete(dbCategory.Id);
 				this.Data.SaveChanges();
 			}
 

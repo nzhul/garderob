@@ -1,5 +1,6 @@
 ﻿using App.Data.Migrations;
 using App.Models;
+using App.Models.Documents;
 using App.Models.Images;
 using App.Models.Materials;
 using App.Models.Orders;
@@ -36,5 +37,7 @@ namespace App.Data
 		public IDbSet<Testimonial> Testimonials { get; set; }
 
 		public IDbSet<Image> Images { get; set; }
+
+		public IDbSet<Document> Documents { get; set; }
 	}
 }

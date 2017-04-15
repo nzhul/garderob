@@ -1,6 +1,9 @@
-﻿using System;
+﻿using App.Models.Documents;
+using App.Models.Images;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Models.Materials
 {
@@ -27,6 +30,10 @@ namespace App.Models.Materials
 		public string MediumImageSize { get; set; }
 
 		public string BigImageSize { get; set; }
+
+		public virtual Document Pdf { get; set; }
+
+		public virtual Image Image { get; set; }
 
 		public DateTime DateCreated { get; set; }
 
