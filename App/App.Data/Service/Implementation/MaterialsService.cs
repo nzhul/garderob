@@ -282,7 +282,7 @@ namespace App.Data.Service.Implementation
 
 			if (dbCategory != null)
 			{
-				foreach (var material in dbCategory.Materials)
+				foreach (var material in dbCategory.Materials.ToList()) // Calling .ToList() to overcome "collection was modified exception"
 				{
 					this.DeleteMaterial(material.Id);
 				}

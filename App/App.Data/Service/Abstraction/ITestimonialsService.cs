@@ -15,5 +15,7 @@ namespace App.Data.Service.Abstraction
 		Testimonial GetTestimonial(int id);
 
 		Testimonial UpdateTestimonial(int id, EditTestimonialInputModel model);
+
+		Testimonial DeleteTestimonial(int id);
 	}
 }

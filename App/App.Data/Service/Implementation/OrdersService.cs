@@ -30,18 +30,41 @@ namespace App.Data.Service.Implementation
 			this.MessagingService = messagingService;
 		}
 
-		public bool DeleteOrder(int id)
+		public Order DeleteOrder(int id)
 		{
 			Order dbOrder = this.Data.Orders.Find(id);
 
-			if (dbOrder == null)
+			if (dbOrder != null)
 			{
-				return false;
+				foreach (var image in dbOrder.SketchImages.ToList())
+				{
+					this.Data.Images.Delete(image);
+					this.Data.SaveChanges();
+				}
+
+				foreach (var image in dbOrder.DesignImages.ToList())
+				{
+					this.Data.Images.Delete(image);
+					this.Data.SaveChanges();
+				}
+
+				foreach (var image in dbOrder.ResultImages.ToList())
+				{
+					this.Data.Images.Delete(image);
+					this.Data.SaveChanges();
+				}
+
+				foreach (var testimonial in dbOrder.Testimonials.ToList())
+				{
+					this.Data.Testimonials.Delete(testimonial);
+					this.Data.SaveChanges();
+				}
+
+				this.Data.Orders.Delete(dbOrder);
+				this.Data.SaveChanges();
 			}
 
-			this.Data.Orders.Delete(id);
-			this.Data.SaveChanges();
-			return true;
+			return dbOrder;
 		}
 
 		public bool DeleteOrderCategory(int id)

@@ -16,7 +16,7 @@ namespace App.Data.Service.Abstraction
 
 		Order GetOrder(int id);
 
-		bool DeleteOrder(int id);
+		Order DeleteOrder(int id);
 
 		IQueryable<OrderCategory> GetOrderCategories();
 

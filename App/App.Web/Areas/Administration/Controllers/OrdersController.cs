@@ -96,5 +96,20 @@ namespace App.Web.Areas.Administration.Controllers
 			NotifyClientInputModel model = new NotifyClientInputModel();
 			return this.View(model);
 		}
+
+		[HttpGet]
+		public ActionResult Delete(int id)
+		{
+			Order deletedOrder = this.ordersService.DeleteOrder(id);
+
+			if (deletedOrder != null)
+			{
+				TempData["message"] = "Изтрито успешно!";
+				TempData["messageType"] = "success";
+				return this.RedirectToAction("Index");
+			}
+
+			return HttpNotFound();
+		}
 	}
 }

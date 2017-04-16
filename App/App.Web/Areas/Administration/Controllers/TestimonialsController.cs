@@ -86,5 +86,20 @@ namespace App.Web.Areas.Administration.Controllers
 			TempData["messageType"] = "danger";
 			return View(model);
 		}
+
+		[HttpGet]
+		public ActionResult Delete(int id)
+		{
+			Testimonial deletedTestimonial = this.testimonialsService.DeleteTestimonial(id);
+
+			if (deletedTestimonial != null)
+			{
+				TempData["message"] = "Изтрито успешно!";
+				TempData["messageType"] = "success";
+				return this.RedirectToAction("Index");
+			}
+
+			return HttpNotFound();
+		}
 	}
 }

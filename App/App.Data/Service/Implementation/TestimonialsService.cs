@@ -101,5 +101,18 @@ namespace App.Data.Service.Implementation
 
 			return dbT;
 		}
+
+		public Testimonial DeleteTestimonial(int id)
+		{
+			Testimonial testimonialToDelete = this.GetTestimonial(id);
+
+			if (testimonialToDelete != null)
+			{
+				this.Data.Testimonials.Delete(testimonialToDelete);
+				this.Data.SaveChanges();
+			}
+
+			return testimonialToDelete;
+		}
 	}
 }

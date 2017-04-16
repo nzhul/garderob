@@ -34,7 +34,7 @@
 		protected override void Seed(ApplicationDbContext context)
 		{
 			this.AddInitialStaticPages(context);
-			this.InitializeAdministrator(context, true);
+			this.InitializeAdministrator(context, false);
 			this.InitializeMaterials(context);
 			this.InitializeDummyOrders(context);
 		}
