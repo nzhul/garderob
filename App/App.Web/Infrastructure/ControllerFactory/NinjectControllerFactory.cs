@@ -33,6 +33,7 @@ namespace App.Web.Infrastructure.ControllerFactory
 			ninjectKernel.Bind<ITestimonialsService>().To<TestimonialsService>();
 			ninjectKernel.Bind<IImagesService>().To<ImagesService>();
 			ninjectKernel.Bind<IDocumentsService>().To<DocumentsService>();
+			ninjectKernel.Bind<IConfigService>().To<ConfigService>();
 			ninjectKernel.Bind<IMessagingService>().To<App.Data.Service.Implementation.EmailService>();
 		}
 	}

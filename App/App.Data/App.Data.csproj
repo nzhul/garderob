@@ -111,6 +111,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Service\Abstraction\IConfigService.cs" />
     <Compile Include="Service\Abstraction\IDocumentsService.cs" />
     <Compile Include="Service\Abstraction\IImagesService.cs" />
     <Compile Include="Service\Abstraction\IMessagingService.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Service\Abstraction\IMaterialsService.cs" />
     <Compile Include="Service\Abstraction\IOrdersService.cs" />
     <Compile Include="Service\Abstraction\IPagesService.cs" />
+    <Compile Include="Service\Implementation\ConfigService.cs" />
     <Compile Include="Service\Implementation\DocumentsService.cs" />
     <Compile Include="Service\Implementation\EmailService.cs" />
     <Compile Include="Service\Implementation\ImagesService.cs" />

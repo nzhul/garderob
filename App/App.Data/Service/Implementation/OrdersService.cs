@@ -19,15 +19,17 @@ namespace App.Data.Service.Implementation
 	{
 		private readonly IUoWData Data;
 		private readonly IMessagingService MessagingService;
+		private IClientsService clientsService;
 		//private const string defaultBigImageQuery = "width=1650&height=1050&crop=auto&scale=both&format=jpg";
 		private const string defaultBigImageQuery = "width=1650&height=1050&format=jpg";
 		private const string defaultMediumImageQuery = "width=370&height=310&crop=auto&format=jpg";
 		private const string defaultSmallImageQuery = "width=210&height=203&crop=auto&format=jpg";
 
-		public OrdersService(IUoWData data, IMessagingService messagingService)
+		public OrdersService(IUoWData data, IMessagingService messagingService, IClientsService clientsService)
 		{
 			this.Data = data;
 			this.MessagingService = messagingService;
+			this.clientsService = clientsService;
 		}
 
 		public Order DeleteOrder(int id)
@@ -157,7 +159,18 @@ namespace App.Data.Service.Implementation
 
 			this.Data.SaveChanges();
 
-			//TODO: send admin notification!!
+			// Sending email message to notify the admin
+			ApplicationUser theAdmin = this.clientsService.GetApplicationAdmin();
+			if (theAdmin != null)
+			{
+				MessageData message = new MessageData
+				{
+					MessageTitle = "NewOrder",
+					 MessageBody = "NewOrderDetails ..."
+				};
+
+				this.MessagingService.Notify(theAdmin, message);
+			}
 
 			return newOrder.Id;
 		}
@@ -245,7 +258,7 @@ namespace App.Data.Service.Implementation
 			return false;
 		}
 
-		private void SendAdminNotification(string adminId, ICollection<Order> cartItems)
+		private void SendAdminNotification(ApplicationUser theAdmin, ICollection<Order> cartItems)
 		{
 			MessageData message = new MessageData();
 
@@ -254,10 +267,10 @@ namespace App.Data.Service.Implementation
 
 			}
 
-			this.MessagingService.Notify(adminId, message);
+			this.MessagingService.Notify(theAdmin, message);
 		}
 
-		private void SendOrderSuccessMessage(string userId, ICollection<Order> cartItems)
+		private void SendOrderSuccessMessage(ApplicationUser theUser, ICollection<Order> cartItems)
 		{
 			MessageData message = new MessageData();
 
@@ -266,7 +279,7 @@ namespace App.Data.Service.Implementation
 
 			}
 
-			this.MessagingService.Notify(userId, message);
+			this.MessagingService.Notify(theUser, message);
 		}
 
 		public IQueryable<Order> GetAllDoneOrders()

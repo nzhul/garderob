@@ -13,6 +13,8 @@ namespace App.Data.Service.Abstraction
 
 		ApplicationUser GetUserById(string id);
 
+		ApplicationUser GetApplicationAdmin();
+
 		void UpdateClient(ApplicationUser user);
 
 		bool UpdateClient(string id, EditClientInputModel inputModel);

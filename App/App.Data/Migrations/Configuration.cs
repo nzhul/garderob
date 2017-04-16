@@ -1,6 +1,9 @@
 ﻿namespace App.Data.Migrations
 {
+	using App.Data.Service.Abstraction;
+	using App.Data.Service.Implementation;
 	using App.Models;
+	using App.Models.Configs;
 	using App.Models.Images;
 	using App.Models.Materials;
 	using App.Models.Orders;
@@ -10,7 +13,6 @@
 	using Microsoft.AspNet.Identity.EntityFramework;
 	using System;
 	using System.Collections.Generic;
-	using System.Configuration;
 	using System.Data.Entity.Migrations;
 	using System.IO;
 	using System.Linq;
@@ -18,15 +20,17 @@
 
 	public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
 	{
-		private const string adminFirstNameConfigKey = "adminFirstname";
-		private const string adminLastNameConfigKey = "adminLastname";
-		private const string adminEmailConfigKey = "adminEmail";
-		private const string adminPasswordConfigKey = "adminPassword";
-		private const string adminPhoneConfigKey = "adminPhone";
+		private IConfigService configService;
 		private ApplicationUser theAdmin;
 
 		public Configuration()
+			: this(new ConfigService())
 		{
+		}
+
+		public Configuration(IConfigService configService)
+		{
+			this.configService = configService;
 			AutomaticMigrationsEnabled = true;
 			AutomaticMigrationDataLossAllowed = true;
 		}
@@ -264,7 +268,7 @@
 				// Initialize default user
 				var userStore = new UserStore<ApplicationUser>(context);
 				var userManager = new UserManager<ApplicationUser>(userStore);
-				AdminConfiguration config = this.GetAdminConfiguration();
+				AdminConfiguration config = this.configService.GetAdminConfiguration();
 
 				ApplicationUser admin = new ApplicationUser();
 				admin.UserName = config.Email;
@@ -327,18 +331,6 @@
 			}
 		}
 
-		private AdminConfiguration GetAdminConfiguration()
-		{
-			AdminConfiguration config = new AdminConfiguration();
-			config.Firstname = ConfigurationManager.AppSettings[Configuration.adminFirstNameConfigKey];
-			config.Lastname = ConfigurationManager.AppSettings[Configuration.adminLastNameConfigKey];
-			config.Email = ConfigurationManager.AppSettings[Configuration.adminEmailConfigKey];
-			config.Password = ConfigurationManager.AppSettings[Configuration.adminPasswordConfigKey];
-			config.Phone = ConfigurationManager.AppSettings[Configuration.adminPhoneConfigKey];
-
-			return config;
-		}
-
 		private void AddInitialStaticPages(ApplicationDbContext context)
 		{
 			if (HttpContext.Current != null)
@@ -381,19 +373,6 @@
 			{
 				return false;
 			}
-		}
-
-		private class AdminConfiguration
-		{
-			public string Password { get; set; }
-
-			public string Firstname { get; set; }
-
-			public string Lastname { get; set; }
-
-			public string Email { get; set; }
-
-			public string Phone { get; set; }
 		}
 	}
 }

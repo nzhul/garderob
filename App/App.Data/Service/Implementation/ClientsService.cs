@@ -7,18 +7,21 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System;
+using App.Models.Configs;
 
 namespace App.Data.Service.Implementation
 {
 	public class ClientsService : IClientsService
 	{
 		private readonly IUoWData Data;
+		private IConfigService configService;
 		private const int defaultPageSize = 10;
 		private const int defaultPage = 0;
 
-		public ClientsService(IUoWData data)
+		public ClientsService(IUoWData data, IConfigService configService)
 		{
 			this.Data = data;
+			this.configService = configService;
 		}
 
 		public IQueryable<ApplicationUser> GetUsers(int? page, int? pagesize)
@@ -156,6 +159,18 @@ namespace App.Data.Service.Implementation
 			{
 				return false;
 			}
+		}
+
+		public ApplicationUser GetApplicationAdmin()
+		{
+			AdminConfiguration adminConfig = this.configService.GetAdminConfiguration();
+			ApplicationUser theAdmin = null;
+			if (adminConfig != null)
+			{
+				theAdmin = this.Data.Users.All().Where(u => u.Email == adminConfig.Email).Single();
+			}
+
+			return theAdmin;
 		}
 	}
 }
