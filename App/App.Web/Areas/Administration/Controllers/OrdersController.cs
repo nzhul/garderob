@@ -1,5 +1,6 @@
 ﻿using App.Data.Service.Abstraction;
 using App.Models.InputModels;
+using App.Models.Messages;
 using App.Models.Orders;
 using App.Web.Areas.Administration.Models;
 using AutoMapper;
@@ -79,6 +80,21 @@ namespace App.Web.Areas.Administration.Controllers
 			{
 				return this.Json(new { Status = "Fail" });
 			}
+		}
+
+		//TODO: Not done
+		[HttpGet]
+		public ActionResult NotifyClient(int id)
+		{
+			Order dbOrder = this.ordersService.GetOrder(id);
+
+			if (dbOrder != null)
+			{
+
+			}
+
+			NotifyClientInputModel model = new NotifyClientInputModel();
+			return this.View(model);
 		}
 	}
 }

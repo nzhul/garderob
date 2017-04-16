@@ -84,6 +84,7 @@
     <Compile Include="Images\Image.cs" />
     <Compile Include="Materials\CalculatorViewModel.cs" />
     <Compile Include="Materials\LivePreviewViewModel.cs" />
+    <Compile Include="Messages\NotifyClientInputModel.cs" />
     <Compile Include="Pages\CreatePageInputModel.cs" />
     <Compile Include="InputModels\EditClientInputModel.cs" />
     <Compile Include="Materials\EditMaterialCategoryInputModel.cs" />

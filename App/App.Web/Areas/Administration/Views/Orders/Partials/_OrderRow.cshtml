@@ -7,7 +7,7 @@
 			<th>№</th>
 			<th>Поръчка:</th>
 			<th>Клиент:</th>
-			<th><i class="fa fa-envelope"></i></th>
+			@*<th><i class="fa fa-envelope"></i></th>*@
 			<th class="text-center"><i class="fa fa-trash-o"></i></th>
 		</tr>
 	</thead>
@@ -18,7 +18,7 @@
 				<td><a href="@Url.Action("Edit", "Orders", new { id = order.Id })">@order.Id</a></td>
 				<td><a href="@Url.Action("Edit", "Orders", new { id = order.Id })">@order.Title</a></td>
 				<td><a href="@Url.Action("Edit", "Clients", new { id = order.ClientId })">@order.ClientFullName</a></td>
-				<td><a href="@Url.Action("NotifyClient", "Orders", new { id = order.Id })"><i class="fa fa-envelope-o"></i></a></td>
+				@*<td><a href="@Url.Action("NotifyClient", "Orders", new { id = order.Id,  })"><i class="fa fa-envelope-o"></i></a></td>*@
 				<td class="text-center">
 					<a href="@Url.Action("Delete")"><i class="fa fa-trash-o"></i></a>
 				</td>

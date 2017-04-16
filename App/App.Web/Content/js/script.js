@@ -1541,7 +1541,7 @@ function Authenticate() {
 			data.__RequestVerificationToken = token;
 
 			var request = $.ajax({
-				url: "/account/login",
+				url: "/account/loginajax",
 				type: 'POST',
 				data: data,
 				beforeSend: function () {

@@ -134,6 +134,8 @@ namespace App.Data.Service.Implementation
 
 			this.Data.SaveChanges();
 
+			//TODO: send admin notification!!
+
 			return newOrder.Id;
 		}
 

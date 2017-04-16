@@ -65,11 +65,11 @@ namespace App.Web.Areas.Administration.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Edit(string id, EditClientInputModel inputModel)
+		public ActionResult Edit(string id, EditClientInputModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				bool IsUpdateSuccessfull = this.clientsService.UpdateClient(id, inputModel);
+				bool IsUpdateSuccessfull = this.clientsService.UpdateClient(id, model);
 				if (IsUpdateSuccessfull)
 				{
 					TempData["message"] = "Клиента беше редактиран успешно!";
@@ -77,9 +77,19 @@ namespace App.Web.Areas.Administration.Controllers
 					return RedirectToAction("Index");
 				}
 			}
+
+			if (this.clientsService.ClientExists(id))
+			{
+				ApplicationUser dbUser = this.clientsService.GetUserById(id);
+				model = Mapper.Map(dbUser, model);
+
+				IList<Order> dbOrders = this.ordersService.GetUserOrders(id).ToList();
+				model.Orders = dbOrders.Select(o => Mapper.Map(o, new OrderViewModelSimple()));
+			}
+
 			TempData["message"] = "Невалидни данни за клиента!<br/> Моля попълнете <strong>всички</strong> задължителни полета!";
 			TempData["messageType"] = "danger";
-			return View(inputModel);
+			return View(model);
 		}
 
 		[HttpGet]

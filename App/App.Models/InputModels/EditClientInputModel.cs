@@ -17,6 +17,9 @@ namespace App.Models.InputModels
 		[Display(Name = "Фамилия:")]
 		public string LastName { get; set; }
 
+		[Required(ErrorMessage = " * Задължително!")]
+		public string Email { get; set; }
+
 		[Display(Name = "Фирма:")]
 		public string Company { get; set; }
 
