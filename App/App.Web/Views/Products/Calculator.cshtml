@@ -161,10 +161,10 @@
 	<div class="cws_divider with-plus long"></div>
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Врати <i class="fa fa-plus-circle"></i></h3>
+			<h3>Врати <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
 		</div>
 	</div>
-	<div class="row mt-10 js-doors-row">
+	<div class="row mt-10 js-calculator-row">
 		<div class="col-md-4">
 			<div class="calculator-slider">
 				<div class="col-md-8">
@@ -207,10 +207,10 @@
 	<div class="cws_divider with-plus long"></div>
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Фиксирани вътрешни деления: <i class="fa fa-plus-circle"></i></h3>
+			<h3>Фиксирани вътрешни деления: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
 		</div>
 	</div>
-	<div class="row mt-10 js-outer-dividers-row">
+	<div class="row mt-10 js-calculator-row">
 		<div class="col-md-4">
 			<div class="calculator-slider">
 				<div class="col-md-8">
@@ -245,10 +245,10 @@
 	<!-- ROW -->
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Рафтове: <i class="fa fa-plus-circle"></i></h3>
+			<h3>Рафтове: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
 		</div>
 	</div>
-	<div class="row mt-10">
+	<div class="row mt-10 js-calculator-row">
 		<div class="col-md-4">
 			<div class="calculator-slider">
 				<div class="col-md-8">
@@ -256,7 +256,7 @@
 					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="amount" readonly>
+					<input type="text" class="amount js-shelf-length" readonly>
 				</div>
 			</div>
 		</div>
@@ -266,7 +266,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="selection-box mb-30">
-					<select>
+					<select class="js-shelf-count">
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -284,10 +284,10 @@
 	<!-- ROW -->
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Чекмедже: <i class="fa fa-plus-circle"></i></h3>
+			<h3>Чекмедже: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
 		</div>
 	</div>
-	<div class="row mt-10">
+	<div class="row mt-10 js-calculator-row">
 		<div class="col-md-4">
 			<div class="calculator-slider">
 				<div class="col-md-8">
@@ -295,7 +295,7 @@
 					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="amount" readonly>
+					<input type="text" class="amount js-drawer-height" readonly>
 				</div>
 			</div>
 		</div>
@@ -306,7 +306,7 @@
 					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="amount" readonly>
+					<input type="text" class="amount js-drawer-width" readonly>
 				</div>
 			</div>
 		</div>
@@ -316,7 +316,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="selection-box mb-30">
-					<select>
+					<select class="js-drawer-count">
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -374,10 +374,10 @@
 	<!-- ROW -->
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Огледала: <i class="fa fa-plus-circle"></i></h3>
+			<h3>Огледала: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
 		</div>
 	</div>
-	<div class="row mt-10">
+	<div class="row mt-10 js-calculator-row">
 		<div class="col-md-4">
 			<div class="calculator-slider">
 				<div class="col-md-8">
@@ -385,7 +385,7 @@
 					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="amount" readonly>
+					<input type="text" class="amount js-mirror-height" readonly>
 				</div>
 			</div>
 		</div>
@@ -396,7 +396,7 @@
 					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="amount" readonly>
+					<input type="text" class="amount js-mirror-width" readonly>
 				</div>
 			</div>
 		</div>
@@ -406,7 +406,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="selection-box mb-30">
-					<select>
+					<select js-mirror-count>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -416,6 +416,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!-- ROW end -->
 
 	<div class="row mb-30 mt-30">
