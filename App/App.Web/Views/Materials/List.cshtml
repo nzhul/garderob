@@ -1,0 +1,61 @@
+﻿@using App.Models.Materials;
+@model MaterialCategory
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<!-- breadcrumbs start-->
+<section class="breadcrumbs">
+	<div class="container">
+		<div class="text-center breadcrumbs-item">
+			<h1>Материали</h1><a href="#">начало</a><i class="fa fa-angle-right"></i><a href="@Url.Action("LivePreview", "Products")">материали</a><i class="fa fa-angle-right"></i><a href="@Url.Action("List", "Materials", new { id = Model.Id })">@Model.Name</a>
+		</div>
+	</div>
+</section>
+<!-- ! breadcrumbs end-->
+
+<div class="row mt-50">
+	<div class="col-md-12">
+		<h2 class="title-section text-center mt-0 mb-0">@Model.Name</h2>
+		<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
+		<p class="text-center mb-30">@Model.Description</p>
+	</div>
+</div>
+
+
+<section class="page-section mb-0 pb-60 pt-40 ">
+	<div class="container materials-container">
+		<div class="row">
+			@{ int counter = 0;}
+			@foreach (var material in Model.Materials)
+			{
+				<div class="col-md-3">
+						<div class="service-wrapper material-wrapper" data-category-id="@material.Id">
+							@if (material.Image != null)
+							{
+								@Html.ByteImage(material.Image.Big, material.Name)
+							}
+							else
+							{
+								<div style="width: 262px; height: 190px;line-height:190px;text-align:center;border: 5px solid white;">
+									<p>-- Липсва изображение -- </p>
+								</div>
+							}
+							<div class="service-wrapper-text">
+								<h3>@material.Name</h3>
+							</div>
+						</div>
+				</div>
+
+				counter++;
+				if (counter % 4 == 0 && counter != 0)
+				{
+					@:</div>
+					@:<div class="row mt-40">
+				}
+			}
+		</div>
+		<p class="mt-30">* За повече  информация относно видовете предлагани материали, моля обадете се на телефона за помощ и консултация: 950827582</p>
+	</div>
+</section>

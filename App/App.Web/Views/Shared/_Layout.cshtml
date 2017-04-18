@@ -22,7 +22,10 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="top-left-wrap">
-							<div class="social-wrap"><a href="https://plus.google.com/" title="Google +" class="cws_social_link"><i class="share-icon fa fa-google-plus"></i></a><a href="http://twitter.com/" title="Twitter" class="cws_social_link"><i class="share-icon fa fa-twitter"></i></a><a href="http://facebook.com" title="Facebook" class="cws_social_link"><i class="share-icon fa fa-facebook"></i></a><a href="http://dribbble.com" title="Dribbble" class="cws_social_link"><i class="share-icon fa fa-dribbble"></i></a></div>
+							<div class="social-wrap">
+								<a href="http://facebook.com" title="Facebook" class="cws_social_link"><i class="share-icon fa fa-facebook"></i></a>
+								<a href="https://www.instagram.com" title="Instagram" class="cws_social_link"><i class="share-icon fa fa-instagram"></i></a>
+							</div>
 						</div>
 					</div>
 					<div class="col-sm-4" style="text-align:center;">
@@ -47,38 +50,16 @@
 				<div class="inner-nav desktop-nav switch-menu items-visible">
 					<ul class="clearlist">
 						<li><a href="@Url.Action("Index", "Home")">Начало</a></li>
-						<li>
-							<a href="/make" class="mn-has-sub">Направи <i class="fa fa-angle-down button_open"></i></a>
-							<ul class="mn-sub">
-								<li><a href="/make-standard">Стандартен</a></li>
-								<li><a href="/make-sliding-doors">Плъзгащи се врати</a></li>
-								<li><a href="@Url.Action("Make", "Orders")">По твоя скица</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="@Url.Action("List", "Products")" class="mn-has-sub">Продукти <i class="fa fa-angle-down button_open"></i></a>
-							<ul class="mn-sub">
-								<li><a class="small-nav-text" href="@Url.Action("List", "Products")">Всички продукти</a></li>
-								<li><a class="small-nav-text" href="@Url.Action("LivePreview", "Products")">"Жива" визуализация</a></li>
-							</ul>
-						</li>
-
+						<li><a href="/make">Направи</a></li>
+						<li><a href="@Url.Action("LivePreview", "Products")">Материали</a></li>
 						<li><a class="small-nav-text" href="@Url.Action("Calculator", "Products")">Калкулатор</a></li>
-						@*<li>
-							<a href="#" class="mn-has-sub">Материали <i class="fa fa-angle-down button_open"></i></a>
-							<ul class="mn-sub">
-								<li><a href="#">Материал - Вид 1</a></li>
-								<li><a href="#">Материал - Вид 2</a></li>
-								<li><a href="#">Материал - Вид 3</a></li>
-							</ul>
-						</li>*@
 						<li>
 							<a href="/services" class="mn-has-sub">Услуги <i class="fa fa-angle-down button_open"></i></a>
 							<ul class="mn-sub">
 								<li><a class="small-nav-text" href="/services">Услуги</a></li>
-								<li><a class="small-nav-text" href="/faq">Често задавани въпроси</a></li>
 								<li><a class="small-nav-text" href="/price">Цени и плащания</a></li>
-								@*<li><a class="small-nav-text" href="/calculator">Калкулатор</a></li>*@
+								<li><a class="small-nav-text" href="/faq">Често задавани въпроси</a></li>
+								<li><a class="small-nav-text" href="/faq">Общи условия</a></li>
 							</ul>
 						</li>
 						<li><a href="@Url.Action("List", "Testimonials")">Галерия</a></li>
@@ -101,11 +82,8 @@
 						<div class="cws_divider with-plus short-2 mb-5 mt-10"></div>
 						<p>Всичко от което се нуждаеш за да направиш твоя индивидуален гардероб е идея, молив и лист.</p>
 						<div class="footer-cws-social mt-25">
-							<a href="#" class="cws-social flaticon-social-4"></a>
-							<a href="#" class="cws-social flaticon-social"></a>
-							<a href="#" class="cws-social flaticon-social-3"></a>
-							<a href="#" class="cws-social flaticon-social-1"></a>
-							<a href="#" class="cws-social flaticon-social-network"></a>
+							<a href="https://www.facebook.com/" class="cws-social flaticon-social-4"></a>
+							<a href="https://www.instagram.com" class="cws-social flaticon-social-network"></a>
 						</div>
 					</div>
 				</div>

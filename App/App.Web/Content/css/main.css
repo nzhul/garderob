@@ -2280,7 +2280,8 @@ nav .inner-nav.mobile_nav.opened ul {
 /*  */
 .breadcrumbs {
 	padding: 53px 0;
-	border-bottom: 1px solid #e6e6e6;
+	/*border-bottom: 1px solid #e6e6e6;*/
+	border-bottom: 1px solid #237dc8;
 	background: #fafafa;
 }
 

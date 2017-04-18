@@ -204,6 +204,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -1508,6 +1509,7 @@
     <Content Include="Views\Shared\_Pager.cshtml" />
     <Content Include="Views\Products\LivePreview.cshtml" />
     <Content Include="Views\Products\Calculator.cshtml" />
+    <Content Include="Views\Materials\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Orders\Partials\" />
