@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using App.Data.Service.Abstraction;
+using App.Models;
 using App.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -16,9 +17,15 @@ namespace App.Web.Controllers
 	{
 		private ApplicationSignInManager _signInManager;
 		private ApplicationUserManager _userManager;
+		private IOrdersService ordersService;
 
 		public AccountController()
 		{
+		}
+
+		public AccountController(IOrdersService ordersService)
+		{
+			this.ordersService = ordersService;
 		}
 
 		public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -207,6 +214,8 @@ namespace App.Web.Controllers
 				if (result.Succeeded)
 				{
 					await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+					this.ordersService.TryAssignUserToOrders(user.Email);
 
 					// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
 					// Send an email with this link

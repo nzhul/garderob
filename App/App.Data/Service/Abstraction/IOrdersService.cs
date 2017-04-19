@@ -45,5 +45,7 @@ namespace App.Data.Service.Abstraction
 		bool UpdateOrder(int id, EditOrderInputModel model);
 
 		IEnumerable<SelectListItem> GetCategoriesSelectData();
+
+		bool TryAssignUserToOrders(string email);
 	}
 }

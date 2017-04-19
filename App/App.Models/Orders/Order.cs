@@ -79,6 +79,12 @@ namespace App.Models.Orders
 
 		public virtual ApplicationUser Client { get; set; }
 
+		public string AnonymousClientName { get; set; }
+
+		public string AnonymousClientEmail { get; set; }
+
+		public string AnonymousClientPhone { get; set; }
+
 		[ForeignKey("OrderCategory")]
 		public int OrderCategoryId { get; set; }
 

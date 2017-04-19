@@ -172,5 +172,10 @@ namespace App.Data.Service.Implementation
 
 			return theAdmin;
 		}
+
+		public ApplicationUser GetUserByEmail(string email)
+		{
+			return this.Data.Users.All().Where(u => u.Email == email).Single();
+		}
 	}
 }

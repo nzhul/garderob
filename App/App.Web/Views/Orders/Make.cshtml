@@ -33,6 +33,21 @@
 				@Html.EditorFor(model => model.Title)
 				<br />
 
+				@if (!Request.IsAuthenticated)
+				{
+					@Html.LabelFor(model => model.AnonymousClientName) @Html.ValidationMessageFor(model => model.AnonymousClientName, "", new { @class = "text-danger" })
+					@Html.EditorFor(model => model.AnonymousClientName)
+					<br />
+
+						@Html.LabelFor(model => model.AnonymousClientEmail) @Html.ValidationMessageFor(model => model.AnonymousClientEmail, "", new { @class = "text-danger" })
+						@Html.EditorFor(model => model.AnonymousClientEmail)
+						<br />
+
+						@Html.LabelFor(model => model.AnonymousClientPhone) @Html.ValidationMessageFor(model => model.AnonymousClientPhone, "", new { @class = "text-danger" })
+						@Html.EditorFor(model => model.AnonymousClientPhone)
+						<br />
+				}
+
 				@Html.LabelFor(model => model.OrderText) @Html.ValidationMessageFor(model => model.OrderText, "", new { @class = "text-danger" })
 				@Html.EditorFor(model => model.OrderText)
 
@@ -128,6 +143,26 @@
 	<div class="row mt-50">
 		<div class="col-md-12">
 			<p>* След като дадете Вашия проект, до 24 часа ние ще се свържем с Вас за неговото уточняване, след което ще Ви пратим по email как ще изглежда Вашия готов проект и колко точно ще Ви струва той.</p>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="window-close-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Modal body text goes here.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -235,5 +270,13 @@
 				$(element).addClass('selected');
 			}
 		}
+
+		$('input').focus(function () {
+			window.onbeforeunload = confirmExit;
+
+			function confirmExit() {
+				return "Данните които сте въвели ще бъдат загубени!";
+			}
+		});
 	</script>
 }

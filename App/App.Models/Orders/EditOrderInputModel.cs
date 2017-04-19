@@ -78,6 +78,15 @@ namespace App.Models.Orders
 
 		public string ClientFullName { get; set; }
 
+		[Display(Name = "Имена на клиента:")]
+		public string AnonymousClientName { get; set; }
+
+		[Display(Name = "Email на клиента:")]
+		public string AnonymousClientEmail { get; set; }
+
+		[Display(Name = "Телефон на клиента:")]
+		public string AnonymousClientPhone { get; set; }
+
 		public int OrderCategoryId { get; set; }
 
 		[Required(ErrorMessage = "Задължително!")]

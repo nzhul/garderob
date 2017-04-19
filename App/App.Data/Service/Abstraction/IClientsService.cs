@@ -30,5 +30,7 @@ namespace App.Data.Service.Abstraction
 		bool ClientExists(string id);
 
 		bool DeleteUserPhoto(string id);
+
+		ApplicationUser GetUserByEmail(string email);
 	}
 }

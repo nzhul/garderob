@@ -44,6 +44,22 @@ namespace App.Models.Orders
 
 		public string ClientId { get; set; }
 
+		[Display(Name = "Email:")]
+		[Required(ErrorMessage = " Моля предоставете валиден email!")]
+		[DataType(DataType.EmailAddress)]
+		[EmailAddress]
+		public string AnonymousClientEmail { get; set; }
+
+		[Required(ErrorMessage = " Моля попълнете вашето собствено и фамилно име!")]
+		[StringLength(250, MinimumLength = 3, ErrorMessage = " Максимална дължина 250 символа, минимална 3")]
+		[Display(Name = "Имена:")]
+		public string AnonymousClientName { get; set; }
+
+		[Display(Name = "Телефон:")]
+		[Required(ErrorMessage = " Моля предоставете валиден телефонен номер!")]
+		[StringLength(250, MinimumLength = 3, ErrorMessage = " Максимална дължина 250 символа, минимална 3")]
+		public string AnonymousClientPhone { get; set; }
+
 		public int OrderCategoryId { get; set; } // Pass default value of 0 = "Other"
 	}
 }

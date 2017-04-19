@@ -406,5 +406,29 @@ namespace App.Data.Service.Implementation
 
 			return new SelectList(categories, "Value", "Text");
 		}
+
+		public bool TryAssignUserToOrders(string email)
+		{
+			ApplicationUser dbUser = this.clientsService.GetUserByEmail(email);
+
+			if (dbUser != null)
+			{
+				ICollection<Order> foundOrders = this.Data.Orders.All().Where(o => o.AnonymousClientEmail == email).ToList();
+
+				if (foundOrders.Count > 0)
+				{
+					foreach (Order order in foundOrders)
+					{
+						order.ClientId = dbUser.Id;
+					}
+
+					this.Data.SaveChanges();
+
+					return true;
+				}
+			}
+
+			return false;
+		}
 	}
 }

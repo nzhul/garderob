@@ -2,12 +2,12 @@
 using App.Models;
 using App.Models.Orders;
 using Microsoft.AspNet.Identity;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace App.Web.Controllers
 {
-	[Authorize]
 	public class OrdersController : Controller
 	{
 		private IOrdersService ordersService;
@@ -39,15 +39,33 @@ namespace App.Web.Controllers
 		[HttpPost]
 		public ActionResult Make(OrderInputModel model)
 		{
-			if (ModelState.IsValid)
+			if (Request.IsAuthenticated)
 			{
 				ApplicationUser currentUser = this.clientsService.GetUserById(this.User.Identity.GetUserId());
 				model.ClientId = currentUser.Id;
-				model.OrderCategoryId = this.ordersService.GetOrderCategoryBySlug("standard-wardrobes").Id;
-				int orderId = this.ordersService.MakeOrder(model);
-				if (orderId > 0)
+				model.AnonymousClientEmail = currentUser.Email;
+				model.AnonymousClientName = currentUser.FirstName + " " + currentUser.LastName;
+				model.AnonymousClientPhone = currentUser.PhoneNumber;
+
+				ModelState.SetModelValue("AnonymousClientName", new ValueProviderResult(currentUser.FirstName + " " + currentUser.LastName, "", CultureInfo.InvariantCulture));
+				ModelState.SetModelValue("AnonymousClientPhone", new ValueProviderResult(currentUser.PhoneNumber, "", CultureInfo.InvariantCulture));
+				ModelState.SetModelValue("AnonymousClientEmail", new ValueProviderResult(currentUser.Email, "", CultureInfo.InvariantCulture));
+
+				ModelState["AnonymousClientEmail"].Errors.Clear();
+				ModelState["AnonymousClientName"].Errors.Clear();
+				ModelState["AnonymousClientPhone"].Errors.Clear();
+			}
+
+			if (TryValidateModel(model))
+			{
+				if (ModelState.IsValid)
 				{
-					return this.RedirectToAction("Success");
+					model.OrderCategoryId = this.ordersService.GetOrderCategoryBySlug("standard-wardrobes").Id;
+					int orderId = this.ordersService.MakeOrder(model);
+					if (orderId > 0)
+					{
+						return this.RedirectToAction("Success");
+					}
 				}
 			}
 
