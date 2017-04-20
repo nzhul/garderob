@@ -22,6 +22,7 @@
 	{
 		private IConfigService configService;
 		private ApplicationUser theAdmin;
+		private Random rand = new Random();
 
 		public Configuration()
 			: this(new ConfigService())
@@ -210,6 +211,7 @@
 							Name = fileName,
 							Slug = fileName,
 							Image = new Image { Big = bigImageData, Small = smallImageData },
+							Price = (double)rand.Next(1, 100),
 							DateCreated = DateTime.UtcNow,
 							LastModified = DateTime.UtcNow
 						};
@@ -245,6 +247,7 @@
 						Name = fileName,
 						Slug = fileName,
 						Image = new Image { Big = bigImageData, Small = smallImageData },
+						Price = (double)rand.Next(1, 100),
 						DateCreated = DateTime.UtcNow,
 						LastModified = DateTime.UtcNow
 					};
