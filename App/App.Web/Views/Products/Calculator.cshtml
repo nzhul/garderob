@@ -38,49 +38,49 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="order-category">
-				Плоча за основа:<br />
+				Плоча за основа: <span class="js-calculator-error" data-error-index="1"></span><br />
 				@foreach (var material in Model.SurfaceMaterials)
 				{
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());
 					
-					@Html.ByteImage(material.Image.Small, material.Name, "js-base-surface-material", material.Id.ToString(), material.Name, data)
+					@Html.ByteImage(material.Image.Small, material.Name, "js-base-surface-material", material.Id.ToString(), string.Format("{0} | Цена: {1} лв", material.Name, material.Price), data)
 				}
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="order-category">
-				Плоча за врати:<br />
+				Плоча за врати: <span class="js-calculator-error" data-error-index="2"></span><br />
 				@foreach (var material in Model.SurfaceMaterials)
 				{
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());
 
-					@Html.ByteImage(material.Image.Small, material.Name, "js-door-surface-material", material.Id.ToString(), material.Name, data)
+					@Html.ByteImage(material.Image.Small, material.Name, "js-door-surface-material", material.Id.ToString(), string.Format("{0} | Цена: {1} лв", material.Name, material.Price), data)
 				}</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="order-category">
-				Фазер:<br />
+				Фазер: <span class="js-calculator-error" data-error-index="3"></span><br />
 				@foreach (var material in Model.SurfaceMaterials)
 				{
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());
 
-					@Html.ByteImage(material.Image.Small, material.Name, "js-fazer-surface-material", material.Id.ToString(), material.Name, data)
+					@Html.ByteImage(material.Image.Small, material.Name, "js-fazer-surface-material", material.Id.ToString(), string.Format("{0} | Цена: {1} лв", material.Name, material.Price), data)
 				}</div>
 		</div>
 		<div class="col-md-6">
 			<div class="order-category">
-				Дръжки:<br />
+				Дръжки: <span class="js-calculator-error" data-error-index="4"></span><br />
 				@foreach (var material in Model.HandleMaterials)
 				{
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());
 
-					@Html.ByteImage(material.Image.Small, material.Name, "js-handle-material", "material" + material.Id.ToString(), material.Name, data)
+					@Html.ByteImage(material.Image.Small, material.Name, "js-handle-material", "material" + material.Id.ToString(), string.Format("{0} | Цена: {1} лв", material.Name, material.Price), data)
 				}
 			</div>
 		</div>
@@ -422,10 +422,10 @@
 	<div class="row mb-30 mt-30">
 		<div class="col-md-12 col-md-offset-8">
 			<a class="cws-button alt js-calculate-btn" style="cursor:pointer;">Изчисли</a>
-			<input type="text" style="text-align:center;" readonly value="946 лв"><br />
+			<input type="text" class="js-result" style="text-align:center;" readonly value="-"><br />
 			<div class="checkbox" style="position:relative;left:270px;bottom:0px;">
-				<input id="checkbox1" type="checkbox" value="None" name="check">
-				<label for="checkbox1">Монтаж</label>
+				<input id="installationCb" type="checkbox" value="None" name="check">
+				<label for="installationCb">Монтаж</label>
 			</div>
 		</div>
 	</div>

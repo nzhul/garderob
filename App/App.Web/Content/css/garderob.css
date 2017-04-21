@@ -1096,3 +1096,8 @@ label.custom-sketches-input {
 	height: 60px;
 }
 /*Testimonials END*/
+
+
+.js-calculator-error {
+	color: red;
+}

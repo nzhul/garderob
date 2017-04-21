@@ -114,19 +114,19 @@ $(document).ready(function () {
 		var handleMaterialPrice = handleMaterial.data('price');
 
 		if (!baseMaterial[0]) {
-			errors.push("Не е избрана плоча за основа");
+			errors.push({ index: 1, message: " *Не е избрана плоча за основа"});
 		}
 
 		if (!doorMaterial[0]) {
-			errors.push("Не е избрана плоча за врата");
+			errors.push({ index: 2, message: " *Не е избрана плоча за врата"});
 		}
 
 		if (!fazerMaterial[0]) {
-			errors.push("Не е избрана плоча за фазер");
+			errors.push({ index: 3, message: " *Не е избрана плоча за фазер"});
 		}
 
 		if (!handleMaterial[0]) {
-			errors.push("Не е избрана дръжка");
+			errors.push({ index: 4, message: " *Не е избрана дръжка"});
 		}
 
 		// ВЪНШЕН РАЗМЕР, ЕЛЕМЕНТИ И ЦОКЪЛ
@@ -155,32 +155,72 @@ $(document).ready(function () {
 		// ОГЛЕДАЛА:
 		var mirrorPrices = getPriceData('.js-mirror-row', ['height', 'width', 'count']);
 
-
-		console.log(mirrorPrices);
-		//console.log(hangerPrice);
-		//console.log(hangerCount);
-
-		//console.log(drawerPrices);
-		//console.log(shelfPrices);
-		//console.log(doorPrices);
-		//console.log(innerDividersPrices);
-
-		//console.log(outerSizeHeight);
-		//console.log(outerSizeWidth);
-		//console.log(outerSizeDepth);
-		//console.log(outerSizeCount);
-		//console.log(outerSizeCokal);
-
 		if (errors.length == 0) {
-			// Constats
-			var laborPricePercent = 50;
-			var cuttingPricePercent = 5;
+			var allErrorMessages = $('.js-calculator-error').hide();
+
+			var data = {
+				constants: {
+					laborPricePercent: 50,
+					cuttingPricePercent: 5
+				},
+				baseMaterialPrice: baseMaterialPrice,
+				doorMaterialPrice: doorMaterialPrice,
+				fazerMaterialPrice: fazerMaterialPrice,
+				handleMaterialPrice: handleMaterialPrice,
+				outerSizeHeight: outerSizeHeight,
+				outerSizeWidth: outerSizeWidth,
+				outerSizeDepth: outerSizeDepth, 
+				outerSizeCount: outerSizeCount, 
+				outerSizeCokal: outerSizeCokal ,
+				doorPrices: doorPrices,
+				innerDividersPrices: innerDividersPrices,
+				shelfPrices: shelfPrices,
+				drawerPrices: drawerPrices,
+				hangerPrice: hangerPrice,
+				hangerCount : hangerCount,
+				mirrorPrices : mirrorPrices
+			};
+
+			var result = calculateResult(data);
+
+			displayResult(result);
 
 		} else {
-			// Display error to the user
-			console.log(errors);
+			displayErrors(errors);
 		}
 	});
+
+	function calculateResult(data) {
+		console.log(data);
+		return 400;
+	}
+
+	function displayErrors(errors) {
+
+		var scrollTarget = $('.calculator-container');
+		$('html, body').animate({
+			scrollTop: scrollTarget.offset().top - 150
+		}, 200);
+
+		var allErrorMessages = $('.js-calculator-error').hide();
+		for (var i = 0; i < errors.length; i++) {
+			var error = errors[i];
+			var errorElement = $('.js-calculator-error[data-error-index=' + error.index + ']');
+			errorElement.show();
+			errorElement.text(error.message);
+		}
+	}
+
+	function displayResult(result) {
+		var installationPercent = 1.07;
+		var includeInstallation = $('#installationCb').is(':checked');
+
+		if (includeInstallation) {
+			result = result * installationPercent;
+		}
+
+		$('.js-result').val(result + ' лв');
+	}
 
 	function getPriceData(rowsSelector, fields) {
 		var data = [];
