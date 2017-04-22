@@ -73,7 +73,7 @@ namespace App.Web.Controllers
 
 				MailMessage mailMessage = new MailMessage(sender, receiver);
 				mailMessage.IsBodyHtml = true;
-				mailMessage.Subject = "Запитване (контактна форма): ";
+				mailMessage.Subject = "Запитване (контактна форма): " + contactData.Subject;
 				mailMessage.Body = "Имена: " + contactData.Name + "<br/>" +
 								   "Email: " + contactData.Email + "<br/>" +
 								   "Телефон: " + contactData.Phone + "<br/><br/>" +

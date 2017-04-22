@@ -6,5 +6,7 @@ namespace App.Data.Service.Abstraction
 	public interface IMessagingService
 	{
 		void Notify(ApplicationUser user, MessageData messageData);
+
+		void Notify(string userEmail, MessageData messageData);
 	}
 }

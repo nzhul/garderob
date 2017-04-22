@@ -24,6 +24,7 @@ namespace App.Data.Service.Implementation
 		private const string defaultBigImageQuery = "width=1650&height=1050&format=jpg";
 		private const string defaultMediumImageQuery = "width=370&height=310&crop=auto&format=jpg";
 		private const string defaultSmallImageQuery = "width=210&height=203&crop=auto&format=jpg";
+		private const string applicationDomainName = "http://www.tvoiatgarderob.bg";
 
 		public OrdersService(IUoWData data, IMessagingService messagingService, IClientsService clientsService)
 		{
@@ -159,17 +160,34 @@ namespace App.Data.Service.Implementation
 
 			this.Data.SaveChanges();
 
-			// Sending email message to notify the admin
 			ApplicationUser theAdmin = this.clientsService.GetApplicationAdmin();
 			if (theAdmin != null)
 			{
+				string clientEmail = newOrder.Client != null ? newOrder.Client.Email : newOrder.AnonymousClientEmail;
+				string clientName = newOrder.Client != null ? newOrder.Client.FirstName + " " + newOrder.Client.LastName : newOrder.AnonymousClientName;
+				string clientPhone = newOrder.Client != null ? newOrder.Client.PhoneNumber : newOrder.AnonymousClientPhone;
+
 				MessageData message = new MessageData
 				{
-					MessageTitle = "NewOrder",
-					 MessageBody = "NewOrderDetails ..."
+					MessageTitle = "Ново запитване (tvoiatgarderob.bg)",
+					MessageBody = "Пристигна ново запитване:" + "<br/>" + "<br/>"
+								+ "Клиент(Имена): " + clientName + "<br/>"
+								+ "Клиент(Email): " + clientEmail + "<br/>"
+								+ "Клиент(Телефон): " + clientPhone + "<br/><br/>"
+								+ "<a href='http://www.tvoiatgarderob.bg/administration/orders/edit/" + newOrder.Id.ToString() + "'>Отвори в административния панел</a>"
 				};
 
 				this.MessagingService.Notify(theAdmin, message);
+
+
+				MessageData clientMessage = new MessageData
+				{
+					MessageTitle = "Запитването прието (tvoiatgarderob.bg)",
+					MessageBody = "Вашето запитване беше успешно прието!" + "<br/>" + "<br/>"
+								+ "Може да следите статуса на вашата поръчка в вашия <a href='http://www.tvoiatgarderob.bg/warehouse/orders'>СКЛАД</a>" + "<br/>" + "<br/>"
+								+ "За да следите статуса на поръчката си е нуждо да си направите <a href='http://www.tvoiatgarderob.bg/account/register'>безплатна регистрация</a>."
+				};
+				this.MessagingService.Notify(clientEmail, clientMessage);
 			}
 
 			return newOrder.Id;
@@ -229,18 +247,14 @@ namespace App.Data.Service.Implementation
 
 		public bool OrderNow(string userId)
 		{
-			// get all items from applicationuser.cart
-			// remove them from cart collection
-			// set their status to InProduction
-			// Send notifications to both client and administrator
-
 			ApplicationUser currentUser = this.Data.Users.Find(userId);
 
 			if (currentUser != null)
 			{
 				ICollection<Order> cartItems = currentUser.Cart;
-				//this.SendOrderSuccessMessage(userId, cartItems);
-				//this.SendAdminNotification("adminId", cartItems);
+				this.SendOrderSuccessMessage(currentUser, cartItems);
+				this.SendAdminNotification(cartItems, currentUser);
+
 
 				foreach (Order order in cartItems)
 				{
@@ -258,28 +272,37 @@ namespace App.Data.Service.Implementation
 			return false;
 		}
 
-		private void SendAdminNotification(ApplicationUser theAdmin, ICollection<Order> cartItems)
+		private void SendAdminNotification(ICollection<Order> cartItems, ApplicationUser theClient)
 		{
-			MessageData message = new MessageData();
+			MessageData message = new MessageData
+			{
+				MessageTitle = "Потвърдена поръчка (tvoiatgarderob.bg)",
+				MessageBody = "Офертата беше приета и беше направена нова поръчка за изработка:" + "<br/>" + "<br/>"
+				+ "Клиент(Имена): " + theClient.FirstName + " " + theClient.LastName + "<br/>"
+				+ "Клиент(Email): " + theClient.Email + "<br/>"
+				+ "Клиент(Телефон): " + theClient.PhoneNumber + "<br/><br/>"
+				+ "Поръчки: <br/><br/>"
+			};
 
 			foreach (Order order in cartItems)
 			{
-
+				message.MessageBody += "<a href='http://www.tvoiatgarderob.bg/administration/orders/edit/" + order.Id.ToString() + "'>" + order.Title + "</a><br/>";
 			}
 
+			ApplicationUser theAdmin = this.clientsService.GetApplicationAdmin();
 			this.MessagingService.Notify(theAdmin, message);
 		}
 
-		private void SendOrderSuccessMessage(ApplicationUser theUser, ICollection<Order> cartItems)
+		private void SendOrderSuccessMessage(ApplicationUser theClient, ICollection<Order> cartItems)
 		{
-			MessageData message = new MessageData();
-
-			foreach (Order order in cartItems)
+			MessageData clientMessage = new MessageData
 			{
+				MessageTitle = "Поръчката беше приета (tvoiatgarderob.bg)",
+				MessageBody = "Вашата поръчка беше приета!" + "<br/>" + "<br/>"
+				+ "Може да следите статуса на вашата поръчка в вашия <a href='http://www.tvoiatgarderob.bg/warehouse/orders'>СКЛАД</a>" + "<br/>" + "<br/>"
+			};
 
-			}
-
-			this.MessagingService.Notify(theUser, message);
+			this.MessagingService.Notify(theClient, clientMessage);
 		}
 
 		public IQueryable<Order> GetAllDoneOrders()
@@ -295,6 +318,7 @@ namespace App.Data.Service.Implementation
 		public bool UpdateOrder(int id, EditOrderInputModel model)
 		{
 			Order dbOrder = this.GetOrder(id);
+			OrderState previousState = dbOrder.State;
 			if (dbOrder != null)
 			{
 				dbOrder = Mapper.Map(model, dbOrder);
@@ -362,8 +386,10 @@ namespace App.Data.Service.Implementation
 					dbOrder.CompleteDate = DateTime.UtcNow;
 				}
 
-				if (model.State == OrderState.WaitingClientResponse)
+				if (model.State == OrderState.WaitingClientResponse && previousState != OrderState.WaitingClientResponse)
 				{
+					string clientEmail = dbOrder.Client != null ? dbOrder.Client.Email : dbOrder.AnonymousClientEmail;
+					this.SendNewOfferClientNotification(clientEmail, dbOrder);
 					dbOrder.OfferDate = DateTime.UtcNow;
 				}
 
@@ -377,6 +403,18 @@ namespace App.Data.Service.Implementation
 			{
 				return false;
 			}
+		}
+
+		private void SendNewOfferClientNotification(string clientEmail, Order dbOrder)
+		{
+			MessageData clientMessage = new MessageData
+			{
+				MessageTitle = "Получихте оферта (tvoiatgarderob.bg)",
+				MessageBody = "Получихте оферта по ваше запитване!" + "<br/>" + "<br/>"
+				+ "Може да следите статуса на вашата поръчка/запитване в вашия <a href='http://www.tvoiatgarderob.bg/warehouse/orders'>СКЛАД</a>" + "<br/>" + "<br/>"
+			};
+
+			this.MessagingService.Notify(clientEmail, clientMessage);
 		}
 
 		public int CreateOrderCategory(EditOrderCategoryInputModel model)
