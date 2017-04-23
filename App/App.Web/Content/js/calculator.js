@@ -114,19 +114,19 @@ $(document).ready(function () {
 		var handleMaterialPrice = handleMaterial.data('price');
 
 		if (!baseMaterial[0]) {
-			errors.push({ index: 1, message: " *Не е избрана плоча за основа"});
+			errors.push({ index: 1, message: " *Не е избрана плоча за основа" });
 		}
 
 		if (!doorMaterial[0]) {
-			errors.push({ index: 2, message: " *Не е избрана плоча за врата"});
+			errors.push({ index: 2, message: " *Не е избрана плоча за врата" });
 		}
 
 		if (!fazerMaterial[0]) {
-			errors.push({ index: 3, message: " *Не е избрана плоча за фазер"});
+			errors.push({ index: 3, message: " *Не е избрана плоча за фазер" });
 		}
 
 		if (!handleMaterial[0]) {
-			errors.push({ index: 4, message: " *Не е избрана дръжка"});
+			errors.push({ index: 4, message: " *Не е избрана дръжка" });
 		}
 
 		// ВЪНШЕН РАЗМЕР, ЕЛЕМЕНТИ И ЦОКЪЛ
@@ -160,8 +160,17 @@ $(document).ready(function () {
 
 			var data = {
 				constants: {
-					laborPricePercent: 50,
-					cuttingPricePercent: 5
+					laborPricePercent: 1.5, // процент
+					cuttingPrice: 3.59, // лв умножава се по квадратите на изразходвания материал
+					cant2MM: 1, // лв кант врати
+					cant08MM: 0.56, // лв кант други
+					kracheta: 3, // лв добавяме ги когато има цокъл
+					montajKant2MM: 0.71, // лв 
+					montajKant08MM: 0.59, // лв 
+					panta: 1.8, // лв цена панта
+					mehanizam2Vrati: 170, // лв 
+					mehanizam3Vrati: 250, // лв 
+					mirrorPrice: 35 // лв m2 за огледало
 				},
 				baseMaterialPrice: baseMaterialPrice,
 				doorMaterialPrice: doorMaterialPrice,
@@ -169,16 +178,16 @@ $(document).ready(function () {
 				handleMaterialPrice: handleMaterialPrice,
 				outerSizeHeight: outerSizeHeight,
 				outerSizeWidth: outerSizeWidth,
-				outerSizeDepth: outerSizeDepth, 
-				outerSizeCount: outerSizeCount, 
-				outerSizeCokal: outerSizeCokal ,
+				outerSizeDepth: outerSizeDepth,
+				outerSizeCount: outerSizeCount,
+				outerSizeCokal: outerSizeCokal,
 				doorPrices: doorPrices,
 				innerDividersPrices: innerDividersPrices,
 				shelfPrices: shelfPrices,
 				drawerPrices: drawerPrices,
 				hangerPrice: hangerPrice,
-				hangerCount : hangerCount,
-				mirrorPrices : mirrorPrices
+				hangerCount: hangerCount,
+				mirrorPrices: mirrorPrices
 			};
 
 			var result = calculateResult(data);
@@ -191,8 +200,136 @@ $(document).ready(function () {
 	});
 
 	function calculateResult(data) {
-		console.log(data);
-		return 400;
+		var d = data.outerSizeDepth;
+		var h = data.outerSizeHeight;
+		var w = data.outerSizeWidth;
+		var c = data.outerSizeCount;
+
+		var outerSize = ((2 * (d * h)) + (2 * (d * w))) / 10000;
+		var elementsSize = ((h * d) * (c - 1)) / 10000;
+		var cokalSize = 0;
+		var kantSize = (((d * 4) + (w * 2) + (h * 2)) + (h * (c - 1))) / 100;
+
+
+		if (data.outerSizeCokal) {
+			cokalSize = (10 * data.outerSizeWidth) / 10000;
+			kantSize = (((d * 4) + (w * 3) + (h * 2)) + (h * (c - 1))) / 100;
+		}
+
+		var M = kantSize * (data.constants.cant08MM + data.constants.montajKant08MM); // лв Цена кант
+		var Y = (outerSize + elementsSize + cokalSize) * data.constants.cuttingPrice; // лв Такса рязане
+		var S = ((h * w) / 10000) * data.fazerMaterialPrice; // лв Цена Фазер
+		var L = 0;
+
+		if (data.outerSizeCokal) {
+			L = (((outerSize + elementsSize + cokalSize) * data.baseMaterialPrice) * data.constants.laborPricePercent) + data.constants.kracheta;
+		}
+		else {
+			L = (((outerSize + elementsSize + cokalSize) * data.baseMaterialPrice) * data.constants.laborPricePercent);
+		}
+
+		var totalOuterPrice = M + Y + S + L;
+
+		//console.log('-------------------------------------');
+		//console.log("currentResultOuterSize: " + outerSize);
+		//console.log("currentResultElementsSize: " + elementsSize);
+		//console.log("cokalSize: " + cokalSize);
+		//console.log("kantSize: " + kantSize);
+		//console.log("M: " + M);
+		//console.log("Y: " + Y);
+		//console.log("S: " + S);
+		//console.log("L: " + L);
+		//console.log("Обща цена (външна): " + totalOuterPrice);
+
+
+		// ВРАТИ
+		var totalDoorsPrice = 0;
+
+		for (var i = 0; i < data.doorPrices.length; i++) {
+			var currentDoorData = data.doorPrices[i];
+			totalDoorsPrice += calculateDoorPrice(currentDoorData, data);
+		}
+
+		//console.log("Обща цена (врати): " + totalDoorsPrice);
+
+
+		// ФИКСИРАНИ ВЪТРЕШНИ ДЕЛЕНИЯ
+		var totalDividersPrice = 0;
+
+		for (var i = 0; i < data.innerDividersPrices.length; i++) {
+			var currentDividerData = data.innerDividersPrices[i];
+			totalDividersPrice += calculateDividerPrice(currentDividerData, data);
+		}
+
+		//console.log("Обща цена (разделители): " + totalDividersPrice);
+
+		// РАФТОВЕ
+		var totalShelfsPrice = 0;
+
+		for (var i = 0; i < data.shelfPrices.length; i++) {
+			var currentShelfData = data.shelfPrices[i];
+			totalShelfsPrice += calculateShelfPrice(currentShelfData, data);
+		}
+
+		console.log("Обща цена (рафтове): " + totalShelfsPrice);
+	}
+
+	function calculateShelfPrice(shelfData, data) {
+		var l = shelfData.length;
+		var c = shelfData.count;
+
+		var d = data.outerSizeDepth;
+		var a = ((l * d) * c) / 10000;
+		var b = (l * c) / 100;
+
+		var M = b * (data.constants.cant08MM + data.constants.montajKant08MM);
+		var Y = a * data.constants.cuttingPrice;
+		var Q = (a * data.baseMaterialPrice) * data.constants.laborPricePercent;
+		var V = Q + M + Y;
+
+		return V;
+	}
+
+	function calculateDividerPrice(dividerData, data) {
+		var l = dividerData.length;
+		var c = dividerData.count;
+
+		var d = data.outerSizeDepth;
+		var a = ((l * d) * c) / 10000;
+		var b = (l * c) / 100;
+
+		var M = b * (data.constants.cant08MM + data.constants.montajKant08MM);
+		var Y = a * data.constants.cuttingPrice;
+		var Q = (a * data.baseMaterialPrice) * data.constants.laborPricePercent;
+		var V = Q + M + Y;
+
+		return V;
+	}
+
+	function calculateDoorPrice(doorData, data) {
+		var h = doorData.height;
+		var w = doorData.width;
+		var c = doorData.count;
+
+		var p = 0;
+
+		if (h > 200) {
+			p = 5;
+		} else if (h > 100 && h <= 200) {
+			p = 4;
+		} else if (h <= 100) {
+			p = 3;
+		}
+
+		var a = ((h * w) * c) / 10000;
+		var b = ((2 * (h + w)) * c) / 100;
+
+		var M = b * (data.constants.cant2MM + data.constants.montajKant2MM);
+		var Y = a * data.constants.cuttingPrice;
+		var Q = ((a * data.doorMaterialPrice) * data.constants.laborPricePercent) + (p * data.constants.panta);
+		var V = Q + M + Y;
+
+		return V;
 	}
 
 	function displayErrors(errors) {
