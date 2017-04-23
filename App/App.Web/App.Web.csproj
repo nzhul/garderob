@@ -1050,6 +1050,7 @@
     <Content Include="Content\img\fancybox_overlay.png" />
     <Content Include="Content\img\fancybox_sprite%402x.png" />
     <Content Include="Content\img\fancybox_sprite.png" />
+    <Content Include="Content\img\fav.ico" />
     <Content Include="Content\img\footer\footer-bg.jpg" />
     <Content Include="Content\img\gallery\model.jpg" />
     <Content Include="Content\img\gallery\result.jpg" />

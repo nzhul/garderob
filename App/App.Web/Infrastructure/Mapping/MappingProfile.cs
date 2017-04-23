@@ -75,6 +75,15 @@ namespace App.Web.Infrastructure.Mapping
 			CreateMap<OrderCategory, EditOrderCategoryInputModel>();
 			CreateMap<EditOrderCategoryInputModel, OrderCategory>();
 
+			CreateMap<Order, Order>()
+				.ForMember(x => x.Id, opt => opt.Ignore())
+				.ForMember(x => x.Client, opt => opt.Ignore())
+				.ForMember(x => x.ClientId, opt => opt.Ignore())
+				.ForMember(x => x.Testimonials, opt => opt.Ignore())
+				.ForMember(x => x.SketchImages, opt => opt.Ignore())
+				.ForMember(x => x.DesignImages, opt => opt.Ignore())
+				.ForMember(x => x.ResultImages, opt => opt.Ignore());
+
 			CreateMap<MaterialCategory, EditMaterialCategoryInputModel>();
 
 			CreateMap<EditMaterialCategoryInputModel, MaterialCategory>()

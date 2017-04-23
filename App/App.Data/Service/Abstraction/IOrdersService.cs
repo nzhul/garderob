@@ -3,6 +3,7 @@ using App.Models.Orders;
 using System.Linq;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using App.Models;
 
 namespace App.Data.Service.Abstraction
 {
@@ -47,5 +48,7 @@ namespace App.Data.Service.Abstraction
 		IEnumerable<SelectListItem> GetCategoriesSelectData();
 
 		bool TryAssignUserToOrders(string email);
+
+		int CopyOrder(ApplicationUser currentUser, int id);
 	}
 }

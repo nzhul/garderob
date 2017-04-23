@@ -79,5 +79,21 @@ namespace App.Web.Controllers
 		{
 			return this.View();
 		}
+
+		[HttpGet]
+		public ActionResult Copy(int id)
+		{
+			if (this.Request.IsAuthenticated)
+			{
+				ApplicationUser currentUser = this.clientsService.GetUserById(this.User.Identity.GetUserId());
+				int newOrderId = this.ordersService.CopyOrder(currentUser, id);
+				if (newOrderId > 0)
+				{
+					return this.RedirectToAction("Orders", "Warehouse");
+				}
+			}
+
+			return this.HttpNotFound();
+		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿@using App.Models.Testimonials
 @model IEnumerable<TestimonialViewModel>
 @{
-	ViewBag.Title = "Home Page";
+	ViewBag.Title = "Твоят Гардероб";
 }
 
 <div class="splash-image-wrapper">
@@ -87,7 +87,7 @@
 								<p>
 									Разгледайте нашата богата гама на декоративни плоскости и вижте коя ще е най-подходяща за Вас. Ние ползваме само качествени материали от доказали се на пазара фирми.
 								</p>
-								<a href="@Url.Action("LivePreview", "Orders")" class="cws-button alt">Научи повече</a>
+								<a href="@Url.Action("LivePreview", "Products")#materials" class="cws-button alt">Научи повече</a>
 							</div>
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 								<p>
 									С нашия калкулатор може да видите колко ще струва вашия проект и така по-лесно да се съобразите с бюджета Ви.
 								</p>
-								<a href="@Url.Action("Calculator", "Orders")" class="cws-button alt">Научи повече</a>
+								<a href="@Url.Action("Calculator", "Products")" class="cws-button alt">Научи повече</a>
 							</div>
 						</div>
 					</div>
@@ -125,7 +125,7 @@
 								<p>
 									Изберете подходяща комбинация от цветове със нашата система за визуализация
 								</p>
-								<a href="@Url.Action("LivePreview", "Orders")" class="cws-button alt">Научи повече</a>
+								<a href="@Url.Action("LivePreview", "Products")" class="cws-button alt">Научи повече</a>
 							</div>
 						</div>
 					</div>

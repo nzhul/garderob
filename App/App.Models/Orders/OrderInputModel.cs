@@ -20,7 +20,6 @@ namespace App.Models.Orders
 		[StringLength(250, MinimumLength = 3, ErrorMessage = " *Невалидна дължина!")]
 		public string Title { get; set; }
 
-		[Required(ErrorMessage = " * Задължително!")]
 		[Display(Name = "Допълнителна информация:")]
 		[StringLength(2500, MinimumLength = 3, ErrorMessage = " *Невалидна дължина!")]
 		[DataType(DataType.MultilineText)]

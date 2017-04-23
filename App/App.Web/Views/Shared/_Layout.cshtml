@@ -9,7 +9,7 @@
 	<meta name="description" content="@ViewBag.MetaDescription">
 
 	<title>@ViewBag.Title</title>
-	<link rel="icon" type="image/vnd.microsoft.icon" href="~/Content/images/fav.ico" />
+	<link rel="icon" type="image/vnd.microsoft.icon" href="~/Content/img/fav.ico" />
 
 	@Styles.Render("~/bundles/garderob-fe-styles")
 	@RenderSection("styles", required: false)
@@ -29,7 +29,7 @@
 						</div>
 					</div>
 					<div class="col-sm-4" style="text-align:center;">
-						<h4><a href="">Tvoiat<span style="color: #237dc8;">Garderob</span>.bg</a></h4>
+						<h4><a style="font-weight:bold;letter-spacing:1px;" href="">Tvoiat<span style="color: #237dc8;">Garderob</span>.bg</a></h4>
 						<!-- Test -->
 					</div>
 					@Html.Partial("_ProfileLinks")
@@ -94,7 +94,7 @@
 						<ul>
 							<li><a href="@Url.Action("Contact", "Home")">Контакти</a> <a href="/make">Направи гардероб</a></li>
 							<li><a href="/services">Услуги</a> <a href="@Url.Action("Make", "Orders")">Качи проект</a></li>
-							<li><a href="@Url.Action("List", "Testimonials")">Галерия</a> <a href="@Url.Action("Calculator", "Orders")">Калкулатор</a></li>
+							<li><a href="@Url.Action("List", "Testimonials")">Галерия</a> <a href="@Url.Action("Calculator", "Products")">Калкулатор</a></li>
 							<li><a href="/faq">Помощ и Условия</a> <a href=""></a></li>
 						</ul>
 					</div>

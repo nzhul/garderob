@@ -1,4 +1,8 @@
 ﻿html, body {
+	padding: 0 !important;
+}
+
+html, body {
 	font-family: Roboto, sans-serif;
 }
 
@@ -114,9 +118,9 @@ footer {
 	color: #237dc8;
 }
 
-.service-item:hover i.fa {
+/*.service-item:hover i.fa {
 	color: #404040;
-}
+}*/
 
 .copyright {
 	font-size: 13px;
@@ -1100,4 +1104,8 @@ label.custom-sketches-input {
 
 .js-calculator-error {
 	color: red;
+}
+
+.modal-content {
+	border-radius: 0px;
 }

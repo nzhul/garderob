@@ -3190,10 +3190,10 @@ body .tparrows {
 	transition: all 0.3s;
 }
 
-.service-item:hover .cws-icon,
+/*.service-item:hover .cws-icon,
 .service-item:hover h3 {
 	color: #404040;
-}
+}*/
 
 .service-item a {
 	position: relative;

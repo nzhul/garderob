@@ -468,5 +468,87 @@ namespace App.Data.Service.Implementation
 
 			return false;
 		}
+
+		public int CopyOrder(ApplicationUser currentUser, int id)
+		{
+			Order dbOrder = this.GetOrder(id);
+			if (dbOrder != null)
+			{
+				Order newOrder = Mapper.Map(dbOrder, new Order());
+				newOrder.ClientId = currentUser.Id;
+				newOrder.State = OrderState.InProduction;
+				newOrder.RequestDate = DateTime.UtcNow;
+				newOrder.LastModified = DateTime.UtcNow;
+				newOrder.IsPublic = false;
+
+				foreach (var image in dbOrder.SketchImages)
+				{
+					Image newImage = new Image
+					{
+						Small = image.Small,
+						Medium = image.Medium,
+						Big = image.Big
+					};
+
+					this.Data.Images.Add(newImage);
+					this.Data.SaveChanges();
+					newOrder.SketchImages.Add(newImage);
+				}
+
+				foreach (var image in dbOrder.DesignImages)
+				{
+					Image newImage = new Image
+					{
+						Small = image.Small,
+						Medium = image.Medium,
+						Big = image.Big
+					};
+
+					this.Data.Images.Add(newImage);
+					this.Data.SaveChanges();
+					newOrder.DesignImages.Add(newImage);
+				}
+
+				foreach (var image in dbOrder.ResultImages)
+				{
+					Image newImage = new Image
+					{
+						Small = image.Small,
+						Medium = image.Medium,
+						Big = image.Big
+					};
+
+					this.Data.Images.Add(newImage);
+					this.Data.SaveChanges();
+					newOrder.ResultImages.Add(newImage);
+				}
+
+				this.Data.Orders.Add(newOrder);
+				this.Data.SaveChanges();
+
+				this.SendAdminNotificationForCopyOrder(currentUser, newOrder.Id);
+
+				return newOrder.Id;
+			}
+
+			return 0;
+		}
+
+		private void SendAdminNotificationForCopyOrder(ApplicationUser theClient, int newOrderId)
+		{
+			MessageData message = new MessageData
+			{
+				MessageTitle = "Нова поръчка (tvoiatgarderob.bg)",
+				MessageBody = "Получихте нова поръчка от раздел 'Готови продукти':" + "<br/>" + "<br/>"
+				+ "Клиент(Имена): " + theClient.FirstName + " " + theClient.LastName + "<br/>"
+				+ "Клиент(Email): " + theClient.Email + "<br/>"
+				+ "Клиент(Телефон): " + theClient.PhoneNumber + "<br/><br/>"
+				+ "Поръчка: <br/><br/>"
+				+ "<a href='http://www.tvoiatgarderob.bg/administration/orders/edit/" + newOrderId.ToString() + "'>Отвори в административния панел</a>"
+			};
+
+			ApplicationUser theAdmin = this.clientsService.GetApplicationAdmin();
+			this.MessagingService.Notify(theAdmin, message);
+		}
 	}
 }
