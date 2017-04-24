@@ -1099,13 +1099,15 @@
     <Content Include="Content\img\live-preview\materials\9-oak.jpg" />
     <Content Include="Content\img\live-preview\materials\back\01-white.png" />
     <Content Include="Content\img\live-preview\materials\back\02-cream.png" />
-    <Content Include="Content\img\live-preview\materials\back\03-white-satin.png" />
     <Content Include="Content\img\live-preview\materials\back\04-loire-ash.png" />
+    <Content Include="Content\img\live-preview\materials\back\20-walnut.png" />
+    <Content Include="Content\img\live-preview\materials\back\23-black.png" />
     <Content Include="Content\img\live-preview\materials\base-image.jpg" />
     <Content Include="Content\img\live-preview\materials\front\01-white.png" />
     <Content Include="Content\img\live-preview\materials\front\02-cream.png" />
-    <Content Include="Content\img\live-preview\materials\front\03-white-satin.png" />
     <Content Include="Content\img\live-preview\materials\front\04-loire-ash.png" />
+    <Content Include="Content\img\live-preview\materials\front\20-walnut.png" />
+    <Content Include="Content\img\live-preview\materials\front\23-black.png" />
     <Content Include="Content\img\live-preview\materials\small\1-white.jpg" />
     <Content Include="Content\img\live-preview\materials\small\10-oak-country.jpg" />
     <Content Include="Content\img\live-preview\materials\small\11-branch.jpg" />
