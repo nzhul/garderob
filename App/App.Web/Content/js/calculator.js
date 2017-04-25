@@ -170,7 +170,9 @@ $(document).ready(function () {
 					panta: 1.8, // лв цена панта
 					mehanizam2Vrati: 170, // лв 
 					mehanizam3Vrati: 250, // лв 
-					mirrorPrice: 35 // лв m2 за огледало
+					mirrorPrice: 35, // лв m2 за огледало
+					mehanizamDrawer: 15, // лв механизам чекмедже
+					trudDrawer: 5, // лв труд чекмедже - сглабяне
 				},
 				baseMaterialPrice: baseMaterialPrice,
 				doorMaterialPrice: doorMaterialPrice,
@@ -200,6 +202,8 @@ $(document).ready(function () {
 	});
 
 	function calculateResult(data) {
+		console.log('------------------------');
+		// ВЪНШНИ ГАБАРИТИ
 		var d = data.outerSizeDepth;
 		var h = data.outerSizeHeight;
 		var w = data.outerSizeWidth;
@@ -230,16 +234,13 @@ $(document).ready(function () {
 
 		var totalOuterPrice = M + Y + S + L;
 
-		//console.log('-------------------------------------');
-		//console.log("currentResultOuterSize: " + outerSize);
-		//console.log("currentResultElementsSize: " + elementsSize);
-		//console.log("cokalSize: " + cokalSize);
-		//console.log("kantSize: " + kantSize);
-		//console.log("M: " + M);
-		//console.log("Y: " + Y);
-		//console.log("S: " + S);
-		//console.log("L: " + L);
-		//console.log("Обща цена (външна): " + totalOuterPrice);
+		console.log("Цена външни габарити: " + totalOuterPrice);
+
+		// ДРЪЖКИ
+		var doorsTotalCount = getDoorsTotalCount(data.doorPrices);
+		var totalHandlesPrice = data.handleMaterialPrice * doorsTotalCount;
+
+		console.log("Цена дръжки: " + totalHandlesPrice);
 
 
 		// ВРАТИ
@@ -250,7 +251,7 @@ $(document).ready(function () {
 			totalDoorsPrice += calculateDoorPrice(currentDoorData, data);
 		}
 
-		//console.log("Обща цена (врати): " + totalDoorsPrice);
+		console.log("Обща цена (врати): " + totalDoorsPrice);
 
 
 		// ФИКСИРАНИ ВЪТРЕШНИ ДЕЛЕНИЯ
@@ -261,7 +262,7 @@ $(document).ready(function () {
 			totalDividersPrice += calculateDividerPrice(currentDividerData, data);
 		}
 
-		//console.log("Обща цена (разделители): " + totalDividersPrice);
+		console.log("Обща цена (разделители): " + totalDividersPrice);
 
 		// РАФТОВЕ
 		var totalShelfsPrice = 0;
@@ -272,6 +273,80 @@ $(document).ready(function () {
 		}
 
 		console.log("Обща цена (рафтове): " + totalShelfsPrice);
+
+		// ЧЕКМЕДЖЕТА
+		var totalDrawerPrice = 0;
+		for (var i = 0; i < data.drawerPrices.length; i++) {
+			var currentDrawerData = data.drawerPrices[i];
+			totalDrawerPrice += calculateDrawerPrice(currentDrawerData, data);
+		}
+
+		// ЗАКАЧАЛКИ
+		// TODO: USE LOOP
+		var hangerPrice = data.hangerPrice * data.hangerCount;
+
+		// ОГЛЕДАЛА
+		// Checkbox - dali da ima ogledala
+		var totalMirrorsPrice = 0;
+		for (var i = 0; i < data.mirrorPrices.length; i++) {
+			var currentMirrorData = data.mirrorPrices[i];
+			totalMirrorsPrice += calculateMirrorPrice(currentMirrorData, data);
+		}
+
+		console.log("Обща цена (огледала): " + totalMirrorsPrice);
+
+		var TOTALPRICE = totalOuterPrice + totalHandlesPrice + totalDoorsPrice + totalDividersPrice + totalShelfsPrice + totalDrawerPrice + hangerPrice + totalMirrorsPrice;
+
+		console.log("TOTAL PRICE: " + TOTALPRICE);
+
+		return TOTALPRICE;
+	}
+
+	function getDoorsTotalCount(doorPrices) {
+		var totalCount = 0;
+		for (var i = 0; i < doorPrices.length; i++) {
+			totalCount += doorPrices[i].count;
+		}
+
+		return totalCount;
+	}
+
+	function calculateMirrorPrice(mirrorData, data) {
+		var h = mirrorData.height;
+		var w = mirrorData.width;
+		var c = mirrorData.count;
+
+		var a = ((h * w) * c) / 10000;
+
+		var V = (a * data.constants.mirrorPrice) + (c * 5);
+
+		return V;
+	}
+
+	function calculateDrawerPrice(drawerData, data) {
+		var h = drawerData.height;
+		var w = drawerData.width;
+		var d = data.outerSizeDepth;
+		var c = drawerData.count;
+		var p = data.constants.mehanizamDrawer;
+		var r = data.constants.trudDrawer;
+
+		var a = (((3 * (w * h)) + (2 * (d * h))) * c) / 10000;
+		var b = (2 * (w + h)) / 100;
+		var i = b * (data.constants.cant2MM + data.constants.montajKant2MM);
+		var f = ((2 * (w + h)) + (2 * (h + d))) / 100;
+		var m = f * (data.constants.cant08MM + data.constants.montajKant08MM);
+
+		var M = c * (m + i);
+		var Y = a * data.constants.cuttingPrice;
+		var q = (c * (w * d)) / 10000;
+		var T = q * data.fazerMaterialPrice;
+
+		var Q = (a * data.baseMaterialPrice) + ((p + r) * c);
+
+		var V = Q + M + Y + T;
+
+		return V;
 	}
 
 	function calculateShelfPrice(shelfData, data) {
