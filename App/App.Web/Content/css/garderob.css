@@ -1109,3 +1109,7 @@ label.custom-sketches-input {
 .modal-content {
 	border-radius: 0px;
 }
+
+.js-mirror-row{
+	display:none;
+}

@@ -32,6 +32,19 @@ $(document).ready(function () {
 		});
 	}
 
+	// Toggle Mirror rows
+	var mirrorToggleCb = $('.js-mirrors-toggle');
+	mirrorToggleCb.on('change', function () {
+		var isChecked = mirrorToggleCb.is(':checked');
+		var mirrorsRows = $('.js-mirror-row');
+		if (isChecked) {
+			console.log(mirrorsRows);
+			mirrorsRows.show();
+		} else {
+			mirrorsRows.hide();
+		}
+	})
+
 
 	var rowMultiplierBtns = $('.js-row-multiplier');
 	for (var i = 0; i < rowMultiplierBtns.length; i++) {
@@ -149,11 +162,14 @@ $(document).ready(function () {
 		var drawerPrices = getPriceData('.js-drawer-row', ['height', 'width', 'count']);
 
 		// ЗАКАЧАЛКИ:
-		var hangerPrice = parseInt($('.js-hanger-type').val());
-		var hangerCount = parseInt($('.js-hanger-count').val());
+		var hangerPrices = getPriceData('.js-hanger-row', ['hangerType', 'hangerCount']);
 
 		// ОГЛЕДАЛА:
 		var mirrorPrices = getPriceData('.js-mirror-row', ['height', 'width', 'count']);
+
+		if (!$('.js-mirrors-toggle').is(':checked')) {
+			mirrorPrices = [{ height: 0, width: 0, count: 0 }];
+		}
 
 		if (errors.length == 0) {
 			var allErrorMessages = $('.js-calculator-error').hide();
@@ -187,8 +203,7 @@ $(document).ready(function () {
 				innerDividersPrices: innerDividersPrices,
 				shelfPrices: shelfPrices,
 				drawerPrices: drawerPrices,
-				hangerPrice: hangerPrice,
-				hangerCount: hangerCount,
+				hangerPrices: hangerPrices,
 				mirrorPrices: mirrorPrices
 			};
 
@@ -283,7 +298,14 @@ $(document).ready(function () {
 
 		// ЗАКАЧАЛКИ
 		// TODO: USE LOOP
-		var hangerPrice = data.hangerPrice * data.hangerCount;
+		var totalHangerPrice = 0;
+		for (var i = 0; i < data.hangerPrices.length; i++) {
+			totalHangerPrice += data.hangerPrices[i].hangerType * data.hangerPrices[i].hangerCount;
+		}
+
+		console.log("Обща цена (закачалки): " + totalHangerPrice);
+
+		//var hangerPrice = data.hangerPrice * data.hangerCount;
 
 		// ОГЛЕДАЛА
 		// Checkbox - dali da ima ogledala
@@ -295,7 +317,7 @@ $(document).ready(function () {
 
 		console.log("Обща цена (огледала): " + totalMirrorsPrice);
 
-		var TOTALPRICE = totalOuterPrice + totalHandlesPrice + totalDoorsPrice + totalDividersPrice + totalShelfsPrice + totalDrawerPrice + hangerPrice + totalMirrorsPrice;
+		var TOTALPRICE = totalOuterPrice + totalHandlesPrice + totalDoorsPrice + totalDividersPrice + totalShelfsPrice + totalDrawerPrice + totalHangerPrice + totalMirrorsPrice;
 
 		console.log("TOTAL PRICE: " + TOTALPRICE);
 

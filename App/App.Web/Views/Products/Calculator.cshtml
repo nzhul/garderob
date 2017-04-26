@@ -136,7 +136,12 @@
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
-						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
 					</select>
 				</div>
 			</div>
@@ -197,7 +202,12 @@
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
-						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
 					</select>
 				</div>
 			</div>
@@ -232,7 +242,12 @@
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
-						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
 					</select>
 				</div>
 			</div>
@@ -270,7 +285,12 @@
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
-						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
 					</select>
 				</div>
 			</div>
@@ -320,7 +340,12 @@
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
-						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
 					</select>
 				</div>
 			</div>
@@ -331,17 +356,17 @@
 	<!-- ROW -->
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Закачалки:</h3>
+			<h3>Закачалки: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
 		</div>
 	</div>
-	<div class="row mt-10">
+	<div class="row mt-10 js-calculator-row js-hanger-row">
 		<div class="col-md-4">
 			<div class="col-md-7">
 				<span>Вид закачалка :</span>
 			</div>
 			<div class="col-md-5">
 				<div class="selection-box mb-30">
-					<select class="js-hanger-type">
+					<select class="js-hangerType">
 						<option value="10">Стандартна</option>
 						<option value="20">Еластична</option>
 						<option value="30">Друг вид</option>
@@ -356,11 +381,16 @@
 			</div>
 			<div class="col-md-4">
 				<div class="selection-box mb-30">
-					<select class="js-hanger-count">
+					<select class="js-hangerCount">
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
-						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
 					</select>
 				</div>
 			</div>
@@ -374,7 +404,13 @@
 	<!-- ROW -->
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Огледала: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
+			<style>
+				input[type="checkbox"]:checked:before {
+					position:relative;
+					top:-6px;
+				}
+			</style>
+			<h3><input type="checkbox" class="js-mirrors-toggle" style="margin:-5px 5px 0 0px;" />Огледала: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
 		</div>
 	</div>
 	<div class="row mt-10 js-calculator-row js-mirror-row">
@@ -410,7 +446,12 @@
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
-						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
 					</select>
 				</div>
 			</div>
@@ -423,6 +464,12 @@
 		<div class="col-md-12 col-md-offset-8">
 			<a class="cws-button alt js-calculate-btn" style="cursor:pointer;">Изчисли</a>
 			<input type="text" class="js-result" style="text-align:center;" readonly value="-"><br />
+			<style>
+				#installationCb:checked:before {
+					position: relative;
+					top: unset;
+				}
+			</style>
 			<div class="checkbox" style="position:relative;left:270px;bottom:0px;">
 				<input id="installationCb" type="checkbox" value="None" name="check">
 				<label for="installationCb">Монтаж</label>
