@@ -1110,6 +1110,23 @@ label.custom-sketches-input {
 	border-radius: 0px;
 }
 
-.js-mirror-row{
-	display:none;
+.js-mirror-row {
+	display: none;
+}
+
+.calculator-installation-checkbox-container {
+	display: block;
+	height: 50px;
+	position: relative;
+	left: 76px;
+	top: 10px;
+}
+
+	.calculator-installation-checkbox-container input[type=checkbox] {
+		margin-top:11px;
+	}
+
+.js-door-type {
+	padding: 5px 5px 5px 5px;
+	text-transform: uppercase;
 }

@@ -45,6 +45,21 @@ $(document).ready(function () {
 		}
 	})
 
+	// Toggle doors type
+	var doorTypeToggle = $('.js-door-type');
+	doorTypeToggle.on('change', function () {
+		var type = doorTypeToggle.val();
+		var cols = $('.js-doors-col');
+
+		if (type == 1) {
+			cols.show();
+		}
+		if (type == 2) {
+			
+			cols.hide();
+		}
+	})
+
 
 	var rowMultiplierBtns = $('.js-row-multiplier');
 	for (var i = 0; i < rowMultiplierBtns.length; i++) {
@@ -189,6 +204,7 @@ $(document).ready(function () {
 					mirrorPrice: 35, // лв m2 за огледало
 					mehanizamDrawer: 15, // лв механизам чекмедже
 					trudDrawer: 5, // лв труд чекмедже - сглабяне
+					slidingDoorPrice: 20 // лв цена за плъзгаща се врата
 				},
 				baseMaterialPrice: baseMaterialPrice,
 				doorMaterialPrice: doorMaterialPrice,
@@ -260,10 +276,17 @@ $(document).ready(function () {
 
 		// ВРАТИ
 		var totalDoorsPrice = 0;
+		if ($('.js-door-type').val() == 1) {
+			for (var i = 0; i < data.doorPrices.length; i++) {
+				var currentDoorData = data.doorPrices[i];
+				totalDoorsPrice += calculateDoorPrice(currentDoorData, data);
+			}
 
-		for (var i = 0; i < data.doorPrices.length; i++) {
-			var currentDoorData = data.doorPrices[i];
-			totalDoorsPrice += calculateDoorPrice(currentDoorData, data);
+		} else if ($('.js-door-type').val() == 2) {
+			for (var i = 0; i < data.doorPrices.length; i++) {
+				var currentDoorData = data.doorPrices[i];
+				totalDoorsPrice += currentDoorData.count * data.constants.slidingDoorPrice;
+			}
 		}
 
 		console.log("Обща цена (врати): " + totalDoorsPrice);
@@ -446,14 +469,16 @@ $(document).ready(function () {
 	}
 
 	function displayResult(result) {
-		var installationPercent = 1.07;
+		var installationPercent = 0.07;
+		var installationPrice = 0;
 		var includeInstallation = $('#installationCb').is(':checked');
 
 		if (includeInstallation) {
-			result = result * installationPercent;
+			installationPrice = result * installationPercent;
 		}
 
-		$('.js-result').val(result + ' лв');
+		$('.js-result').val(parseFloat(result).toFixed(2) + ' лв');
+		$('.js-result-installation').val(parseFloat(installationPrice).toFixed(2) + ' лв');
 	}
 
 	function getPriceData(rowsSelector, fields) {

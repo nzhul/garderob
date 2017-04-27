@@ -166,11 +166,17 @@
 	<div class="cws_divider with-plus long"></div>
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Врати <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
+			<h3>
+				<select class="js-door-type">
+					<option value="1">Стандартни</option>
+					<option value="2">Плъзгащи се</option>
+				</select>
+				Врати <i class="fa fa-plus-circle js-row-multiplier"></i>
+			</h3>
 		</div>
 	</div>
 	<div class="row mt-10 js-calculator-row js-doors-row">
-		<div class="col-md-4">
+		<div class="col-md-4 js-doors-col">
 			<div class="calculator-slider">
 				<div class="col-md-8">
 					<span>Височина:</span>
@@ -181,7 +187,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 js-doors-col">
 			<div class="calculator-slider">
 				<div class="col-md-8">
 					<span>Ширина:</span>
@@ -463,16 +469,17 @@
 	<div class="row mb-30 mt-30">
 		<div class="col-md-12 col-md-offset-8">
 			<a class="cws-button alt js-calculate-btn" style="cursor:pointer;">Изчисли</a>
-			<input type="text" class="js-result" style="text-align:center;" readonly value="-"><br />
+			<input type="text" class="js-result" style="text-align:center;" readonly value="0 лв"><br />
 			<style>
 				#installationCb:checked:before {
 					position: relative;
 					top: unset;
 				}
 			</style>
-			<div class="checkbox" style="position:relative;left:270px;bottom:0px;">
+			<div class="checkbox calculator-installation-checkbox-container">
 				<input id="installationCb" type="checkbox" value="None" name="check">
 				<label for="installationCb">Монтаж</label>
+				<input type="text" class="js-result-installation" style="text-align:center;" readonly value="0 лв"><br />
 			</div>
 		</div>
 	</div>

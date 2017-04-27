@@ -70,18 +70,15 @@
 
 					if (!Request.IsAuthenticated)
 					{
-						@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-						@Html.LabelFor(model => model.Name)
+						@Html.LabelFor(model => model.Name) @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 						@Html.EditorFor(model => model.Name)
 						<br />
 
-						@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-						@Html.LabelFor(model => model.Email)
+						@Html.LabelFor(model => model.Email) @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 						@Html.EditorFor(model => model.Email)
 						<br />
 
-						@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-						@Html.LabelFor(model => model.Phone)
+						@Html.LabelFor(model => model.Phone) @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
 						@Html.EditorFor(model => model.Phone)
 						<br />
 					}
