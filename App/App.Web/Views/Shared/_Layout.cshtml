@@ -29,7 +29,7 @@
 						</div>
 					</div>
 					<div class="col-sm-4" style="text-align:center;">
-						<h4><a style="font-weight:bold;letter-spacing:1px;" href="">Tvoiat<span style="color: #237dc8;">Garderob</span>.bg</a></h4>
+						<h4 class="headline"><a style="font-weight:bold;letter-spacing:1px;" href="">Tvoiat<span style="color: #237dc8;">Garderob</span>.bg</a></h4>
 						<!-- Test -->
 					</div>
 					@Html.Partial("_ProfileLinks")
@@ -105,12 +105,24 @@
 					<div class="widget-footer">
 						<h3>Моят профил</h3>
 						<div class="cws_divider with-plus short-2 mb-5 mt-10"></div>
-						<address>
-							<p>Следи статуса на своите <br /> поръчки в твоя:</p>
-						</address>
-						<div class="footer-form-wrap">
-							<a href="@Url.Action("Orders", "Warehouse")" class="newsletter-submit cws-button alt">Склад</a>
-						</div>
+						@if (this.Request.IsAuthenticated)
+						{
+							<address>
+								<p>Следи статуса на своите <br /> поръчки в твоя:</p>
+							</address>
+							<div class="footer-form-wrap">
+								<a href="@Url.Action("Orders", "Warehouse")" class="newsletter-submit cws-button alt">Склад</a>
+							</div>
+						}
+						else
+						{
+							<address>
+								<p>Регистрирай се за да следиш статуса на свойте поръчки:</p>
+							</address>
+							<div class="footer-form-wrap">
+								<a href="@Url.Action("Register", "Account")" class="newsletter-submit cws-button alt">Регистрация</a>
+							</div>
+						}
 					</div>
 				</div>
 			</div>

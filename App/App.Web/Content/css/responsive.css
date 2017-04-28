@@ -46,6 +46,10 @@
 }
 
 @media (max-width: 992px) {
+	.headline {
+		display: none;
+	}
+
 	.splash-image-wrapper img#main-image-hand {
 		display: none;
 	}
