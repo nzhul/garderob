@@ -8166,7 +8166,7 @@ td.ui-datepicker-today {
 }
 
 .contact-form label {
-	margin-top:20px;
+	margin-top: 20px;
 }
 
 .contact-form input:not(.cws-button):focus,
@@ -8212,6 +8212,7 @@ td.ui-datepicker-today {
 		top: 7px;
 		right: 15px;
 		color: #999999;
+		pointer-events: none;
 	}
 
 	.selection-box select {

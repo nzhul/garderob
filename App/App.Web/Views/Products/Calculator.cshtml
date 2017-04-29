@@ -25,6 +25,12 @@
 	</div>
 </div>
 <div class="container calculator-container">
+	<style>
+		input[type="checkbox"]:checked:before {
+			position: relative;
+			top: -6px;
+		}
+	</style>
 	<div class="row">
 		<div class="col-md-12">
 			<a href="" class="cws-button with-icon alt calculator-head-button">Калкулатор<i class="fa fa-calculator calculator-icon"></i></a>
@@ -164,307 +170,320 @@
 		</div>
 	</div>
 	<div class="cws_divider with-plus long"></div>
-	<div class="row">
-		<div class="col-md-12">
-			<h3>
-				<select class="js-door-type">
-					<option value="1">Стандартни</option>
-					<option value="2">Плъзгащи се</option>
-				</select>
-				Врати <i class="fa fa-plus-circle js-row-multiplier"></i>
-			</h3>
-		</div>
-	</div>
-	<div class="row mt-10 js-calculator-row js-doors-row">
-		<div class="col-md-4 js-doors-col">
-			<div class="calculator-slider">
-				<div class="col-md-8">
-					<span>Височина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
-				</div>
-				<div class="col-md-4">
-					<input type="text" class="amount js-height" readonly>
-				</div>
+	<section class="calculator-section">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>
+					<select class="js-door-type">
+						<option value="1">Стандартни</option>
+						<option value="2">Плъзгащи се</option>
+					</select>
+					Врати <i class="fa fa-plus-circle js-row-multiplier"></i>
+				</h3>
 			</div>
 		</div>
-		<div class="col-md-4 js-doors-col">
-			<div class="calculator-slider">
-				<div class="col-md-8">
-					<span>Ширина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
-				</div>
-				<div class="col-md-4">
-					<input type="text" class="amount js-width" readonly>
+		<div class="row mt-10 js-calculator-row js-doors-row">
+			<div class="col-md-4 js-doors-col">
+				<div class="calculator-slider">
+					<div class="col-md-8">
+						<span>Височина:</span>
+						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="amount js-height" readonly>
+					</div>
 				</div>
 			</div>
+			<div class="col-md-4 js-doors-col">
+				<div class="calculator-slider">
+					<div class="col-md-8">
+						<span>Ширина:</span>
+						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="amount js-width" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="col-md-8">
+					<span>Брой:</span>
+				</div>
+				<div class="col-md-4">
+					<div class="selection-box mb-30">
+						<select class="js-count">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1" style="text-align:right;">
+				<button class="js-remove-row" title="Изтрии реда"><i class="fa fa-remove"></i></button>
+			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="col-md-8">
-				<span>Брой:</span>
+		<div class="cws_divider with-plus long"></div>
+	</section>
+	<section class="calculator-section">
+		<div class="row">
+			<div class="col-md-12">
+				<h3><input type="checkbox" class="js-section-toggle js-dividers-toggle" style="margin:-5px 5px 0 0px;" />Фиксирани вътрешни деления: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
+			</div>
+		</div>
+		<div class="row mt-10 js-calculator-row js-inner-dividers-row js-section-row">
+			<div class="col-md-4">
+				<div class="calculator-slider">
+					<div class="col-md-8">
+						<span>Дължина:</span>
+						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="amount js-length" readonly>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="selection-box mb-30">
-					<select class="js-count">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-					</select>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="cws_divider with-plus long"></div>
-	<div class="row">
-		<div class="col-md-12">
-			<h3>Фиксирани вътрешни деления: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
-		</div>
-	</div>
-	<div class="row mt-10 js-calculator-row js-inner-dividers-row">
-		<div class="col-md-4">
-			<div class="calculator-slider">
 				<div class="col-md-8">
-					<span>Дължина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					<span>Брой :</span>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="amount js-length" readonly>
+					<div class="selection-box mb-30">
+						<select class="js-count">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+						</select>
+					</div>
 				</div>
 			</div>
+			<div class="col-md-1 col-md-offset-3" style="text-align:right;">
+				<button class="js-remove-row" title="Изтрии реда"><i class="fa fa-remove"></i></button>
+			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="col-md-8">
-				<span>Брой :</span>
+		<div class="cws_divider with-plus long"></div>
+	</section>
+	<section class="calculator-section">
+		<!-- ROW -->
+		<div class="row">
+			<div class="col-md-12">
+				<h3><input type="checkbox" class="js-section-toggle js-shelfs-toggle" style="margin:-5px 5px 0 0px;" />Рафтове: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
+			</div>
+		</div>
+		<div class="row mt-10 js-calculator-row js-shelf-row js-section-row">
+			<div class="col-md-4">
+				<div class="calculator-slider">
+					<div class="col-md-8">
+						<span>Дължина:</span>
+						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="amount js-length" readonly>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="selection-box mb-30">
-					<select class="js-count">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<!--empty-->
-		</div>
-	</div>
-	<div class="cws_divider with-plus long"></div>
-	<!-- ROW -->
-	<div class="row">
-		<div class="col-md-12">
-			<h3>Рафтове: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
-		</div>
-	</div>
-	<div class="row mt-10 js-calculator-row js-shelf-row">
-		<div class="col-md-4">
-			<div class="calculator-slider">
 				<div class="col-md-8">
-					<span>Дължина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					<span>Брой :</span>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="amount js-length" readonly>
+					<div class="selection-box mb-30">
+						<select class="js-count">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+						</select>
+					</div>
 				</div>
 			</div>
+			<div class="col-md-1 col-md-offset-3" style="text-align:right;">
+				<button class="js-remove-row" title="Изтрии реда"><i class="fa fa-remove"></i></button>
+			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="col-md-8">
-				<span>Брой :</span>
+		<div class="cws_divider with-plus long"></div>
+		<!-- ROW end -->
+	</section>
+	<section class="calculator-section">
+		<!-- ROW -->
+		<div class="row">
+			<div class="col-md-12">
+				<h3><input type="checkbox" class="js-section-toggle js-drawers-toggle" style="margin:-5px 5px 0 0px;" />Чекмедже: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
+			</div>
+		</div>
+		<div class="row mt-10 js-calculator-row js-drawer-row js-section-row">
+			<div class="col-md-4">
+				<div class="calculator-slider">
+					<div class="col-md-8">
+						<span>Височина:</span>
+						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="amount js-height" readonly>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="selection-box mb-30">
-					<select class="js-count">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-					</select>
+				<div class="calculator-slider">
+					<div class="col-md-8">
+						<span>Ширина:</span>
+						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="amount js-width" readonly>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<!--empty-->
-		</div>
-	</div>
-	<div class="cws_divider with-plus long"></div>
-	<!-- ROW end -->
-	<!-- ROW -->
-	<div class="row">
-		<div class="col-md-12">
-			<h3>Чекмедже: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
-		</div>
-	</div>
-	<div class="row mt-10 js-calculator-row js-drawer-row">
-		<div class="col-md-4">
-			<div class="calculator-slider">
+			<div class="col-md-3">
 				<div class="col-md-8">
-					<span>Височина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					<span>Брой :</span>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="amount js-height" readonly>
+					<div class="selection-box mb-30">
+						<select class="js-count">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+						</select>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="calculator-slider">
-				<div class="col-md-8">
-					<span>Ширина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
-				</div>
-				<div class="col-md-4">
-					<input type="text" class="amount js-width" readonly>
-				</div>
+			<div class="col-md-1" style="text-align:right;">
+				<button class="js-remove-row" title="Изтрии реда"><i class="fa fa-remove"></i></button>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="col-md-8">
-				<span>Брой :</span>
+		<div class="cws_divider with-plus long"></div>
+		<!-- ROW end -->
+	</section>
+	<section class="calculator-section">
+		<!-- ROW -->
+		<div class="row">
+			<div class="col-md-12">
+				<h3><input type="checkbox" class="js-section-toggle js-hangers-toggle" style="margin:-5px 5px 0 0px;" />Закачалки: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
+			</div>
+		</div>
+		<div class="row mt-10 js-calculator-row js-hanger-row js-section-row">
+			<div class="col-md-4">
+				<div class="col-md-7">
+					<span>Вид закачалка :</span>
+				</div>
+				<div class="col-md-5">
+					<div class="selection-box mb-30">
+						<select class="js-hangerType">
+							<option value="10">Стандартна</option>
+							<option value="20">Еластична</option>
+							<option value="30">Друг вид</option>
+							<option value="40">Трети вид</option>
+						</select>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="selection-box mb-30">
-					<select class="js-count">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-					</select>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="cws_divider with-plus long"></div>
-	<!-- ROW end -->
-	<!-- ROW -->
-	<div class="row">
-		<div class="col-md-12">
-			<h3>Закачалки: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
-		</div>
-	</div>
-	<div class="row mt-10 js-calculator-row js-hanger-row">
-		<div class="col-md-4">
-			<div class="col-md-7">
-				<span>Вид закачалка :</span>
-			</div>
-			<div class="col-md-5">
-				<div class="selection-box mb-30">
-					<select class="js-hangerType">
-						<option value="10">Стандартна</option>
-						<option value="20">Еластична</option>
-						<option value="30">Друг вид</option>
-						<option value="40">Трети вид</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="col-md-8">
-				<span>Брой :</span>
-			</div>
-			<div class="col-md-4">
-				<div class="selection-box mb-30">
-					<select class="js-hangerCount">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<!--empty-->
-		</div>
-	</div>
-	<div class="cws_divider with-plus long"></div>
-	<!-- ROW end -->
-	<!-- ROW -->
-	<div class="row">
-		<div class="col-md-12">
-			<style>
-				input[type="checkbox"]:checked:before {
-					position:relative;
-					top:-6px;
-				}
-			</style>
-			<h3><input type="checkbox" class="js-mirrors-toggle" style="margin:-5px 5px 0 0px;" />Огледала: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
-		</div>
-	</div>
-	<div class="row mt-10 js-calculator-row js-mirror-row">
-		<div class="col-md-4">
-			<div class="calculator-slider">
 				<div class="col-md-8">
-					<span>Височина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					<span>Брой :</span>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="amount js-height" readonly>
+					<div class="selection-box mb-30">
+						<select class="js-hangerCount">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+						</select>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="calculator-slider">
-				<div class="col-md-8">
-					<span>Ширина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
-				</div>
-				<div class="col-md-4">
-					<input type="text" class="amount js-width" readonly>
-				</div>
+			<div class="col-md-1 col-md-offset-3" style="text-align:right;">
+				<button class="js-remove-row" title="Изтрии реда"><i class="fa fa-remove"></i></button>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="col-md-8">
-				<span>Брой :</span>
+		<div class="cws_divider with-plus long"></div>
+		<!-- ROW end -->
+	</section>
+	<section class="calculator-section">
+		<!-- ROW -->
+		<div class="row">
+			<div class="col-md-12">
+				<h3><input type="checkbox" class="js-section-toggle js-mirrors-toggle" style="margin:-5px 5px 0 0px;" />Огледала: <i class="fa fa-plus-circle js-row-multiplier"></i></h3>
+			</div>
+		</div>
+		<div class="row mt-10 js-calculator-row js-mirror-row js-section-row">
+			<div class="col-md-4">
+				<div class="calculator-slider">
+					<div class="col-md-8">
+						<span>Височина:</span>
+						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="amount js-height" readonly>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="selection-box mb-30">
-					<select class="js-count">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-					</select>
+				<div class="calculator-slider">
+					<div class="col-md-8">
+						<span>Ширина:</span>
+						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="amount js-width" readonly>
+					</div>
 				</div>
 			</div>
+			<div class="col-md-3">
+				<div class="col-md-8">
+					<span>Брой :</span>
+				</div>
+				<div class="col-md-4">
+					<div class="selection-box mb-30">
+						<select class="js-count">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1" style="text-align:right;">
+				<button class="js-remove-row" title="Изтрии реда"><i class="fa fa-remove"></i></button>
+			</div>
 		</div>
-	</div>
-
-	<!-- ROW end -->
+		<!-- ROW end -->
+	</section>
 
 	<div class="row mb-30 mt-30">
 		<div class="col-md-12 col-md-offset-8">

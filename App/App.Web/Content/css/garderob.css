@@ -1110,7 +1110,7 @@ label.custom-sketches-input {
 	border-radius: 0px;
 }
 
-.js-mirror-row {
+.js-section-row {
 	display: none;
 }
 
@@ -1129,4 +1129,28 @@ label.custom-sketches-input {
 .js-door-type {
 	padding: 5px 5px 5px 5px;
 	text-transform: uppercase;
+}
+
+.js-row-multiplier {
+	opacity: .4;
+}
+
+.js-row-multiplier:hover {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.js-remove-row {
+	width: 30px;
+	height: 30px;
+	border-radius: 0px;
+	border: 1px solid;
+	border-color: #d07575;
+	color: #d07575;
+	background-color: #fcd4d4;
+	opacity: .4;
+}
+
+.js-remove-row:hover {
+	opacity: 1;
 }

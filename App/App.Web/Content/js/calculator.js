@@ -32,16 +32,16 @@ $(document).ready(function () {
 		});
 	}
 
-	// Toggle Mirror rows
-	var mirrorToggleCb = $('.js-mirrors-toggle');
+	// Toggle sections
+	var mirrorToggleCb = $('.js-section-toggle');
 	mirrorToggleCb.on('change', function () {
-		var isChecked = mirrorToggleCb.is(':checked');
-		var mirrorsRows = $('.js-mirror-row');
+		var isChecked = $(this).is(':checked');
+		var section = $(this).parents('section.calculator-section');
+		var rows = section.find('.js-calculator-row');
 		if (isChecked) {
-			console.log(mirrorsRows);
-			mirrorsRows.show();
+			rows.show();
 		} else {
-			mirrorsRows.hide();
+			rows.hide();
 		}
 	})
 
@@ -60,6 +60,21 @@ $(document).ready(function () {
 		}
 	})
 
+	// Remove row logic
+	$('.js-remove-row').on('click', removeRow);
+
+	function removeRow() {
+		var clickedBtn = $(this);
+		console.log(clickedBtn);
+		var section = clickedBtn.parents('section.calculator-section');
+		var sectionRowsCount = section.find('.js-calculator-row').length;
+		if (sectionRowsCount > 1) {
+			var rowToDelete = clickedBtn.parents('.row');
+			rowToDelete.remove();
+		} else {
+			alert("Не може да изтривате когато имате само 1 ред!");
+		}
+	}
 
 	var rowMultiplierBtns = $('.js-row-multiplier');
 	for (var i = 0; i < rowMultiplierBtns.length; i++) {
@@ -68,8 +83,15 @@ $(document).ready(function () {
 			var clickedBtn = $(this);
 			var row = clickedBtn.parents('.row').next('.js-calculator-row')
 			var clonedRow = row.clone();
-			clonedRowSliders = clonedRow.find('.slider-range-min');
 
+			clonedRowDeleteButtons = clonedRow.find('.js-remove-row');
+
+			for (var i = 0; i < clonedRowDeleteButtons.length; i++) {
+				var btn = $(clonedRowDeleteButtons[i]);
+				btn.on('click', removeRow);
+			}
+
+			clonedRowSliders = clonedRow.find('.slider-range-min');
 			for (var y = 0; y < clonedRowSliders.length; y++) {
 				var slider = $(clonedRowSliders[y]);
 
@@ -168,22 +190,29 @@ $(document).ready(function () {
 		var doorPrices = getPriceData('.js-doors-row', ['height', 'width', 'count']);
 
 		// ФИКСИРАНИ ВЪТРЕШНИ ДЕЛЕНИЯ:
-		var innerDividersPrices = getPriceData('.js-inner-dividers-row', ['length', 'count']);
+		if ($('.js-dividers-toggle').is(':checked')) {
+			var innerDividersPrices = getPriceData('.js-inner-dividers-row', ['length', 'count']);
+		}
 
 		// РАФТОВЕ:
-		var shelfPrices = getPriceData('.js-shelf-row', ['length', 'count']);
+		if ($('.js-shelfs-toggle').is(':checked')) {
+			var shelfPrices = getPriceData('.js-shelf-row', ['length', 'count']);
+		}
 
 		// ЧЕКМЕДЖЕ:
-		var drawerPrices = getPriceData('.js-drawer-row', ['height', 'width', 'count']);
+		if ($('.js-drawers-toggle').is(':checked')) {
+			var drawerPrices = getPriceData('.js-drawer-row', ['height', 'width', 'count']);
+		}
 
 		// ЗАКАЧАЛКИ:
-		var hangerPrices = getPriceData('.js-hanger-row', ['hangerType', 'hangerCount']);
+		if ($('.js-hangers-toggle').is(':checked')) {
+			var hangerPrices = getPriceData('.js-hanger-row', ['hangerType', 'hangerCount']);
+		}
 
 		// ОГЛЕДАЛА:
-		var mirrorPrices = getPriceData('.js-mirror-row', ['height', 'width', 'count']);
 
-		if (!$('.js-mirrors-toggle').is(':checked')) {
-			mirrorPrices = [{ height: 0, width: 0, count: 0 }];
+		if ($('.js-mirrors-toggle').is(':checked')) {
+			var mirrorPrices = getPriceData('.js-mirror-row', ['height', 'width', 'count']);
 		}
 
 		if (errors.length == 0) {
@@ -294,48 +323,54 @@ $(document).ready(function () {
 
 		// ФИКСИРАНИ ВЪТРЕШНИ ДЕЛЕНИЯ
 		var totalDividersPrice = 0;
-
-		for (var i = 0; i < data.innerDividersPrices.length; i++) {
-			var currentDividerData = data.innerDividersPrices[i];
-			totalDividersPrice += calculateDividerPrice(currentDividerData, data);
+		if (data.innerDividersPrices) {
+			for (var i = 0; i < data.innerDividersPrices.length; i++) {
+				var currentDividerData = data.innerDividersPrices[i];
+				totalDividersPrice += calculateDividerPrice(currentDividerData, data);
+			}
 		}
 
 		console.log("Обща цена (разделители): " + totalDividersPrice);
 
 		// РАФТОВЕ
 		var totalShelfsPrice = 0;
-
-		for (var i = 0; i < data.shelfPrices.length; i++) {
-			var currentShelfData = data.shelfPrices[i];
-			totalShelfsPrice += calculateShelfPrice(currentShelfData, data);
+		if (data.shelfPrices) {
+			for (var i = 0; i < data.shelfPrices.length; i++) {
+				var currentShelfData = data.shelfPrices[i];
+				totalShelfsPrice += calculateShelfPrice(currentShelfData, data);
+			}
 		}
 
 		console.log("Обща цена (рафтове): " + totalShelfsPrice);
 
 		// ЧЕКМЕДЖЕТА
 		var totalDrawerPrice = 0;
-		for (var i = 0; i < data.drawerPrices.length; i++) {
-			var currentDrawerData = data.drawerPrices[i];
-			totalDrawerPrice += calculateDrawerPrice(currentDrawerData, data);
+		if (data.drawerPrices) {
+			for (var i = 0; i < data.drawerPrices.length; i++) {
+				var currentDrawerData = data.drawerPrices[i];
+				totalDrawerPrice += calculateDrawerPrice(currentDrawerData, data);
+			}
 		}
 
+		console.log("Обща цена (чекмеджета): " + totalDrawerPrice);
+
 		// ЗАКАЧАЛКИ
-		// TODO: USE LOOP
 		var totalHangerPrice = 0;
-		for (var i = 0; i < data.hangerPrices.length; i++) {
-			totalHangerPrice += data.hangerPrices[i].hangerType * data.hangerPrices[i].hangerCount;
+		if (data.hangerPrices) {
+			for (var i = 0; i < data.hangerPrices.length; i++) {
+				totalHangerPrice += data.hangerPrices[i].hangerType * data.hangerPrices[i].hangerCount;
+			}
 		}
 
 		console.log("Обща цена (закачалки): " + totalHangerPrice);
 
-		//var hangerPrice = data.hangerPrice * data.hangerCount;
-
 		// ОГЛЕДАЛА
-		// Checkbox - dali da ima ogledala
 		var totalMirrorsPrice = 0;
-		for (var i = 0; i < data.mirrorPrices.length; i++) {
-			var currentMirrorData = data.mirrorPrices[i];
-			totalMirrorsPrice += calculateMirrorPrice(currentMirrorData, data);
+		if (data.mirrorPrices) {
+			for (var i = 0; i < data.mirrorPrices.length; i++) {
+				var currentMirrorData = data.mirrorPrices[i];
+				totalMirrorsPrice += calculateMirrorPrice(currentMirrorData, data);
+			}
 		}
 
 		console.log("Обща цена (огледала): " + totalMirrorsPrice);
