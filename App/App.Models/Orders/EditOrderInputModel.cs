@@ -62,6 +62,9 @@ namespace App.Models.Orders
 		[Display(Name = "Монтаж:")]
 		public bool Installation { get; set; }
 
+		[Display(Name = "Публична (Готови продукти):")]
+		public bool IsPublic { get; set; }
+
 		[Display(Name = "Брой:")]
 		public int Count { get; set; }
 

@@ -41,6 +41,10 @@
 			@Html.ValidationMessageFor(m => m.Installation)
 			@Html.EditorFor(m => m.Installation ) <br/>
 
+			@Html.LabelFor(m => m.IsPublic)
+			@Html.ValidationMessageFor(m => m.IsPublic)
+			@Html.EditorFor(m => m.IsPublic) <br />
+
 			@if (Model.ClientId == null)
 			{
 				<hr />

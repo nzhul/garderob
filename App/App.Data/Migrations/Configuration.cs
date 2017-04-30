@@ -94,7 +94,8 @@
 								BaseMaterial = context.Materials.Where(m => m.Category.Slug == "surfaces").FirstOrDefault(),
 								DoorsMaterial = context.Materials.Where(m => m.Category.Slug == "surfaces").FirstOrDefault(),
 								FazerMaterial = context.Materials.Where(m => m.Category.Slug == "surfaces").FirstOrDefault(),
-								HandlesMaterial = context.Materials.FirstOrDefault()
+								HandlesMaterial = context.Materials.FirstOrDefault(),
+								IsPublic = true
 							};
 
 							string bigImagePath = imagePath;

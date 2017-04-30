@@ -307,7 +307,7 @@ namespace App.Data.Service.Implementation
 
 		public IQueryable<Order> GetAllDoneOrders()
 		{
-			return this.Data.Orders.All().Where(o => o.State == OrderState.Done);
+			return this.Data.Orders.All().Where(o => o.State == OrderState.Done && o.IsPublic == true);
 		}
 
 		public IQueryable<Order> GetOrdersByState(OrderState state)
