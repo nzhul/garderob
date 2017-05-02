@@ -25,6 +25,9 @@ namespace App.Models.Materials
 		[DataType(DataType.MultilineText)]
 		public string Description { get; set; }
 
+		[Display(Name = "Позиция:")]
+		public int Order { get; set; }
+
 		[Required( ErrorMessage = " * Задължително")]
 		[Display(Name = "Размер Малка картинка:")]
 		public string SmallImageSize { get; set; }

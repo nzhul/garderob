@@ -2,7 +2,8 @@
 @using App.Models.Materials;
 @model CalculatorViewModel
 @{
-    ViewBag.Title = "Calculator";
+    ViewBag.Title = "Калкулатор";
+	ViewBag.MetaDescription = "С нашият калкулатор, може да пресметнете приблизително цената на вашия гардероб. Различните материали имат различни цени и за това, за ваше улеснение, тук може в реално време да видите цената на вашия проект и така да го съобразите с вашия бюджет. Цената, която показва калкулатора може да не съвпадне с крайната цена на проекта, ако вписването не бъде пределно точно и има разминаване от реалния ви проект.";
 }
 
 <!-- breadcrumbs start-->
@@ -20,7 +21,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<h2 class="title-section mb-0 mt-0 text-center">Калкулатор</h2>
 			<div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
-			<p class="text-center mb-0" style="font-size:12px;">С нашия калкулатор, Вие може да пресметнете приблизително колко може да ви струва Вашия гардероб. Различните материали имат различни цени и за това за Ваше улеснение, тук може в реално време да видите цената на вашия проект и така да го съобразите с вашия бюджет. Цената която показва калкулатора може да не съвпадне с крайната цена на проекта ако вписването не бъде пределно точно и има разминаване от реалния Ви проект.</p>
+			<p class="text-center mb-0" style="font-size:12px;">С нашият калкулатор, може да пресметнете приблизително цената на вашия гардероб. Различните материали имат различни цени и за това, за ваше улеснение, тук може в реално време да видите цената на вашия проект и така да го съобразите с вашия бюджет. Цената, която показва калкулатора може да не съвпадне с крайната цена на проекта, ако вписването не бъде пределно точно и има разминаване от реалния ви проект.</p>
 		</div>
 	</div>
 </div>
@@ -50,7 +51,7 @@
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());
 					
-					@Html.ByteImage(material.Image.Small, material.Name, "js-base-surface-material", material.Id.ToString(), string.Format("{0} | Цена: {1} лв", material.Name, material.Price), data)
+					@Html.ByteImage(material.Image.Small, material.Name, "js-base-surface-material", material.Id.ToString(), material.Name, data)
 				}
 			</div>
 		</div>
@@ -62,7 +63,7 @@
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());
 
-					@Html.ByteImage(material.Image.Small, material.Name, "js-door-surface-material", material.Id.ToString(), string.Format("{0} | Цена: {1} лв", material.Name, material.Price), data)
+					@Html.ByteImage(material.Image.Small, material.Name, "js-door-surface-material", material.Id.ToString(), material.Name, data)
 				}</div>
 		</div>
 	</div>
@@ -75,7 +76,7 @@
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());
 
-					@Html.ByteImage(material.Image.Small, material.Name, "js-fazer-surface-material", material.Id.ToString(), string.Format("{0} | Цена: {1} лв", material.Name, material.Price), data)
+					@Html.ByteImage(material.Image.Small, material.Name, "js-fazer-surface-material", material.Id.ToString(), material.Name, data)
 				}</div>
 		</div>
 		<div class="col-md-6">
@@ -101,7 +102,7 @@
 			<div class="calculator-slider">
 				<div class="col-md-8">
 					<span>Височина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					<div class="slider-range-min" data-min="45" data-max="270" data-default="60"></div>
 				</div>
 				<div class="col-md-4">
 					<input type="text" class="amount js-outer-size-height" readonly>
@@ -112,7 +113,7 @@
 			<div class="calculator-slider">
 				<div class="col-md-8">
 					<span>Ширина:</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					<div class="slider-range-min" data-min="30" data-max="270" data-default="60"></div>
 				</div>
 				<div class="col-md-4">
 					<input type="text" class="amount js-outer-size-width" readonly>
@@ -123,7 +124,7 @@
 			<div class="calculator-slider">
 				<div class="col-md-8">
 					<span>Дълбочина :</span>
-					<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+					<div class="slider-range-min" data-min="30" data-max="70" data-default="35"></div>
 				</div>
 				<div class="col-md-4">
 					<input type="text" class="amount js-outer-size-depth" readonly>
@@ -187,7 +188,7 @@
 				<div class="calculator-slider">
 					<div class="col-md-8">
 						<span>Височина:</span>
-						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+						<div class="slider-range-min" data-min="45" data-max="270" data-default="60"></div>
 					</div>
 					<div class="col-md-4">
 						<input type="text" class="amount js-height" readonly>
@@ -198,7 +199,7 @@
 				<div class="calculator-slider">
 					<div class="col-md-8">
 						<span>Ширина:</span>
-						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+						<div class="slider-range-min" data-min="25" data-max="60" data-default="30"></div>
 					</div>
 					<div class="col-md-4">
 						<input type="text" class="amount js-width" readonly>
@@ -212,15 +213,9 @@
 				<div class="col-md-4">
 					<div class="selection-box mb-30">
 						<select class="js-count">
-							<option>1</option>
 							<option>2</option>
 							<option>3</option>
-							<option>5</option>
-							<option>6</option>
-							<option>7</option>
-							<option>8</option>
-							<option>9</option>
-							<option>10</option>
+							<option>4</option>
 						</select>
 					</div>
 				</div>
@@ -242,7 +237,7 @@
 				<div class="calculator-slider">
 					<div class="col-md-8">
 						<span>Дължина:</span>
-						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+						<div class="slider-range-min" data-min="25" data-max="270" data-default="40"></div>
 					</div>
 					<div class="col-md-4">
 						<input type="text" class="amount js-length" readonly>
@@ -287,7 +282,7 @@
 				<div class="calculator-slider">
 					<div class="col-md-8">
 						<span>Дължина:</span>
-						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+						<div class="slider-range-min" data-min="25" data-max="100" data-default="30"></div>
 					</div>
 					<div class="col-md-4">
 						<input type="text" class="amount js-length" readonly>
@@ -333,7 +328,7 @@
 				<div class="calculator-slider">
 					<div class="col-md-8">
 						<span>Височина:</span>
-						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+						<div class="slider-range-min" data-min="15" data-max="25" data-default="20"></div>
 					</div>
 					<div class="col-md-4">
 						<input type="text" class="amount js-height" readonly>
@@ -344,7 +339,7 @@
 				<div class="calculator-slider">
 					<div class="col-md-8">
 						<span>Ширина:</span>
-						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+						<div class="slider-range-min" data-min="25" data-max="100" data-default="40"></div>
 					</div>
 					<div class="col-md-4">
 						<input type="text" class="amount js-width" readonly>
@@ -440,7 +435,7 @@
 				<div class="calculator-slider">
 					<div class="col-md-8">
 						<span>Височина:</span>
-						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+						<div class="slider-range-min" data-min="45" data-max="270" data-default="60"></div>
 					</div>
 					<div class="col-md-4">
 						<input type="text" class="amount js-height" readonly>
@@ -451,7 +446,7 @@
 				<div class="calculator-slider">
 					<div class="col-md-8">
 						<span>Ширина:</span>
-						<div class="slider-range-min" data-min="40" data-max="200" data-default="60"></div>
+						<div class="slider-range-min" data-min="25" data-max="120" data-default="40"></div>
 					</div>
 					<div class="col-md-4">
 						<input type="text" class="amount js-width" readonly>

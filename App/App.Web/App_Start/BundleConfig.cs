@@ -36,18 +36,13 @@ namespace App.Web
 					"~/Content/js/owl.carousel.js",
 					"~/Content/js/jquery.sticky.js",
 					"~/Content/js/TweenMax.min.js",
-					"~/Content/js/cws_parallax.js",
 					"~/Content/js/jquery.fancybox.pack.js",
 					"~/Content/js/jquery.fancybox-media.js",
 					"~/Content/js/isotope.pkgd.min.js",
 					"~/Content/js/imagesloaded.pkgd.min.js",
 					"~/Content/js/masonry.pkgd.min.js",
 					"~/Content/js/jquery.form.min.js",
-					"~/Content/js/script.js",
-					"~/Content/js/bg-video/cws_self_vimeo_bg.js",
-					"~/Content/js/bg-video/jquery.vimeo.api.min.js",
-					"~/Content/js/bg-video/cws_YT_bg.js",
-					"~/Content/js/jquery.tweet.js"
+					"~/Content/js/script.js"
 				);
 
 			mainFrontendScriptBundle.Orderer = new NonOrderingBundleOrderer();

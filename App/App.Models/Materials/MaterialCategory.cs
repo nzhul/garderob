@@ -25,6 +25,8 @@ namespace App.Models.Materials
 
 		public string Slug { get; set; }
 
+		public int Order { get; set; }
+
 		public string SmallImageSize { get; set; }
 
 		public string MediumImageSize { get; set; }

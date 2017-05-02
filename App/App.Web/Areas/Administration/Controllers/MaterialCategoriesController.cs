@@ -21,7 +21,7 @@ namespace App.Web.Areas.Administration.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
-			IEnumerable<MaterialCategory> model = this.materialsService.GetAllCategoriesWithMaterials().ToList();
+			IEnumerable<MaterialCategory> model = this.materialsService.GetAllCategoriesWithMaterials().ToList().OrderBy(m => m.Order);
 			return View(model);
 		}
 

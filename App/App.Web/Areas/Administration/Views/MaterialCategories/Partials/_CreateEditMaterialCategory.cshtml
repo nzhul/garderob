@@ -20,6 +20,11 @@
 				@Html.ValidationMessageFor(model => model.Slug)
 				@Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
 			}
+
+			@Html.LabelFor(model => model.Order, new { @class = "dab-input-label" })
+			@Html.ValidationMessageFor(model => model.Order)
+			@Html.EditorFor(model => model.Order, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: 1600x1024" } })
+
 			@Html.LabelFor(model => model.Description, new { @class = "dab-input-label" })
 			@Html.ValidationMessageFor(model => model.Description)
 			@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Пр: Пантите служат за ..." } })

@@ -36,7 +36,7 @@ namespace App.Web.Controllers
 		{
 			LivePreviewViewModel model = new LivePreviewViewModel();
 			model.SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList();
-			model.MaterialCategories = this.materialsService.GetAllCategories().ToList();
+			model.MaterialCategories = this.materialsService.GetAllCategories().ToList().OrderBy(m => m.Order);
 			return this.View(model);
 		}
 
