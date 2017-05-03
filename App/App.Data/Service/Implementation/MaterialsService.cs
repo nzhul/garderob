@@ -15,10 +15,12 @@ namespace App.Data.Service.Implementation
 	public class MaterialsService : IMaterialsService
 	{
 		private IUoWData Data;
+		private IDocumentsService documentsService;
 
-		public MaterialsService(IUoWData data)
+		public MaterialsService(IUoWData data, IDocumentsService documentsService)
 		{
 			this.Data = data;
+			this.documentsService = documentsService;
 		}
 
 		public int CreateMaterial(EditMaterialInputModel model)
@@ -304,6 +306,26 @@ namespace App.Data.Service.Implementation
 			}
 
 			return dbCategory;
+		}
+
+		public Document DeleteMaterialCategoryPdfFile(int materialCategoryId)
+		{
+			MaterialCategory dbCategory = this.Data.MaterialCategories.Find(materialCategoryId);
+			Document result = null;
+
+			if (dbCategory != null)
+			{
+				Document pdfToDelete = dbCategory.Pdf;
+				dbCategory.Pdf = null;
+				this.Data.SaveChanges();
+
+				this.documentsService.DeleteDocument(pdfToDelete.Id);
+				this.Data.SaveChanges();
+
+				result = pdfToDelete;
+			}
+
+			return result;
 		}
 	}
 }

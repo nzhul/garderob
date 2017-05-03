@@ -32,7 +32,8 @@ namespace App.Data.Service.Implementation
 			newPage.Title = inputModel.Title;
 			newPage.Summary = inputModel.Summary;
 			newPage.Content = inputModel.Content;
-			newPage.DateCreated = DateTime.Now;
+			newPage.DateCreated = DateTime.UtcNow;
+			newPage.LastModified = DateTime.UtcNow;
 			newPage.Slug = inputModel.Slug;
 
 			this.Data.Pages.Add(newPage);

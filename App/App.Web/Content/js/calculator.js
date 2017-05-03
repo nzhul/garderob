@@ -46,19 +46,31 @@ $(document).ready(function () {
 	})
 
 	// Toggle doors type
+	var doorsCountDdlItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+	var doorsCountDdlItemsSliding = [2, 3, 4];
+
 	var doorTypeToggle = $('.js-door-type');
+	var doorsCountDdl = $('.js-doors-count');
 	doorTypeToggle.on('change', function () {
 		var type = doorTypeToggle.val();
 		var cols = $('.js-doors-col');
 
 		if (type == 1) {
 			cols.show();
+			replaceDdlItems(doorsCountDdl, doorsCountDdlItems);
 		}
 		if (type == 2) {
-			
 			cols.hide();
+			replaceDdlItems(doorsCountDdl, doorsCountDdlItemsSliding);
 		}
 	})
+
+	function replaceDdlItems(ddl, items) {
+		ddl.empty();
+		for (var i = 0; i < items.length; i++) {
+			ddl.append("<option>" + items[i] + "</option>");
+		}
+	}
 
 	// Remove row logic
 	$('.js-remove-row').on('click', removeRow);

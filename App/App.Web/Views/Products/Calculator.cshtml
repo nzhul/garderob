@@ -10,7 +10,7 @@
 <section class="breadcrumbs">
 	<div class="container">
 		<div class="text-center breadcrumbs-item">
-			<h1>Калкулатор</h1><a href="#">начало</a><i class="fa fa-angle-right"></i><a href="#">Калкулатор</a>
+			<h1>Калкулатор</h1><a href="/">начало</a><i class="fa fa-angle-right"></i><a href="/products/calculator">Калкулатор</a>
 		</div>
 	</div>
 </section>
@@ -87,7 +87,7 @@
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());
 
-					@Html.ByteImage(material.Image.Small, material.Name, "js-handle-material", "material" + material.Id.ToString(), string.Format("{0} | Цена: {1} лв", material.Name, material.Price), data)
+					@Html.ByteImage(material.Image.Small, material.Name, "js-handle-material", "material" + material.Id.ToString(), material.Name, data)
 				}
 			</div>
 		</div>
@@ -212,10 +212,17 @@
 				</div>
 				<div class="col-md-4">
 					<div class="selection-box mb-30">
-						<select class="js-count">
+						<select class="js-count js-doors-count">
+							<option>1</option>
 							<option>2</option>
 							<option>3</option>
 							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
 						</select>
 					</div>
 				</div>

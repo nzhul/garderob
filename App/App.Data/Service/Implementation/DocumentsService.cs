@@ -1,4 +1,5 @@
-﻿using App.Data.Service.Abstraction;
+﻿using System;
+using App.Data.Service.Abstraction;
 using App.Models.Documents;
 
 namespace App.Data.Service.Implementation
@@ -10,6 +11,14 @@ namespace App.Data.Service.Implementation
 		public DocumentsService(IUoWData data)
 		{
 			this.Data = data;
+		}
+
+		public Document DeleteDocument(int id)
+		{
+			Document deletedDocument = this.Data.Documents.Delete(id);
+			this.Data.SaveChanges();
+
+			return deletedDocument;
 		}
 
 		public Document GetDocument(int id)

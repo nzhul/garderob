@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using App.Models.InputModels;
 using System.Web.Mvc;
+using App.Models.Documents;
 
 namespace App.Data.Service.Abstraction
 {
@@ -31,5 +32,7 @@ namespace App.Data.Service.Abstraction
 		IEnumerable<SelectListItem> GetCategoriesSelectData();
 
 		MaterialCategory DeleteMaterialCategory(int id);
+
+		Document DeleteMaterialCategoryPdfFile(int materialCategoryId);
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using App.Data.Service.Abstraction;
+using App.Models.Documents;
 using App.Models.Materials;
 using AutoMapper;
 using System.Collections.Generic;
@@ -103,6 +104,20 @@ namespace App.Web.Areas.Administration.Controllers
 			}
 
 			return HttpNotFound();
+		}
+
+		[HttpPost]
+		public ActionResult DeletePDFFile(int id)
+		{
+			Document deletedDocument = this.materialsService.DeleteMaterialCategoryPdfFile(id);
+			if (deletedDocument != null)
+			{
+				return this.Content("-- Липсва --");
+			}
+			else
+			{
+				return this.Content("-- Сървърна грешка --");
+			}
 		}
 	}
 }

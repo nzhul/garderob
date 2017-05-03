@@ -72,7 +72,18 @@
 			}
 			@if (ViewBag.FormMode == "Edit" && Model.Pdf != null)
 			{
-				<p><a href="@Url.Action("Show", "Document", new { Area = "", id = Model.Pdf.Id })"><strong>@Model.Pdf.Name</strong></a></p>
+				<p id="delete-pdf-update-target">
+					<a href="@Url.Action("Show", "Document", new { Area = "", id = Model.Pdf.Id })"><strong>@Model.Pdf.Name</strong></a> &nbsp;&nbsp; 
+					@Ajax.ActionLink("Изтрии",
+								"DeletePDFFile",
+								"MaterialCategories",
+								new { Area = "", id = Model.Id },
+								new AjaxOptions
+								{
+									HttpMethod = "Post",
+									UpdateTargetId = "delete-pdf-update-target"
+								}, new { @class = "btn btn-danger delete-profile-photo-btn" })
+				</p>
 			}
 
 			<h4>Качи нов PDF:</h4>
@@ -80,7 +91,7 @@
 
 		</div>
 	</div>
-	<div class="row">
+	<div class="row mt-40">
 		<div class="col-md-12">
 			<button type="submit" class="btn btn-success save-btn">
 				@ViewBag.FormModeText

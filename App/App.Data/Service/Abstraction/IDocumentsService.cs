@@ -5,5 +5,7 @@ namespace App.Data.Service.Abstraction
 	public interface IDocumentsService
 	{
 		Document GetDocument(int id);
+
+		Document DeleteDocument(int id);
 	}
 }
