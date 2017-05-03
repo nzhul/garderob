@@ -254,12 +254,20 @@
 								<td><span class="js-total-final-price">0</span> лв</td>
 							</tr>
 							<tr>
-								<td></td>
+								<td>
+									<div class="selection-box js-payment-type" style="background-color:white;">
+										<select>
+											<option>-- Плащане --</option>
+											<option value="">По Банков път</option>
+											<option value="">При Доставка</option>
+										</select>
+									</div>
+								</td>
 								<td>
 									@Ajax.ActionLink(
 											"Поръчай",
 											"OrderNow",
-											null,
+											null, // TODO: Pass the payment type as parameter here
 											new AjaxOptions
 											{
 												HttpMethod = "Post",
