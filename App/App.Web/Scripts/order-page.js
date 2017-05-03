@@ -168,7 +168,18 @@ function removeFromCartSuccess(arg1, arg2, arg3) {
 	relatedAddToCartBtn.show();
 }
 
-function orderNowBegin() {
+function orderNowBegin(xhr, request) {
+
+	var paymentDdl = $('.js-payment-type');
+	var paymentType = paymentDdl.val();
+	if (paymentType == 'not-selected') {
+		console.log('Invalid payment method');
+		paymentDdl.css('border', '2px solid red');
+		return false;
+	}
+
+	request.url = request.url + '?paymentType=' + paymentType;
+
 	var fullView = $('.basket-full-view');
 	var emptyView = $('.basket-empty-view');
 	var successView = $('.basket-success-view');

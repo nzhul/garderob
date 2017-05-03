@@ -52,6 +52,8 @@ namespace App.Models.Orders
 
 		public bool IsInCart { get; set; }
 
+		public string PaymentType { get; set; }
+
 		public virtual ICollection<Image> SketchImages
 		{
 			get { return this.sketchImages; }

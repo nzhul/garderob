@@ -255,11 +255,11 @@
 							</tr>
 							<tr>
 								<td>
-									<div class="selection-box js-payment-type" style="background-color:white;">
-										<select>
-											<option>-- Плащане --</option>
-											<option value="">По Банков път</option>
-											<option value="">При Доставка</option>
+									<div class="selection-box" style="background-color:white;margin-top:10px;">
+										<select class="js-payment-type">
+											<option value="not-selected">-- Плащане --</option>
+											<option value="bank">По Банков път</option>
+											<option value="delivery">При Доставка</option>
 										</select>
 									</div>
 								</td>
@@ -267,7 +267,7 @@
 									@Ajax.ActionLink(
 											"Поръчай",
 											"OrderNow",
-											null, // TODO: Pass the payment type as parameter here
+											null, 
 											new AjaxOptions
 											{
 												HttpMethod = "Post",
@@ -275,7 +275,7 @@
 												OnFailure = "orderNowFail",
 												OnSuccess = "orderNowSuccess"
 											},
-											new { @class = "cws-button white" })
+											new { @id="order-now-btn", @class = "cws-button white" })
 									@*<a class="cws-button white" href="#">Поръчай</a>*@
 								</td>
 							</tr>

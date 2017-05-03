@@ -245,7 +245,7 @@ namespace App.Data.Service.Implementation
 			}
 		}
 
-		public bool OrderNow(string userId)
+		public bool OrderNow(string userId, string paymentType)
 		{
 			ApplicationUser currentUser = this.Data.Users.Find(userId);
 
@@ -258,6 +258,7 @@ namespace App.Data.Service.Implementation
 
 				foreach (Order order in cartItems)
 				{
+					order.PaymentType = paymentType;
 					order.IsInCart = false;
 					order.State = OrderState.InProduction;
 					this.Data.SaveChanges();

@@ -33,6 +33,10 @@
 			@Html.ValidationMessageFor(m => m.Price)
 			@Html.EditorFor(m => m.Price, new { htmlAttributes = new { @class = "form-control" } })
 
+			@Html.LabelFor(m => m.PaymentType)
+			@Html.ValidationMessageFor(m => m.PaymentType)
+			@Html.EditorFor(m => m.PaymentType, new { htmlAttributes = new { @class = "form-control" } })
+
 			@Html.LabelFor(m => m.State)
 			@Html.ValidationMessageFor(m => m.State)
 			@Html.EnumDropDownListFor(m => m.State, "- Избери статус -", new { @class = "form-control" })

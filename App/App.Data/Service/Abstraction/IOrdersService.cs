@@ -41,7 +41,7 @@ namespace App.Data.Service.Abstraction
 
 		bool RemoveCartItem(int orderId, string userId);
 
-		bool OrderNow(string userId);
+		bool OrderNow(string userId, string paymentType);
 
 		bool UpdateOrder(int id, EditOrderInputModel model);
 

@@ -71,6 +71,9 @@ namespace App.Models.Orders
 		[Display(Name = "Цена:")]
 		public decimal Price { get; set; }
 
+		[Display(Name = "Начин на плащане:")]
+		public string PaymentType { get; set; }
+
 		[Display(Name = "Статус:")]
 		public OrderState State { get; set; }
 

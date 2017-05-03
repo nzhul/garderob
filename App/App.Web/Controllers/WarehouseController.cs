@@ -80,10 +80,10 @@ namespace App.Web.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult OrderNow()
+		public ActionResult OrderNow(string paymentType)
 		{
 			string userId = this.User.Identity.GetUserId();
-			if (this.ordersService.OrderNow(userId))
+			if (this.ordersService.OrderNow(userId, paymentType))
 			{
 				return Json(new { Status = "Success" });
 			}
