@@ -46,6 +46,7 @@ namespace App.Web.Controllers
 			CalculatorViewModel model = new CalculatorViewModel()
 			{
 				SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList(),
+				FazerMaterials = this.materialsService.GetAllMaterials("fazer-egger").ToList(),
 				HandleMaterials = this.materialsService.GetAllMaterials("handles").ToList()
 			};
 

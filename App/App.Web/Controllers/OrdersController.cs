@@ -15,7 +15,7 @@ namespace App.Web.Controllers
 		private IClientsService clientsService;
 
 		public OrdersController(
-			IOrdersService ordersService, 
+			IOrdersService ordersService,
 			IMaterialsService materialsService,
 			IClientsService clientsService)
 		{
@@ -30,6 +30,7 @@ namespace App.Web.Controllers
 			{
 				// TODO: do view model in order to skip big images!
 				SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList(),
+				FazerMaterials = this.materialsService.GetAllMaterials("fazer-egger").ToList(),
 				HandlesMaterials = this.materialsService.GetAllMaterials("handles").ToList()
 			};
 
@@ -70,6 +71,7 @@ namespace App.Web.Controllers
 			}
 
 			model.SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList();
+			model.FazerMaterials = this.materialsService.GetAllMaterials("fazer-egger").ToList();
 			model.HandlesMaterials = this.materialsService.GetAllMaterials("handles").ToList();
 
 			return View(model);

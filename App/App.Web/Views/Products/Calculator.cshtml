@@ -71,7 +71,7 @@
 		<div class="col-md-6">
 			<div class="order-category">
 				Фазер: <span class="js-calculator-error" data-error-index="3"></span><br />
-				@foreach (var material in Model.SurfaceMaterials)
+				@foreach (var material in Model.FazerMaterials)
 				{
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());

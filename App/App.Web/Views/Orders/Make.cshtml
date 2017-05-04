@@ -99,7 +99,7 @@
 				</div>
 				<div class="order-category">
 					Фазер: @Html.ValidationMessageFor(model => model.FazerMaterialId, "", new { @class = "text-danger" })<br />
-					@foreach (var material in Model.SurfaceMaterials)
+					@foreach (var material in Model.FazerMaterials)
 					{
 						@Html.ByteImage(
 							material.Image.Small,

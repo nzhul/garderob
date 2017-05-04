@@ -13,6 +13,8 @@ namespace App.Models.Orders
 	{
 		public IList<Material> SurfaceMaterials { get; set; }
 
+		public IList<Material> FazerMaterials { get; set; }
+
 		public IList<Material> HandlesMaterials { get; set; }
 
 		public ICollection<Image> SketchImages { get; set; }

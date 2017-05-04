@@ -31,7 +31,7 @@
 			@foreach (var material in Model.Materials)
 			{
 				<div class="col-md-3">
-						<div class="service-wrapper material-wrapper" data-category-id="@material.Id">
+						<div class="service-wrapper material-wrapper" style="min-height:400px;height:unset;" data-category-id="@material.Id">
 							@if (material.Image != null)
 							{
 								@Html.ByteImage(material.Image.Big, material.Name)

@@ -199,7 +199,7 @@ namespace App.Data.Service.Implementation
 			if (dbCategory != null)
 			{
 				dbCategory = Mapper.Map(inputModel, dbCategory);
-				dbCategory.Slug = SlugGenerator.Generate(inputModel.Name);
+				//dbCategory.Slug = SlugGenerator.Generate(inputModel.Name);
 				dbCategory.LastModified = DateTime.UtcNow;
 				this.Data.SaveChanges();
 			}

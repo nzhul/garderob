@@ -6,6 +6,8 @@ namespace App.Models.Materials
 	{
 		public IEnumerable<Material> SurfaceMaterials { get; set; }
 
+		public IEnumerable<Material> FazerMaterials { get; set; }
+
 		public IEnumerable<Material> HandleMaterials { get; set; }
 	}
 }

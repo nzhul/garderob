@@ -16,5 +16,9 @@ namespace App.Models.Orders
 		[AllowHtml]
 		[Display(Name = "Описание:")]
 		public string Description { get; set; }
+
+		[Required(ErrorMessage = " * Задължително:")]
+		[StringLength(250, MinimumLength = 3, ErrorMessage = "Невалидно име - Максимална дължина 250 символа, минимална 3")]
+		public string Slug { get; set; }
 	}
 }
