@@ -524,6 +524,10 @@ $(document).ready(function () {
 			installationPrice = result * installationPercent;
 		}
 
+		if (includeInstallation && result <= 400) {
+			installationPrice = 25;
+		}
+
 		$('.js-result').val(parseFloat(result).toFixed(2) + ' лв');
 		$('.js-result-installation').val(parseFloat(installationPrice).toFixed(2) + ' лв');
 	}
