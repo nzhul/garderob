@@ -242,6 +242,7 @@ $(document).ready(function () {
 					panta: 1.8, // лв цена панта
 					mehanizam2Vrati: 170, // лв 
 					mehanizam3Vrati: 250, // лв 
+					mehanizam4Vrati: 300, // лв 
 					mirrorPrice: 35, // лв m2 за огледало
 					mehanizamDrawer: 15, // лв механизам чекмедже
 					trudDrawer: 5, // лв труд чекмедже - сглабяне
@@ -326,7 +327,7 @@ $(document).ready(function () {
 		} else if ($('.js-door-type').val() == 2) {
 			for (var i = 0; i < data.doorPrices.length; i++) {
 				var currentDoorData = data.doorPrices[i];
-				totalDoorsPrice += currentDoorData.count * data.constants.slidingDoorPrice;
+				totalDoorsPrice += calculateSlidingDoorPrice(currentDoorData, data);
 			}
 		}
 
@@ -471,6 +472,41 @@ $(document).ready(function () {
 		var V = Q + M + Y;
 
 		return V;
+	}
+
+	function calculateSlidingDoorPrice(doorData, data) {
+
+		var h = data.outerSizeHeight;
+		var w = data.outerSizeWidth;
+		var c = doorData.count;
+
+		var b = 0;
+
+		switch (c) {
+			case 2:
+				b = data.constants.mehanizam2Vrati;
+				break;
+			case 3:
+				b = data.constants.mehanizam3Vrati;
+				break;
+			case 4:
+				b = data.constants.mehanizam4Vrati;
+				break;
+			default:
+				b = data.constants.mehanizam2Vrati;
+				break;
+		}
+
+		var a = (h * w) / 10000;
+		var y = (2 * w) / 100;
+
+		var M = y * (data.constants.cant08MM + data.constants.montajKant08MM);
+		var Y = a * data.constants.cuttingPrice;
+		var V = ((a * data.doorMaterialPrice) * data.constants.laborPricePercent) + b;
+
+		var D = M + Y + V;
+
+		return D;
 	}
 
 	function calculateDoorPrice(doorData, data) {
