@@ -209,9 +209,9 @@
 			width: 95%;
 		}
 
-		.live-preview-container #back-material-image, .live-preview-container #front-material-image {
+		/*.live-preview-container #back-material-image, .live-preview-container #front-material-image {
 			display: none;
-		}
+		}*/
 
 		.live-preview-container .preview-image {
 			border: 4px solid #237dc8;

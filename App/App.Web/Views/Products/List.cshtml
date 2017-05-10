@@ -13,48 +13,55 @@
 	</section>
 	<!-- ! breadcrumbs end-->
 	<div class="container mt-40 pb-60 products-container">
-		<div class="work-filter">
-			<a href="#" data-filter="*" class="filter active">Всички</a>
-			@foreach (var category in Model.Categories)
-			{
-				<a href="#" data-filter=".@category.Slug" class="filter">@category.Title</a>
-			}
-		</div>
-		<div id="filter-grid" class="row cws-multi-col masonry portfolio-grid">
-			@foreach (ProductViewModel product in Model.Products)
-			{
-				<div class="col-md-4 col-sm-6 all @product.CategorySlug">
-					<!-- portfolio item-->
-					<div class="portfolio-item text-center">
-						<!-- media-->
-						<div class="pic">
-							@if (product.ResultImageSmall != null && product.ResultImageSmall.Length > 0)
-							{
-								@Html.ByteImage(product.ResultImageSmall, "Снимка на продукт")
-							}
-							else
-							{
-								<div style="width: 370px; height:310px;line-height:310px;">Липсваща снимка</div>
-							}
-							<!-- item content -->
-							<div class="item-content">
-								<h3 class="portfolio-title">@product.Title</h3>
-								<p style="margin:0 0 0 15px; color:white;">Цена: @product.Price лв</p>
-								@{
-									var base64 = Convert.ToBase64String(product.ResultImageBig);
-									var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
-								 }
-								<div class="links">
-									<a href="@imgSrc" class="fa fa-search reorder-link fancy"></a>
-									<a href="#" data-project-name="@product.Title" data-price="@product.Price" data-href="@Url.Action("Copy", "Orders", new { id = product.Id })" data-toggle="modal" data-target="#confirm-delete" class="fa fa-shopping-cart reorder-link"></a>
+		@if (Model.Products.Count() > 0)
+		{
+			<div class="work-filter">
+				<a href="#" data-filter="*" class="filter active">Всички</a>
+				@foreach (var category in Model.Categories)
+				{
+					<a href="#" data-filter=".@category.Slug" class="filter">@category.Title</a>
+				}
+			</div>
+			<div id="filter-grid" class="row cws-multi-col masonry portfolio-grid">
+				@foreach (ProductViewModel product in Model.Products)
+				{
+					<div class="col-md-4 col-sm-6 all @product.CategorySlug">
+						<div class="portfolio-item text-center">
+							<div class="pic">
+								@if (product.ResultImageSmall != null && product.ResultImageSmall.Length > 0)
+								{
+									@Html.ByteImage(product.ResultImageSmall, "Снимка на продукт")
+								}
+								else
+								{
+									<div style="width: 370px; height:310px;line-height:310px;">Липсваща снимка</div>
+								}
+								<div class="item-content">
+									<h3 class="portfolio-title">@product.Title</h3>
+									<p style="margin:0 0 0 15px; color:white;">Цена: @product.Price лв</p>
+									@{
+										var base64 = Convert.ToBase64String(product.ResultImageBig);
+										var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+									}
+									<div class="links">
+										<a href="@imgSrc" class="fa fa-search reorder-link fancy"></a>
+										<a href="#" data-project-name="@product.Title" data-price="@product.Price" data-href="@Url.Action("Copy", "Orders", new { id = product.Id })" data-toggle="modal" data-target="#confirm-delete" class="fa fa-shopping-cart reorder-link"></a>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- ! portfolio item-->
+				}
+			</div>
+		}
+		else
+		{
+			<div class="row mt-60 mb-60">
+				<div class="col-md-12 text-center">
+					<h3 style="border: 1px solid #237dc8;height:80px;line-height:80px;">В момента нямаме налични продукти</h3>
 				</div>
-			}
-		</div>
+			</div>
+		}
 	</div>
 
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

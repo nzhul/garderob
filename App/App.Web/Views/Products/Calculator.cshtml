@@ -71,7 +71,7 @@
 		<div class="col-md-6">
 			<div class="order-category">
 				Фазер: <span class="js-calculator-error" data-error-index="3"></span><br />
-				@foreach (var material in Model.SurfaceMaterials)
+				@foreach (var material in Model.FazerMaterials)
 				{
 					Dictionary<string, string> data = new Dictionary<string, string>();
 					data.Add("price", material.Price.ToString());
@@ -143,6 +143,7 @@
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
+						<option>4</option>
 						<option>5</option>
 						<option>6</option>
 						<option>7</option>
@@ -261,6 +262,7 @@
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
+							<option>4</option>
 							<option>5</option>
 							<option>6</option>
 							<option>7</option>
@@ -306,6 +308,7 @@
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
+							<option>4</option>
 							<option>5</option>
 							<option>6</option>
 							<option>7</option>
@@ -363,6 +366,7 @@
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
+							<option>4</option>
 							<option>5</option>
 							<option>6</option>
 							<option>7</option>
@@ -413,6 +417,7 @@
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
+							<option>4</option>
 							<option>5</option>
 							<option>6</option>
 							<option>7</option>
@@ -470,6 +475,7 @@
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
+							<option>4</option>
 							<option>5</option>
 							<option>6</option>
 							<option>7</option>
@@ -506,8 +512,23 @@
 	</div>
 
 </div>
+<div class="cws_divider with-plus long color-line-1 mt-40"></div>
+<section class="page-section mb-0 pb-50 pt-30 bg-gray-2">
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2 class="title-section text-center mt-0 mb-0">Легенда</h2>
+     <div class="cws_divider with-plus short-3 center mb-20 mt-10"></div>
+     <p class="text-center mb-30">В тази секция може да видите кой елемент какво наименование има. <br> Не забравяйте, че винаги може да се свържете с нас ако имате нужда от консултация или експертен съвет.</p>
+     <div style="width:90%;margin: 0 auto;">
+      <img style="margin:20px auto;" src="../content/img/napravi/guide1/legend.jpg" alt="Легенда">
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+
 <!-- ! content-->
-<div style="clear:both;height:60px;">&nbsp;</div>
 
 @section Scripts {
 <script src="~/Content/js/calculator.js"></script>
