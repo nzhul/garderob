@@ -187,9 +187,9 @@ $(document).ready(function () {
 			errors.push({ index: 3, message: " *Не е избрана плоча за фазер" });
 		}
 
-		if (!handleMaterial[0]) {
-			errors.push({ index: 4, message: " *Не е избрана дръжка" });
-		}
+		//if (!handleMaterial[0]) {
+		//	errors.push({ index: 4, message: " *Не е избрана дръжка" });
+		//}
 
 		// ВЪНШЕН РАЗМЕР, ЕЛЕМЕНТИ И ЦОКЪЛ
 		var outerSizeHeight = parseInt($('.js-outer-size-height').val());
@@ -242,7 +242,6 @@ $(document).ready(function () {
 					panta: 1.8, // лв цена панта
 					mehanizam2Vrati: 170, // лв 
 					mehanizam3Vrati: 250, // лв 
-					mehanizam4Vrati: 300, // лв 
 					mirrorPrice: 35, // лв m2 за огледало
 					mehanizamDrawer: 15, // лв механизам чекмедже
 					trudDrawer: 5, // лв труд чекмедже - сглабяне
@@ -251,7 +250,7 @@ $(document).ready(function () {
 				baseMaterialPrice: baseMaterialPrice,
 				doorMaterialPrice: doorMaterialPrice,
 				fazerMaterialPrice: fazerMaterialPrice,
-				handleMaterialPrice: handleMaterialPrice,
+				handleMaterialPrice: handleMaterialPrice == undefined ? 0 : handleMaterialPrice,
 				outerSizeHeight: outerSizeHeight,
 				outerSizeWidth: outerSizeWidth,
 				outerSizeDepth: outerSizeDepth,
@@ -490,7 +489,7 @@ $(document).ready(function () {
 				b = data.constants.mehanizam3Vrati;
 				break;
 			case 4:
-				b = data.constants.mehanizam4Vrati;
+				b = data.constants.mehanizam3Vrati;
 				break;
 			default:
 				b = data.constants.mehanizam2Vrati;
@@ -564,8 +563,8 @@ $(document).ready(function () {
 			installationPrice = 25;
 		}
 
-		$('.js-result').val(parseFloat(result).toFixed(2) + ' лв');
-		$('.js-result-installation').val(parseFloat(installationPrice).toFixed(2) + ' лв');
+		$('.js-result').val(parseFloat(result).toFixed(0) + ' лв');
+		$('.js-result-installation').val(parseFloat(installationPrice).toFixed(0) + ' лв');
 	}
 
 	function getPriceData(rowsSelector, fields) {
