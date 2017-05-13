@@ -367,7 +367,6 @@
     <Content Include="App_Data\Orders\standard-wardrobes\Small\01-standard-wardrobe.jpg" />
     <Content Include="App_Data\Orders\standard-wardrobes\Small\02-standard-wardrobe.jpg" />
     <Content Include="App_Data\Orders\standard-wardrobes\Small\03-standard-wardrobe.jpg" />
-    <Content Include="App_Data\StaticPages\calculator.html" />
     <Content Include="App_Data\StaticPages\faq.html" />
     <Content Include="App_Data\StaticPages\make-sliding-doors.html" />
     <Content Include="App_Data\StaticPages\make-standard.html" />
@@ -1294,6 +1293,7 @@
     <Content Include="Content\js\jquery.stellar.js" />
     <Content Include="Content\js\jquery.sticky.js" />
     <Content Include="Content\js\jquery.tweet.js" />
+    <Content Include="Content\js\jquery.ui.touch-punch.min.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
     <Content Include="Content\js\live-preview.js" />
     <Content Include="Content\js\masonry.pkgd.min.js" />

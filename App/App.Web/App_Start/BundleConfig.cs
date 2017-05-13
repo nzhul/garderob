@@ -31,6 +31,7 @@ namespace App.Web
 			Bundle mainFrontendScriptBundle = new ScriptBundle("~/bundles/garderob-fe-scripts").Include(
 					"~/Content/js/jquery.min.js",
 					"~/Content/js/jquery-ui.min.js",
+					"~/Content/js/jquery.ui.touch-punch.min.js",
 					"~/Content/js/jquery.validate.min.js",
 					"~/Content/js/bootstrap.js",
 					"~/Content/js/owl.carousel.js",
