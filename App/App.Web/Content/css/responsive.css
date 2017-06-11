@@ -228,6 +228,32 @@
 			margin-right: 0px;
 		}
 	/*Live preview end*/
+
+/*Calculator*/
+	.slider-range-min .ui-slider-handle {
+		position: absolute;
+		z-index: 2;
+		border-radius: 0;
+		width: 50px;
+		height: 50px;
+		border: 0px;
+		background-color: rgba(35, 125, 200, 0);
+		margin-top: 0px;
+		margin-left: 0px;
+		top: -1.6em;
+	}
+
+		.slider-range-min .ui-slider-handle::after {
+			content: '';
+			display: block;
+			width: 14px;
+			height: 14px;
+			background-color: #237dc8;
+			opacity: 1;
+			position: absolute;
+			top: 1.25em;
+		}
+/*Calculator end*/
 }
 
 @media (max-width: 750px){

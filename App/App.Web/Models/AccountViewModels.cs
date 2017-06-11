@@ -115,7 +115,7 @@ namespace App.Web.Models
 		public string InvoiceData { get; set; }
 
 		[Range(typeof(bool), "true", "true", ErrorMessage = " Задължително!")]
-		[Display(Name = "Запозрах се и съм съгласен с общите условия")]
+		[Display(Name = "Запознах се и съм съгласен с общите условия")]
 		public bool TermsAccepted { get; set; }
 	}
 
