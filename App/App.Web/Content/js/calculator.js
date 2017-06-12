@@ -157,121 +157,129 @@ $(document).ready(function () {
 		}
 	}
 
-
-
 	// Calculation logic
-	$('.js-calculate-btn').on('click', function () {
-		var errors = [];
+    $('.js-calculate-btn').on('click', function() {
+        Calculate();
+    });
 
-		// Materials
-		var baseMaterial = $('.js-base-surface-material.selected');
-		var doorMaterial = $('.js-door-surface-material.selected');
-		var fazerMaterial = $('.js-fazer-surface-material.selected');
-		var handleMaterial = $('.js-handle-material.selected');
+    $('#installationCb').on('change', function() {
+        Calculate();
+    });
 
-		// МАТЕРИАЛИ
-		var baseMaterialPrice = baseMaterial.data('price');
-		var doorMaterialPrice = doorMaterial.data('price');
-		var fazerMaterialPrice = fazerMaterial.data('price');
-		var handleMaterialPrice = handleMaterial.data('price');
+    function Calculate() {
 
-		if (!baseMaterial[0]) {
-			errors.push({ index: 1, message: " *Не е избрана плоча за основа" });
-		}
+        var errors = [];
 
-		if (!doorMaterial[0]) {
-			errors.push({ index: 2, message: " *Не е избрана плоча за врата" });
-		}
+        // Materials
+        var baseMaterial = $('.js-base-surface-material.selected');
+        var doorMaterial = $('.js-door-surface-material.selected');
+        var fazerMaterial = $('.js-fazer-surface-material.selected');
+        var handleMaterial = $('.js-handle-material.selected');
 
-		if (!fazerMaterial[0]) {
-			errors.push({ index: 3, message: " *Не е избрана плоча за фазер" });
-		}
+        // МАТЕРИАЛИ
+        var baseMaterialPrice = baseMaterial.data('price');
+        var doorMaterialPrice = doorMaterial.data('price');
+        var fazerMaterialPrice = fazerMaterial.data('price');
+        var handleMaterialPrice = handleMaterial.data('price');
 
-		//if (!handleMaterial[0]) {
-		//	errors.push({ index: 4, message: " *Не е избрана дръжка" });
-		//}
+        if (!baseMaterial[0]) {
+            errors.push({ index: 1, message: " *Не е избрана плоча за основа" });
+        }
 
-		// ВЪНШЕН РАЗМЕР, ЕЛЕМЕНТИ И ЦОКЪЛ
-		var outerSizeHeight = parseInt($('.js-outer-size-height').val());
-		var outerSizeWidth = parseInt($('.js-outer-size-width').val());
-		var outerSizeDepth = parseInt($('.js-outer-size-depth').val());
-		var outerSizeCount = parseInt($('.js-outer-size-count').val());
-		var outerSizeCokal = $('.js-outer-size-cokal').val() === 'Да' ? true : false;
+        if (!doorMaterial[0]) {
+            errors.push({ index: 2, message: " *Не е избрана плоча за врата" });
+        }
 
-		// ВРАТИ 
-		var doorPrices = getPriceData('.js-doors-row', ['height', 'width', 'count']);
+        if (!fazerMaterial[0]) {
+            errors.push({ index: 3, message: " *Не е избрана плоча за фазер" });
+        }
 
-		// ФИКСИРАНИ ВЪТРЕШНИ ДЕЛЕНИЯ:
-		if ($('.js-dividers-toggle').is(':checked')) {
-			var innerDividersPrices = getPriceData('.js-inner-dividers-row', ['length', 'count']);
-		}
+        //if (!handleMaterial[0]) {
+        //	errors.push({ index: 4, message: " *Не е избрана дръжка" });
+        //}
 
-		// РАФТОВЕ:
-		if ($('.js-shelfs-toggle').is(':checked')) {
-			var shelfPrices = getPriceData('.js-shelf-row', ['length', 'count']);
-		}
+        // ВЪНШЕН РАЗМЕР, ЕЛЕМЕНТИ И ЦОКЪЛ
+        var outerSizeHeight = parseInt($('.js-outer-size-height').val());
+        var outerSizeWidth = parseInt($('.js-outer-size-width').val());
+        var outerSizeDepth = parseInt($('.js-outer-size-depth').val());
+        var outerSizeCount = parseInt($('.js-outer-size-count').val());
+        var outerSizeCokal = $('.js-outer-size-cokal').val() === 'Да' ? true : false;
 
-		// ЧЕКМЕДЖЕ:
-		if ($('.js-drawers-toggle').is(':checked')) {
-			var drawerPrices = getPriceData('.js-drawer-row', ['height', 'width', 'count']);
-		}
+        // ВРАТИ 
+        var doorPrices = getPriceData('.js-doors-row', ['height', 'width', 'count']);
 
-		// ЗАКАЧАЛКИ:
-		if ($('.js-hangers-toggle').is(':checked')) {
-			var hangerPrices = getPriceData('.js-hanger-row', ['hangerType', 'hangerCount']);
-		}
+        // ФИКСИРАНИ ВЪТРЕШНИ ДЕЛЕНИЯ:
+        if ($('.js-dividers-toggle').is(':checked')) {
+            var innerDividersPrices = getPriceData('.js-inner-dividers-row', ['length', 'count']);
+        }
 
-		// ОГЛЕДАЛА:
+        // РАФТОВЕ:
+        if ($('.js-shelfs-toggle').is(':checked')) {
+            var shelfPrices = getPriceData('.js-shelf-row', ['length', 'count']);
+        }
 
-		if ($('.js-mirrors-toggle').is(':checked')) {
-			var mirrorPrices = getPriceData('.js-mirror-row', ['height', 'width', 'count']);
-		}
+        // ЧЕКМЕДЖЕ:
+        if ($('.js-drawers-toggle').is(':checked')) {
+            var drawerPrices = getPriceData('.js-drawer-row', ['height', 'width', 'count']);
+        }
 
-		if (errors.length == 0) {
-			var allErrorMessages = $('.js-calculator-error').hide();
+        // ЗАКАЧАЛКИ:
+        if ($('.js-hangers-toggle').is(':checked')) {
+            var hangerPrices = getPriceData('.js-hanger-row', ['hangerType', 'hangerCount']);
+        }
 
-			var data = {
-				constants: {
-					laborPricePercent: 1.5, // процент
-					cuttingPrice: 3.59, // лв умножава се по квадратите на изразходвания материал
-					cant2MM: 1, // лв кант врати
-					cant08MM: 0.56, // лв кант други
-					kracheta: 3, // лв добавяме ги когато има цокъл
-					montajKant2MM: 0.71, // лв 
-					montajKant08MM: 0.59, // лв 
-					panta: 1.8, // лв цена панта
-					mehanizam2Vrati: 170, // лв 
-					mehanizam3Vrati: 250, // лв 
-					mirrorPrice: 35, // лв m2 за огледало
-					mehanizamDrawer: 15, // лв механизам чекмедже
-					trudDrawer: 5, // лв труд чекмедже - сглабяне
-					slidingDoorPrice: 20 // лв цена за плъзгаща се врата
-				},
-				baseMaterialPrice: baseMaterialPrice,
-				doorMaterialPrice: doorMaterialPrice,
-				fazerMaterialPrice: fazerMaterialPrice,
-				handleMaterialPrice: handleMaterialPrice == undefined ? 0 : handleMaterialPrice,
-				outerSizeHeight: outerSizeHeight,
-				outerSizeWidth: outerSizeWidth,
-				outerSizeDepth: outerSizeDepth,
-				outerSizeCount: outerSizeCount,
-				outerSizeCokal: outerSizeCokal,
-				doorPrices: doorPrices,
-				innerDividersPrices: innerDividersPrices,
-				shelfPrices: shelfPrices,
-				drawerPrices: drawerPrices,
-				hangerPrices: hangerPrices,
-				mirrorPrices: mirrorPrices
-			};
+        // ОГЛЕДАЛА:
 
-			var result = calculateResult(data);
+        if ($('.js-mirrors-toggle').is(':checked')) {
+            var mirrorPrices = getPriceData('.js-mirror-row', ['height', 'width', 'count']);
+        }
 
-			displayResult(result);
+        if (errors.length == 0) {
+            var allErrorMessages = $('.js-calculator-error').hide();
 
-		} else {
-			displayErrors(errors);
-		}
-	});
+            var data = {
+                constants: {
+                    laborPricePercent: 1.5, // процент
+                    cuttingPrice: 3.59, // лв умножава се по квадратите на изразходвания материал
+                    cant2MM: 1, // лв кант врати
+                    cant08MM: 0.56, // лв кант други
+                    kracheta: 3, // лв добавяме ги когато има цокъл
+                    montajKant2MM: 0.71, // лв 
+                    montajKant08MM: 0.59, // лв 
+                    panta: 1.8, // лв цена панта
+                    mehanizam2Vrati: 170, // лв 
+                    mehanizam3Vrati: 250, // лв 
+                    mirrorPrice: 35, // лв m2 за огледало
+                    mehanizamDrawer: 15, // лв механизам чекмедже
+                    trudDrawer: 5, // лв труд чекмедже - сглабяне
+                    slidingDoorPrice: 20 // лв цена за плъзгаща се врата
+                },
+                baseMaterialPrice: baseMaterialPrice,
+                doorMaterialPrice: doorMaterialPrice,
+                fazerMaterialPrice: fazerMaterialPrice,
+                handleMaterialPrice: handleMaterialPrice == undefined ? 0 : handleMaterialPrice,
+                outerSizeHeight: outerSizeHeight,
+                outerSizeWidth: outerSizeWidth,
+                outerSizeDepth: outerSizeDepth,
+                outerSizeCount: outerSizeCount,
+                outerSizeCokal: outerSizeCokal,
+                doorPrices: doorPrices,
+                innerDividersPrices: innerDividersPrices,
+                shelfPrices: shelfPrices,
+                drawerPrices: drawerPrices,
+                hangerPrices: hangerPrices,
+                mirrorPrices: mirrorPrices
+            };
+
+            var result = calculateResult(data);
+
+            displayResult(result);
+
+        } else {
+            displayErrors(errors);
+        }
+
+    }
 
 	function calculateResult(data) {
 		console.log('------------------------');

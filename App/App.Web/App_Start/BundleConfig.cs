@@ -11,20 +11,21 @@ namespace App.Web
 
 			bundles.IgnoreList.Clear();
 
-			Bundle mainFrontendStyleBundle = new StyleBundle("~/bundles/garderob-fe-styles").Include(
-					"~/Content/css/reset.css",
-					"~/Content/css/bootstrap.css",
-					"~/Content/css/font-awesome.css",
-					"~/Content/css/owl.carousel.css",
-					"~/Content/css/jquery.fancybox.css",
-					"~/Content/fonts/fi/flaticon.css",
-					"~/Content/css/main.css",
-					"~/Content/css/indent.css",
-					"~/Content/css/garderob.css",
-					"~/Content/css/responsive.css"
-				);
+			Bundle mainFrontendStyleBundle = new StyleBundle("~/bundles/garderob-fe-styles");
+
+			mainFrontendStyleBundle.Include("~/Content/css/reset.css", new CssRewriteUrlTransform());
+			mainFrontendStyleBundle.Include("~/Content/css/bootstrap.css", new CssRewriteUrlTransform());
+			mainFrontendStyleBundle.Include("~/Content/css/font-awesome.css", new CssRewriteUrlTransform());
+			mainFrontendStyleBundle.Include("~/Content/css/owl.carousel.css", new CssRewriteUrlTransform());
+			mainFrontendStyleBundle.Include("~/Content/css/jquery.fancybox.css", new CssRewriteUrlTransform());
+			mainFrontendStyleBundle.Include("~/Content/fonts/fi/flaticon.css", new CssRewriteUrlTransform());
+			mainFrontendStyleBundle.Include("~/Content/css/main.css", new CssRewriteUrlTransform());
+			mainFrontendStyleBundle.Include("~/Content/css/indent.css", new CssRewriteUrlTransform());
+			mainFrontendStyleBundle.Include("~/Content/css/garderob.css", new CssRewriteUrlTransform());
+			mainFrontendStyleBundle.Include("~/Content/css/responsive.css", new CssRewriteUrlTransform());
 
 			mainFrontendStyleBundle.Orderer = new NonOrderingBundleOrderer();
+			
 
 			bundles.Add(mainFrontendStyleBundle);
 
@@ -72,8 +73,16 @@ namespace App.Web
 				"~/Content/codemirror/mode/xml/xml.js"
 			));
 
+			bundles.Add(new ScriptBundle("~/bundles/other-scripts").Include(
+				"~/Content/js/calculator.js"
+			));
 
-			BundleTable.EnableOptimizations = false;
+
+#if DEBUG
+			BundleTable.EnableOptimizations = true;
+#else
+            BundleTable.EnableOptimizations = true;
+#endif
 		}
 	}
 }
