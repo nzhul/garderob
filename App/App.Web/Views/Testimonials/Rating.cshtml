@@ -1,0 +1,32 @@
+﻿@model double
+
+@{
+
+	double roundedValue = Math.Round(Model / 0.5) * 5;
+	int loopCount = (int)Math.Round(roundedValue / 10);
+	bool renderHalfStar = false;
+
+	if (roundedValue % 10 != 0)
+	{
+		loopCount--;
+		renderHalfStar = true;
+	}
+
+	int emptyStarsLoopCount = 5 - loopCount;
+
+	for (int i = 0; i < loopCount; i++)
+	{
+		<i class="fa fa-star garderob-star" aria-hidden="true"></i>
+	}
+
+	if (renderHalfStar)
+	{
+		emptyStarsLoopCount--;
+		<i class="fa fa-star-half-o garderob-star" aria-hidden="true"></i>
+	}
+
+	for (int i = 0; i < emptyStarsLoopCount; i++)
+	{
+		<i class="fa fa-star-o garderob-star" aria-hidden="true"></i>
+	}
+}

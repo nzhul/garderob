@@ -517,12 +517,14 @@ i.submit-loading {
 	background-color: #237dc8;
 	color: white;
 	text-align: center;
+	z-index: 999;
 }
 
+	.gallery-row .gallery-row-image-wrapper span.plus.fa.fa-expand {
+		background-color: unset;
+	}
 /*Gallery page end*/
-
 /*FAQ*/
-
 .faq-row h3, .registration-row h3 {
 	margin-top: 50px;
 	margin-bottom: 30px;
@@ -639,11 +641,11 @@ i.submit-loading {
 		margin-left: 0px;
 		top: -.3em;
 	}
-		
-		.slider-range-min .ui-slider-range {
-			background-color: #237dc8;
-			border: 0px;
-		}
+
+	.slider-range-min .ui-slider-range {
+		background-color: #237dc8;
+		border: 0px;
+	}
 
 .calculator-container .selection-box select {
 	background-color: white;
@@ -1101,6 +1103,11 @@ label.custom-sketches-input {
 	width: 60px;
 	height: 60px;
 }
+
+.garderob-star {
+	color: #fe8432;
+}
+
 /*Testimonials END*/
 
 
@@ -1125,7 +1132,7 @@ label.custom-sketches-input {
 }
 
 	.calculator-installation-checkbox-container input[type=checkbox] {
-		margin-top:11px;
+		margin-top: 11px;
 	}
 
 .js-door-type {
@@ -1137,10 +1144,10 @@ label.custom-sketches-input {
 	opacity: .4;
 }
 
-.js-row-multiplier:hover {
-	cursor: pointer;
-	opacity: 1;
-}
+	.js-row-multiplier:hover {
+		cursor: pointer;
+		opacity: 1;
+	}
 
 .js-remove-row {
 	width: 30px;
@@ -1153,6 +1160,6 @@ label.custom-sketches-input {
 	opacity: .4;
 }
 
-.js-remove-row:hover {
-	opacity: 1;
-}
+	.js-remove-row:hover {
+		opacity: 1;
+	}

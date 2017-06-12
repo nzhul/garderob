@@ -1612,6 +1612,7 @@
     <Content Include="Views\Products\LivePreview.cshtml" />
     <Content Include="Views\Products\Calculator.cshtml" />
     <Content Include="Views\Materials\List.cshtml" />
+    <Content Include="Views\Testimonials\Rating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Orders\Partials\" />

@@ -2,7 +2,7 @@
 @using App.Models.Pages
 @model IEnumerable<TestimonialViewModel>
 @{
-	ViewBag.Title = "List";
+	ViewBag.Title = "Атестати";
 }
 
 <section class="breadcrumbs">
@@ -23,6 +23,7 @@
 			<p class="text-center mb-0">Вижте какво казват за нашата услуга клиентите ни. Също така разгледайте как от вашите скици успяваме да направим завършени и качествени гардероби и мебели.</p>
 		</div>
 	</div>
+
 	@foreach (TestimonialViewModel testimonial in Model)
 	{
 		<div class="row gallery-row">
@@ -30,7 +31,13 @@
 				<div class="gallery-row-image-wrapper">
 					@if (testimonial.OrderSketch != null)
 					{
-						@Html.ByteImage(testimonial.OrderSketch.Small, "Скица на продукта")
+						var base64 = Convert.ToBase64String(testimonial.OrderSketch.Big);
+						var bigImgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+						<div class="pic">
+							@Html.ByteImage(testimonial.OrderSketch.Small, "Скица на продукта")
+							<a href="@bigImgSrc" class="hover-effect alt fancy"><span class="plus fa fa-expand"></span></a>
+						</div>
 					}
 					else
 					{
@@ -44,7 +51,13 @@
 				<div class="gallery-row-image-wrapper">
 					@if (testimonial.OrderDesign != null)
 					{
-						@Html.ByteImage(testimonial.OrderDesign.Small, "Дизайн на продукта")
+						var base64 = Convert.ToBase64String(testimonial.OrderDesign.Big);
+						var bigImgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+						<div class="pic">
+							@Html.ByteImage(testimonial.OrderDesign.Small, "Дизайн на продукта")
+							<a href="@bigImgSrc" class="hover-effect alt fancy"><span class="plus fa fa-expand"></span></a>
+						</div>
 					}
 					else
 					{
@@ -58,7 +71,13 @@
 				<div class="gallery-row-image-wrapper">
 					@if (testimonial.OrderResult != null)
 					{
-						@Html.ByteImage(testimonial.OrderResult.Small, "Краен резултат")
+						var base64 = Convert.ToBase64String(testimonial.OrderResult.Big);
+						var bigImgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+						<div class="pic">
+							@Html.ByteImage(testimonial.OrderResult.Small, "Краен резултат")
+							<a href="@bigImgSrc" class="hover-effect alt fancy"><span class="plus fa fa-expand"></span></a>
+						</div>
 					}
 					else
 					{
@@ -76,7 +95,7 @@
 							<figure>
 								<figcaption>
 									@testimonial.ClientFullName @if (!string.IsNullOrEmpty(testimonial.ClientJobTitle)) { <span>[ @testimonial.ClientJobTitle ]</span> }
-									<div class="stars"></div>
+									<div>@Html.Partial("Rating", testimonial.Rating)</div>
 								</figcaption>
 							</figure>
 						</div>
