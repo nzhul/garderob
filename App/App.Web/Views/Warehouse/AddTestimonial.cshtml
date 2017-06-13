@@ -27,6 +27,20 @@
 			<div class="col-md-12">
 				<h4>Добави атестат за: @Model.OrderTitle</h4>
 				@Html.ValidationMessage("InvalidOrderId", new { @class = "text-danger" })<br/>
+				@Html.LabelFor(m => m.Rating) <br/>
+				@{ 
+					IList<SelectListItem> listItems = new List<SelectListItem>();
+					double startValue = 5.0;
+					for (int i = 0; i < 10; i++)
+					{
+						listItems.Add(new SelectListItem { Text = string.Format("{0:N1}", startValue), Value = string.Format("{0:N1}", startValue) });
+						startValue -= .5;
+					}
+				}
+				<div class="selection-box">
+					@Html.DropDownListFor(m => m.Rating, listItems)
+				</div>
+
 				@Html.LabelFor(m => m.Text) @Html.ValidationMessageFor(m => m.Text, "", new { @class = "text-danger" })
 				@Html.TextAreaFor(m => m.Text, new { @class = "fe-textarea" })
 				@Html.HiddenFor(m => m.OrderTitle)

@@ -3,12 +3,11 @@
 @{
 
 	double roundedValue = Math.Round(Model / 0.5) * 5;
-	int loopCount = (int)Math.Round(roundedValue / 10);
+	int loopCount = (int)Math.Floor(roundedValue / 10);
 	bool renderHalfStar = false;
 
 	if (roundedValue % 10 != 0)
 	{
-		loopCount--;
 		renderHalfStar = true;
 	}
 

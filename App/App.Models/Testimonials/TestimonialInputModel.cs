@@ -7,6 +7,7 @@ namespace App.Models.Testimonials
 		[Required(ErrorMessage = " * Задължително!")]
 		public int OrderId { get; set; }
 
+		[Display(Name = "Оценка:")]
 		[Range(0, 5)]
 		public double Rating { get; set; }
 

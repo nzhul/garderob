@@ -156,8 +156,16 @@
 									@Html.ByteImage(testimonial.ClientPhoto, "Снимка на доволен клиент", "testimonial-client-photo")
 									<figure>
 										<figcaption>
-											@testimonial.ClientFullName<span>[ @testimonial.ClientJobTitle ]</span>
-											<div class="stars"></div>
+											@{ 
+												string jobTitle = string.Empty;
+												if (!string.IsNullOrEmpty(testimonial.ClientJobTitle))
+												{
+													string jobTitleTemplate = "<span>[{0}]</span>";
+													jobTitle = string.Format(jobTitleTemplate, testimonial.ClientJobTitle);
+												}
+											}
+											@testimonial.ClientFullName@Html.Raw(@jobTitle)
+											<div>@Html.Partial("~/Views/Testimonials/Rating.cshtml", testimonial.Rating)</div>
 										</figcaption>
 									</figure>
 								</div>
