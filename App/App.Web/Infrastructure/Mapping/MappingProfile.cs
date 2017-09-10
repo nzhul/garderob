@@ -24,9 +24,9 @@ namespace App.Web.Infrastructure.Mapping
 
 			CreateMap<OrderInputModel, Order>().ForMember(x => x.Slug, opt => opt.MapFrom(u => u.Title.ToLower()));
 			CreateMap<Order, OrderViewModel>()
-				.ForMember(x => x.SketchImage, opt => opt.MapFrom(u => u.SketchImages.FirstOrDefault().Small))
-				.ForMember(x => x.DesignImage, opt => opt.MapFrom(u => u.DesignImages.FirstOrDefault().Small))
-				.ForMember(x => x.ResultImage, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault().Small));
+				.ForMember(x => x.SketchImage, opt => opt.MapFrom(u => u.SketchImages.FirstOrDefault()))
+				.ForMember(x => x.DesignImage, opt => opt.MapFrom(u => u.DesignImages.FirstOrDefault()))
+				.ForMember(x => x.ResultImage, opt => opt.MapFrom(u => u.ResultImages.FirstOrDefault()));
 
 			CreateMap<Order, OrderViewModelSimple>()
 				.ForMember(x => x.ClientFullName, opt => opt.MapFrom(u => u.Client.FirstName + " " + u.Client.LastName))

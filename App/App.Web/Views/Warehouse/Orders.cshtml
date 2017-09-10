@@ -40,10 +40,26 @@
 					<div class="row">
 						<div class="col-md-4">
 							<div class="gallery-row-image-wrapper">
-								@if (order.SketchImage.Length > 0)
-								{
-									@Html.ByteImage(order.SketchImage, order.Title + " Скица", "warehouse-image", "", order.Title + " Скица")
-								}
+									@if (order.SketchImage != null)
+									{
+										<div class="gallery-row-image-wrapper">
+											@if (order.SketchImage != null)
+											{
+												var base64 = Convert.ToBase64String(order.SketchImage.Big);
+												var bigImgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+												<div class="pic">
+													@Html.ByteImage(order.SketchImage.Small, order.Title + " Скица", "warehouse-image", "", order.Title + " 3D модел")
+													<a href="@bigImgSrc" class="hover-effect alt fancy"><span class="plus fa fa-expand"></span></a>
+												</div>
+											}
+											else
+											{
+												<img src="~/Content/img/missing-photo-fe.jpg" class="warehouse-image" alt="Липсваща снимка" />
+											}
+											<span>Скица</span>
+										</div>
+									}
 								else
 								{
 									<img src="~/content/img/warehouse/waiting.jpg" alt="@order.Title" />
@@ -54,13 +70,30 @@
 						</div>
 						<div class="col-md-4">
 							<div class="gallery-row-image-wrapper">
-								@if (order.DesignImage.Length > 0)
+								@if (order.DesignImage != null)
 								{
-									@Html.ByteImage(order.DesignImage, order.Title + " 3D модел", "warehouse-image", "", order.Title + " 3D модел")
+									<div class="gallery-row-image-wrapper">
+										@if (order.DesignImage != null)
+										{
+											var base64 = Convert.ToBase64String(order.DesignImage.Big);
+											var bigImgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+											<div class="pic">
+												@Html.ByteImage(order.DesignImage.Small, order.Title + " 3D модел", "warehouse-image", "", order.Title + " 3D модел")
+												<a href="@bigImgSrc" class="hover-effect alt fancy"><span class="plus fa fa-expand"></span></a>
+											</div>
+										}
+										else
+										{
+											<img src="~/Content/img/missing-photo-fe.jpg" class="warehouse-image" alt="Липсваща снимка" />
+										}
+										<i class="fa fa-angle-double-right"></i>
+										<span>Скица</span>
+									</div>
 								}
 								else
 								{
-									<img src="~/content/img/warehouse/waiting.jpg" alt="@order.Title" />
+									<img src="~/content/img/warehouse/waiting.jpg" class="warehouse-image" alt="@order.Title" />
 								}
 								<i class="fa fa-angle-double-right"></i>
 								<span>Модел</span>
@@ -68,13 +101,29 @@
 						</div>
 						<div class="col-md-4">
 							<div class="gallery-row-image-wrapper">
-								@if (order.ResultImage.Length > 0)
+								@if (order.ResultImage != null)
 								{
-									@Html.ByteImage(order.ResultImage, order.Title + " 3D модел", "warehouse-image", "", order.Title + " 3D модел")
+									<div class="gallery-row-image-wrapper">
+										@if (order.ResultImage != null)
+										{
+											var base64 = Convert.ToBase64String(order.ResultImage.Big);
+											var bigImgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+											<div class="pic">
+												@Html.ByteImage(order.ResultImage.Small, order.Title + " Резултат", "warehouse-image", "", order.Title + " Резултат")
+												<a href="@bigImgSrc" class="hover-effect alt fancy"><span class="plus fa fa-expand"></span></a>
+											</div>
+										}
+										else
+										{
+											<img src="~/Content/img/missing-photo-fe.jpg" class="warehouse-image" alt="Липсваща снимка" />
+										}
+										<span>Скица</span>
+									</div>
 								}
 								else
 								{
-									<img src="~/content/img/warehouse/waiting.jpg" alt="@order.Title" />
+									<img src="~/content/img/warehouse/waiting.jpg" class="warehouse-image" alt="@order.Title" />
 								}
 								<span>Резултат</span>
 							</div>
@@ -289,7 +338,7 @@
 					<div class="basket-success-view">
 						<i class="fa fa-check-circle"></i>
 						<h3>Поръчката Ви е изпратена!</h3>
-						<p>Поръчката ви беше успешно приета при нас за изработка. Ако имате някакви допълнителни въпроси, не се колебайте да се свържете с нас на телефон: 0887556644</p>
+						<p>Поръчката ви беше успешно приета при нас за изработка. Ако имате някакви допълнителни въпроси, не се колебайте да се свържете с нас на телефон: 0877-977-156</p>
 					</div>
 					<div class="basket-loading-view">
 						<i class="fa fa-refresh fa-spin fa-fw"></i>

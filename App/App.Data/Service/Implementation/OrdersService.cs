@@ -139,6 +139,11 @@ namespace App.Data.Service.Implementation
 			newOrder.LastModified = DateTime.UtcNow;
 			newOrder.Count = 1;
 
+			if (newOrder.HandlesMaterialId == 0)
+			{
+				newOrder.HandlesMaterialId = null;
+			}
+
 			this.Data.Orders.Add(newOrder);
 			this.Data.SaveChanges();
 
@@ -394,6 +399,10 @@ namespace App.Data.Service.Implementation
 					dbOrder.OfferDate = DateTime.UtcNow;
 				}
 
+				if (dbOrder.HandlesMaterialId == 0)
+				{
+					dbOrder.HandlesMaterialId = null;
+				}
 
 				dbOrder.LastModified = DateTime.UtcNow;
 				this.Data.SaveChanges();

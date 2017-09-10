@@ -39,8 +39,8 @@ namespace App.Models.Orders
 		[Range(1, int.MaxValue, ErrorMessage = " * Задължително!")]
 		public int FazerMaterialId { get; set; }
 
-		[Required(ErrorMessage = " * Задължително!")]
-		[Range(1, int.MaxValue, ErrorMessage = " * Задължително!")]
+		//[Required(ErrorMessage = " * Задължително!")]
+		//[Range(1, int.MaxValue, ErrorMessage = " * Задължително!")]
 		public int HandlesMaterialId { get; set; }
 
 		public string ClientId { get; set; }

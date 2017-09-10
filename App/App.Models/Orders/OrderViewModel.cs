@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Models.Images;
+using System;
 
 namespace App.Models.Orders
 {
@@ -20,11 +21,11 @@ namespace App.Models.Orders
 
 		public bool IsInCart { get; set; }
 
-		public byte[] SketchImage { get; set; }
+		public Image SketchImage { get; set; }
 
-		public byte[] DesignImage { get; set; }
+		public Image DesignImage { get; set; }
 
-		public byte[] ResultImage { get; set; }
+		public Image ResultImage { get; set; }
 
 		public bool Installation { get; set; }
 	}
