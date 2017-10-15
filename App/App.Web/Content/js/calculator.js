@@ -239,8 +239,8 @@ $(document).ready(function () {
 
             var data = {
                 constants: {
-                    laborPricePercent: 1.5, // процент
-                    cuttingPrice: 3.59, // лв умножава се по квадратите на изразходвания материал
+                    laborPricePercent: 2.3, // процент
+                    cuttingPrice: 4, // лв умножава се по квадратите на изразходвания материал
                     cant2MM: 1, // лв кант врати
                     cant08MM: 0.56, // лв кант други
                     kracheta: 3, // лв добавяме ги когато има цокъл
