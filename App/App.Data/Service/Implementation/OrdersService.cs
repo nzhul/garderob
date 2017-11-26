@@ -189,8 +189,8 @@ namespace App.Data.Service.Implementation
 				{
 					MessageTitle = "Запитването прието (tvoiatgarderob.bg)",
 					MessageBody = "Вашето запитване беше успешно прието!" + "<br/>" + "<br/>"
-								+ "Може да следите статуса на вашата поръчка в вашия <a href='http://www.tvoiatgarderob.bg/warehouse/orders'>СКЛАД</a>" + "<br/>" + "<br/>"
-								+ "За да следите статуса на поръчката си е нуждо да си направите <a href='http://www.tvoiatgarderob.bg/account/register'>безплатна регистрация</a>."
+								+ "Може да следите статуса на вашата поръчка във вашия <a href='http://www.tvoiatgarderob.bg/warehouse/orders'>СКЛАД</a>" + "<br/>" + "<br/>"
+								+ "За да следите статуса на поръчката си е нужно да си направите <a href='http://www.tvoiatgarderob.bg/account/register'>безплатна регистрация</a>."
 				};
 				this.MessagingService.Notify(clientEmail, clientMessage);
 			}
@@ -318,7 +318,7 @@ namespace App.Data.Service.Implementation
 
 		public IQueryable<Order> GetOrdersByState(OrderState state)
 		{
-			return this.Data.Orders.All().Where(o => o.State == state);
+			return this.Data.Orders.All().Where(o => o.State == state).OrderByDescending(o => o.RequestDate);
 		}
 
 		public bool UpdateOrder(int id, EditOrderInputModel model)
@@ -421,7 +421,7 @@ namespace App.Data.Service.Implementation
 			{
 				MessageTitle = "Получихте оферта (tvoiatgarderob.bg)",
 				MessageBody = "Получихте оферта по ваше запитване!" + "<br/>" + "<br/>"
-				+ "Може да следите статуса на вашата поръчка/запитване в вашия <a href='http://www.tvoiatgarderob.bg/warehouse/orders'>СКЛАД</a>" + "<br/>" + "<br/>"
+				+ "Може да следите статуса на вашата поръчка/запитване във вашия <a href='http://www.tvoiatgarderob.bg/warehouse/orders'>СКЛАД</a>" + "<br/>" + "<br/>"
 			};
 
 			this.MessagingService.Notify(clientEmail, clientMessage);
