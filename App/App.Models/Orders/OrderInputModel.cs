@@ -8,7 +8,9 @@ namespace App.Models.Orders
 {
 	public class OrderInputModel
 	{
-		[RequireImageFile(MissingFileErrorMessage = " * Задължително качете поне една скица!", InvalidFileErrorMessage = " * Невалиден файл! Позволени са само: .jpg, .png и .gif")]
+		[RequireImageFile(MissingFileErrorMessage = " * Задължително качете поне една скица!", 
+            InvalidFileErrorMessage = " * Невалиден файл! Позволени са само: .jpg, .png и .gif", 
+            InvalidFileSizeErrorMessage = "Изображението което се опитвате да качите е прекалено голямо! Максималният размер е 5 mb за картинка и 20 mb за всички!")]
 		public List<HttpPostedFileBase> PostedSketches { get; set; }
 
 		public IList<Material> SurfaceMaterials { get; set; }
