@@ -66,15 +66,16 @@
 							</div>
 							@Html.ByteImage(Model.ProfileImage, "Снимка на потребителя", "client-photo")
 							@Ajax.ActionLink("Изтрии",
-							"DeleteProfilePhoto",
-							new { id = Model.Id },
-							new AjaxOptions
-							{
-								HttpMethod = "Post",
-								OnBegin = "deletePhotoBegin",
-								OnFailure = "deletePhotoFail",
-								OnSuccess = "deletePhotoSuccess"
-							}, new { @class = "btn btn-danger delete-profile-photo-btn" })
+                            "DeleteProfilePhoto",
+                            new { id = Model.Id },
+                            new AjaxOptions
+                            {
+                                HttpMethod = "Post",
+                                OnBegin = "deletePhotoBegin",
+                                OnFailure = "deletePhotoFail",
+                                OnSuccess = "deletePhotoSuccess",
+                                Confirm = "Сигурни ли сте, че искате да изтриете ?"
+                            }, new { @class = "btn btn-danger delete-profile-photo-btn" })
 						}
 						else
 						{

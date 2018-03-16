@@ -374,6 +374,8 @@
     <Content Include="App_Data\StaticPages\make.html" />
     <Content Include="App_Data\StaticPages\price.html" />
     <Content Include="App_Data\StaticPages\services.html" />
+    <Content Include="Areas\Administration\Content\alertify\alertify.css" />
+    <Content Include="Areas\Administration\Content\alertify\alertify.js" />
     <Content Include="Areas\Administration\Content\datetimepicker\i18n\jquery-ui-timepicker-addon-i18n.js" />
     <Content Include="Areas\Administration\Content\datetimepicker\i18n\jquery-ui-timepicker-addon-i18n.min.js" />
     <Content Include="Areas\Administration\Content\datetimepicker\i18n\jquery-ui-timepicker-af.js" />

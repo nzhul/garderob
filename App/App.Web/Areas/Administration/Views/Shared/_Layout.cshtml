@@ -1,85 +1,109 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@ViewBag.Title - My ASP.NET Application</title>
-	@Styles.Render("~/bundles/administration")
-	<script src="~/Content/js/jquery.min.js"></script>
-	<script src="~/Content/js/jquery-ui.min.js"></script>
-	<script src="~/Scripts/jquery.validate.min.js"></script>
-	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-	<script src="~/Scripts/bootstrap.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/bundles/administration")
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 
-	<script src="~/Areas/Administration/Content/datetimepicker/jquery-ui-timepicker-addon.js"></script>
-	<script src="~/Areas/Administration/Content/datetimepicker/i18n/jquery-ui-timepicker-addon-i18n.js"></script>
-	<script src="~/Areas/Administration/Content/datetimepicker/jquery-ui-sliderAccess.js"></script>
-	<link href="~/Areas/Administration/Content/datetimepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <script src="~/Areas/Administration/Content/datetimepicker/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Areas/Administration/Content/datetimepicker/i18n/jquery-ui-timepicker-addon-i18n.js"></script>
+    <script src="~/Areas/Administration/Content/datetimepicker/jquery-ui-sliderAccess.js"></script>
+    <link href="~/Areas/Administration/Content/datetimepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="~/Areas/Administration/Content/alertify/alertify.css" rel="stylesheet" />
 
-	@RenderSection("styles", false)
-	<link href="~/Content/css/indent.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+    <link href="~/Content/css/indent.css" rel="stylesheet" />
 </head>
 <body style="background-color: lightgray;">
-	<div class="container body-content" style="background-color: #f3f3f3;">
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					@Html.ActionLink("Администрация", "Index", "Orders", null, new { @class = "navbar-brand" })
-				</div>
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li>@Html.ActionLink("Върни се в публичния сайт", "Index", "Home", new { Area = "" }, null)</li>
-					</ul>
-					@Html.Partial("_LoginPartial")
-				</div>
-			</div>
-		</div>
-		<div class="row" style="margin-top:80px;">
-			<div class="col-md-12">
-				<div class="d-navigation">
-					<a href="@Url.Action("Index", "Orders")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Orders" ? "active" : "")">Поръчки</a>
-					<a href="@Url.Action("Index", "OrderCategories")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "ordercategories" ? "active" : "")">Категории Поръчки</a>
-					<a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Клиенти</a>
-					<a href="@Url.Action("Index", "Testimonials")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "testimonials" ? "active" : "")">Атестати</a>
-					<a href="@Url.Action("Index", "Materials")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "materials" ? "active" : "")">Материали</a>
-					<a href="@Url.Action("Index", "MaterialCategories")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "materialcategories" ? "active" : "")">Категории Материали</a>
-					<a href="@Url.Action("Index", "Pages")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "pages" ? "active" : "")">Страници</a>
-				</div>
-				<hr />
-				<div class="container">
-					@Html.Partial("_MessagePartial")
-				</div>
-				@RenderBody()
-			</div>
+    <div class="container body-content" style="background-color: #f3f3f3;">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Администрация", "Index", "Orders", null, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Върни се в публичния сайт", "Index", "Home", new { Area = "" }, null)</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:80px;">
+            <div class="col-md-12">
+                <div class="d-navigation">
+                    <a href="@Url.Action("Index", "Orders")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "Orders" ? "active" : "")">Поръчки</a>
+                    <a href="@Url.Action("Index", "OrderCategories")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "ordercategories" ? "active" : "")">Категории Поръчки</a>
+                    <a href="@Url.Action("Index", "Clients")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "clients" ? "active" : "")">Клиенти</a>
+                    <a href="@Url.Action("Index", "Testimonials")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "testimonials" ? "active" : "")">Атестати</a>
+                    <a href="@Url.Action("Index", "Materials")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "materials" ? "active" : "")">Материали</a>
+                    <a href="@Url.Action("Index", "MaterialCategories")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "materialcategories" ? "active" : "")">Категории Материали</a>
+                    <a href="@Url.Action("Index", "Pages")" class="btn btn-default @(ViewContext.RouteData.Values["Controller"].ToString() == "pages" ? "active" : "")">Страници</a>
+                </div>
+                <hr />
+                <div class="container">
+                    @Html.Partial("_MessagePartial")
+                </div>
+                @RenderBody()
+            </div>
 
-		</div>
-		<hr />
-		<footer>
-			<p>&copy; @DateTime.Now.Year</p>
-		</footer>
-	</div>
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
 
-	@RenderSection("scripts", false)
+    @RenderSection("scripts", false)
+    <script src="~/Areas/Administration/Content/alertify/alertify.js"></script>
 
-	<script>
-		$(function () {
-			$('.datetimepicker').datetimepicker({
-				dateFormat: 'dd/mm/yy',
-				timeFormat: 'HH:mm',
-			});
-		});
-	</script>
+    <script>
+        $(document).ready(function () {
+            $('.confirm-link').on('click', function (event) {
 
-	<script>
-		$(document).ready(function () {
-			$('[data-toggle="tooltip"]').tooltip().css('cursor', 'pointer');
-		});
-	</script>
+                event.preventDefault();
+
+                var clickedLink = this;
+
+                alertify
+                    .okBtn('Да')
+                    .cancelBtn('Не')
+                    .confirm("Сигурни ли сте, че искате да изтриете?", function (e) {
+                    if (e) {
+                        window.location = $(clickedLink).attr('href');
+                    } else {
+                        return false;
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                dateFormat: 'dd/mm/yy',
+                timeFormat: 'HH:mm',
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip().css('cursor', 'pointer');
+        });
+    </script>
 
 </body>
 </html>

@@ -6,7 +6,7 @@
 	<tr>
 		<td><a href="@Url.Action("Edit", new { @id = category.Id })">@category.Name</a></td>
 		<td>
-			<a href="@Url.Action("Delete", new { @id = category.Id })"><i class="fa fa-trash-o"></i></a>
+			<a href="@Url.Action("Delete", new { @id = category.Id })" class="confirm-link"><i class="fa fa-trash-o"></i></a>
 		</td>
 	</tr>
 }

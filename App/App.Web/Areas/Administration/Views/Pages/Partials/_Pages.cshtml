@@ -5,7 +5,7 @@
     <tr>
         <td><a href="@Url.Action("Edit", new { @id = Page.Id })">@Page.Title</a></td>
         <td>
-            <a onclick="return confirm('Сигурни ли сте, че искате да изтриете?');" href="@Url.Action("Delete", new { @id = Page.Id })"><i class="fa fa-trash-o"></i></a>
+            <a class="confirm-link" href="@Url.Action("Delete", new { @id = Page.Id })"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
 }

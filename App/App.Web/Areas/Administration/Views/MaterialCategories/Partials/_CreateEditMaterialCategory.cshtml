@@ -75,14 +75,15 @@
 				<p id="delete-pdf-update-target">
 					<a href="@Url.Action("Show", "Document", new { Area = "", id = Model.Pdf.Id })"><strong>@Model.Pdf.Name</strong></a> &nbsp;&nbsp; 
 					@Ajax.ActionLink("Изтрии",
-								"DeletePDFFile",
-								"MaterialCategories",
-								new { Area = "", id = Model.Id },
-								new AjaxOptions
-								{
-									HttpMethod = "Post",
-									UpdateTargetId = "delete-pdf-update-target"
-								}, new { @class = "btn btn-danger delete-profile-photo-btn" })
+                                "DeletePDFFile",
+                                "MaterialCategories",
+                                new { Area = "", id = Model.Id },
+                                new AjaxOptions
+                                {
+                                    HttpMethod = "Post",
+                                    UpdateTargetId = "delete-pdf-update-target",
+                                    Confirm = "Сигурни ли сте, че искате да изтриете ?"
+                                }, new { @class = "btn btn-danger delete-profile-photo-btn" })
 				</p>
 			}
 

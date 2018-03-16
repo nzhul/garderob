@@ -29,7 +29,7 @@
 								<td><a href="@Url.Action("Edit", new { id = material.Id })">@Html.ByteImage(material.Image.Small, "Материал", "material-thumbnail-index")</a></td>
 								<td><a href="@Url.Action("Edit", new { id = material.Id })">@material.Name</a></td>
 								<td class="text-center"><a href="@Url.Action("Edit", new { id = material.Id })">@material.Price лв.</a></td>
-								<td><a href="@Url.Action("Delete", new { id = material.Id })"><i class="fa fa-trash-o"></i></a></td>
+								<td><a href="@Url.Action("Delete", new { id = material.Id })" class="confirm-link"><i class="fa fa-trash-o"></i></a></td>
 							</tr>
 						}
 						<tr>

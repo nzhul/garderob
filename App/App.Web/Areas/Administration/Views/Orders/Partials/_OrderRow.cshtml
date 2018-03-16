@@ -30,7 +30,7 @@
 				</td>
 				@*<td><a href="@Url.Action("NotifyClient", "Orders", new { id = order.Id,  })"><i class="fa fa-envelope-o"></i></a></td>*@
 				<td class="text-center">
-					<a href="@Url.Action("Delete", new { id = order.Id })"><i class="fa fa-trash-o"></i></a>
+					<a href="@Url.Action("Delete", new { id = order.Id })" class="confirm-link"><i class="fa fa-trash-o"></i></a>
 				</td>
 			</tr>
 		}
