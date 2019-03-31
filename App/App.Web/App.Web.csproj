@@ -1390,6 +1390,7 @@
       <DependentUpon>Email.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </None>
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\garderob.dobromirivanov.net - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\tvoiatgarderob.bg - Web Deploy.pubxml" />

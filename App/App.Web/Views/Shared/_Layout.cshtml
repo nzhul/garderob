@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html class="no-js">
 <head>
+    <!--HOST:Smarter-->
 	<meta charset="utf-8">
 	<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -175,5 +176,29 @@
 
 	@Scripts.Render("~/bundles/garderob-fe-scripts")
 	@RenderSection("scripts", required: false)
+	
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#237dc8"
+    },
+    "button": {
+      "background": "#ffffff",
+      "text": "#237dc8"
+    }
+  },
+  "position": "bottom-right",
+  "content": {
+    "message": "Този сайт използва бисквитки за да Ви предостави пълноценно използване на функционалността си.",
+    "dismiss": "Съгласен!",
+    "link": "Научете повече",
+    "href": "https://tvoiatgarderob.bg/gdpr"
+  }
+})});
+</script>
 </body>
 </html>
