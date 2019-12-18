@@ -42,9 +42,9 @@ namespace App.Web.Areas.Administration.Controllers
 			if (dbOrder != null)
 			{
 				EditOrderInputModel model = Mapper.Map(dbOrder, new EditOrderInputModel());
-				model.SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces").ToList();
-				model.FazerMaterials = this.materialsService.GetAllMaterials("fazer-egger").ToList();
-				model.HandlesMaterials = this.materialsService.GetAllMaterials("handles").ToList();
+				model.SurfaceMaterials = this.materialsService.GetAllMaterials("surfaces", true).ToList();
+				model.FazerMaterials = this.materialsService.GetAllMaterials("fazer-egger", true).ToList();
+				model.HandlesMaterials = this.materialsService.GetAllMaterials("handles", true).ToList();
 				model.Categories = this.ordersService.GetCategoriesSelectData();
 				return this.View(model);
 			}

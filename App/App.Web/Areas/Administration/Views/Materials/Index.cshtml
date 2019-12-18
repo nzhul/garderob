@@ -25,12 +25,24 @@
 					{
 						foreach (var material in category.Materials)
 						{
-							<tr>
-								<td><a href="@Url.Action("Edit", new { id = material.Id })">@Html.ByteImage(material.Image.Small, "Материал", "material-thumbnail-index")</a></td>
-								<td><a href="@Url.Action("Edit", new { id = material.Id })">@material.Name</a></td>
-								<td class="text-center"><a href="@Url.Action("Edit", new { id = material.Id })">@material.Price лв.</a></td>
-								<td><a href="@Url.Action("Delete", new { id = material.Id })" class="confirm-link"><i class="fa fa-trash-o"></i></a></td>
-							</tr>
+							string rowClass = "";
+							if (material.IsDisabled)
+							{
+								rowClass = "dimmed";
+							}
+					<tr class="@rowClass">
+						<td><a href="@Url.Action("Edit", new { id = material.Id })">@Html.ByteImage(material.Image.Small, "Материал", "material-thumbnail-index")</a></td>
+						<td><a href="@Url.Action("Edit", new { id = material.Id })">@material.Name</a></td>
+						<td class="text-center"><a href="@Url.Action("Edit", new { id = material.Id })">@material.Price лв.</a></td>
+						@if (!material.IsDisabled)
+						{
+							<td><a href="@Url.Action("Delete", new { id = material.Id })" class="confirm-link"><i class="fa fa-trash-o"></i></a></td>
+						}
+						else
+						{
+							<td><a href="@Url.Action("Restore", new { id = material.Id })" class="confirm-link"><i class="fa fa-repeat"></i></a></td>
+						}
+					</tr>
 						}
 						<tr>
 							<td colspan="4">

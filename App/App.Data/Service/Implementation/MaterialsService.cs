@@ -133,11 +133,23 @@ namespace App.Data.Service.Implementation
 
 			if (materialToDelete != null)
 			{
-				this.Data.Images.Delete(materialToDelete.Image);
-				this.Data.Materials.Delete(materialToDelete);
+				materialToDelete.IsDisabled = true;
 				this.Data.SaveChanges();
 			}
 			
+			return materialToDelete;
+		}
+
+		public Material RestoreMaterial(int id)
+		{
+			Material materialToDelete = this.GetMaterial(id);
+
+			if (materialToDelete != null)
+			{
+				materialToDelete.IsDisabled = false;
+				this.Data.SaveChanges();
+			}
+
 			return materialToDelete;
 		}
 
@@ -151,9 +163,16 @@ namespace App.Data.Service.Implementation
 			return this.Data.MaterialCategories.All();
 		}
 
-		public IQueryable<Material> GetAllMaterials(string materialCategorySlug)
+		public IQueryable<Material> GetAllMaterials(string materialCategorySlug, bool includeDisabled = false)
 		{
-			return this.Data.Materials.All().Where(m => m.Category.Slug == materialCategorySlug);
+			var query = this.Data.Materials.All().Where(m => m.Category.Slug == materialCategorySlug);
+
+			if (!includeDisabled)
+			{
+				query = query.Where(m => m.IsDisabled != true);
+			}
+
+			return query;
 		}
 
 		public IEnumerable<SelectListItem> GetCategoriesSelectData()

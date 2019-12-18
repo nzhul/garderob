@@ -13,9 +13,11 @@ namespace App.Data.Service.Abstraction
 
 		Material DeleteMaterial(int id);
 
+		Material RestoreMaterial(int id);
+
 		Material UpdateMaterial(int id, EditMaterialInputModel model);
 
-		IQueryable<Material> GetAllMaterials(string materialCategorySlug);
+		IQueryable<Material> GetAllMaterials(string materialCategorySlug, bool includeDisabled = false);
 
 		Material GetMaterial(int id);
 

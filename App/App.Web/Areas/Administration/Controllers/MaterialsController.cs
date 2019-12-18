@@ -124,5 +124,20 @@ namespace App.Web.Areas.Administration.Controllers
 
 			return HttpNotFound();
 		}
+
+		[HttpGet]
+		public ActionResult Restore(int id)
+		{
+			Material dbMaterial = this.materialsService.RestoreMaterial(id);
+
+			if (dbMaterial != null)
+			{
+				TempData["message"] = "Възтановено успешно!";
+				TempData["messageType"] = "success";
+				return this.RedirectToAction("Index");
+			}
+
+			return HttpNotFound();
+		}
 	}
 }

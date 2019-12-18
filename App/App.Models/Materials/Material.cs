@@ -24,5 +24,7 @@ namespace App.Models.Materials
 		public DateTime DateCreated { get; set; }
 
 		public DateTime LastModified { get; set; }
-	}
+
+        public bool IsDisabled { get; set; }
+    }
 }
